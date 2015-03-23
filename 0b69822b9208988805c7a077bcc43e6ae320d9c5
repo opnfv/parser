@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_e55acc4f",
+        "filename": "LICENSE",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-03-23T01:03:15Z",
+      "side": 1,
+      "message": "extra white space",
+      "revId": "0b69822b9208988805c7a077bcc43e6ae320d9c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c557d025",
+        "filename": "LICENSE",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-03-23T01:03:15Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0b69822b9208988805c7a077bcc43e6ae320d9c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a554c421",
+        "filename": "LICENSE",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-03-23T01:03:15Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0b69822b9208988805c7a077bcc43e6ae320d9c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
