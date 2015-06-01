@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_74dbec1b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2015-06-01T09:28:08Z",
+      "side": 1,
+      "message": "Please be a bit more explanatory on first line of the commit message so it is  understandable on git log output.",
+      "revId": "9a981fe9eec2a7ac3da1a777e7f02fb96463eaf9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
