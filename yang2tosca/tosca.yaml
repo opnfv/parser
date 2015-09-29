@@ -1,0 +1,112 @@
+tosca_definitions_version: tosca_simple_yaml_1_0_0
+tosca_default_namespace: tosca_simple_yaml_1_0_0
+template_name: clearwater
+template_author: 
+template_version:2014-05-18
+description:
+	This module defines a VNF Deployment Unit.
+service_properties
+	ID: 
+	vendor: HP
+	version: 
+import: 
+	ietf-yang-types
+
+	
+dsl_definitions:
+	compute_props_host_ellis: &compute_props_host_ellis
+        					
+ 	 	 num_cpu:4
+		 mem_size:2048
+		 disk_size:2048
+		 vnic:2
+	compute_props_host_bono: &compute_props_host_bono
+        					
+ 	 	 num_cpu:6
+		 mem_size:5000
+		 disk_size:5000
+		 vnic:1
+
+node_types:
+	
+	tosca.nodes.compute.ellis:
+		derived_from: cw.nodes.compute
+
+	
+	tosca.nodes.compute.bono:
+		derived_from: cw.nodes.compute
+
+
+capability_types:
+	
+	tosca.capabilities.Container:
+		derived_from:tosca.capabilities.Container
+		properties:
+			swap:
+			iops:
+
+	
+	tosca.capabilities.Container:
+		derived_from:tosca.capabilities.Container
+		properties:
+			swap:
+			iops:
+	
+topology_template:
+		# a description of the topology template 
+		description: >
+			This module defines a VNF Deployment Unit.
+		# a description of the topology template 
+		description: >
+			This module defines a VNF Deployment Unit.	
+node_templates:
+	ellis:
+		type:tosca.nodes.compute.ellis
+		capabilities:
+			os:
+				properties: *compute_props_os_DEF
+			host:
+				properties: *compute_props_host_ellis
+			scalable:
+				properties:
+					min_instances:1				
+					default_instances:1
+	
+		interfaces:
+			start:
+				implementation: start.sh
+			delete:
+				implementaion: stop.sh
+			stop:
+				implementaion: shutdown.sh
+	ellis_BlockStorage:
+		type: tosca.nodes.BlockStorage	
+		properties: 
+			size: { } 
+		 
+
+	bono:
+		type:tosca.nodes.compute.bono
+		capabilities:
+			os:
+				properties: *compute_props_os_DEF
+			host:
+				properties: *compute_props_host_bono
+			scalable:
+				properties:
+					min_instances:2				
+					default_instances:2
+	
+		interfaces:
+			start:
+				implementation: start.sh
+			delete:
+				implementaion: stop.sh
+			stop:
+				implementaion: shutdown.sh
+	bono_BlockStorage:
+		type: tosca.nodes.BlockStorage	
+		properties: 
+			size: { } 
+		 
+
