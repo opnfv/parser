@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_928c6281",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 653
+      },
+      "writtenOn": "2015-09-29T07:54:36Z",
+      "side": 1,
+      "message": "Please change the licence info in according to OPNFV\u0027s requirement",
+      "range": {
+        "startLine": 1,
+        "startChar": 9,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "898022b55c0f9557e89eaa72d63ceb085af94ba2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
