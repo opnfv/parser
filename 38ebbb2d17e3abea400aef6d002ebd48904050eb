@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_12b072f3",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "General comments: Please do not use tab space (\\t) and \\r.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_32ab768b",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "Currently these 4 sections are not supported by tosca-parser. Please refer https://github.com/openstack/heat-translator/blob/master/translator/tests/data/tosca_elk.yaml.\n\nPlease use the same structure and alignment based on the above yaml",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_f294be45",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "service_properties are not supported in tosca-parser.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_d291ba53",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "Can you please include this file as part of review. Would like to see what it is providing.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_b29e4662",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "vnic is not supported as a property to compute node. Please refer networking tosca templates here: https://github.com/openstack/heat-translator/tree/master/translator/tests/data/network",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_929b4272",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "same as above comment.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_7288ce22",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "what is cw.nodes.compute? tosca-parser supports tosca.nodes.Compute",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_528dca30",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "tosca-parser supports tosca.nodes.Compute",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_32825601",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "Can you please elaborate why we need this section?",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_d2789a2d",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "node_templates are subsection of topology_template. Please refer sample templates mentioned above.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_f27b9e27",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "I guess, you can directly use tosca.nodes.Compute for type of node_templates.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_12875211",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-09-29T11:54:11Z",
+      "side": 1,
+      "message": "Please refer block storage sample tosca templates here: https://github.com/openstack/heat-translator/tree/master/translator/tests/data/storage",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
