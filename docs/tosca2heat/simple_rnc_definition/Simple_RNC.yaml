@@ -1,0 +1,401 @@
+# Required TOSCA Definitions version string
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
+
+# Optional. default namespace (for type schema)
+tosca_default_namespace: tosca_simple_profile_for_nfv_1_0_0
+
+# Optional description of the definitions inside the file.
+description: >
+  TOSCA simple profile for RNC
+  1, Compute Node MM, CM, DM, LB...
+    1.1 MM: MaintainModule;
+    1.2 CM: Control Module;
+    1.3 DM: Data Module;
+    1.4 LB: LineCard Module
+  2, Network Node VL and CP
+
+imports:
+  - Simple_RNC_definition.yaml
+
+# list of YAML alias anchors (or macros)
+dsl_definitions:
+  compute_props_os_DEF: &compute_props_os_DEF
+    architecture: x86_64
+    type: Linux
+    distribution: Ubuntu
+    version: 14.10
+
+  compute_props_host_MM: &compute_props_host_MM
+    disk_size: 80 GB
+    iops: 300
+    num_cpus: 8
+    mem_size: 8192 MB
+    swap: 512 MB
+
+  compute_props_host_CM: &compute_props_host_CM
+    disk_size: 0 GB
+    num_cpus: 8
+    mem_size: 8192 MB
+
+  compute_props_host_DM: &compute_props_host_DM
+    disk_size: 0 GB
+    num_cpus: 8
+    mem_size: 8192 MB
+
+  compute_props_host_LB: &compute_props_host_LB
+    disk_size: 0 GB
+    num_cpus: 4
+    mem_size: 8192 MB
+
+# topology template definition of the cloud application or service
+topology_template:
+  # a description of the topology template
+  description: >
+    simple RNC template
+
+  inputs:
+    mm_storage_size:
+      type: integer
+      default: 40 GB
+      description: mm additional block storage size
+      constraints:
+          - valid_values: [ 10, 20, 40, 80 ]
+  # definition of the node templates of the topology
+  node_templates:
+    MM_Active:
+      type: rnc.nodes.compute.MM
+      properties:
+        activestatus: 1
+      requirements:
+        - host: MM_Active_Host
+        - high_availability: MM_Passive
+      artifacts:
+        #the VM image of MM
+        vm_image: mm.image
+      interfaces:
+        Standard:
+          create:
+            implementation: mm_install.sh
+          configure:
+            implementation: mm_active_configure.sh
+
+    MM_Passive:
+      type: rnc.nodes.compute.MM
+      properties:
+        activestatus: 0
+      requirements:
+        - host: MM_Passive_Host
+        - high_availability: MM_Active
+      artifacts:
+        #the VM image of MM
+        vm_image: mm.image
+      interfaces:
+        Standard:
+          create:
+            implementation: mm_install.sh
+          configure:
+            implementation: mm_passvie_configure.sh
+
+    MM_Active_Host:
+      type: rnc.nodes.compute.MM_Host
+      capabilities:
+        os:
+          properties: *compute_props_os_DEF
+        host:
+          properties: *compute_props_host_MM
+      requirements:
+        - local_storage:
+            node: MM_BlockStorage
+            relationship: Storage_attachesto
+              properties:
+                location: /Data
+
+    MM_Passive_Host:
+      type: rnc.nodes.compute.MM_Host
+      copy: MM_Active_Host
+
+    CM_Active:
+      type: rnc.nodes.compute.CM
+      properties:
+        activestatus: 1
+      requirements:
+        - host: CM_Active_Host
+        - high_availability: CM_Passive
+      artifacts:
+        #the VM image of CM
+        vm_image: cm.image
+      interfaces:
+        Standard:
+          create:
+            implementation: cm_install.sh
+          configure:
+            implementation: cm_active_configure.sh
+
+    CM_Passive:
+      type: rnc.nodes.compute.CM
+      properties:
+        activestatus: 0
+      requirements:
+        - host: CM_Passive_Host
+        - high_availability: CM_Active
+      artifacts:
+        #the VM image of CM
+        vm_image: mm.image
+      interfaces:
+        Standard:
+          create:
+            implementation: cm_install.sh
+          configure:
+            implementation: cm_passvie_configure.sh
+
+    CM_Active_Host:
+      type: rnc.nodes.compute.CM_Host
+      capabilities:
+        os:
+          properties: *compute_props_os_DEF
+        host:
+          properties: *compute_props_host_CM
+        scalable:
+          properties:
+            min_instances: 1
+            max_instances: 126
+            default_instances: 1
+    CM_Passive_Host:
+      type: rnc.nodes.compute.MM_Host
+      copy: CM_Active_Host
+
+    DM:
+      type: rnc.nodes.compute.DM
+      requirements:
+        - host: DM_Host
+      artifacts:
+        #the VM image of DM
+        vm_image: dm.image
+      interfaces:
+        Standard:
+          create:
+            implementation: dm_install.sh
+          configure:
+            implementation: dm_configure.sh
+
+    DM_Host:
+      type: rnc.nodes.compute.DM
+      capabilities:
+        os:
+          properties: *compute_props_os_DEF
+        host:
+          properties: *compute_props_host_DM
+        scalable:
+          properties:
+            min_instances: 1
+            max_instances: 120
+            default_instances: 1
+
+    LB:
+      type: rnc.nodes.compute.LB
+      requirements:
+        - host: LB_Host
+      artifacts:
+        #the VM image of LB
+        vm_image: lb.image
+      interfaces:
+          Standard:
+            create:
+              implementation: lb_install.sh
+            configure:
+              implementation: lb_configure.sh
+
+    LB_Host:
+      type: rnc.nodes.compute.LB
+      capabilities:
+        os:
+          properties: *compute_props_os_DEF
+        host:
+          properties: *compute_props_host_LB
+        scalable:
+          properties:
+            min_instances: 1
+            max_instances: 20
+            default_instances: 1
+
+    MM_BlockStorage:
+      type: rnc.nodes.BlockStorage
+      properties:
+        size: { get_input: mm_storage_size }
+      interfaces:
+        Configure:
+          post_configure_target:
+            implementation: default_script.sh
+
+    CTRL_NetWork:
+      type: rnc.nodes.VL
+      properties:
+        cidr: "128.0.0.0/8"
+        network_name: net1
+        dhcp_enabled: false
+
+    INTERMEDIA_NetWork:
+      type: rnc.nodes.VL
+      properties:
+        cidr: "10.0.0.0/8"
+        network_name: net3
+        dhcp_enabled: true
+
+    EXTERMEDIA_NetWork:
+      type: rnc.nodes.VL
+      properties:
+        cidr: "172.1.0.0/20"
+        network_name: net2
+        dhcp_enabled: true
+
+    EMS_NetWork:
+      type: rnc.nodes.VL
+      properties:
+        cidr: "129.0.0.0/8"
+        network_name: net2
+        dhcp_enabled: true
+
+    MM_Port_EMS:
+      type: rnc.nodes.CP
+      properties:
+        order: 1
+        is_default: true
+      requirements:
+        - binding: MM
+        - link: EMS_NetWork
+
+    MM_Port_CTRL:
+      type: rnc.nodes.CP
+      properties:
+        order: 0
+        is_default: true
+      requirements:
+        - binding: MM
+        - link: CTRL_NetWork
+
+    MM_Port_EXTERMEDIA:
+      type: rnc.nodes.CP
+      properties:
+        order: 2
+        is_default: true
+      requirements:
+        - binding: MM
+        - link: EXTERMEDIA_NetWork
+
+    CM_Port_CTRL:
+      type: rnc.nodes.CP
+      properties:
+        order: 0
+        is_default: true
+      requirements:
+        - binding: CM
+        - link: CTRL_NetWork
+
+    CM_Port_INTERMEDIA:
+      type: rnc.nodes.CP
+      properties:
+        order: 1
+        is_default: false
+      requirements:
+        - binding: CM
+        - link: INTERMEDIA_NetWork
+
+    DM_Port_CTRL:
+      type: rnc.nodes.CP
+      properties:
+        order: 0
+        is_default: true
+      requirements:
+        - binding: DM
+        - link: CTRL_NetWork
+
+    DM_Port_INTERMEDIA:
+      type: rnc.nodes.CP
+      properties:
+        order: 1
+        is_default: false
+      requirements:
+        - binding: DM
+        - link: INTERMEDIA_NetWork
+
+    LB_Port_CTRL:
+      type: rnc.nodes.CP
+      properties:
+        order: 0
+        is_default: true
+      requirements:
+        - binding: LB
+        - link: CTRL_NetWork
+
+    LB_Port_INTERMEDIA:
+      type: rnc.nodes.CP
+      properties:
+        order: 1
+        is_default: false
+      requirements:
+        - binding: LB
+        - link: INTERMEDIA_NetWork
+
+    LB_Port_EXTERMEDIA:
+      type: rnc.nodes.CP
+      properties:
+        order: 2
+        is_default: false
+      requirements:
+        - binding: LB
+        - link: EXTERMEDIA_NetWork
+
+  # definition of the relationship templates of the topology
+  relationship_templates:
+    Storage_attachesto:
+      type: BlockStorageAttachesTo
+      properties:
+      location: /data_location
+
+  # definition of output parameters for the topology template
+  outputs:
+    private_ip_of_MM:
+      description: The private IP address of the MM.
+      value: { get_attribute: [MM_Active, private_address] }
+
+    private_ip_of_CM:
+      description: The private IP address of the CM.
+      value: { get_attribute: [CM_Active, private_address] }
+
+    private_ip_of_DM:
+      description: The private IP address of the DM.
+      value: { get_attribute: [ DM, private_address] }
+
+    private_ip_of_LB:
+      description: The private IP address of the LB.
+      value: { get_attribute: [LB, private_address] }
+
+  # definition of logical groups of node templates within the topology
+  # To be continue about this section
+  groups:
+    ServerGroupAnitAffinity: #
+      description: Logical component grouping for placement
+      members: [ MM, CM, LB ]
+      policies:
+        type: tosca.policy.placement.Antilocate
+
+    ServerGroupAffinity: # ??????
+      members: [ CM, DM ]
+      policies:
+        type: tosca.policy.placement.Antilocate
+
+    ServerGroupScaling_DM: # ??????
+      members: [ DM, ]# only one, will be error
+      policies:
+        - name: MyScaleUpPolicy
+        - type: tosca.policy.scale.up | tosca.policy.scale.down
+        - rule: fn.utilizaton [ DM ], greater_than: 80%
+        - trigger: script_dm
+
+    ServerGroupScaling_LB: # ??????
+      members: [ LB, ] # only one, will be error
+      policies:
+        - name: MyScaleUpPolicy
+        - type: tosca.policy.scale.up | tosca.policy.scale.down
+        - rule: fn.utilizaton [ LB ], greater_than: 80%
+        - trigger: script_lb
