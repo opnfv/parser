@@ -1,0 +1,179 @@
+# Required TOSCA Definitions version string
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
+
+# Optional. default namespace (for type schema)
+tosca_default_namespace: tosca_simple_profile_for_nfv_1_0_0
+
+# Optional description of the definitions inside the file.
+description: >
+  NFV TOSCA simple profile for RNC types
+  1, Compute Node£MM, CM, DM, LB...
+     1.1 MM: MaintainModule;
+     1.2 CM: Control Module;
+     1.3 DM: Data Module;
+     1.4 LB: LineCard Module
+  2, Network Node£VL and CP
+
+imports:
+  - TOSCA_nfv_definition_1_0.yaml
+
+# list of node type definitions
+node_types:
+  rnc.nodes.compute.MM:
+    derived_from: tosca.nodes.nfv.vdu
+    properties:
+      activestatus:
+        type: integer
+        description: active or passive
+        constraints:
+            # 1 active, 0 passive
+            - valid_values: [ 0, 1 ]
+      id:
+        type: string
+        defaule: MM
+        description: >
+          A identifier of this VDU within the scope of the VNFD,
+          including version functional description and other
+          identification information.
+
+  rnc.nodes.compute.MM_Host:
+    derived_from: tosca.nodes.compute
+    capabilities:
+      - host:
+          type: rnc.capabilities.Container
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - storage:
+          type: tosca.capabilities.nfv.storage
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+
+  rnc.nodes.compute.CM:
+    derived_from: tosca.nodes.nfv.vdu
+    properties:
+      activestatus:
+        type: integer
+        description: active or passive
+        constraints:
+           # 1 active, 0 passive
+           - valid_values: [ 0, 1 ]
+
+  rnc.nodes.compute.CM_Host:
+    derived_from: tosca.nodes.compute
+    capabilities:
+      - cpu_extension:
+          type: tosca.capabilities.nfv.CPU_extension
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - memory_extension:
+          type: tosca.capabilities.nfv.memory_extension
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - hypervisors:
+          type: tosca.capabilities.nfv.hypervisors
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - PCIe:
+          type: tosca.capabilities.nfv.PCIe
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - interfaces:
+          type: tosca.capabilities.nfv.network.interfaces
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - virtual_switches:
+          type: tosca.capabilities.nfv.network.virtual_switches
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+
+  rnc.nodes.compute.DM:
+    derived_from: tosca.nodes.nfv.vdu
+
+  rnc.nodes.compute.DM_Host:
+    derived_from: tosca.nodes.compute
+    capabilities:
+      - cpu_extension:
+          type: tosca.capabilities.nfv.CPU_extension
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - memory_extension:
+          type: tosca.capabilities.nfv.memory_extension
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - hypervisors:
+          type: tosca.capabilities.nfv.hypervisors
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - PCIe:
+          type: tosca.capabilities.nfv.PCIe
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - interfaces:
+          type: tosca.capabilities.nfv.network.interfaces
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - virtual_switches:
+          type: tosca.capabilities.nfv.network.virtual_switches
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+
+  rnc.nodes.compute.LB:
+    derived_from: tosca.nodes.nfv.vdu
+
+  rnc.nodes.compute.LB_Host:
+    derived_from: tosca.nodes.compute
+    capabilities:
+      - interfaces:
+          type: tosca.capabilities.nfv.network.interfaces
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+      - virtual_switches:
+          type: tosca.capabilities.nfv.network.virtual_switches
+          valid_source_types: [ tosca.nodes.SoftwareComponent ]
+
+  rnc.nodes.BlockStorage:
+    derived_from: tosca.nodes.BlockStorage
+
+  rnc.nodes.VL:
+    derived_from: tosca.nodes.nfv.VL.ELAN
+    properties:
+      ip_version:
+        type: integer
+        required: false
+        default: 4
+        constraints:
+            - valid_values: [ 4, 6 ]
+      cidr:
+        type: string
+        required: false
+      network_name:
+        type: string
+        required: false
+      dhcp_enabled:
+        type: boolean
+        required: no
+        default: true
+        description: >
+          Indicates should DHCP service be enabled on the network or not.
+
+  rnc.nodes.CP:
+    derived_from: tosca.nodes.nfv.CP
+    properties:
+      ip_address:
+        type: string
+        required: false
+      order:
+        type: integer
+        required: true
+        default: 0
+        constraints:
+          - greater_or_equal: 0
+      is_default:
+        type: boolean
+        required: false
+        default: false
+
+# list of capability type definitions
+capability_types:
+  rnc.capabilities.Container:
+    derived_from: tosca.capabilities.Container
+    properties:
+      swap:
+        type: scalar-unit.size
+        description: swap info
+        required: false
+        default: 0
+        constraints:
+            - greater_or_equal: 0 MB
+      iops:
+        type: integer
+        description: IOPS for disk
+        required: false
+        default: 0
+        constraints:
+          - greater_than: 0
