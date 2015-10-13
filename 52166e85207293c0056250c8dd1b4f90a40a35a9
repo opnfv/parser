@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_c1c0bd2c",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "tosca-parser recognizes \"tosca_simple_yaml_1_0\" only as of now. I assume, intention to add this in our parser implementation (branch of tosca-parser).Please clarify",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_e1c3c136",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "General comment across this file. The coding standard in tosca-parser follow is that only two spaces instead four spaces.  tosca-nfv-v1.0-wd02-rev03 spec is also having the same standard. It applies to this complete template.",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_a1ddc916",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "Here requirements and capabilities have same key_name \"high_availability\". Probably, It leads to confusion. Ofcourse, I saw in spec, using the same name. You might suggest different name!",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_81e2c5d3",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "2 empty lines here.",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_61e7d1e5",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "2 empty lines here",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_41eccdc7",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "2 empty lines here",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_21d1d9fb",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-10-13T23:07:38Z",
+      "side": 1,
+      "message": "I am sorry. I could not find all capabilities below from here in \"tosca-nfv-v1.0-wd02-rev03\" spec. Please provide reference.",
+      "revId": "52166e85207293c0056250c8dd1b4f90a40a35a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
