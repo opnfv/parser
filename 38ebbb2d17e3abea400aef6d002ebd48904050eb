@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_1bcf6bb2",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_12b072f3",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_32ab768b",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "Currently these 4 sections are not supported by tosca-parser. Please refer https://github.com/openstack/heat-translator/blob/master/translator/tests/data/tosca_elk.yaml.\n\nPlease use the same structure and alignment based on the above yaml",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_fbc37788",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_32ab768b",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_dbc0b37e",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_f294be45",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_d291ba53",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "Can you please include this file as part of review. Would like to see what it is providing.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_bbbdff04",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_d291ba53",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_9bba3b09",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_b29e4662",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_929b4272",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "same as above comment.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_7b3787b1",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_929b4272",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_5b3cc393",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_7288ce22",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_528dca30",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_3b410f0c",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_528dca30",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_32825601",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -149,6 +293,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "Can you please elaborate why we need this section?",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_1b464b24",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_32825601",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -178,6 +340,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_fb4a5726",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_12bbd273",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_d2789a2d",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -189,6 +375,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "node_templates are subsection of topology_template. Please refer sample templates mentioned above.",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_bb54dfca",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_d2789a2d",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -212,6 +416,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_9b511bdb",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_f27b9e27",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_12875211",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -223,6 +445,24 @@
       "writtenOn": "2015-09-29T11:54:11Z",
       "side": 1,
       "message": "Please refer block storage sample tosca templates here: https://github.com/openstack/heat-translator/tree/master/translator/tests/data/storage",
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_7b5e67eb",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_12875211",
       "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -252,6 +492,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_5b63a3b1",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_d2ac1a38",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 13
+      },
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_b2a9a626",
         "filename": "yang2tosca/tosca.yaml",
         "patchSetId": 1
@@ -263,6 +527,30 @@
       "writtenOn": "2015-09-30T07:31:33Z",
       "side": 1,
       "message": "Assignment?",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 13
+      },
+      "revId": "38ebbb2d17e3abea400aef6d002ebd48904050eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_3b58eff9",
+        "filename": "yang2tosca/tosca.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 613
+      },
+      "writtenOn": "2015-10-29T06:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_b2a9a626",
       "range": {
         "startLine": 110,
         "startChar": 12,
