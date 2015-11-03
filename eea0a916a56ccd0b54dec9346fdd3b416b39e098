@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_e1506a60",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "for to \u003d\u003e for",
+      "range": {
+        "startLine": 10,
+        "startChar": 65,
+        "endLine": 10,
+        "endChar": 69
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_81ee4e8a",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "Please use RST format not markdown",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c14d66c6",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "do not use Chinese marks",
+      "range": {
+        "startLine": 5,
+        "startChar": 41,
+        "endLine": 5,
+        "endChar": 42
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a14a72aa",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": ".It composes \u003d\u003e . It composes",
+      "range": {
+        "startLine": 7,
+        "startChar": 95,
+        "endLine": 7,
+        "endChar": 107
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_81c76e12",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "active vdus and standby vdus?",
+      "range": {
+        "startLine": 7,
+        "startChar": 111,
+        "endLine": 7,
+        "endChar": 137
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_61cc7a36",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": ".All \u003d\u003e . All",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_21d682c6",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": ", which",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_01db7eee",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": ". All",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 22
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_e1d74abe",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "load balance interface module, which",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a1e1529c",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "Please pay more attention to the Marks",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 63
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c1e446ae",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:27:38Z",
+      "side": 1,
+      "message": "no tail spaces",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "eea0a916a56ccd0b54dec9346fdd3b416b39e098",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
