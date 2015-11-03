@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_fc948d45",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure if HP should keep the copyright. In Openstack usually it belongs to the foundation.",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_dc91c953",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "use linux linefeed only, more below",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_dccae96d",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "use pep8 to format the code",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_bcc73564",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "fix tailing whitespace, one more below.",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_9cc47160",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "It\u0027s, one more below.",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_1cb081f3",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-11-03T16:00:52Z",
+      "side": 1,
+      "message": "remove useless comment",
+      "revId": "c2ded5bc9a5d725e6b3d9d55bf729f09b141553c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
