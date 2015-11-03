@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_41129663",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "no unit here? 40MB? 40GB?",
+      "range": {
+        "startLine": 59,
+        "startChar": 15,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2117a253",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 11
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_010c9e41",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "add a spare line here",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 2
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_e1086a2f",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "maybe 128.0.0.0/8 or 10.0.0.0/8 is better",
+      "range": {
+        "startLine": 237,
+        "startChar": 17,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c1056615",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "why not just use Port_CTRL for DM_Port_CTRL, CM_Port_CTRL, etc. Port_INTERMEDIA, etc.",
+      "range": {
+        "startLine": 309,
+        "startChar": 6,
+        "endLine": 309,
+        "endChar": 24
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a1027209",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "what does ?????? mean?",
+      "range": {
+        "startLine": 379,
+        "startChar": 27,
+        "endLine": 379,
+        "endChar": 33
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_81188e85",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "why MM_Host has not such like capabilities?",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_611d9a73",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:14:27Z",
+      "side": 1,
+      "message": "space after :",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 161,
+        "endChar": 22
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
