@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_a1f8324a",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "which provides",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_81952ee6",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "version of VNF or version of template? The template support version itself?",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 57
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_81bc0e6e",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "why capabilities and requirements have the same \"high_availability\", what\u0027s the difference?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 24
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_61c11ae4",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "what does occurrences mean?",
+      "range": {
+        "startLine": 70,
+        "startChar": 10,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_21bb2274",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "there is a \"space\" behind :",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c1a9e625",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "nstruction sets\u003d\u003einstruction sets",
+      "range": {
+        "startLine": 165,
+        "startChar": 10,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0177fed5",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "VM will not be aware of memory channels. It can not control or be affected by this. It\u0027s not the same with NUMA.",
+      "range": {
+        "startLine": 331,
+        "startChar": 13,
+        "endLine": 331,
+        "endChar": 39
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a17dd2b3",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "has the same name as line 465",
+      "range": {
+        "startLine": 475,
+        "startChar": 6,
+        "endLine": 475,
+        "endChar": 34
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_614fda93",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": ".\\ \u003d\u003e .",
+      "range": {
+        "startLine": 501,
+        "startChar": 69,
+        "endLine": 501,
+        "endChar": 71
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4144d673",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "rmda_support_bandwidth: rdma and bandwidth will be 2 separated requirements",
+      "range": {
+        "startLine": 514,
+        "startChar": 4,
+        "endLine": 514,
+        "endChar": 27
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_015ede45",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "??? what does this mean",
+      "range": {
+        "startLine": 538,
+        "startChar": 38,
+        "endLine": 538,
+        "endChar": 52
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c157a625",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "refer to notes in the front",
+      "range": {
+        "startLine": 560,
+        "startChar": 40,
+        "endLine": 560,
+        "endChar": 52
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a154b221",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "2 spaces not four",
+      "range": {
+        "startLine": 574,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 24
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_8131ae0d",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "2 spaces",
+      "range": {
+        "startLine": 580,
+        "startChar": 8,
+        "endLine": 580,
+        "endChar": 24
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_6136ba05",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T07:43:18Z",
+      "side": 1,
+      "message": "2 spaces",
+      "range": {
+        "startLine": 586,
+        "startChar": 8,
+        "endLine": 586,
+        "endChar": 24
+      },
+      "revId": "2958de323306d46d64548a607e3435d723c27b2e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
