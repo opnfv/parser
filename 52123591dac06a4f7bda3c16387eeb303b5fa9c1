@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_41e8567c",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:33:06Z",
+      "side": 1,
+      "message": "please use RST format as possible as you can",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "52123591dac06a4f7bda3c16387eeb303b5fa9c1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_21ed628c",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:33:06Z",
+      "side": 1,
+      "message": "and they",
+      "range": {
+        "startLine": 4,
+        "startChar": 55,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "52123591dac06a4f7bda3c16387eeb303b5fa9c1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_01025e3e",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:33:06Z",
+      "side": 1,
+      "message": "yet",
+      "range": {
+        "startLine": 4,
+        "startChar": 45,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "52123591dac06a4f7bda3c16387eeb303b5fa9c1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_e1fe2a38",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T06:33:06Z",
+      "side": 1,
+      "message": "will we not support Storage in basic types?",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "52123591dac06a4f7bda3c16387eeb303b5fa9c1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
