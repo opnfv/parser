@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_1c0e4135",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:20:28Z",
+      "side": 1,
+      "message": "what is general to be used?",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "880c65b67b9f89b8e3a487d43ba82c145b00fabf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_5c04b914",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:20:28Z",
+      "side": 1,
+      "message": "no tail spaces, or there is a red alert in gerrit",
+      "range": {
+        "startLine": 29,
+        "startChar": 58,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "880c65b67b9f89b8e3a487d43ba82c145b00fabf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_3c09052d",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-03T08:20:28Z",
+      "side": 1,
+      "message": "use space instead of tabs",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "880c65b67b9f89b8e3a487d43ba82c145b00fabf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
