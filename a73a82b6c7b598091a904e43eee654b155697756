@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_5c1dd972",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "the default unit is GB.",
+      "parentUuid": "9a5c5d37_41129663",
+      "range": {
+        "startLine": 59,
+        "startChar": 15,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_2117a253",
         "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2015-11-03T08:14:27Z",
       "side": 1,
       "message": "space",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 11
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_1c408155",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_2117a253",
       "range": {
         "startLine": 66,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_fc248dc7",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_010c9e41",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 2
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_e1086a2f",
         "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2015-11-03T08:14:27Z",
       "side": 1,
       "message": "maybe 128.0.0.0/8 or 10.0.0.0/8 is better",
+      "range": {
+        "startLine": 237,
+        "startChar": 17,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_dc21c9b5",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_e1086a2f",
       "range": {
         "startLine": 237,
         "startChar": 17,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_bc2e15a4",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "It has included DM_Port_CTRL,and the DM vdu neet internal media port to transmit user plane data.",
+      "parentUuid": "9a5c5d37_c1056615",
+      "range": {
+        "startLine": 309,
+        "startChar": 6,
+        "endLine": 309,
+        "endChar": 24
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_a1027209",
         "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
         "patchSetId": 6
@@ -128,6 +248,30 @@
       "writtenOn": "2015-11-03T08:14:27Z",
       "side": 1,
       "message": "what does ?????? mean?",
+      "range": {
+        "startLine": 379,
+        "startChar": 27,
+        "endLine": 379,
+        "endChar": 33
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_3c3b45ed",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Affinity not supported by specification now,parser will discuss it,or it may be supported in the future.",
+      "parentUuid": "9a5c5d37_a1027209",
       "range": {
         "startLine": 379,
         "startChar": 27,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_dc08a92f",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Yes,MM,CM and DM the same about capabilities when define the vdu type now, but it can be different when be initantiated.",
+      "parentUuid": "9a5c5d37_81188e85",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_611d9a73",
         "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
         "patchSetId": 6
@@ -174,6 +342,30 @@
       "writtenOn": "2015-11-03T08:14:27Z",
       "side": 1,
       "message": "space after :",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 161,
+        "endChar": 22
+      },
+      "revId": "a73a82b6c7b598091a904e43eee654b155697756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_3c122563",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-04T01:20:40Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_611d9a73",
       "range": {
         "startLine": 161,
         "startChar": 16,
