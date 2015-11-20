@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_dfa65153",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-20T04:33:10Z",
+      "side": 1,
+      "message": "\"profile, but\"",
+      "range": {
+        "startLine": 46,
+        "startChar": 42,
+        "endLine": 46,
+        "endChar": 50
+      },
+      "revId": "1b78d0744096580f70613b34a0de6a95301bf8c0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_bf639d19",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-20T04:33:10Z",
+      "side": 1,
+      "message": "code, except",
+      "range": {
+        "startLine": 46,
+        "startChar": 78,
+        "endLine": 46,
+        "endChar": 89
+      },
+      "revId": "1b78d0744096580f70613b34a0de6a95301bf8c0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
