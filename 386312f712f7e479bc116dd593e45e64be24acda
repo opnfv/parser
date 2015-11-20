@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_7f6d2504",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-20T04:37:29Z",
+      "side": 1,
+      "message": "Node",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "386312f712f7e479bc116dd593e45e64be24acda",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_5f7261e6",
+        "filename": "docs/tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-11-20T04:37:29Z",
+      "side": 1,
+      "message": "same problems",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "386312f712f7e479bc116dd593e45e64be24acda",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
