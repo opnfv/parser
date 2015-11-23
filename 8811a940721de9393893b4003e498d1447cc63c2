@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_ed760f06",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:46:54Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_7fb6458c",
+      "range": {
+        "startLine": 5,
+        "startChar": 41,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "8811a940721de9393893b4003e498d1447cc63c2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_5fbb8172",
         "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-11-20T04:29:35Z",
       "side": 1,
       "message": "MM, LB, LB and DM;",
+      "range": {
+        "startLine": 6,
+        "startChar": 32,
+        "endLine": 6,
+        "endChar": 47
+      },
+      "revId": "8811a940721de9393893b4003e498d1447cc63c2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_ad601736",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:46:54Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_5fbb8172",
       "range": {
         "startLine": 6,
         "startChar": 32,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_8d655347",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:46:54Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "9a5c5d37_3fb0cd8a",
+      "range": {
+        "startLine": 7,
+        "startChar": 49,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "8811a940721de9393893b4003e498d1447cc63c2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_1fad0932",
         "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2015-11-20T04:29:35Z",
       "side": 1,
       "message": "no head space here",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "8811a940721de9393893b4003e498d1447cc63c2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0d6a831a",
+        "filename": "docs/tosca2heat/simple_rnc_definition/vRNC_tosca_intro.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:46:54Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_1fad0932",
       "range": {
         "startLine": 16,
         "startChar": 0,
