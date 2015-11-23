@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_0d23a306",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:35:10Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_bf4a7d81",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "4d2fbdf228af295762912736f09c1a49809a1506",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_df7d31b3",
         "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_2d266717",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:35:10Z",
+      "side": 1,
+      "message": "0 denotes no ha and 1 ha,which is standard simple tosca syntax.",
+      "parentUuid": "9a5c5d37_df7d31b3",
+      "range": {
+        "startLine": 70,
+        "startChar": 10,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "4d2fbdf228af295762912736f09c1a49809a1506",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_ff80f58c",
         "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2015-11-20T04:44:47Z",
       "side": 1,
       "message": "not resolved. \n2 spaces not 4",
+      "range": {
+        "startLine": 573,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 24
+      },
+      "revId": "4d2fbdf228af295762912736f09c1a49809a1506",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4d119bab",
+        "filename": "docs/tosca2heat/simple_rnc_definition/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-11-23T07:35:10Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_ff80f58c",
       "range": {
         "startLine": 573,
         "startChar": 8,
