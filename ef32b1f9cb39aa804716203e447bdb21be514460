@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_98410a0e",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 653
+      },
+      "writtenOn": "2015-11-29T11:11:47Z",
+      "side": 1,
+      "message": "Red Warning need to be solved",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 3
+      },
+      "revId": "ef32b1f9cb39aa804716203e447bdb21be514460",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
