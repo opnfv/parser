@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_637466cf",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "I am thinking, tosca_translator.py might be the correct name. Since it is parsing and translating to tosca. Please change, if you agree",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4381628e",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "General comment: applicable to entire file.  can we get rid of \\r on end of every line?",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_e36856f7",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "Instead of this, can we take input file as a command line argument",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_c36d5206",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "we should check whether lines[1] exists.?",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_83775ad4",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "I understand that if input is yaml/yang file, you are converting to xml using pyang. may be look for better option to use api, so that exceptions can be handled properly. do think, it make sense?",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a3725ee3",
+        "filename": "yang2tosca/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-05T17:22:03Z",
+      "side": 1,
+      "message": "It looks, the current code will take if extension is other than yaml or yang. might need to have a valid check of extension of the file and file exists before doing parse.",
+      "revId": "84d797dc26dd26415406f5d26486b1e05b0e0fea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
