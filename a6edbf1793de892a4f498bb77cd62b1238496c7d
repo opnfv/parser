@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_b78854e8",
+        "filename": "yang2tosca/tosca_translator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:36:29Z",
+      "side": 1,
+      "message": "I think pep8 has some rules for the import part",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "a6edbf1793de892a4f498bb77cd62b1238496c7d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_f77ecce3",
+        "filename": "yang2tosca/tosca_translator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:36:29Z",
+      "side": 1,
+      "message": "\"lines\" here is not clear name, it just indicates parts of filename.",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "a6edbf1793de892a4f498bb77cd62b1238496c7d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_d783c8ca",
+        "filename": "yang2tosca/tosca_translator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:36:29Z",
+      "side": 1,
+      "message": "one question for team, have we decided to use python2 not compatible with python3",
+      "range": {
+        "startLine": 29,
+        "startChar": 16,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "a6edbf1793de892a4f498bb77cd62b1238496c7d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
