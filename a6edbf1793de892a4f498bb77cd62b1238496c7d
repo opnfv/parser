@@ -68,6 +68,23 @@
       "revId": "a6edbf1793de892a4f498bb77cd62b1238496c7d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_b7a4d457",
+        "filename": "yang2tosca/tosca_translator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 654
+      },
+      "writtenOn": "2015-12-09T09:02:11Z",
+      "side": 1,
+      "message": "Do remove useless code",
+      "revId": "a6edbf1793de892a4f498bb77cd62b1238496c7d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
