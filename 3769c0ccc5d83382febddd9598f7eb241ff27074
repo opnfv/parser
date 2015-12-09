@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_5720f8f6",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:19:42Z",
+      "side": 1,
+      "message": "here \u003e is superfluous",
+      "range": {
+        "startLine": 18,
+        "startChar": 29,
+        "endLine": 18,
+        "endChar": 42
+      },
+      "revId": "3769c0ccc5d83382febddd9598f7eb241ff27074",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_371d84be",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:19:42Z",
+      "side": 1,
+      "message": "I think it will be better to use space or not use space after colon.",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 39
+      },
+      "revId": "3769c0ccc5d83382febddd9598f7eb241ff27074",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_7723fc05",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-09T07:19:42Z",
+      "side": 1,
+      "message": "do we support block storage in the network besides local storage?",
+      "range": {
+        "startLine": 97,
+        "startChar": 3,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "3769c0ccc5d83382febddd9598f7eb241ff27074",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
