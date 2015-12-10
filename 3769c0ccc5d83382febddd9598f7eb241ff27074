@@ -68,6 +68,30 @@
       "revId": "3769c0ccc5d83382febddd9598f7eb241ff27074",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_fd090b96",
+        "filename": "yang2tosca/tosca_transformer.xslt",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 653
+      },
+      "writtenOn": "2015-12-10T02:34:37Z",
+      "side": 1,
+      "message": "block storage access via iSCSI should be able to support",
+      "parentUuid": "9a5c5d37_7723fc05",
+      "range": {
+        "startLine": 97,
+        "startChar": 3,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "3769c0ccc5d83382febddd9598f7eb241ff27074",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
