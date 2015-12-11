@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_4cd86aef",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-11T07:24:08Z",
+      "side": 1,
+      "message": "Parser Keywords",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "6a73fedad774ff243b0b9d4a84ecf7594403f9db",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_6cdb2eee",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-11T07:24:08Z",
+      "side": 1,
+      "message": "1 NFV-tosca keywords",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 24
+      },
+      "revId": "6a73fedad774ff243b0b9d4a84ecf7594403f9db",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2ce536a8",
+        "filename": "docs/tosca2heat/simple_rnc_definition/parser_new_keywords.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-11T07:24:08Z",
+      "side": 1,
+      "message": "2 Simple-tosca keywords",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 27
+      },
+      "revId": "6a73fedad774ff243b0b9d4a84ecf7594403f9db",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
