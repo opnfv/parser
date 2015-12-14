@@ -14,6 +14,7 @@ Contents:
 
    documentation-example.rst
 
+   ./tosca2heat/parser_new_keywords.rst
 Indices and tables
 ==================
 
