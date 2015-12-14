@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_201ad76e",
+        "filename": "docs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-14T10:58:34Z",
+      "side": 1,
+      "message": "delete the spaces",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "65fb5466d48c2c4b590d25a90872f87baba5fd56",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0027d3b7",
+        "filename": "docs/tosca2heat/parser_new_keywords.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-14T10:58:34Z",
+      "side": 1,
+      "message": "please merge other commerts in the original review",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 24
+      },
+      "revId": "65fb5466d48c2c4b590d25a90872f87baba5fd56",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
