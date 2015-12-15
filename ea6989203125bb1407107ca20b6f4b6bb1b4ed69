@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_f1bc8f6e",
+        "filename": "docs/tosca2heat/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2015-12-15T16:27:06Z",
+      "side": 1,
+      "message": "no tail \"space\"",
+      "range": {
+        "startLine": 15,
+        "startChar": 66,
+        "endLine": 15,
+        "endChar": 70
+      },
+      "revId": "ea6989203125bb1407107ca20b6f4b6bb1b4ed69",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
