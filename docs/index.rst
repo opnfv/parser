@@ -13,8 +13,9 @@ Contents:
    :maxdepth: 4
 
    documentation-example.rst
-   
+
    ./tosca2heat/parser_new_keywords.rst
+   ./tosca2heat/TOSCA_nfv_definition_1_0.yaml
 Indices and tables
 ==================
 
