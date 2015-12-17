@@ -13,6 +13,9 @@ Contents:
    :maxdepth: 4
 
    documentation-example.rst
+   ./tosca2heat/simple_rnc_definition/vRNC_tosca_intro.rst
+   ./tosca2heat/simple_rnc_definition/image/vRNC_Definition.PNG
+   ./tosca2heat/simple_rnc_definition/image/vRNC_Topology.bmp
 
 Indices and tables
 ==================
