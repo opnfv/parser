@@ -12,8 +12,8 @@ this is the directory structure of the docs/ directory that can be found in the 
     ./documentation-example.rst
     ./index.rst
 
-To create your own documentation, Create any number of directories (depending on your need) and place in each of them an index.rst.
-This index file must refence your other rst files.
+To create your own documentation, Create any number of directories (depending on your need) and place
+in each of them an index.rst. This index file must refence your other rst files.
 
 * Here is an example index.rst
 
@@ -46,11 +46,13 @@ The Sphinx Build
 When you push documentation changes to gerrit a jenkins job will create html documentation.
 
 * Verify Jobs
+
 For verify jobs a link to the documentation will show up as a comment in gerrit for you to see the result.
 
 * Merge jobs
 
-Once you are happy with the look of your documentation you can submit the patchset the merge job will copy the output of each documentation directory to http://artifacts.opnfv.org/$project/docs/$name_of_your_folder/index.html
+Once you are happy with the look of your documentation you can submit the patchset the merge job will
+copy the output of each documentation directory to http://artifacts.opnfv.org/$project/docs/$name_of_your_folder/index.html
 
 Here are some quick examples of how to use rst markup
 
