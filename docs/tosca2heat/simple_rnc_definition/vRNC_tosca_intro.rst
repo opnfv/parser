@@ -23,15 +23,15 @@ The simple vRNC topology is shown below: |vRNC Topology|
 ==================
 
 The files dependency and correspoding specificaiton of vRNC definition
-are shown below： |vRNC Definition|
+are shown below: |vRNC Definition|
 
 -  TOSCA\_definition\_1.0.yaml should be the lastest version, which is
    updated by tosca-parser community, but some keynames (such as
    substitution\_mappings) in the correspoding standard of
-   《TOSCA-simple-profile-YAML-v1.0》 is not supported.
+   "TOSCA-simple-profile-YAML-v1.0" is not supported.
 -  TOSCA\_nfv\_definition\_1.0.yaml is a new file, and not implemented
    in code, and the correspoding standard of
-   《tosca-nfv-v1.0-wd02-rev02》 is not complete now.
+   "tosca-nfv-v1.0-wd02-rev02" is not complete now.
 
 .. |vRNC Topology| image:: image/vRNC_Topology.bmp
 .. |vRNC Definition| image:: image/vRNC_Definition.png
