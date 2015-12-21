@@ -13,6 +13,8 @@ Contents:
    :maxdepth: 4
 
    documentation-example.rst
+   ./tosca2heat/simple_rnc_definition/Simple_RNC_definition.yaml
+   ./tosca2heat/simple_rnc_definition/Simple_RNC.yaml
 
 Indices and tables
 ==================
