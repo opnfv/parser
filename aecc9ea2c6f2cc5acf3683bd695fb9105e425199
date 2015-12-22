@@ -22,6 +22,30 @@
       "revId": "aecc9ea2c6f2cc5acf3683bd695fb9105e425199",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_d2bbbf70",
+        "filename": "docs/tosca2heat/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-12-22T03:44:07Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a5c5d37_f25a4382",
+      "range": {
+        "startLine": 15,
+        "startChar": 69,
+        "endLine": 15,
+        "endChar": 70
+      },
+      "revId": "aecc9ea2c6f2cc5acf3683bd695fb9105e425199",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
