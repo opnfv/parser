@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = translator
+omit = translator/openstack/*
+
+[report]
+ignore_errors = True
