@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_b225ebc3",
+        "filename": "docs/tosca2heat/parser_new_keywords.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 608
+      },
+      "writtenOn": "2015-12-22T05:44:42Z",
+      "side": 1,
+      "message": "implemented",
+      "revId": "a6bfc9968fb2cca6b243b308c4d0fd78d713422c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
