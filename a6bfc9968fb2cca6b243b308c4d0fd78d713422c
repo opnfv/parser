@@ -16,6 +16,24 @@
       "revId": "a6bfc9968fb2cca6b243b308c4d0fd78d713422c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_edf38608",
+        "filename": "docs/tosca2heat/parser_new_keywords.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2015-12-22T06:55:57Z",
+      "side": 1,
+      "message": "ok,thx.",
+      "parentUuid": "9a5c5d37_b225ebc3",
+      "revId": "a6bfc9968fb2cca6b243b308c4d0fd78d713422c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
