@@ -73,17 +73,17 @@ Extend types
 2.Simple-tosca new keywords
 ---------------------------
 
-Some keywords are defined in tosca simple profile,but are not
-impletmented in code,except policy type, which are not yet defined
-completely now.
+Some keywords are only defined in tosca simple profile,but are not
+supported in tosca-paser, and some keywords such as "policy type", are not yet defined
+completely so far.
 
 2.1 topology template keyname
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  “substitution\_mappings” syntax
+-  "substitution\_mappings" syntax
 
    An optional declaration that exports the topology template as an
-   implementation of a Node type, Which is not supported by toscalib.
+   impletmentation of a node type, which is not supported by tosca-parser.
 
 2.2 Group types
 ~~~~~~~~~~~~~~~
