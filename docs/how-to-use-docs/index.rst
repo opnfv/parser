@@ -1,7 +1,13 @@
-.. OPNFV Parser documentation, created by
-   sphinx-quickstart.
+.. OPNFV Release Engineering documentation, created by
+   sphinx-quickstart on Tue Jun  9 19:12:31 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+
+.. image:: ../etc/opnfv-logo.png
+  :height: 40
+  :width: 200
+  :alt: OPNFV
+  :align: left
 
 Example Documentation table of contents
 =======================================
@@ -13,10 +19,6 @@ Contents:
    :maxdepth: 4
 
    documentation-example.rst
-   ./tosca2heat/parser_new_keywords.rst
-   ./tosca2heat/simple_rnc_definition/vRNC_tosca_intro.rst
-   ./tosca2heat/simple_rnc_definition/image/vRNC_Definition.bmp
-   ./tosca2heat/simple_rnc_definition/image/vRNC_Topology.bmp
 
 Indices and tables
 ==================
