@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_eff47ad0",
+        "filename": "docs/yang2tosca/clearwater_tosca.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T03:34:31Z",
+      "side": 1,
+      "message": "better to use \"tosca.nodes.compute.ellis\"",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "dcbc10733a1ec527848846aa4d1fa5b078b7f4ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_cf03f6b6",
+        "filename": "docs/yang2tosca/clearwater_tosca.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T03:34:31Z",
+      "side": 1,
+      "message": "better to use \"tosca.nodes.compute.bono\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "dcbc10733a1ec527848846aa4d1fa5b078b7f4ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4f102601",
+        "filename": "docs/yang2tosca/clearwater_tosca.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T03:34:31Z",
+      "side": 1,
+      "message": "it is the same with line 113-116",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 21
+      },
+      "revId": "dcbc10733a1ec527848846aa4d1fa5b078b7f4ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2f13b20e",
+        "filename": "docs/yang2tosca/clearwater_tosca.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T03:34:31Z",
+      "side": 1,
+      "message": "it is the same with line 126-129",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "dcbc10733a1ec527848846aa4d1fa5b078b7f4ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
