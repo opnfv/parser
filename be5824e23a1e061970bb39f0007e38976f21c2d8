@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_cfb9b62f",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "I think Overview, Prerequisites, Installation, Execution will be treated as section or sub-section?\nOverview\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nor\nOverview\n--------",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 8
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4fa6e611",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "will help \u003d\u003e helps",
+      "range": {
+        "startLine": 5,
+        "startChar": 69,
+        "endLine": 5,
+        "endChar": 78
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4f6f06c6",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "which",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 5
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_6f788a8f",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "line is too long, shorten than 100, better is 80",
+      "range": {
+        "startLine": 5,
+        "startChar": 69,
+        "endLine": 6,
+        "endChar": 71
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2fa972df",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "tail space",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_efaa3ad1",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "git clone\u003d\u003eclone, it has the same meaning",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0f690ebe",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "please use spaces to replace tabs",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 7
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2f7292ad",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "please remove tail spaces, it cuase \"red alert\" in gerrit",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_ef635adb",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "git clone\u003d\u003eclone",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_6f9f6ab5",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "the current \u003d\u003e current",
+      "range": {
+        "startLine": 40,
+        "startChar": 69,
+        "endLine": 40,
+        "endChar": 80
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_8f9cdec1",
+        "filename": "docs/yang2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-01-12T02:50:16Z",
+      "side": 1,
+      "message": "which has been",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "be5824e23a1e061970bb39f0007e38976f21c2d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
