@@ -3,7 +3,7 @@ Creation Date: February 4, 2015
 Category: Integration & Testing
 Lifecycle State: Incubation
 Primary Contact: huangzhipeng@huawei.com
-Project Lead: huangzhipeng@huawei.com 
+Project Lead: huangzhipeng@huawei.com
 Jira Project Name: Deployment Template Translation Project
 Jira Project Prefix: PARSER
 Mailing list tag: [parser]
@@ -12,14 +12,16 @@ Repository: parser
 Committers:
 huruifeng@huawei.com
 huangzhipeng@huawei.com
-vinayak.ram@hp.com
+vinayak.ram@hpe.com
 zhang.jun3g@zte.com.cn
 
 Contributors:
-shiva-charan.m-s@hpe.com 
+shiva-charan.m-s@hpe.com
 srinivas.tadepalli@tcs.com
-shang.xiaodong@zte.com.cn 
+shang.xiaodong@zte.com.cn
 Ulas.Kozat@huawei.com
+lishitao@huawei.com
+denglingli@chinamobile.com
 
 Link to TSC approval of the project: http://meetbot.opnfv.org/meetings/opnfv-meeting/
 Link(s) to approval of additional submitters:
