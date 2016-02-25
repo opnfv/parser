@@ -1,8 +1,5 @@
-..
- This work is licensed under a Creative Commons Attribution 3.0 Unported
- License.
-..
- http://creativecommons.org/licenses/by/3.0/legalcode
+.. This work is licensed under a Creative Commons Attribution 4.0 International License.
+.. http://creativecommons.org/licenses/by/4.0
 
 ===================
 New Parser keywords
@@ -20,17 +17,17 @@ implemented by parser.
 Basic types
 ^^^^^^^^^^^
 
--  tosca.nodes.nfv.VDU
--  tosca.nodes.nfv.CP
--  tosca.nodes.nfv.VL
+* tosca.nodes.nfv.VDU
+* tosca.nodes.nfv.CP
+* tosca.nodes.nfv.VL
 
 Extend types
 ^^^^^^^^^^^^
 
--  tosca.nodes.nfv.VL.ELine
--  tosca.nodes.nfv.VL.ELAN
--  tosca.nodes.nfv.VL.ETree
--  tosca.nodes.nfv.FP
+* tosca.nodes.nfv.VL.ELine
+* tosca.nodes.nfv.VL.ELAN
+* tosca.nodes.nfv.VL.ETree
+* tosca.nodes.nfv.FP
 
 1.2 Capability types
 ~~~~~~~~~~~~~~~~~~~~
@@ -38,23 +35,23 @@ Extend types
 Basic types
 ^^^^^^^^^^^
 
--  tosca.capabilities.nfv.VirtualBindable
--  tosca.capabilities.nfv.VirtualLinkable
--  tosca.capabilities.nfv.HA.ActiveActive
--  tosca.capabilities.nfv.HA.ActivePassive
--  tosca.capabilities.nfv.Metric
+* tosca.capabilities.nfv.VirtualBindable
+* tosca.capabilities.nfv.VirtualLinkable
+* tosca.capabilities.nfv.HA.ActiveActive
+* tosca.capabilities.nfv.HA.ActivePassive
+* tosca.capabilities.nfv.Metric
 
 Extend types
 ^^^^^^^^^^^^
 
--  tosca.capabilities.nfv.Forwarder
--  tosca.capabilities.nfv.CPU\_extension
--  tosca.capabilities.nfv.Memory\_extension
--  tosca.capabilities.nfv.Hypervisors
--  tosca.capabilities.nfv.PCIe
--  tosca.capabilities.nfv.network.Interfaces
--  tosca.capabilities.nfv.network.Virtual\_switches
--  tosca.capabilities.nfv.Storage
+* tosca.capabilities.nfv.Forwarder
+* tosca.capabilities.nfv.CPU\_extension
+* tosca.capabilities.nfv.Memory\_extension
+* tosca.capabilities.nfv.Hypervisors
+* tosca.capabilities.nfv.PCIe
+* tosca.capabilities.nfv.network.Interfaces
+* tosca.capabilities.nfv.network.Virtual\_switches
+* tosca.capabilities.nfv.Storage
 
 1.3 Relationship types
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -62,20 +59,20 @@ Extend types
 Basic types
 ^^^^^^^^^^^
 
--  tosca.relationships.nfv.VirtualBindsTo
--  tosca.relationships.nfv.VirtualLinksTo
--  tosca.relationships.nfv.HA
--  tosca.relationships.nfv.Monitor
+* tosca.relationships.nfv.VirtualBindsTo
+* tosca.relationships.nfv.VirtualLinksTo
+* tosca.relationships.nfv.HA
+* tosca.relationships.nfv.Monitor
 
 Extend types
 ^^^^^^^^^^^^
 
--  tosca.relationships.nfv.ForwardsTo
+* tosca.relationships.nfv.ForwardsTo
 
 1.4 Group Types
 ~~~~~~~~~~~~~~~
 
--  tosca.groups.nfv.VNFFG
+* tosca.groups.nfv.VNFFG
 
 2.Simple-tosca new keywords
 ---------------------------
@@ -87,10 +84,10 @@ completely so far.
 2.1 topology template keyname
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  "substitution\_mappings" syntax
+* "substitution\_mappings" syntax
 
-   An optional declaration that exports the topology template as an
-   impletmentation of a node type, which is not supported by tosca-parser.
+    An optional declaration that exports the topology template as an
+    impletmentation of a node type, which is not supported by tosca-parser.
 
 2.2 Group types
 ~~~~~~~~~~~~~~~
@@ -98,7 +95,7 @@ completely so far.
 Basic types
 ^^^^^^^^^^^
 
--  tosca.group.root
+* tosca.group.root
 
 2.3 Policy Types
 ~~~~~~~~~~~~~~~~
@@ -106,15 +103,15 @@ Basic types
 Basic types
 ^^^^^^^^^^^
 
--  tosca.policies.Root
--  tosca.policies.Placement
--  tosca.policies.Scaling
+* tosca.policies.Root
+* tosca.policies.Placement
+* tosca.policies.Scaling
 
 Extend types
 ^^^^^^^^^^^^
 
--  tosca.policies.Update
--  tosca.policies.Performance
--  tosca.policy.placement.Antilocate
--  tosca.policy.placement.Colocate
+* tosca.policies.Update
+* tosca.policies.Performance
+* tosca.policy.placement.Antilocate
+* tosca.policy.placement.Colocate
 
