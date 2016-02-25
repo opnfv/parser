@@ -1,14 +1,17 @@
-..
- This work is licensed under a Creative Commons Attribution 3.0 Unported
- License.
-..
- http://creativecommons.org/licenses/by/3.0/legalcode
+.. This work is licensed under a Creative Commons Attribution 4.0 International License.
+.. http://creativecommons.org/licenses/by/4.0
 
 ================
 1. vRNC Topology
 ================
 
-The simple vRNC topology is shown below: |vRNC Topology|
+The simple vRNC topology is shown below: :numref:`figure_vRNC_Topology`
+
+.. figure:: image/vRNC_Topology.bmp
+   :name: figure_vRNC_Topology
+   :width: 100%
+
+   vRNC Topology
 
 -  vRNC includes four networks: EMS\_network, CTRL\_network,
    Intermedia\_network and extermedia\_network;
@@ -30,7 +33,13 @@ The simple vRNC topology is shown below: |vRNC Topology|
 ==================
 
 The files dependency and correspoding specificaiton of vRNC definition
-are shown below: |vRNC Definition|
+are shown below: :numref:`vRNC Definition`
+
+.. figure:: image/vRNC_Definition.bmp
+   :name: figure_vRNC_Definition
+   :width: 100%
+
+   vRNC Definition
 
 -  TOSCA\_definition\_1.0.yaml should be the lastest version, which is
    updated by tosca-parser community, but some keywords (such as
@@ -39,6 +48,3 @@ are shown below: |vRNC Definition|
 -  TOSCA\_nfv\_definition\_1.0.yaml is a new file, and not implemented
    in code, and the correspoding standard of
    "tosca-nfv-v1.0-wd02-rev02" is not complete now.
-
-.. |vRNC Topology| image:: image/vRNC_Topology.bmp
-.. |vRNC Definition| image:: image/vRNC_Definition.bmp
