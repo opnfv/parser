@@ -1,8 +1,8 @@
-# Licensed :under the Apache License, Version 2.0 (the "License"); you may
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -10,600 +10,601 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-###########################################################################
-# The content of this file reflects TOSCA nfv Profile in YAML version
+##########################################################################
+# The content of this file reflects TOSCA NFV Profile in YAML version
 # 1.0.0, which is derived from TOSCA Simple Profile. It describes the
 # definition for nfv TOSCA types including Node Type,
 # Relationship Type, Capability Type and Interfaces.
-###########################################################################
-tosca_definitions_version: tosca_simple_yaml_1_0
+##########################################################################
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
 
-metadata:
-  template_name: tosca_simple_profile_for_nfv
-  template_author: opnfv_parser_project
-  template_version: tosca_simple_profile_for_nfv_1_0
-
-###########################################################################
+##########################################################################
 # Node Type.
 # A Node Type is a reusable entity that defines the type of one or more
 # Node Templates.
-###########################################################################
-node_types:
-  tosca.nodes.nfv.VNF:
-    derived_from: tosca.nodes.Root
-    properties:
-      id:
-        type: string
-        description: ID of this VNF
-      vendor:
-        type: string
-        description: name of the vendor which provides this VNF
-      version:
-        type: version
-        description: version of the software for this VNF
-    requirements:
-      - virtualLink:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-
-  tosca.nodes.nfv.VDU:
-    derived_from: tosca.nodes.SoftwareComponent
-    properties:
-      id:
-        type: string
-        required: true
-        description: >
-          A unique identifier of this VDU within the scope
-          of the VNFD, including version functional
-          description and other identification information.
-          This will be used to refer to VDU when defining
-          relationships between them.
-    capabilities:
-      high_availability:
-        type: tosca.capabilities.nfv.HA
-      virtualbinding:
-        type: tosca.capabilities.nfv.VirtualBindable
-      monitoring_parameter:
-        type: tosca.capabilities.nfv.Metric
-    requirements:
-      - high_availability:
-          capability: tosca.capabilities.nfv.HA
-          relationship: tosca.relationships.nfv.HA
-          occurrences: [ 0, 1 ]
-      - host:
-          capability: tosca.capabilities.Container
-          node: tosca.nodes.Compute
-          relationship: tosca.relationships.HostedOn
-
-  tosca.nodes.nfv.CP:
-    derived_from: tosca.nodes.Root
-    properties:
-      type:
-        type: string
-        required: false
-    attributes:
-      IP_address:
-        type: string
-        required: false
-    requirements:
-      - virtualLink:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-      - virtualbinding:
-          capability: tosca.capabilities.nfv.Virtualbindable
-
-  tosca.nodes.nfv.VL:
-    derived_from: tosca.nodes.Root
-    properties:
-      vendor:
-        type: string
-        required: true
-        description: name of the vendor who generate this VL
-    capabilities:
-      virtual_linkable:
-        type: tosca.capabilities.nfv.VirtualLinkable
-
-  tosca.nodes.nfv.VL.ELine:
-    derived_from: tosca.nodes.nfv.VL
-    capabilities:
-      virtual_linkable:
-        occurrences: 2
-
-  tosca.nodes.nfv.VL.ELAN:
-    derived_from: tosca.nodes.nfv.VL
-
-  tosca.nodes.nfv.VL.ETree:
-    derived_from: tosca.nodes.nfv.VL
-
-  tosca.nodes.nfv.FP:
-    derived_from: tosca.nodes.Root
-    properties:
-      policy:
-        type: string
-        required: false
-        description: name of the vendor who generate this VL
-    requirements:
-      - forwarder:
-          capability: tosca.capabilities.nfv.Forwarder
-
 ##########################################################################
-# Capability Type.
-# A Capability Type is a reusable entity that describes a kind of
-# capability that a Node Type can declare to expose.
-##########################################################################
-capability_types:
-  tosca.capabilities.nfv.VirtualBindable:
-    derived_from: tosca.capabilities.Root
 
-  tosca.capabilities.nfv.HA:
-    derived_from: tosca.capabilities.Root
-    valid_source_types: [ tosca.nodes.nfv.VDU ]
+tosca.nodes.nfv.VNF:
+  derived_from: tosca.nodes.Root
+  properties:
+    id:
+      type: string
+      description: ID of this VNF
+    vendor:
+      type: string
+      description: name of the vendor who generate this VNF
+    version:
+      type: version
+      description: version of the software for this VNF
+  requirements:
+    - virtualLink:
+        capability: tosca.capabilities.nfv.VirtualLinkable
+        relationship: tosca.relationships.nfv.VirtualLinksTo
+        node: tosca.nodes.nfv.VL
 
-  tosca.capabilities.nfv.HA.ActiveActive:
-    derived_from: tosca.capabilities.nfv.HA
+tosca.nodes.nfv.VDU:
+  derived_from: tosca.nodes.SoftwareComponent
+  properties:
+    id:
+      type: string
+      required: true
+      description: >
+        A unique identifier of this VDU within the scope
+        of the VNFD, including version functional
+        description and other identification information.
+        This will be used to refer to VDU when defining
+        relationships between them.
+  capabilities:
+    high_availability:
+      type: tosca.capabilities.nfv.HA
+    virtualbinding:
+      type: tosca.capabilities.nfv.VirtualBindable
+    monitoring_parameter:
+      type: tosca.capabilities.nfv.Metric
+  requirements:
+    - high_availability:
+        capability: tosca.capabilities.nfv.HA
+        relationship: tosca.relationships.nfv.HA
+        node: tosca.nodes.nfv.VDU
+        occurrences: [ 0, 1 ]
 
-  tosca.capabilities.nfv.HA.ActivePassive:
-    derived_from: tosca.capabilities.nfv.HA
+tosca.nodes.nfv.CP:
+  derived_from: tosca.nodes.network.Port
+  properties:
+    type:
+      type: string
+      required: false
+  requirements:
+    - virtualLink:
+        capability: tosca.capabilities.nfv.VirtualLinkable
+        relationship: tosca.relationships.nfv.VirtualLinksTo
+        node: tosca.nodes.nfv.VL
+    - virtualBinding:
+        capability: tosca.capabilities.nfv.VirtualBindable
+        relationship: tosca.relationships.nfv.VirtualBindsTo
+        node: tosca.nodes.nfv.VDU
+  attributes:
+    IP_address:
+      type: string
+      required: false
 
-  tosca.capabilities.nfv.Metric:
-    derived_from: tosca.capabilities.Root
+tosca.nodes.nfv.VL:
+  derived_from: tosca.nodes.network.Network
+  properties:
+    vendor:
+      type: string
+      required: true
+      description: name of the vendor who generate this VL
+  capabilities:
+    virtual_linkable:
+      type: tosca.capabilities.nfv.VirtualLinkable
 
-  tosca.capabilities.nfv.Forwarder:
-    derived_from: tosca.capabilities.Root
+tosca.nodes.nfv.VL.ELine:
+  derived_from: tosca.nodes.nfv.VL
+  capabilities:
+    virtual_linkable:
+      occurrences: 2
 
-  tosca.capabilities.nfv.VirtualLinkable:
-    derived_from: tosca.capabilities.Root
+tosca.nodes.nfv.VL.ELAN:
+  derived_from: tosca.nodes.nfv.VL
 
-  tosca.capabilities.nfv.CPU_extension:
-    derived_from: tosca.capabilities.Root
-    properties:
-      cpu_instruction_set_extension:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          Instruction sets are often enhanced with
-          instruction set extensions. This element
-          represents instruction set extensions that the
-          VDU has been developed, optimized or tested with
-      cpu_model:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The CPU model for which the VDU has been
-          developed, compiled with CPU model specific
-          optimisations, optimized or validated on.
-      cpu_model_specification_binding:
-        type: string
-        required: false
-        description: >
-          VDUs may be developed, compiled, optimized
-          or validated on particular CPU models. Some
-          deployments may wish to permit the VDU to
-          be deployed on a platform with the specified
-          CPU only, or with an alternative CPU with the
-          same architecture, instruction set, and if
-          specified, instruction set extensions, or with a
-          CPU of equivalent or greater capability.
-      cpu_min_clock_speed:
-        type: string
-        required: false
-        description: >
-          The minimum CPU clock speed may be one of
-          the elements that the development and
-          validation of the VDU has been considered
-          with. This may be in conjunction with some of
-          the other CPU elements such as CPU Model.
-          Requiring a minimum clock speed may be part
-          of a deployment requirement necessary to
-          help ensure particular performance or timing
-          related characteristics are met in the
-          deployment.
-      cpu_core_reservation:
-        type: string
-        required: false
-        description: >
-          The number of CPU cores allocated to the
-          VDU. This may be necessary to help ensure
-          particular performance or timing related
-          characteristics are met in the deployment.
-      cpu_simultaneous_multi_threading_hw_thread_specification:
-        type: string
-        required: false
-        description: >
-          The use of Simultaneous Multi-Threading HW
-          is an efficient way to increase the compute
-          capacity of a platform. SMT HW threads share
-          some CPU core resources. In some VDU
-          implementations, it may be necessary to very
-          explicitly control the HW thread allocation on a
-          platform. This could be to help ensure locality
-          in data caches or as a mechanism to enhance
-          determinism.
-      cpu_core_oversubscription_policy:
-        type: string
-        required: false
-        description: >
-          The VDU may co-exist on a platform with
-          multiple VDUs or VMs and as such will be
-          sharing CPU core resources available in the
-          platform. It may be necessary to specify the
-          CPU core oversubscription policy in terms of
-          virtual cores to physical cores/threads on the
-          platform. This policy could be based on
-          required VDU deployment characteristics such
-          as high performance, low latency, and /or
-          deterministic behaviour.
-      cpu_core_and_hw_thread_allocation_topology_policy:
-        type: string
-        required: false
-        description: >
-          The VDU may be designed to use a specific
-          mapping of virtual CPUs to HW threads or
-          cores with a specific allocation topology in
-          order to ensure locality in data caches and
-          maximize performance. The VDU will not
-          specify which physical resources to use, but
-          may specify if virtual CPUs shall be coupled
-          together as HW threads belonging to the same
-          core, or as belonging to the same processor.
-      cpu_last_level_cache_size:
-        type: scalar-unit.size
-        required: false
-        constraints:
-          - greater_or_equal: 0 KB
-        description: >
-          The size of the last level cache may impact the
-          performance of the VDU, particularly for cache
-          intensive workloads.
-      cpu_direct_io_access_to_cache:
-        type: string
-        required: false
-        description: >
-          The ability of an I/O device to have direct
-          access to the CPU cache enables
-          considerable memory access savings and for
-          I/O intensive workloads can offer significant
-          performance benefits.
-      cpu_translation_look_aside_buffer_parameter:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The Translation Look-aside Buffer (TLB) is a
-          cache for address translation typically used by
-          a hardware based memory management units.
-          The Input/Output TLB (IOTLB) is a cache for
-          address translation related to remapping
-          hardware. The availability of a TLB and an
-          IOTLB can significantly improve the
-          performance of a virtual machine.
-          A number of parameters of the TLBs impact
-          the performance potential. These include:
-          1  TLB Size.
-          2  TLB Large Page Support.
-          3  IOTLB Size.
-          4  IOTLB Large Page Support.
-      cpu_hot_add:
-        type: boolean
-        required: false
-        description: >
-          Hot add CPU is the ability to dynamically add
-          CPUs to a running system. The new CPU can
-          immediately replace a failing CPU via
-          migration or be brought on-line later.
-      cpu_support_accelerator:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          This capability refers to support by the CPU
-          and associated chipsets of a data processing
-          accelerator framework, together with its
-          libraries and drivers.
+tosca.nodes.nfv.VL.ETree:
+  derived_from: tosca.nodes.nfv.VL
 
-  tosca.capabilities.nfv.Memory_extension:
-    derived_from: tosca.capabilities.Root
-    properties:
-      memory_parameter:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          There are a number of memory related parameters that can have a
-          significant impact on the performance and/or reliability of the VDU.
-          These include:
-          •  Memory Type.
-          •  Memory Speed
-          •  Number of memory channels.
-          •  Size of available memory.
-          •  Reliability characteristics such as Memory Error Correction
-          codes.
-          •  Memory oversubscription policy.
-          •  Memory bandwidth required per VDU.
-          •  Number of large pages required per VDU
-          •  Non-Uniform Memory Architecture (NUMA) Allocation Policy,
-          i.e. in NUMA architecture how you specify memory allocation
-          that is cognisant of the relevant process/core allocation. This
-          applies also to allocation of huge pages.
-      memory_hot_add:
-        type: boolean
-        required: false
-        description: >
-          Hot add memory is the ability to add physical memory while the system
-          is running. Added memory can immediately replace failing memory via
-          migration or be brought on-line later.
-
-  tosca.capabilities.nfv.Hypervisors:
-    derived_from: tosca.capabilities.Root
-    properties:
-      hypervisors:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          There are a number of hypervisor related parameters that can have a
-          significant impact on the deployment and performance of the VDU.
-          These include:
-          •  Hypervisor type
-          •  Hypervisor version as a VDU may be validated with a particular
-          version.
-          •  Hypervisor Address Translation support parameters including:
-          o  Second Level Address Translation.
-          o  Second Level Address Translation with Large page
-          support.
-          o  Second Level Address Translation for I/O.
-          o  Second Level Address Translation for I/O with Large page.
-          support. Where "Large" is considered to be 1 GB or
-          greater.
-          o  Support for interrupt remapping, i.e. supporting the IOMMU
-          in the hypervisor.
-          o  Support of data processing acceleration libraries in the
-          hypervisor, i.e. for acceleration libraries which require
-          hypervisor support for high performance.
-
-  tosca.capabilities.nfv.PCIe:
-    derived_from: tosca.capabilities.Root
-    properties:
-      platform_pcie_parameter:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          There are a number of PCIe related parameters that can
-          have a significant impact on the deployment and
-          performance of the VDU. These include:
-          •  PCIe generational capabilities.
-          •  PCIe bandwidth.
-          •  PCIe Device Pass-through.
-          •  PCIe SR-IOV as the VDU may require that an SR-
-          IOV virtual vunction from the specified PCIe
-          device can be allocated to the VM.
-          •  PCIe Device Assignment Affinity. The VDU may
-          require for performance reasons the ability to
-          allocate a partitionable PCIe Device capability
-          such as a NIC port, an entire NIC or a NIC virtual
-          function to the VDU while also ensuring that the
-          selected device is locally connected to the same
-          processor.
-      platform_pcie_parameter:
-        type: string
-        required: false
-        description: >
-          Detecting and reporting correctable and un-correctable
-          (fatal and non-fatal) PCIe errors to software for error
-          handling and remediation.
-      platform_acceleration_device:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The VDU may have been developed, optimized or
-          tested with an acceleration device such as a crypto
-          accelerator that may typically be accessed over a PCIe
-          bus.
-
-  tosca.capabilities.nfv.network.Interfaces:
-    derived_from: tosca.capabilities.Root
-    properties:
-      network_interface_card_capability:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The VDU may have been developed, optimized or
-          tested with certain NIC capabilities to benefit items
-          such as performance or scalability. These include:
-          •  TCP Large Segmentation Offload (LSO) for
-          offload the segmentation of large TCP
-          messages into MTU sized packets from the
-          CPU to the NIC.
-          •  Large Receive Offload (LRO), i.e. the
-          inverse of LSO by coalescing incoming
-          TCP/IP packets into larger segments for
-          processing in the CPU.
-          •  Checksum Offload.
-          •  Receive Side Scaling (RSS), for packet
-          distribution between cores.
-          •  Flow Director, for more fine grained (than
-          RSS) packet distribution between cores.
-          •  Mirroring of packets between interfaces.
-          •  Availability of Independent Rx/Tx queues for
-          VM so that queue pairs in the NIC can be
-          allocated to the VMs.
-          •  Jumbo Frame support.
-          •  VLAN tag stripping.
-          •  RDMA support.
-          •  SR-IOV support.
-          •  Data processing acceleration software
-          library support, e.g. DPDK ® - see note.
-      network_interface_bandwidth:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The network speed/bandwidth to be guaranteed
-          per requested NIC.
-      data_processing_acceleration_library:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          Name and version of the data processing
-          acceleration library used. Orchestration can match
-          any NIC that is known to be compatible with the
-          specified library
-
-  tosca.capabilities.nfv.network.Virtual_switches:
-    derived_from: tosca.capabilities.Root
-    properties:
-      vswitch_capability:
-        type: list
-        required: false
-        entry_schema:
-          type: string
-        constraints:
-          - min_length: 1
-        description: >
-          The VDU may have been developed, optimized or tested with a
-          particular vSwitch and may require specifying the vSwitch type, version
-          and key features such as overlay tunnel termination support.
-
-  tosca.capabilities.nfv.Storage:
-    derived_from: tosca.capabilities.Root
-    properties:
-      storage_requirement:
-        type: scalar-unit.size
-        required: false
-        constraints:
-          - greater_or_equal: 0 MB
-        description: >
-          Required storage characteristics (e.g. size), including Key Quality
-          Indicators (KQIs) for performance and reliability/availability.
-      rdma_support_bandwitdh:
-        type: integer
-        required: false
-        constraints:
-          - greater_or_equal: 0
-        description: >
-          The VDU may have been developed, optimized or tested with a
-          storage supporting RDMA over a given bandwidth.
+tosca.nodes.nfv.FP:
+  derived_from: tosca.nodes.Root
+  properties:
+    policy:
+      type: string
+      required: false
+      description: name of the vendor who generate this VL
+  requirements:
+    - forwarder:
+        capability: tosca.capabilities.nfv.Forwarder
+        relationship: tosca.relationships.nfv.ForwardsTo
 
 ##########################################################################
 # Relationship Type.
 # A Relationship Type is a reusable entity that defines the type of one
 # or more relationships between Node Types or Node Templates.
 ##########################################################################
-relationship_types:
-  tosca.relationships.nfv.VirtualBindsTo:
-    derived_from: tosca.relationships.ConnectsTo
-    valid_target_types: [ tosca.capabilities.nfv.VirtualBindable ]
 
-  tosca.relationships.nfv.HA:
-    derived_from: tosca.relationships.Root
-    valid_target_types: [ tosca.capabilities.nfv.HA ]
+tosca.relationships.nfv.VirtualLinksTo:
+  derived_from: tosca.relationships.network.LinksTo
+  valid_target_types: [ tosca.capabilities.nfv.VirtualLinkable ]
 
-  tosca.relationships.nfv.Monitor:
-    derived_from: tosca.relationships.ConnectsTo #???
-    valid_target_types: [ tosca.capabilities.nfv.Metric ]
+tosca.relationships.nfv.VirtualBindsTo:
+  derived_from: tosca.relationships.network.BindsTo
+  valid_target_types: [ tosca.capabilities.nfv.VirtualBindable ]
 
-  tosca.relationships.nfv.ForwardsTo:
-    derived_from: tosca.relationships.root
-    valid_target_types: [ tosca.capabilities.nfv.Forwarder ]
+tosca.relationships.nfv.HA:
+  derived_from: tosca.relationships.Root
+  valid_target_types: [ tosca.capabilities.nfv.HA ]
 
-  tosca.relationships.nfv.VirtualLinksTo:
-    derived_from: tosca.relationships.ConnectsTo
-    valid_target_types: [ tosca.capabilities.nfv.VirtualLinkable  ]
+tosca.relationships.nfv.Monitor:
+  derived_from: tosca.relationships.ConnectsTo
+  valid_target_types: [ tosca.capabilities.nfv.Metric ]
+
+tosca.relationships.nfv.ForwardsTo:
+  derived_from: tosca.relationships.root
+  valid_target_types: [ tosca.capabilities.nfv.Forwarder]
 
 ##########################################################################
- # groups Type.
- # as defined within the TOSCA nfv Simple Profile specification.
- # BWT:Not supported by tosca-parser currently, and will be added future.
-##########################################################################
-#group_types:
-#  tosca.groups.nfv.VNFFG:
-#    derived_from: tosca.groups.Root
-#    properties:
-#      vendor:
-#        type: string
-#        required: true
-#        description: name of the vendor who generate this VNFFG
-#      version:
-#        type: string
-#        required: true
-#        description: version of this VNFFG
-#      number_of_endpoints:
-#        type: integer
-#        required: true
-#        description: count of the external endpoints included in this VNFFG
-#      dependent_virtual_link:
-#        type: list
-#        description: Reference to a VLD  used in this Forwarding Graph
-#        required: true
-#        entry_schema:
-#          type: string
-#      connection_point:
-#        type: list
-#        description: Reference to Connection Points forming the VNFFG
-#        required: true
-#        entry_schema:
-#          type: string
-#      constituent_vnfs:
-#        type: list
-#        description: Reference to a list of  VNFD used in this VNF Forwarding Graph
-#        required: true
-#        entry_schema:
-#          type: string
-#      targets:
-#        type: list
-#        required: false
-#        description: list of  Network Forwarding Path within the VNFFG
-#        entry_schema:
-#          type: string
-#   requirements:
-#      - forwarder:
-#          capability: tosca.capabilities.Forwarder
-
-#datatype_definitions:
-##########################################################################
- # Data Type. To be continue
- # A Datatype is a complex data type declaration which contains other
- # complex or simple data types.
- # BWT: will be added future.
+# Capability Type.
+# A Capability Type is a reusable entity that describes a kind of
+# capability that a Node Type can declare to expose.
 ##########################################################################
 
+tosca.capabilities.nfv.VirtualLinkable:
+  derived_from: tosca.capabilities.network.Linkable
+
+tosca.capabilities.nfv.VirtualBindable:
+  derived_from: tosca.capabilities.network.Bindable
+
+tosca.capabilities.nfv.HA:
+  derived_from: tosca.capabilities.Root
+  valid_source_types: [ tosca.nodes.nfv.VDU ]
+
+tosca.capabilities.nfv.HA.ActiveActive:
+  derived_from: tosca.capabilities.nfv.HA
+
+tosca.capabilities.nfv.HA.ActivePassive:
+  derived_from: tosca.capabilities.nfv.HA
+
+tosca.capabilities.nfv.Metric:
+  derived_from: tosca.capabilities.Root
+
+tosca.capabilities.nfv.Forwarder:
+  derived_from: tosca.capabilities.Root
+
+
+
+tosca.capabilities.nfv.CPU_extension:
+  derived_from: tosca.capabilities.Root
+  properties:
+    cpu_instruction_set_extension:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        Instruction sets are often enhanced with
+        instruction set extensions. This element
+        represents instruction set extensions that the
+        VDU has been developed, optimized or tested with
+    cpu_model:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The CPU model for which the VDU has been
+        developed, compiled with CPU model specific
+        optimisations, optimized or validated on.
+    cpu_model_specification_binding:
+      type: string
+      required: false
+      description: >
+        VDUs may be developed, compiled, optimized
+        or validated on particular CPU models. Some
+        deployments may wish to permit the VDU to
+        be deployed on a platform with the specified
+        CPU only, or with an alternative CPU with the
+        same architecture, instruction set, and if
+        specified, instruction set extensions, or with a
+        CPU of equivalent or greater capability.
+    cpu_min_clock_speed:
+      type: string
+      required: false
+      description: >
+        The minimum CPU clock speed may be one of
+        the elements that the development and
+        validation of the VDU has been considered
+        with. This may be in conjunction with some of
+        the other CPU elements such as CPU Model.
+        Requiring a minimum clock speed may be part
+        of a deployment requirement necessary to
+        help ensure particular performance or timing
+        related characteristics are met in the
+        deployment.
+    cpu_core_reservation:
+      type: string
+      required: false
+      description: >
+        The number of CPU cores allocated to the
+        VDU. This may be necessary to help ensure
+        particular performance or timing related
+        characteristics are met in the deployment.
+    cpu_simultaneous_multi_threading_hw_thread_specification:
+      type: string
+      required: false
+      description: >
+        The use of Simultaneous Multi-Threading HW
+        is an efficient way to increase the compute
+        capacity of a platform. SMT HW threads share
+        some CPU core resources. In some VDU
+        implementations, it may be necessary to very
+        explicitly control the HW thread allocation on a
+        platform. This could be to help ensure locality
+        in data caches or as a mechanism to enhance
+        determinism.
+    cpu_core_oversubscription_policy:
+      type: string
+      required: false
+      description: >
+        The VDU may co-exist on a platform with
+        multiple VDUs or VMs and as such will be
+        sharing CPU core resources available in the
+        platform. It may be necessary to specify the
+        CPU core oversubscription policy in terms of
+        virtual cores to physical cores/threads on the
+        platform. This policy could be based on
+        required VDU deployment characteristics such
+        as high performance, low latency, and /or
+        deterministic behaviour.
+    cpu_core_and_hw_thread_allocation_topology_policy:
+      type: string
+      required: false
+      description: >
+        The VDU may be designed to use a specific
+        mapping of virtual CPUs to HW threads or
+        cores with a specific allocation topology in
+        order to ensure locality in data caches and
+        maximize performance. The VDU will not
+        specify which physical resources to use, but
+        may specify if virtual CPUs shall be coupled
+        together as HW threads belonging to the same
+        core, or as belonging to the same processor.
+    cpu_last_level_cache_size:
+      type: scalar-unit.size
+      required: false
+      constraints:
+        - greater_or_equal: 0 KB
+      description: >
+        The size of the last level cache may impact the
+        performance of the VDU, particularly for cache
+        intensive workloads.
+    cpu_direct_io_access_to_cache:
+      type: string
+      required: false
+      description: >
+        The ability of an I/O device to have direct
+        access to the CPU cache enables
+        considerable memory access savings and for
+        I/O intensive workloads can offer significant
+        performance benefits.
+    cpu_translation_look_aside_buffer_parameter:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The Translation Look-aside Buffer (TLB) is a
+        cache for address translation typically used by
+        a hardware based memory management units.
+        The Input/Output TLB (IOTLB) is a cache for
+        address translation related to remapping
+        hardware. The availability of a TLB and an
+        IOTLB can significantly improve the
+        performance of a virtual machine.
+        A number of parameters of the TLBs impact
+        the performance potential. These include:
+        1  TLB Size.
+        2  TLB Large Page Support.
+        3  IOTLB Size.
+        4  IOTLB Large Page Support.
+    cpu_hot_add:
+      type: boolean
+      required: false
+      description: >
+        Hot add CPU is the ability to dynamically add
+        CPUs to a running system. The new CPU can
+        immediately replace a failing CPU via
+        migration or be brought on-line later.
+    cpu_support_accelerator:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        This capability refers to support by the CPU
+        and associated chipsets of a data processing
+        accelerator framework, together with its
+        libraries and drivers.
+
+tosca.capabilities.nfv.Memory_extension:
+  derived_from: tosca.capabilities.Root
+  properties:
+    memory_parameter:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        There are a number of memory related parameters that can have a
+        significant impact on the performance and/or reliability of the VDU.
+        These include:
+        •  Memory Type.
+        •  Memory Speed
+        •  Number of memory channels.
+        •  Size of available memory.
+        •  Reliability characteristics such as Memory Error Correction
+        codes.
+        •  Memory oversubscription policy.
+        •  Memory bandwidth required per VDU.
+        •  Number of large pages required per VDU
+        •  Non-Uniform Memory Architecture (NUMA) Allocation Policy,
+        i.e. in NUMA architecture how you specify memory allocation
+        that is cognisant of the relevant process/core allocation. This
+        applies also to allocation of huge pages.
+    memory_hot_add:
+      type: boolean
+      required: false
+      description: >
+        Hot add memory is the ability to add physical memory while the system
+        is running. Added memory can immediately replace failing memory via
+        migration or be brought on-line later.
+
+tosca.capabilities.nfv.Hypervisors:
+  derived_from: tosca.capabilities.Root
+  properties:
+    hypervisors:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        There are a number of hypervisor related parameters that can have a
+        significant impact on the deployment and performance of the VDU.
+        These include:
+        •  Hypervisor type
+        •  Hypervisor version as a VDU may be validated with a particular
+        version.
+        •  Hypervisor Address Translation support parameters including:
+        o  Second Level Address Translation.
+        o  Second Level Address Translation with Large page
+        support.
+        o  Second Level Address Translation for I/O.
+        o  Second Level Address Translation for I/O with Large page.
+        support. Where "Large" is considered to be 1 GB or
+        greater.
+        o  Support for interrupt remapping, i.e. supporting the IOMMU
+        in the hypervisor.
+        o  Support of data processing acceleration libraries in the
+        hypervisor, i.e. for acceleration libraries which require
+        hypervisor support for high performance.
+
+tosca.capabilities.nfv.PCIe:
+  derived_from: tosca.capabilities.Root
+  properties:
+    platform_pcie_parameter:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        There are a number of PCIe related parameters that can
+        have a significant impact on the deployment and
+        performance of the VDU. These include:
+        •  PCIe generational capabilities.
+        •  PCIe bandwidth.
+        •  PCIe Device Pass-through.
+        •  PCIe SR-IOV as the VDU may require that an SR-
+        IOV virtual vunction from the specified PCIe
+        device can be allocated to the VM.
+        •  PCIe Device Assignment Affinity. The VDU may
+        require for performance reasons the ability to
+        allocate a partitionable PCIe Device capability
+        such as a NIC port, an entire NIC or a NIC virtual
+        function to the VDU while also ensuring that the
+        selected device is locally connected to the same
+        processor.
+    platform_pcie_parameter:
+      type: string
+      required: false
+      description: >
+        Detecting and reporting correctable and un-correctable
+        (fatal and non-fatal) PCIe errors to software for error
+        handling and remediation.
+    platform_acceleration_device:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The VDU may have been developed, optimized or
+        tested with an acceleration device such as a crypto
+        accelerator that may typically be accessed over a PCIe
+        bus.
+
+tosca.capabilities.nfv.network.Interfaces:
+  derived_from: tosca.capabilities.Root
+  properties:
+    network_interface_card_capability:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The VDU may have been developed, optimized or
+        tested with certain NIC capabilities to benefit items
+        such as performance or scalability. These include:
+        •  TCP Large Segmentation Offload (LSO) for
+        offload the segmentation of large TCP
+        messages into MTU sized packets from the
+        CPU to the NIC.
+        •  Large Receive Offload (LRO), i.e. the
+        inverse of LSO by coalescing incoming
+        TCP/IP packets into larger segments for
+        processing in the CPU.
+        •  Checksum Offload.
+        •  Receive Side Scaling (RSS), for packet
+        distribution between cores.
+        •  Flow Director, for more fine grained (than
+        RSS) packet distribution between cores.
+        •  Mirroring of packets between interfaces.
+        •  Availability of Independent Rx/Tx queues for
+        VM so that queue pairs in the NIC can be
+        allocated to the VMs.
+        •  Jumbo Frame support.
+        •  VLAN tag stripping.
+        •  RDMA support.
+        •  SR-IOV support.
+        •  Data processing acceleration software
+        library support, e.g. DPDK ® - see note.
+    network_interface_bandwidth:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The network speed/bandwidth to be guaranteed
+        per requested NIC.
+    data_processing_acceleration_library:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        Name and version of the data processing
+        acceleration library used. Orchestration can match
+        any NIC that is known to be compatible with the
+        specified library
+
+tosca.capabilities.nfv.network.Virtual_switches:
+  derived_from: tosca.capabilities.Root
+  properties:
+    vswitch_capability:
+      type: list
+      required: false
+      entry_schema:
+        type: string
+      constraints:
+        - min_length: 1
+      description: >
+        The VDU may have been developed, optimized or tested with a
+        particular vSwitch and may require specifying the vSwitch type, version
+        and key features such as overlay tunnel termination support.
+
+tosca.capabilities.nfv.Storage:
+  derived_from: tosca.capabilities.Root
+  properties:
+    storage_requirement:
+      type: scalar-unit.size
+      required: false
+      constraints:
+        - greater_or_equal: 0 MB
+      description: >
+        Required storage characteristics (e.g. size), including Key Quality
+        Indicators (KQIs) for performance and reliability/availability.
+    rdma_support_bandwitdh:
+      type: integer
+      required: false
+      constraints:
+        - greater_or_equal: 0
+      description: >
+        The VDU may have been developed, optimized or tested with a
+        storage supporting RDMA over a given bandwidth.
+
+
+
+##########################################################################
+# Group Type.
+# Defined within the TOSCA nfv Simple Profile specification.
+##########################################################################
+tosca.groups.nfv.VNFFG:
+  derived_from: tosca.groups.Root
+  properties:
+    vendor:
+      type: string
+      required: true
+      description: name of the vendor who generate this VNFFG
+    version:
+      type: string
+      required: true
+      description: version of this VNFFG
+    number_of_endpoints:
+      type: integer
+      required: true
+      description: count of the external endpoints included in this VNFFG
+    dependent_virtual_link:
+      type: list
+      description: Reference to a VLD  used in this Forwarding Graph
+      required: true
+      entry_schema:
+        type: string
+    connection_point:
+      type: list
+      description: Reference to Connection Points forming the VNFFG
+      required: true
+      entry_schema:
+        type: string
+    constituent_vnfs:
+      type: list
+      description: Reference to a list of  VNFD used in this VNF Forwarding Graph
+      required: true
+      entry_schema:
+        type: string
+    targets:
+      type: list
+      required: false
+      description: list of  Network Forwarding Path within the VNFFG
+      entry_schema:
+        type: string
+  requirements:
+    - forwarder:
+        capability: tosca.capabilities.nfv.Forwarder
+        relationship: tosca.relationships.nfv.ForwardsTo
+
+#data_types:
+##########################################################################
+# Data Type. To be continue
+# A Datatype is a complex data type declaration which contains other
+# complex or simple data types.
+# BWT: will be added future.
+##########################################################################
 #tosca.datatypes.network.XX:
 #  properties:
 #    network_name:
@@ -617,11 +618,11 @@ relationship_types:
 
 #artifact_types:
 ##########################################################################
- # Artifact Type.To be continue
- # An Artifact Type is a reusable entity that defines the type of one or more
- # files which Node Types or Node Templates can have dependent relationships
- # and used during operations such as during installation or deployment.
- # BWT: will be added future.
+# Artifact Type.To be continue
+# An Artifact Type is a reusable entity that defines the type of one or more
+# files which Node Types or Node Templates can have dependent relationships
+# and used during operations such as during installation or deployment.
+# BWT: will be added future.
 ##########################################################################
 #tosca.artifacts.File.XXX:
 #  derived_from: tosca.artifacts.Root
