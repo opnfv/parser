@@ -1,0 +1,93 @@
+From: "Ram, Vinayak (NFV BU)" <vinayak.ram@hpe.com>
+To: "zhang.jun3g@zte.com.cn" <zhang.jun3g@zte.com.cn>, huangzhipeng <huangzhipeng@huawei.com>
+Cc: "Huruifeng (Victor)" <huruifeng@huawei.com>
+Date: Mon, 18 Apr 2016 12:06:52 +0000
+Subject: RE: Parser Committer Promotion Guidline call for approval from comitters
++1
+ 
+From: zhang.jun3g@zte.com.cn [mailto:zhang.jun3g@zte.com.cn]
+Sent: Monday, April 18, 2016 12:07 PM
+To: huangzhipeng <huangzhipeng@huawei.com>
+Cc: Huruifeng (Victor) <huruifeng@huawei.com>; Ram, Vinayak (NFV BU) <vinayak.ram@hpe.com>
+Subject: 答复: Parser Committer Promotion Guidline call for approval from comitters
+ 
+Hi,team, 
+
++1 
+
+it's ok for me! 
+
+Regards, 
+Julien
+
+ 
+
+ 
+
+
+  Julien(Jun) Zhang
+ NFV Architect
+D206(D2028), R&D Building, ZTE Plaza, #889, Bibo RD, 
+Pudong District, Shang Hai, P.R.China, 201203 
+T:+86 21 68897791 M:+86 15317680806 F:+86 21 50801070 
+E: zhang.jun3g@zte.com.cn G: julienjut@gmail.com
+www.zte.com.cn, www.opnfv.org
+
+
+
+
+
+发件人:         huangzhipeng <huangzhipeng@huawei.com> 
+收件人:         "Huruifeng (Victor)" <huruifeng@huawei.com>, "zhang.jun3g@zte.com.cn" <zhang.jun3g@zte.com.cn>, "vinayak.ram@hpe.com" <vinayak.ram@hpe.com>, 
+日期:         2016/04/18 08:33 
+主题:        答复: Parser Committer Promotion Guidline call for approval from comitters
+ 
+
+Hi Guys, 
+  
+Please perform the actions as described below by the end of this week. 
+  
+发件人: huangzhipeng 
+发送时间: 2016年4月11日 16:30
+收件人: Huruifeng (Victor); 'zhang.jun3g@zte.com.cn'; 'vinayak.ram@hpe.com'
+主题: Parser Committer Promotion Guidline call for approval from comitters 
+ 
+Hi everyone, 
+  
+Since I received only one comment from Julien so far on the cap of committer number, I updated the slide to address Juline’s comment and call for your approval. Please reply +1 if you are ok with our non-mandatory additional guideline, or specify your concerns if you have doubts about the current version. 
+  
+As I discussed in the previous meetings, after the slide (i.e the “Motion”) got unanimous +1 approval, I will submit it to our Parser repo so that it becomes a public document. Any further changes to the document should be done in a similar way: PTL or committer initiate a motion via email, and after committer approval submit it to parser repo, and merge after all the concerns addressed (all the -1 comments) 
+  
+This first document will be merged after the consent from you guys tho, since this is the starting piece. 
+  
+I will also show the record of the committer voting for openness and publicity. 
+  
+ 
+Best Regards 
+  
+Zhipeng Huang (Howard) 
+IT Standard & Patent
+华为技术有限公司 Huawei Technologies Co., Ltd. 
+  
+Mobile: +86-18576658966
+Email: huangzhipeng@huawei.com
+地址：深圳市龙岗区坂田华为基地 邮编：518129
+Huawei Technologies Co., Ltd.
+Bantian, Longgang District,Shenzhen 518129, P.R.China
+http://www.huawei.com
+本邮件及其附件含有华为公司的保密信息，仅限于发送给上面地址中列出的个人或群组。禁
+止任何其他人以任何形式使用（包括但不限于全部或部分地泄露、复制、或散发）本邮件中
+的信息。如果您错收了本邮件，请您立即电话或邮件通知发件人并删除本邮件！
+This e-mail and its attachments contain confidential information from HUAWEI, which 
+is intended only for the person or entity whose address is listed above. Any use of the 
+information contained herein in any way (including, but not limited to, total or partial 
+disclosure, reproduction, or dissemination) by persons other than the intended 
+recipient(s) is prohibited. If you receive this e-mail in error, please notify the sender by 
+phone or email immediately and delete it! 
+ 
+ 
+ 
+--------------------------------------------------------
+ZTE Information Security Notice: The information contained in this mail (and any attachment transmitted herewith) is privileged and confidential and is intended for the exclusive use of the addressee(s).  If you are not an intended recipient, any disclosure, reproduction, distribution or other dissemination or use of the information contained is strictly prohibited.  If you have received this mail in error, please delete it and notify us immediately.
+ 
+ 
