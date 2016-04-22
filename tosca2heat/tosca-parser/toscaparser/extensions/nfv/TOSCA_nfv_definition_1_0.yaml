@@ -65,7 +65,7 @@ tosca.nodes.nfv.CP:
       required: false
   requirements:
     - virtualLink:
-        capability: tosca.capabilities.VirtualLinkable
+        capability: tosca.capabilities.nfv.VirtualLinkable
         relationship: tosca.relationships.nfv.VirtualLinksTo
         node: tosca.nodes.nfv.VL
     - virtualBinding:
