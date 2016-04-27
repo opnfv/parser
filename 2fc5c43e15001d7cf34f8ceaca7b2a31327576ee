@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a91bd0f_ff9fdf4e",
+        "filename": "docs/parser_docs/tosca2heat/examples/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-04-27T07:31:12Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "9a91bd0f_3fb9c7e9",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 18
+      },
+      "revId": "2fc5c43e15001d7cf34f8ceaca7b2a31327576ee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a91bd0f_bfedd7f1",
         "filename": "docs/parser_docs/tosca2heat/examples/TOSCA_nfv_definition_1_0.yaml",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-27T07:12:08Z",
       "side": 1,
       "message": "number_of_endpoints is the initial number or the final number or the maximum number? what\u0027s the relationship with scale in and scale out?",
+      "range": {
+        "startLine": 564,
+        "startChar": 4,
+        "endLine": 564,
+        "endChar": 23
+      },
+      "revId": "2fc5c43e15001d7cf34f8ceaca7b2a31327576ee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_dfa21b9a",
+        "filename": "docs/parser_docs/tosca2heat/examples/TOSCA_nfv_definition_1_0.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-04-27T07:31:12Z",
+      "side": 1,
+      "message": "number_of_endpoints is the actual count of the external endpoints included in this VNFFG. It\u0027s different from the scale size.",
+      "parentUuid": "9a91bd0f_bfedd7f1",
       "range": {
         "startLine": 564,
         "startChar": 4,
