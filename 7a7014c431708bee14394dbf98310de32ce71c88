@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a91bd0f_939a4c13",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:58:07Z",
+      "side": 1,
+      "message": "missing Apache license description.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 43
+      },
+      "revId": "7a7014c431708bee14394dbf98310de32ce71c88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_339fc005",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:58:07Z",
+      "side": 1,
+      "message": "in type definition, the is suffix _zte, keep the same in different fils",
+      "range": {
+        "startLine": 6,
+        "startChar": 31,
+        "endLine": 6,
+        "endChar": 39
+      },
+      "revId": "7a7014c431708bee14394dbf98310de32ce71c88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_53a4c456",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:58:07Z",
+      "side": 1,
+      "message": "any integer is OK, just a minimum or maximum limit",
+      "range": {
+        "startLine": 64,
+        "startChar": 10,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "7a7014c431708bee14394dbf98310de32ce71c88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_f38878c8",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:58:07Z",
+      "side": 1,
+      "message": "using UMTS is more general",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "7a7014c431708bee14394dbf98310de32ce71c88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_13863cba",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:58:07Z",
+      "side": 1,
+      "message": "why network requires a vendor ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 19
+      },
+      "revId": "7a7014c431708bee14394dbf98310de32ce71c88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
