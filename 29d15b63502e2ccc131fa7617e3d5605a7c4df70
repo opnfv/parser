@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a91bd0f_d3f8d44b",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:45:35Z",
+      "side": 1,
+      "message": "missing Apache copyright description,using including ...",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 43
+      },
+      "revId": "29d15b63502e2ccc131fa7617e3d5605a7c4df70",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_13ff1c36",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:45:35Z",
+      "side": 1,
+      "message": "level node_types in nfv_tosca has been deleted, shall we consider remove this level also?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "29d15b63502e2ccc131fa7617e3d5605a7c4df70",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_b3fbd046",
+        "filename": "docs/parser_docs/tosca2heat/examples/Simple_RNC_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-04-28T14:45:35Z",
+      "side": 1,
+      "message": "TDS-CDMA",
+      "range": {
+        "startLine": 35,
+        "startChar": 28,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "29d15b63502e2ccc131fa7617e3d5605a7c4df70",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
