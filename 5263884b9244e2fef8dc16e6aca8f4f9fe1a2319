@@ -16,6 +16,24 @@
       "revId": "5263884b9244e2fef8dc16e6aca8f4f9fe1a2319",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a91bd0f_882c564c",
+        "filename": "tosca2heat/tosca-parser/toscaparser/elements/TOSCA_definition_1_0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-05-03T06:22:45Z",
+      "side": 1,
+      "message": "HI,Bob,thanks for reviewing.\nYou are right, as far as i known, affinity and antiaffinity are called in computer host schedule filter in openstack, but in simple tosca standard they are called colocate and antilocate in example, that\u0027s why i call them here. In general,I think affility/antiaffility will be more appropriate than colocate/antilocate.",
+      "parentUuid": "9a91bd0f_5914e3f4",
+      "revId": "5263884b9244e2fef8dc16e6aca8f4f9fe1a2319",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
