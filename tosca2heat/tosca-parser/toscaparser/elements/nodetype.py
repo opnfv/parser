@@ -102,6 +102,11 @@ class NodeType(StatefulEntityType):
         node_types = [node_type for node_type in self.TOSCA_DEF.keys()
                       if node_type.startswith(self.NODE_PREFIX) and
                       node_type != 'tosca.nodes.Root']
+        # Filter the custom node types
+        custom_node_types = [custom_node_type for custom_node_type
+                             in self.custom_def.keys()]
+        # All types,include normative and custom types
+        self.TOSCA_DEF.update(custom_node_types)
 
         for node_type in node_types:
             node_def = self.TOSCA_DEF[node_type]
