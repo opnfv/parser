@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_98b8392c",
+        "filename": "INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-05-30T23:19:23Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "2ef55252efef69d03e2fee43a4d2ded3d4c1e816",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_b8b5f532",
+        "filename": "INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-05-30T23:19:23Z",
+      "side": 1,
+      "message": "it is \"shang.xiaodong@zte.com.cn\" to be added into the commiter not \"huruifeng@huawei.com\" who is already in the list.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "2ef55252efef69d03e2fee43a4d2ded3d4c1e816",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
