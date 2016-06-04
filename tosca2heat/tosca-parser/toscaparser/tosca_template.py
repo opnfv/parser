@@ -69,6 +69,7 @@ class ToscaTemplate(object):
         self.input_path = None
         self.path = None
         self.tpl = None
+        self.nested_tosca_template = None
         if path:
             self.input_path = path
             self.path = self._get_path(path)
@@ -177,9 +178,14 @@ class ToscaTemplate(object):
             imports = self._tpl_imports()
 
         if imports:
-            custom_defs = toscaparser.imports.\
+            custom_service = toscaparser.imports.\
                 ImportsLoader(imports, self.path,
-                              type_defs, self.tpl).get_custom_defs()
+                              type_defs, self.tpl)
+
+            nested_topo_tpls = custom_service.get_nested_topo_tpls()
+            self._handle_nested_topo_tpls(nested_topo_tpls)
+
+            custom_defs = custom_service.get_custom_defs()
             if not custom_defs:
                 return
 
@@ -190,6 +196,14 @@ class ToscaTemplate(object):
                 if inner_custom_types:
                     custom_defs.update(inner_custom_types)
         return custom_defs
+
+    def _handle_nested_topo_tpls(self, nested_topo_tpls):
+        for tpl in nested_topo_tpls:
+            if tpl.get(TOPOLOGY_TEMPLATE):
+                nested_tosca_template = ToscaTemplate(
+                    path=self.path, parsed_params=self.parsed_params,
+                    yaml_dict_tpl=nested_topo_tpls)
+                self.nested_tosca_template.apend(nested_tosca_template)
 
     def _validate_field(self):
         version = self._tpl_version()
