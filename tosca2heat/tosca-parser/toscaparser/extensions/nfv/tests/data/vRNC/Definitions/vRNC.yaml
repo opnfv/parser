@@ -28,7 +28,7 @@ description: >
     2. Network Node VL and CP
 
 imports:
-  - Simple_RNC_definition.yaml
+  - rnc_definition.yaml
 
 # list of YAML alias anchors (or macros)
 dsl_definitions:
@@ -40,10 +40,8 @@ dsl_definitions:
 
   compute_props_host_MM: &compute_props_host_MM
     disk_size: 80 GB
-    iops: 300
     num_cpus: 8
     mem_size: 8192 MB
-    swap: 512 MB
 
   compute_props_host_CM: &compute_props_host_CM
     disk_size: 0 GB
@@ -89,6 +87,7 @@ topology_template:
       type: rnc.nodes.compute.MM
       properties:
         activestatus: 1
+        id: MM_Active
       capabilities:
         os:
           properties: *compute_props_os_DEF
@@ -108,13 +107,12 @@ topology_template:
             implementation: mm_install.sh
           configure:
             implementation: mm_active_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     MM_Passive:
       type: rnc.nodes.compute.MM
       properties:
         activestatus: 0
+        id: MM_Passive
       capabilities:
         os:
           properties: *compute_props_os_DEF
@@ -134,8 +132,6 @@ topology_template:
             implementation: mm_install.sh
           configure:
             implementation: mm_passvie_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     CM_Active:
       type: rnc.nodes.compute.CM
@@ -162,8 +158,6 @@ topology_template:
             implementation: cm_install.sh
           configure:
             implementation: cm_active_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     CM_Passive:
       type: rnc.nodes.compute.CM
@@ -190,8 +184,6 @@ topology_template:
             implementation: cm_install.sh
           configure:
             implementation: cm_passvie_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     DM:
       type: rnc.nodes.compute.DM
@@ -213,8 +205,6 @@ topology_template:
             implementation: dm_install.sh
           configure:
             implementation: dm_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     LB:
       type: rnc.nodes.compute.LB
@@ -237,8 +227,6 @@ topology_template:
             implementation: lb_install.sh
           configure:
             implementation: lb_configure.sh
-      attributes:
-        ip_address: { get_attribute: [ SELF, private_address ] }
 
     MM_BlockStorage:
       type: rnc.nodes.BlockStorage
@@ -298,7 +286,16 @@ topology_template:
         dhcp_enabled: false
 
     MM_Port_EMS:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.MM
+      properties:
+        order: 0
+        is_default: true
+      requirements:
+        - virtualBinding: MM_Active
+        - virtualLink: EMS_Net
+
+    MM_Port_EMS:
+      type: rnc.nodes.CP.MM
       properties:
         order: 0
         is_default: true
@@ -307,7 +304,7 @@ topology_template:
         - virtualLink: EMS_Net
 
     MM_Port_CTRL:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.MM
       properties:
         order: 1
         is_default: false
@@ -316,7 +313,7 @@ topology_template:
         - virtualLink: CTRL_Net
 
     MM_Port_EXTERMEDIA:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.MM
       properties:
         order: 2
         is_default: false
@@ -325,7 +322,7 @@ topology_template:
         - virtualLink: EXTERMEDIA_Net
 
     CM_Port_CTRL:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.CM
       properties:
         order: 0
         is_default: true
@@ -334,7 +331,7 @@ topology_template:
         - virtualLink: CTRL_Net
 
     CM_Port_INTERMEDIA:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.CM
       properties:
         order: 1
         is_default: false
@@ -343,7 +340,7 @@ topology_template:
         - virtualLink: INTERMEDIA_Net
 
     DM_Port_CTRL:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.DM
       properties:
         order: 0
         is_default: true
@@ -352,7 +349,7 @@ topology_template:
         - virtualLink: CTRL_Net
 
     DM_Port_INTERMEDIA:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.DM
       properties:
         order: 1
         is_default: false
@@ -361,7 +358,7 @@ topology_template:
         - virtualLink: INTERMEDIA_Net
 
     LB_Port_CTRL:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.LB
       properties:
         order: 0
         is_default: true
@@ -370,7 +367,7 @@ topology_template:
         - virtualLink: CTRL_Net
 
     LB_Port_INTERMEDIA:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.LB
       properties:
         order: 1
         is_default: false
@@ -379,7 +376,7 @@ topology_template:
         - virtualLink: INTERMEDIA_Net
 
     LB_Port_EXTERMEDIA:
-      type: rnc.nodes.CP
+      type: rnc.nodes.CP.LB
       properties:
         order: 2
         is_default: false
@@ -422,8 +419,6 @@ topology_template:
          MM_Acitve, MM_Passive, CM_Acitve, CM_Passive, LB must host
          on different host to reduce the impact to each other.
       members: [ MM_Active, MM_Passive, CM_Active, CM_Passive, LB ]
-      policies:
-        type: tosca.policy.placement.Antilocate
 
     AffinityServerGroup:
       type: tosca.groups.Root
@@ -431,8 +426,6 @@ topology_template:
         Logical component grouping for affinity placement,
         CM and DM will be host on the same host to get high performence
       members: [ CM_Active, DM ]
-      policies:
-        type: tosca.policy.placement.Antilocate
 
   policies:
     - AnitAffinityPolicy:
