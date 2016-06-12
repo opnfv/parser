@@ -29,8 +29,6 @@ description: >
 
 # The import section shall be ignored if the value of tosca_definitions_version
 # is tosca_simple_profile_for_nfv_1_0_0, otherwise will be needed.
-#imports:
-#  - TOSCA_nfv_definition_1_0.yaml
 
 # list of node type definitions
 node_types:
@@ -97,6 +95,46 @@ node_types:
 
   rnc.nodes.CP:
     derived_from: tosca.nodes.nfv.CP
+
+  rnc.nodes.CP.MM:
+    derived_from: tosca.nodes.nfv.CP
+    # It's ok here because of the weakly validation.
+
+  rnc.nodes.CP.CM:
+    derived_from: tosca.nodes.nfv.CP
+    requirements:
+      - virtualLink:
+          capability: tosca.capabilities.nfv.VirtualLinkable
+          relationship: tosca.relationships.nfv.VirtualLinksTo
+          node: rnc.nodes.VL
+      - virtualBinding:
+          capability: tosca.capabilities.nfv.VirtualBindable
+          relationship: tosca.relationships.nfv.VirtualBindsTo
+          node: rnc.nodes.compute.CM
+
+  rnc.nodes.CP.DM:
+    derived_from: tosca.nodes.nfv.CP
+    requirements:
+      - virtualLink:
+          capability: tosca.capabilities.nfv.VirtualLinkable
+          relationship: tosca.relationships.nfv.VirtualLinksTo
+          node: rnc.nodes.VL
+      - virtualBinding:
+          capability: tosca.capabilities.nfv.VirtualBindable
+          relationship: tosca.relationships.nfv.VirtualBindsTo
+          node: rnc.nodes.compute.DM
+
+  rnc.nodes.CP.LB:
+    derived_from: tosca.nodes.nfv.CP
+    requirements:
+      - virtualLink:
+          capability: tosca.capabilities.nfv.VirtualLinkable
+          relationship: tosca.relationships.nfv.VirtualLinksTo
+          node: rnc.nodes.VL
+      - virtualBinding:
+          capability: tosca.capabilities.nfv.VirtualBindable
+          relationship: tosca.relationships.nfv.VirtualBindsTo
+          node: rnc.nodes.compute.LB
 
 # list of capability type definitions
 capability_types:
