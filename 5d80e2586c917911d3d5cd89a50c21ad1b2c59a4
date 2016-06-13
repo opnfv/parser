@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_c3055515",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/rnc_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-13T00:57:59Z",
+      "side": 1,
+      "message": "Virtual Function of RNC",
+      "range": {
+        "startLine": 40,
+        "startChar": 21,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "5d80e2586c917911d3d5cd89a50c21ad1b2c59a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_e302d10a",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/rnc_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-13T00:57:59Z",
+      "side": 1,
+      "message": "is it better to use \"rnc.nodes.VL\" here?, and line 53, 57",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "5d80e2586c917911d3d5cd89a50c21ad1b2c59a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_a3fff800",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/rnc_definition.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-13T00:57:59Z",
+      "side": 1,
+      "message": "to be deleted",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 52
+      },
+      "revId": "5d80e2586c917911d3d5cd89a50c21ad1b2c59a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_c3047417",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-13T00:57:59Z",
+      "side": 1,
+      "message": "1-2 cpu and 512M-1024MB ram are easier to test. actually it is not a real vRNC and it uses the test images.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "5d80e2586c917911d3d5cd89a50c21ad1b2c59a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_6309e02b",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-13T00:57:59Z",
+      "side": 1,
+      "message": "in rnc_definition.yaml, it uses a WCDMA network function.",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 78,
+        "endChar": 24
+      },
+      "revId": "5d80e2586c917911d3d5cd89a50c21ad1b2c59a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
