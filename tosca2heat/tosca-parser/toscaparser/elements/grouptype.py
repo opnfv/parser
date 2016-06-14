@@ -52,6 +52,17 @@ class GroupType(StatefulEntityType):
             self._validate_metadata(self.meta_data)
 
     @property
+    def parent_type(self):
+        '''Return a group statefulentity of this entity is derived from.'''
+        if not hasattr(self, 'defs'):
+            return None
+        pgroup_entity = self.derived_from(self.defs)
+        if pgroup_entity:
+            return GroupType(pgroup_entity, self.custom_def
+        else:
+            return None
+
+    @property
     def description(self):
         return self.group_description
 

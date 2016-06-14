@@ -60,6 +60,7 @@ class ToscaDefTest(TestCase):
 
     def test_group(self):
         self.assertEqual(group_type.type, "tosca.groups.Root")
+        self.assertEqual(group_type.parent_type, None)
         self.assertIn(ifaces.LIFECYCLE_SHORTNAME, group_type.interfaces)
 
     def test_capabilities(self):
