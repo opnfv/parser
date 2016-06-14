@@ -211,6 +211,10 @@ class ToscaTemplateTest(TestCase):
                 for key in relation.keys():
                     rel_tpl = relation.get(key).get_relationship_template()
                     if rel_tpl:
+                        self.assertEqual(
+                            rel_tpl[0].type, "tosca.relationships.ConnectsTo")
+                        self.assertTrue(rel_tpl[0].is_derived_from(
+                            "tosca.relationships.Root"))
                         interfaces = rel_tpl[0].interfaces
                         for interface in interfaces:
                             self.assertEqual(config_interface,
@@ -728,5 +732,7 @@ class ToscaTemplateTest(TestCase):
             "data/test_tosca_custom_rel_with_script.yaml")
         tosca = ToscaTemplate(tosca_tpl)
         rel = tosca.relationship_templates[0]
+        self.assertEqual(rel.type, "tosca.relationships.HostedOn")
+        self.assertTrue(rel.is_derived_from("tosca.relationships.Root"))
         self.assertEqual(len(rel.interfaces), 1)
         self.assertEqual(rel.interfaces[0].type, "Configure")
