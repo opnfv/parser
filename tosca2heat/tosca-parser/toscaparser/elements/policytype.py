@@ -64,8 +64,12 @@ class PolicyType(StatefulEntityType):
 
     @property
     def parent_type(self):
-        '''Return a policy this policy is derived from.'''
-        return self.derived_from(self.defs)
+        '''Return a policy node of this node is derived from.'''
+        if not hasattr(self, 'defs'):
+            return None
+        ppolicy_node = self.derived_from(self.defs)
+        if ppolicy_node:
+            return PolicyType(ppolicy_node, self.custom_def)
 
     def get_policy(self, name):
         '''Return the definition of a policy field by name.'''
