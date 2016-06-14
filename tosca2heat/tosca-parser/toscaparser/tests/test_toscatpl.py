@@ -134,6 +134,15 @@ class ToscaTemplateTest(TestCase):
                 self.assertEqual('Linux', os_props['type'].value)
                 self.assertEqual('Linux', os_type_prop)
 
+    def test_node_inheritance_type(self):
+        wordpress_node = [
+            node for node in self.tosca.nodetemplates
+            if node.name == 'wordpress'][0]
+        self.assertTrue(
+            wordpress_node.is_derived_from("tosca.nodes.WebApplication"))
+        self.assertTrue(
+            wordpress_node.is_derived_from("tosca.nodes.Root"))
+
     def test_outputs(self):
         self.assertEqual(
             ['website_url'],
