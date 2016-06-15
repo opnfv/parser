@@ -34,6 +34,11 @@ class TopologyTemplateTest(TestCase):
         self.topo = TopologyTemplate(self.topo_tpl,
                                      self._get_all_custom_def())
 
+        self.tosca_system_tpl_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/system.yaml")
+        self.system_template = ToscaTemplate(self.tosca_system_tpl_path)
+
     def _get_custom_def(self, type_definition):
         custom_defs = {}
         for definition in self.imports:
