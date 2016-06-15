@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_b752d211",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tests/test_toscatpl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-15T08:17:44Z",
+      "side": 1,
+      "message": "I do think we should add some fail test case to verify it can identify failure.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 63
+      },
+      "revId": "a9d7ab085a981d9310a62eac8c2186a680d8c40c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
