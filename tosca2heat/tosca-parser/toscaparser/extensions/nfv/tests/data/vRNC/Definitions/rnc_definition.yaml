@@ -61,12 +61,14 @@ node_types:
     properties:
       activestatus:
         type: integer
+        required: false
         description: 1 for active or 0 for passive
         constraints:
             - valid_values: [ 0, 1 ]
       id:
         type: string
         defaule: MM
+        required: false
         description: >
           A identifier of this VDU within the scope of the VNFD,
           including version functional description and other
@@ -77,6 +79,7 @@ node_types:
     properties:
       activestatus:
         type: integer
+        required: false
         description: 1 for active or 0 for passive
         constraints:
           - valid_values: [ 0, 1 ]
