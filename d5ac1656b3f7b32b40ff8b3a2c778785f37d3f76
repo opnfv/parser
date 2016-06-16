@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_3d51c162",
+        "filename": "tosca2heat/tosca-parser/toscaparser/elements/artifacttype.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-16T09:00:23Z",
+      "side": 1,
+      "message": "Return a stateful entity artifact from which this entity is derived.",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 74
+      },
+      "revId": "d5ac1656b3f7b32b40ff8b3a2c778785f37d3f76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_9dc7b512",
+        "filename": "tosca2heat/tosca-parser/toscaparser/elements/artifacttype.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-06-16T09:00:23Z",
+      "side": 1,
+      "message": "what about the else condition",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "d5ac1656b3f7b32b40ff8b3a2c778785f37d3f76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
