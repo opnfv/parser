@@ -35,7 +35,9 @@ class ToscaVRNCTemplateTest(TestCase):
     def test_nodetemplates(self):
         expected_node_list = sorted(
             ["MM_Active", "MM_Passive", "MM_BlockStorage",
+             "MM_Active_Host", "MM_Passive_Host",
              "CM_Active", "CM_Passive", "DM", "LB",
+             "CM_Active_Host", "CM_Passive_Host", "DM_Host", "LB_Host",
              "EXTERMEDIA_Net", "INTERMEDIA_Net", "EMS_Net", "CTRL_Net",
              "MM_Port_EMS", "MM_Port_CTRL", "MM_Port_EXTERMEDIA",
              "CM_Port_CTRL", "CM_Port_INTERMEDIA",

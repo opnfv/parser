@@ -84,6 +84,19 @@ topology_template:
   # definition of the node templates of the topology
   node_templates:
     MM_Active:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: MM_Active_Host
+      interfaces:
+        Standard:
+          create:
+            implementation: mm_install.sh
+          configure:
+            implementation: mm_active_configure.sh
+
+    MM_Active_Host:
       type: rnc.nodes.compute.MM
       properties:
         activestatus: 1
@@ -101,14 +114,21 @@ topology_template:
       artifacts:
         #the VM image of MM
         vm_image: mm.image
+
+    MM_Passive:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: MM_Passive_Host
       interfaces:
         Standard:
           create:
             implementation: mm_install.sh
           configure:
-            implementation: mm_active_configure.sh
+            implementation: mm_passvie_configure.sh
 
-    MM_Passive:
+    MM_Passive_Host:
       type: rnc.nodes.compute.MM
       properties:
         activestatus: 0
@@ -126,14 +146,21 @@ topology_template:
       artifacts:
         #the VM image of MM
         vm_image: mm.image
+
+    CM_Active:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: CM_Active_Host
       interfaces:
         Standard:
           create:
-            implementation: mm_install.sh
+            implementation: cm_install.sh
           configure:
-            implementation: mm_passvie_configure.sh
+            implementation: cm_active_configure.sh
 
-    CM_Active:
+    CM_Active_Host:
       type: rnc.nodes.compute.CM
       properties:
         activestatus: 1
@@ -152,14 +179,21 @@ topology_template:
       artifacts:
         #the VM image of CM
         vm_image: cm.image
+
+    CM_Passive:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: CM_Passive_Host
       interfaces:
         Standard:
           create:
             implementation: cm_install.sh
           configure:
-            implementation: cm_active_configure.sh
+            implementation: cm_passvie_configure.sh
 
-    CM_Passive:
+    CM_Passive_Host:
       type: rnc.nodes.compute.CM
       properties:
         activestatus: 0
@@ -178,14 +212,21 @@ topology_template:
       artifacts:
         #the VM image of CM
         vm_image: mm.image
+
+    DM:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: DM_Host
       interfaces:
         Standard:
           create:
-            implementation: cm_install.sh
+            implementation: dm_install.sh
           configure:
-            implementation: cm_passvie_configure.sh
+            implementation: dm_configure.sh
 
-    DM:
+    DM_Host:
       type: rnc.nodes.compute.DM
       capabilities:
         os:
@@ -199,14 +240,21 @@ topology_template:
             default_instances: 1
       artifacts:
         vm_image: dm.image
+
+    LB:
+      type: tosca.nodes.SoftwareComponent
+      properties:
+        component_version: 1.0
+      requirements:
+        - host: LB_Host
       interfaces:
         Standard:
           create:
-            implementation: dm_install.sh
+            implementation: lb_install.sh
           configure:
-            implementation: dm_configure.sh
+            implementation: lb_configure.sh
 
-    LB:
+    LB_Host:
       type: rnc.nodes.compute.LB
       capabilities:
         os:
@@ -221,12 +269,6 @@ topology_template:
       artifacts:
         #the VM image of LB
         vm_image: lb.image
-      interfaces:
-        Standard:
-          create:
-            implementation: lb_install.sh
-          configure:
-            implementation: lb_configure.sh
 
     MM_BlockStorage:
       type: rnc.nodes.BlockStorage
@@ -395,19 +437,19 @@ topology_template:
   outputs:
     private_ip_of_MM:
       description: The private IP address of the MM.
-      value: { get_attribute: [ MM_Active, private_address ] }
+      value: { get_attribute: [ MM_Active_Host, private_address ] }
 
     private_ip_of_CM:
       description: The private IP address of the CM.
-      value: { get_attribute: [ CM_Active, private_address ] }
+      value: { get_attribute: [ CM_Active_Host, private_address ] }
 
     private_ip_of_DM:
       description: The private IP address of the DM.
-      value: { get_attribute: [ DM, private_address ] }
+      value: { get_attribute: [ DM_Host, private_address ] }
 
     private_ip_of_LB:
       description: The private IP address of the LB.
-      value: { get_attribute: [ LB, private_address ] }
+      value: { get_attribute: [ LB_Host, private_address ] }
 
   # definition of logical groups of node templates within the topology
   # To be continue about this section
