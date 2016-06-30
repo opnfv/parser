@@ -282,8 +282,9 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
     def test_policies(self):
+        self.assertEqual(policy_root_type.parent_type, None)
         self.assertEqual('tosca.policies.Root',
-                         policy_placement_type.parent_type)
+                         policy_placement_type.parent_type.type)
         self.assertEqual({}, policy_placement_type.parent_policies)
         self.assertEqual(sorted(['tosca.policies.Root',
                                  'The TOSCA Policy Type definition that is '
@@ -295,7 +296,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.policies.Root',
-                         policy_scaling_type.parent_type)
+                         policy_scaling_type.parent_type.type)
         self.assertEqual({}, policy_scaling_type.parent_policies)
         self.assertEqual(sorted(['tosca.policies.Root',
                                  'The TOSCA Policy Type definition that is '
@@ -307,7 +308,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.policies.Root',
-                         policy_update_type.parent_type)
+                         policy_update_type.parent_type.type)
         self.assertEqual({}, policy_update_type.parent_policies)
         self.assertEqual(sorted(['tosca.policies.Root',
                                  'The TOSCA Policy Type definition that is '
@@ -319,7 +320,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.policies.Root',
-                         policy_performance_type.parent_type)
+                         policy_performance_type.parent_type.type)
         self.assertEqual({}, policy_performance_type.parent_policies)
         self.assertEqual(sorted(['tosca.policies.Root',
                                  'The TOSCA Policy Type definition that is '
