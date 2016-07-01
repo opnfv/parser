@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_08191388",
+        "filename": "tosca2heat/tosca-parser/toscaparser/elements/tosca_type_validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 584
+      },
+      "writtenOn": "2016-07-01T08:26:05Z",
+      "side": 1,
+      "message": "you can put this into parentheses instead of using backslash for line break:\nversion \u003d (custom_type[self.DEFINITION_VERSION] \n           if self.DEFINITION_VERSION in custom_type\n           else None)\n\naccording to PEP standard you should avoid using backslash if possible, and try to follow the practice of using rounded parentheses instead)",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "74924a61a1fefe5e4977cd8d9edf7e5bbbb9f966",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
