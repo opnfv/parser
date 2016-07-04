@@ -81,6 +81,15 @@ class EntityTemplate(object):
     def type(self):
         if self.type_definition:
             return self.type_definition.type
+        else:
+            return None
+
+    @property
+    def parent_type(self):
+        if self.type_definition:
+            return self.type_definition.parent_type
+        else:
+            return None
 
     @property
     def requirements(self):
