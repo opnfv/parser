@@ -320,7 +320,9 @@ class HotResource(object):
 
         node_type = node.type_definition
         if isinstance(node_type, str) or \
-            node_type.type == "tosca.policies.Placement":
+            node_type.type == "tosca.policies.Placement"or \
+            node_type.type == "tosca.policies.Colocate" or \
+            node_type.type == "tosca.policies.Antilocate":
                 return operations
 
         while True:
@@ -338,7 +340,9 @@ class HotResource(object):
     def _get_interface_operations_from_type(node_type, node, lifecycle_name):
         operations = {}
         if isinstance(node_type, str) or \
-            node_type.type == "tosca.policies.Placement":
+            node_type.type == "tosca.policies.Placement" or \
+            node_type.type == "tosca.policies.Colocate" or \
+            node_type.type == "tosca.policies.Antilocate":
                 return operations
         if node_type.interfaces and lifecycle_name in node_type.interfaces:
             for name, elems in node_type.interfaces[lifecycle_name].items():
@@ -354,7 +358,9 @@ class HotResource(object):
     @staticmethod
     def get_base_type(node_type):
         if node_type.parent_type is not None:
-            if node_type.parent_type.type.endswith('.Root'):
+            if node_type.parent_type.type.endswith('.Root') or \
+               node_type.type == "tosca.policies.Colocate" or \
+               node_type.type == "tosca.policies.Antilocate":
                 return node_type
             else:
                 return HotResource.get_base_type(node_type.parent_type)
