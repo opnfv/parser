@@ -224,8 +224,6 @@ class ToscaTemplateTest(TestCase):
                 for key in relation.keys():
                     rel_tpl = relation.get(key).get_relationship_template()
                     if rel_tpl:
-                        self.assertEqual(
-                            rel_tpl[0].type, "tosca.relationships.ConnectsTo")
                         self.assertTrue(rel_tpl[0].is_derived_from(
                             "tosca.relationships.Root"))
                         interfaces = rel_tpl[0].interfaces
