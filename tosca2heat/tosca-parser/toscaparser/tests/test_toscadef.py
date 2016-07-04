@@ -188,8 +188,9 @@ class ToscaDefTest(TestCase):
         self.assertIn(ifaces.LIFECYCLE_SHORTNAME, root_node.interfaces)
 
     def test_artifacts(self):
+        self.assertEqual(artif_root_type.parent_type, None)
         self.assertEqual('tosca.artifacts.Root',
-                         artif_file_type.parent_type)
+                         artif_file_type.parent_type.type)
         self.assertEqual({}, artif_file_type.parent_artifacts)
         self.assertEqual(sorted(['tosca.artifacts.Root'],
                                 key=lambda x: str(x)),
@@ -198,7 +199,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.artifacts.Implementation',
-                         artif_bash_type.parent_type)
+                         artif_bash_type.parent_type.type)
         self.assertEqual({'tosca.artifacts.Implementation':
                           {'derived_from': 'tosca.artifacts.Root',
                            'description':
@@ -212,7 +213,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.artifacts.Implementation',
-                         artif_python_type.parent_type)
+                         artif_python_type.parent_type.type)
         self.assertEqual({'tosca.artifacts.Implementation':
                           {'derived_from': 'tosca.artifacts.Root',
                            'description':
@@ -227,7 +228,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.artifacts.Deployment.Image',
-                         artif_container_docker_type.parent_type)
+                         artif_container_docker_type.parent_type.type)
         self.assertEqual({'tosca.artifacts.Deployment':
                           {'derived_from': 'tosca.artifacts.Root',
                            'description':
@@ -244,7 +245,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.artifacts.Deployment.Image',
-                         artif_vm_iso_type.parent_type)
+                         artif_vm_iso_type.parent_type.type)
         self.assertEqual({'tosca.artifacts.Deployment':
                           {'derived_from': 'tosca.artifacts.Root',
                            'description':
@@ -263,7 +264,7 @@ class ToscaDefTest(TestCase):
                                 key=lambda x: str(x)))
 
         self.assertEqual('tosca.artifacts.Deployment.Image',
-                         artif_vm_qcow2_type.parent_type)
+                         artif_vm_qcow2_type.parent_type.type)
         self.assertEqual({'tosca.artifacts.Deployment':
                           {'derived_from': 'tosca.artifacts.Root',
                            'description':
