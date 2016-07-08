@@ -12,10 +12,10 @@
 
 import os
 import six
-
 from toscaparser.common import exception
 import toscaparser.elements.interfaces as ifaces
 from toscaparser.elements.nodetype import NodeType
+from toscaparser.elements.portspectype import PortSpec
 from toscaparser.functions import GetInput
 from toscaparser.functions import GetProperty
 from toscaparser.nodetemplate import NodeTemplate
@@ -26,16 +26,17 @@ import toscaparser.utils.yamlparser
 
 
 class ToscaTemplateTest(TestCase):
-
     '''TOSCA template.'''
     tosca_tpl = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "data/tosca_single_instance_wordpress.yaml")
     tosca = ToscaTemplate(tosca_tpl)
-
     tosca_elk_tpl = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "data/tosca_elk.yaml")
+    tosca_repo_tpl = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "data/tosca_repositories_test_definition.yaml")
 
     def test_version(self):
         self.assertEqual(self.tosca.version, "tosca_simple_yaml_1_0")
@@ -250,6 +251,18 @@ class ToscaTemplateTest(TestCase):
                 self.assertEqual(
                     expected_hosts,
                     sorted([v.type for v in node_tpl.relationships.values()]))
+
+    def test_repositories(self):
+        template = ToscaTemplate(self.tosca_repo_tpl)
+        self.assertEqual(
+            ['repo_code0', 'repo_code1', 'repo_code2'],
+            sorted([input.name for input in template.repositories]))
+
+        input_name = "repo_code2"
+        expected_url = "https://github.com/nandinivemula/intern/master"
+        for input in template.repositories:
+            if input.name == input_name:
+                self.assertEqual(input.url, expected_url)
 
     def test_template_macro(self):
         template = ToscaTemplate(self.tosca_elk_tpl)
@@ -747,3 +760,46 @@ class ToscaTemplateTest(TestCase):
         self.assertTrue(rel.is_derived_from("tosca.relationships.Root"))
         self.assertEqual(len(rel.interfaces), 1)
         self.assertEqual(rel.interfaces[0].type, "Configure")
+
+    def test_various_portspec_errors(self):
+        tosca_tpl = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/datatypes/test_datatype_portspec_add_req.yaml")
+        self.assertRaises(exception.ValidationError, ToscaTemplate, tosca_tpl,
+                          None)
+
+        # TODO(TBD) find way to reuse error messages from constraints.py
+        msg = (_('The value "%(pvalue)s" of property "%(pname)s" is out of '
+                 'range "(min:%(vmin)s, max:%(vmax)s)".') %
+               dict(pname=PortSpec.SOURCE,
+                    pvalue='0',
+                    vmin='1',
+                    vmax='65535'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.ValidationError, msg)
+
+        # Test value below range min.
+        msg = (_('The value "%(pvalue)s" of property "%(pname)s" is out of '
+                 'range "(min:%(vmin)s, max:%(vmax)s)".') %
+               dict(pname=PortSpec.SOURCE,
+                    pvalue='1',
+                    vmin='2',
+                    vmax='65534'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.RangeValueError, msg)
+
+        # Test value above range max.
+        msg = (_('The value "%(pvalue)s" of property "%(pname)s" is out of '
+                 'range "(min:%(vmin)s, max:%(vmax)s)".') %
+               dict(pname=PortSpec.SOURCE,
+                    pvalue='65535',
+                    vmin='2',
+                    vmax='65534'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.RangeValueError, msg)
+
+    def test_containers(self):
+        tosca_tpl = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/test_containers.yaml")
+        ToscaTemplate(tosca_tpl)

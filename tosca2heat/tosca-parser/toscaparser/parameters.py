@@ -27,8 +27,9 @@ log = logging.getLogger('tosca')
 
 class Input(object):
 
-    INPUTFIELD = (TYPE, DESCRIPTION, DEFAULT, CONSTRAINTS) = \
-        ('type', 'description', 'default', 'constraints')
+    INPUTFIELD = (TYPE, DESCRIPTION, DEFAULT, CONSTRAINTS, REQUIRED,
+                  STATUS) = ('type', 'description', 'default',
+                             'constraints', 'required', 'status')
 
     def __init__(self, name, schema_dict):
         self.name = name
@@ -53,7 +54,7 @@ class Input(object):
     def validate(self, value=None):
         self._validate_field()
         self.validate_type(self.type)
-        if value:
+        if value is not None:
             self._validate_value(value)
 
     def _validate_field(self):
@@ -68,13 +69,16 @@ class Input(object):
             ExceptionCollector.appendException(
                 ValueError(_('Invalid type "%s".') % type))
 
+    # TODO(anyone) Need to test for any built-in datatype not just network
+    # that is, tosca.datatypes.* and not assume tosca.datatypes.network.*
+    # TODO(anyone) Add support for tosca.datatypes.Credential
     def _validate_value(self, value):
         tosca = EntityType.TOSCA_DEF
         datatype = None
         if self.type in tosca:
             datatype = tosca[self.type]
-        elif EntityType.DATATYPE_PREFIX + self.type in tosca:
-            datatype = tosca[EntityType.DATATYPE_PREFIX + self.type]
+        elif EntityType.DATATYPE_NETWORK_PREFIX + self.type in tosca:
+            datatype = tosca[EntityType.DATATYPE_NETWORK_PREFIX + self.type]
 
         DataEntity.validate_datatype(self.type, value, None, datatype)
 

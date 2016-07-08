@@ -390,7 +390,7 @@ tosca.nodes.Container.Application:
   requirements:
     - host:
         capability: tosca.capabilities.Container
-        node: tosca.nodes.Container
+        node: tosca.nodes.Container.Runtime
         relationship: tosca.relationships.HostedOn
 
 tosca.nodes.Container.Runtime:
@@ -544,7 +544,7 @@ tosca.capabilities.Endpoint:
 tosca.capabilities.Endpoint.Admin:
   derived_from: tosca.capabilities.Endpoint
   properties:
-    secure: 
+    secure:
       type: boolean
       default: true
       constraints:
@@ -815,14 +815,19 @@ tosca.datatypes.Credential:
   properties:
     protocol:
       type: string
+      required: false
     token_type:
       type: string
+      default: password
+      required: true
     token:
       type: string
+      required: true
     keys:
       type: map
       entry_schema:
         type: string
+      required: false
     user:
       type: string
       required: false

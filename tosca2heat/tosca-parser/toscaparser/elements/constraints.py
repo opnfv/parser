@@ -18,6 +18,7 @@ import toscaparser
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidSchemaError
 from toscaparser.common.exception import ValidationError
+from toscaparser.elements.portspectype import PortSpec
 from toscaparser.elements import scalarunit
 from toscaparser.utils.gettextutils import _
 
