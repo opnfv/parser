@@ -201,8 +201,9 @@ class GetAttributeTest(TestCase):
                          website_url_output.value.attribute_name)
 
     def test_get_attribute_invalid_args(self):
-        expected_msg = _('Expected arguments: "node-template-name", '
-                         '"attribute-name"')
+        expected_msg = _('Illegal arguments for function "get_attribute".'
+                         ' Expected arguments: "node-template-name", '
+                         '"req-or-cap"(optional), "property name"')
         err = self.assertRaises(ValueError,
                                 functions.get_function, None, None,
                                 {'get_attribute': []})
@@ -210,10 +211,6 @@ class GetAttributeTest(TestCase):
         err = self.assertRaises(ValueError,
                                 functions.get_function, None, None,
                                 {'get_attribute': ['x']})
-        self.assertIn(expected_msg, six.text_type(err))
-        err = self.assertRaises(ValueError,
-                                functions.get_function, None, None,
-                                {'get_attribute': ['x', 'y', 'z', 'k']})
         self.assertIn(expected_msg, six.text_type(err))
 
     def test_get_attribute_unknown_node_template_name(self):
@@ -280,7 +277,7 @@ class GetAttributeTest(TestCase):
         exception.ExceptionCollector.assertExceptionMessage(
             ValueError,
             _('Illegal arguments for function "get_attribute". '
-              'Expected arguments: "node-template-name", "attribute-name"'))
+              'Unexpected attribute/index value "0"'))
 
     def test_get_attribute_source_target_keywords(self):
         tosca_tpl = os.path.join(
@@ -299,6 +296,10 @@ class GetAttributeTest(TestCase):
         self.assertTrue(isinstance(target_test, functions.GetAttribute))
         source_port = operation.inputs['source_port']
         self.assertTrue(isinstance(source_port, functions.GetAttribute))
+
+    def test_get_attribute_with_nested_params(self):
+        self._load_template(
+            'functions/test_get_attribute_with_nested_params.yaml')
 
 
 class ConcatTest(TestCase):
@@ -322,3 +323,34 @@ class ConcatTest(TestCase):
             ValueError,
             _('Invalid arguments for function "concat". Expected at least '
               'one arguments.'))
+
+
+class TokenTest(TestCase):
+
+    def _load_template(self, filename):
+        return ToscaTemplate(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            filename))
+
+    def test_validate_token(self):
+        tosca = self._load_template("data/functions/test_token.yaml")
+        server_url_output = [
+            output for output in tosca.outputs if output.name == 'url'][0]
+        func = functions.get_function(self, tosca.outputs,
+                                      server_url_output.value)
+        self.assertIsInstance(func, functions.Token)
+
+        self.assertRaises(exception.ValidationError, self._load_template,
+                          'data/functions/test_token_invalid.yaml')
+        exception.ExceptionCollector.assertExceptionMessage(
+            ValueError,
+            _('Invalid arguments for function "token". Expected at least '
+              'three arguments.'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            ValueError,
+            _('Invalid arguments for function "token". Expected '
+              'integer value as third argument.'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            ValueError,
+            _('Invalid arguments for function "token". Expected '
+              'single char value as second argument.'))

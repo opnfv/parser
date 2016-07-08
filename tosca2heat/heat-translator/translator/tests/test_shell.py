@@ -29,27 +29,8 @@ class ShellTest(TestCase):
         "data/tosca_helloworld.yaml")
     template_file = '--template-file=' + tosca_helloworld
     template_type = '--template-type=tosca'
-    template_validation = "--validate-only=true"
+    template_validation = "--validate-only"
     failure_msg = _('The program raised an exception unexpectedly.')
-
-    def test_missing_arg(self):
-        error = self.assertRaises(ValueError, shell.main, '')
-        err_msg = _('The program requires minimum two arguments. '
-                    'Please refer to the usage documentation.')
-        self.assertEqual(err_msg, str(error))
-
-    def test_invalid_file_arg(self):
-        error = self.assertRaises(ValueError, shell.main, 'translate me')
-        err_msg = _('The program expects --template-file as first '
-                    'argument. Please refer to the usage documentation.')
-        self.assertEqual(err_msg, str(error))
-
-    def test_invalid_type_arg(self):
-        error = self.assertRaises(ValueError,
-                                  shell.main, ('--template-file=', 'xyz'))
-        err_msg = _('The program expects --template-type as second argument. '
-                    'Please refer to the usage documentation.')
-        self.assertEqual(err_msg, str(error))
 
     def test_invalid_file_value(self):
         error = self.assertRaises(ValueError,
@@ -59,21 +40,23 @@ class ShellTest(TestCase):
         self.assertEqual(err_msg, str(error))
 
     def test_invalid_type_value(self):
-        error = self.assertRaises(ValueError, shell.main,
-                                  (self.template_file, '--template-type=xyz'))
-        err_msg = _('xyz is not a valid template type.')
-        self.assertEqual(err_msg, str(error))
+        self.assertRaises(SystemExit, shell.main,
+                          (self.template_file, '--template-type=xyz'))
 
     def test_invalid_parameters(self):
-        error = self.assertRaises(ValueError, shell.main,
-                                  (self.template_file, self.template_type,
-                                   '--parameters=key'))
-        err_msg = _("'key' is not a well-formed parameter.")
-        self.assertEqual(err_msg, str(error))
+        self.assertRaises(ValueError, shell.main,
+                          (self.template_file, self.template_type,
+                           '--parameters=key'))
 
     def test_valid_template(self):
         try:
             shell.main([self.template_file, self.template_type])
+        except Exception:
+            self.fail(self.failure_msg)
+
+    def test_valid_template_without_type(self):
+        try:
+            shell.main([self.template_file])
         except Exception:
             self.fail(self.failure_msg)
 
@@ -126,7 +109,10 @@ class ShellTest(TestCase):
     @patch('os.getenv')
     @patch('translator.hot.tosca.tosca_compute.'
            'ToscaCompute._create_nova_flavor_dict')
-    def test_template_deploy_with_credentials(self, mock_flavor_dict,
+    @patch('translator.hot.tosca.tosca_compute.'
+           'ToscaCompute._populate_image_dict')
+    def test_template_deploy_with_credentials(self, mock_populate_image_dict,
+                                              mock_flavor_dict,
                                               mock_os_getenv,
                                               mock_token,
                                               mock_url, mock_post,
@@ -136,6 +122,14 @@ class ShellTest(TestCase):
         mock_env.return_value = True
         mock_flavor_dict.return_value = {
             'm1.medium': {'mem_size': 4096, 'disk_size': 40, 'num_cpus': 2}
+        }
+        mock_populate_image_dict.return_value = {
+            "rhel-6.5-test-image": {
+                "version": "6.5",
+                "architecture": "x86_64",
+                "distribution": "RHEL",
+                "type": "Linux"
+            }
         }
         mock_url.return_value = 'http://abc.com'
         mock_token.return_value = 'mock_token'

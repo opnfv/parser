@@ -81,15 +81,11 @@ class EntityTemplate(object):
     def type(self):
         if self.type_definition:
             return self.type_definition.type
-        else:
-            return None
 
     @property
     def parent_type(self):
         if self.type_definition:
             return self.type_definition.parent_type
-        else:
-            return None
 
     @property
     def requirements(self):
@@ -189,7 +185,10 @@ class EntityTemplate(object):
 
     def _validate_capabilities_properties(self, capabilities):
         for cap, props in capabilities.items():
-            capabilitydef = self.get_capability(cap).definition
+            capability = self.get_capability(cap)
+            if not capability:
+                continue
+            capabilitydef = capability.definition
             self._common_validate_properties(capabilitydef,
                                              props[self.PROPERTIES])
 
