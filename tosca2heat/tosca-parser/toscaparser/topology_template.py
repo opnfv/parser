@@ -58,6 +58,7 @@ class TopologyTemplate(object):
             self.groups = self._groups()
             self.policies = self._policies()
             self._process_intrinsic_functions()
+            self.substitution_mappings = self._substitution_mappings()
 
     def _inputs(self):
         inputs = []

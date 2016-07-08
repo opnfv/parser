@@ -69,7 +69,7 @@ class ToscaTemplate(object):
         self.input_path = None
         self.path = None
         self.tpl = None
-        self.nested_tosca_template = None
+        self.nested_tosca_template = []
         if path:
             self.input_path = path
             self.path = self._get_path(path)
@@ -199,11 +199,13 @@ class ToscaTemplate(object):
 
     def _handle_nested_topo_tpls(self, nested_topo_tpls):
         for tpl in nested_topo_tpls:
-            if tpl.get(TOPOLOGY_TEMPLATE):
-                nested_tosca_template = ToscaTemplate(
-                    path=self.path, parsed_params=self.parsed_params,
-                    yaml_dict_tpl=nested_topo_tpls)
-                self.nested_tosca_template.apend(nested_tosca_template)
+            filename, tosca_tpl = tpl.items()[0]
+            if tosca_tpl.get(TOPOLOGY_TEMPLATE):
+                nested_template = ToscaTemplate(
+                    path=filename, parsed_params=self.parsed_params,
+                    yaml_dict_tpl=tosca_tpl)
+                if nested_template.topology_template.substitution_mappings:
+                    self.nested_tosca_template.apend(nested_template)
 
     def _validate_field(self):
         version = self._tpl_version()
