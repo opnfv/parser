@@ -12,15 +12,12 @@ topology_template:
   inputs:
     mq_server_ip:
       type: string
-      required: true
       description: IP address of the message queuing server to receive messages from.
     receiver_port:
       type: string
-      required: true
       description: Port to be used for receiving messages.
     my_cpus:
       type: integer
-      default: 2
       description: Number of CPUs for the server.
       constraints:
         - valid_values: [ 1, 2, 4, 8 ]

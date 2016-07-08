@@ -16,6 +16,7 @@ from toscaparser.elements.statefulentitytype import StatefulEntityType
 
 class CapabilityTypeDef(StatefulEntityType):
     '''TOSCA built-in capabilities type.'''
+    TOSCA_TYPEURI_CAPABILITY_ROOT = 'tosca.capabilities.Root'
 
     def __init__(self, name, ctype, ntype, custom_def=None):
         self.name = name
@@ -23,6 +24,7 @@ class CapabilityTypeDef(StatefulEntityType):
                                                 custom_def)
         self.nodetype = ntype
         self.properties = None
+        self.custom_def = custom_def
         if self.PROPERTIES in self.defs:
             self.properties = self.defs[self.PROPERTIES]
         self.parent_capabilities = self._get_parent_capabilities(custom_def)
@@ -61,7 +63,8 @@ class CapabilityTypeDef(StatefulEntityType):
         capabilities = {}
         parent_cap = self.parent_type
         if parent_cap:
-            while parent_cap != 'tosca.capabilities.Root':
+            parent_cap = parent_cap.type
+            while parent_cap != self.TOSCA_TYPEURI_CAPABILITY_ROOT:
                 if parent_cap in self.TOSCA_DEF.keys():
                     capabilities[parent_cap] = self.TOSCA_DEF[parent_cap]
                 elif custom_def and parent_cap in custom_def.keys():
@@ -72,4 +75,9 @@ class CapabilityTypeDef(StatefulEntityType):
     @property
     def parent_type(self):
         '''Return a capability this capability is derived from.'''
-        return self.derived_from(self.defs)
+        if not hasattr(self, 'defs'):
+            return None
+        pnode = self.derived_from(self.defs)
+        if pnode:
+            return CapabilityTypeDef(self.name, pnode,
+                                     self.nodetype, self.custom_def)
