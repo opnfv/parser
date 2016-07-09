@@ -184,7 +184,7 @@ class ImportsLoader(object):
                    % {'import_name': import_name})
             log.error(msg)
             ExceptionCollector.appendException(ValidationError(message=msg))
-            return
+            return None, None
 
         if toscaparser.utils.urlutils.UrlUtils.validate_url(file_name):
             return file_name, YAML_LOADER(file_name, False)
@@ -199,7 +199,7 @@ class ImportsLoader(object):
                                % {'name': file_name, 'template': self.path})
                         log.error(msg)
                         ExceptionCollector.appendException(ImportError(msg))
-                        return
+                        return None, None
                     import_template = toscaparser.utils.urlutils.UrlUtils.\
                         join_url(self.path, file_name)
                     a_file = False
@@ -242,7 +242,7 @@ class ImportsLoader(object):
                            % {'name': file_name})
                     log.error(msg)
                     ExceptionCollector.appendException(ImportError(msg))
-                    return
+                    return None, None
 
             if not import_template:
                 log.error(_('Import "%(name)s" is not valid.') %
@@ -250,14 +250,14 @@ class ImportsLoader(object):
                 ExceptionCollector.appendException(
                     ImportError(_('Import "%s" is not valid.') %
                                 import_uri_def))
-                return
+                return None, None
             return import_template, YAML_LOADER(import_template, a_file)
 
         if short_import_notation:
             log.error(_('Import "%(name)s" is not valid.') % import_uri_def)
             ExceptionCollector.appendException(
                 ImportError(_('Import "%s" is not valid.') % import_uri_def))
-            return
+            return None, None
 
         full_url = ""
         if repository:
@@ -275,7 +275,7 @@ class ImportsLoader(object):
                        % {'n_uri': repository, 'tpl': import_name})
                 log.error(msg)
                 ExceptionCollector.appendException(ImportError(msg))
-                return
+                return None, None
 
         if toscaparser.utils.urlutils.UrlUtils.validate_url(full_url):
             return full_url, YAML_LOADER(full_url, False)
