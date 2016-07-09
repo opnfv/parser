@@ -108,8 +108,9 @@ class EntityType(object):
                             if isinstance(value, list):
                                 for p_value in parent_value:
                                     if isinstance(p_value, dict):
-                                        if p_value.keys()[0] not in [
-                                            item.keys()[0] for item in value]:
+                                        if list(p_value.keys())[0] not in [
+                                            list(item.keys())[0] for item in
+                                            value]:
                                             value.append(p_value)
                                     else:
                                         if p_value not in value:

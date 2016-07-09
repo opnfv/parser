@@ -210,7 +210,7 @@ class ToscaTemplate(object):
 
     def _handle_nested_topo_tpls(self, nested_topo_tpls):
         for tpl in nested_topo_tpls:
-            filename, tosca_tpl = tpl.items()[0]
+            filename, tosca_tpl = list(tpl.items())[0]
             if tosca_tpl.get(TOPOLOGY_TEMPLATE):
                 nested_template = ToscaTemplate(
                     path=filename, parsed_params=self.parsed_params,
