@@ -1,0 +1,15 @@
+README.rst
+setup.py
+policy2tosca/__init__.py
+policy2tosca/add_definition.py
+policy2tosca/add_type.py
+policy2tosca/del_type.py
+policy2tosca/main.py
+policy2tosca.egg-info/PKG-INFO
+policy2tosca.egg-info/SOURCES.txt
+policy2tosca.egg-info/dependency_links.txt
+policy2tosca.egg-info/entry_points.txt
+policy2tosca.egg-info/namespace_packages.txt
+policy2tosca.egg-info/not-zip-safe
+policy2tosca.egg-info/requires.txt
+policy2tosca.egg-info/top_level.txt
