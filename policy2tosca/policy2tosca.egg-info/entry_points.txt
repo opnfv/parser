@@ -1,0 +1,8 @@
+[console_scripts]
+policy2tosca = policy2tosca.main:main
+
+[cliff.demo]
+delete-type = policy2tosca.del_type:delete_type
+add-type = policy2tosca.add_type:add_type
+add-definition = policy2tosca.add_definition:add_definition
+
