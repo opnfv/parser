@@ -441,8 +441,8 @@ topology_template:
         order: 0
         is_default: true
       requirements:
-        - virtualBinding: DM
-        - virtualLink: CTRL_Net_Host
+        - virtualBinding: DM_Host
+        - virtualLink: CTRL_Net
 
     DM_Port_INTERMEDIA:
       type: rnc.nodes.CP.DM
