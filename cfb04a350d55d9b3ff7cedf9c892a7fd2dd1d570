@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a7ca5a3_3089c726",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "It is better if you also show the steps of creating virtual environment. Or at least put a reference link on how to do.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 47
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_d0797330",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "I could not locate this folder",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_70765f40",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "gives \"Could not load EntryPoint.parse(\u0027delete-type \u003d policy2tosca.del_type:delete_type\u0027)\" warning",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_f0990f6f",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "So, your assumption is that \"policies\" section the last section in the yaml file? I am not sure if this is standard, but we must explicitly clarify this assumption in the documentation.\n\nI run the command:\n\n  policy2tosca add-definition --policy_name TEST_NAME --policy_type TEST_TYPE --source ./policy2tosca/example.yaml\n\nThe output was:\n  policies:\n  - my_anti_collocation_policy: \n    type: example_typew\n    description: example policy testing\n    metadata: \n      sample data\n    properties: \n      [\u0027p1 p2 p3 p4\u0027]\n    targets:\n      [\u0027target1 target2 target3\u0027]\n    triggers: \n      [\u0027t1 t2 t3 t4\u0027]\n    - TEST_NAME:\n        type: TEST_TYPE\n        description: None\n        metadata: \n          None\n        properties: \n          None\n        targets:\n          None\n        triggers: \n          None\n\n\nI notice three issues:\n- The spacing is not consistent with the existing entry. I.e., TEST_NAME is not at the same level as my_anti_collocation_policy.\n- The specified type does not exist, yet the definition is accepted.\n- There are no checks whether derivation is from existing base policy classes.",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_50956331",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "Is this spacing safe? how do we ensure that it is consistent with the source file?",
+      "range": {
+        "startLine": 29,
+        "startChar": 23,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_109feb53",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "Internally this is consistent, but what if other sections use different spacing?",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_30b787da",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "I run the command:\n  policy2tosca add-type --policy_type TEST_TYPE --derived_from RANDOM_BASE_TYPE --targets RANDOMTARGET1 RANDOMTARGET2 --source ./policy2tosca/example.yaml \n\nI got the response\n  policy block exists \n  policy type exists\n\nClearly the type does not exist. No entry is created. \n\nAgain, we should also check if the new type name is overriding any of the existing base types.",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_70adff87",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-13T18:30:21Z",
+      "side": 1,
+      "message": "again, this assumes a standard in indentation of sections. We need to make this assumption explicit.",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
