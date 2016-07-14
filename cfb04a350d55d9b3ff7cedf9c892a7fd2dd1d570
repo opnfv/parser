@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a7ca5a3_133b753b",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "we have support tox in the tosca-parser. we can use it for policy2tosca.",
+      "parentUuid": "5a7ca5a3_3089c726",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 47
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a7ca5a3_d0797330",
         "filename": "policy2tosca/README.rst",
         "patchSetId": 1
@@ -64,6 +88,195 @@
         "startChar": 4,
         "endLine": 43,
         "endChar": 32
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_d33c1d32",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "it is a zero size file?",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_734989cf",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_definition.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "trailing spaces",
+      "range": {
+        "startLine": 36,
+        "startChar": 33,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_d323bd03",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "mixing use tab and space,\ndelete trailing spaces.",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_5366cd52",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "shall we pass inputfule to insert_policy_block/check_policy, which will avoid to read the same file for several times.",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_f3d119ce",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "do you mean overwrite the original file?",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 50
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_b3dba1ec",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "add a break here when find",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 30
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_53f48d5a",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "use \\t instead of \u0027 \u0027 to avoid so many spaces here?",
+      "range": {
+        "startLine": 82,
+        "startChar": 29,
+        "endLine": 82,
+        "endChar": 59
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_f3e8397e",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/del_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "mix using tab and spaces\nplease delete trailing spaces",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_13ee1589",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/del_type.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "when no text in line, ln is not defined and not value in it.",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 23
       },
       "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
@@ -168,6 +381,23 @@
         "endLine": 49,
         "endChar": 32
       },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_b302c13c",
+        "filename": "policy2tosca/setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-14T09:28:58Z",
+      "side": 1,
+      "message": "we can use tox to replace these settings",
       "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
