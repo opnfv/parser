@@ -284,6 +284,57 @@
     },
     {
       "key": {
+        "uuid": "5a7ca5a3_29839e57",
+        "filename": "policy2tosca/policy2tosca.egg-info/PKG-INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-15T01:25:09Z",
+      "side": 1,
+      "message": "dealing with trailing spaces\nwhy choose python 3.2 not 3.4?",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_49885a71",
+        "filename": "policy2tosca/policy2tosca/._",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-15T01:25:09Z",
+      "side": 1,
+      "message": "is this file a mistake?",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_c9930aa2",
+        "filename": "policy2tosca/policy2tosca/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-15T01:25:09Z",
+      "side": 1,
+      "message": "it is the same filelist in \npolicy2tosca/build/lib.linux-x86_64-2.7/policy2tosca and\npolicy2tosca/policy2tosca",
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a7ca5a3_f0990f6f",
         "filename": "policy2tosca/policy2tosca/add_definition.py",
         "patchSetId": 1
@@ -335,6 +386,30 @@
       "writtenOn": "2016-07-13T18:30:21Z",
       "side": 1,
       "message": "Internally this is consistent, but what if other sections use different spacing?",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "cfb04a350d55d9b3ff7cedf9c892a7fd2dd1d570",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a7ca5a3_e97cc674",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-15T01:25:09Z",
+      "side": 1,
+      "message": "the same in other files.",
+      "parentUuid": "5a7ca5a3_109feb53",
       "range": {
         "startLine": 37,
         "startChar": 8,
