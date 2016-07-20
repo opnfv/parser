@@ -74,8 +74,6 @@ topology_template:
 
   substitution_mappings:
     node_type: rnc.nodes.VNF
-    properties:
-      vnfmtype: UMTS
     requirements:
       virtualLink_VNFM: [ MM_Port_CTRL, virtualLink ]
       virtualLink_EMS: [ MM_Port_EMS, virtualLink ]
