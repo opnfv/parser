@@ -7,11 +7,24 @@ imports:
 topology_template:
   description: Template of online transaction processing service.
 
+  inputs:
+    mq_server_ip:
+      type: string
+      default: 127.0.0.1
+      description: IP address of the message queuing server to receive messages from.
+    mq_server_port:
+      type: integer
+      default1: 8080
+      description: Port to be used for receiving messages.
+
   node_templates:
     mq:
       type: example.QueuingSubsystem
       # properties:
         # to be updated when substitution_mapping is implemented
+      properties:
+        server_ip: { get_input: mq_server_ip }
+        server_port: { get_input: mq_server_port }
       # capabilities:
         # message_queue_endpoint:
           # to be updated when substitution_mapping is implemented
