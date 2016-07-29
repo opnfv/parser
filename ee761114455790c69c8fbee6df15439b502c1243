@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_5920519b",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T01:43:26Z",
+      "side": 1,
+      "message": "[[ ! -e \"${PARSER_IMAGE_FILE}\" ]] \u0026\u0026 wget \"${PARSER_IMAGE_URL}\" -o \"$IMAGE_FILE\"",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 47
+      },
+      "revId": "ee761114455790c69c8fbee6df15439b502c1243",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
