@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_19417939",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "- `install \u003chttp://docs.openstack.org/developer/cliff/install.html\u003e`_\n- `demoapp \u003chttp://docs.openstack.org/developer/cliff/demoapp.html\u003e`_",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 54
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_393eb5b9",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "To see a list of commands available, run\n\n::\n\n  $ policy2tosca --help",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_f947dd49",
+        "filename": "policy2tosca/README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "same issue",
+      "range": {
+        "startLine": 33,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7973cdb1",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "add a break here when find",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 30
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_59a5b102",
+        "filename": "policy2tosca/policy2tosca/add_definition.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "add a break here",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_39ac75ed",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "add break here",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d9b8e12c",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "assigned in line 93",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 47
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_99826951",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-07-29T02:18:10Z",
+      "side": 1,
+      "message": "how about, just use:\nos.system(\u0027mv\u0027, filename, parsed_args.source)",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 35
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
