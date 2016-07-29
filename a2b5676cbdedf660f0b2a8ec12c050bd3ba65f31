@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_54825801",
+        "filename": "tosca2heat/tosca-parser/toscaparser/topology_template.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T12:21:48Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "1a76adc5_6e122564",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 53
+      },
+      "revId": "a2b5676cbdedf660f0b2a8ec12c050bd3ba65f31",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_1913b95d",
         "filename": "tosca2heat/tosca-parser/toscaparser/tosca_template.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-29T01:36:58Z",
       "side": 1,
       "message": "for example: easier to read\n\ncustom_service \u003d \\\n    toscaparser.imports.ImportsLoader(imports, self.path,\n                                      type_defs, self.tpl)",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 50
+      },
+      "revId": "a2b5676cbdedf660f0b2a8ec12c050bd3ba65f31",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d4750833",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tosca_template.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T12:21:48Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "1a76adc5_1913b95d",
       "range": {
         "startLine": 196,
         "startChar": 12,
