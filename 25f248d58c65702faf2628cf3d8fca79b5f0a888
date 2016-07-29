@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_9fffa901",
+        "filename": "policy2tosca/build/lib.linux-x86_64-2.7/policy2tosca/add_definition.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-29T19:11:38Z",
+      "side": 1,
+      "message": "This part is not really correct. Suppose in test.yaml, I have:\n\n  policies:\n    - rule1:\n        type: tosca.policies.Placement.Geolocation\n        targets: [ VNF1 ]\n        properties:\n          region: [ us-west-1 ]\n    - rule2:\n        type: tosca.policies.Placement.Geolocation\n        targets: [ VNF2, VNF3 ]\n        properties:\n          region: [ us-west-1 , us-west-2 ]\n\n\nI should use an API call:\n\npolicy2tosca add-def --policy_name rule2 --policy_type  tosca.policies.Placement.Geolocation --description \"test description\" --properties region:us-north-1,region:us-north-2 --targets VNF2,VNF4 --source test.yaml\n\nwhich should update the above yaml into:\n\n\n  policies:\n    - rule1:\n        type: tosca.policies.Placement.Geolocation\n        targets: [ VNF1 ]\n        properties:\n          region: [ us-west-1 ]\n    - rule2:\n        type: tosca.policies.Placement.Geolocation\n        targets: [ VNF2, VNF3 ]\n        properties:\n          region: [ us-west-1 , us-west-2 ]\n    - rule2:\n        type: tosca.policies.Placement.Geolocation\n        targets: [ VNF2, VNF4 ]\n        properties:\n          region: [ us-north-1 , us-north-2 ]",
+      "range": {
+        "startLine": 71,
+        "startChar": 1,
+        "endLine": 83,
+        "endChar": 60
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_7973cdb1",
         "filename": "policy2tosca/policy2tosca/add_definition.py",
         "patchSetId": 3
@@ -133,6 +156,29 @@
         "startChar": 16,
         "endLine": 88,
         "endChar": 33
+      },
+      "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_bf04e515",
+        "filename": "policy2tosca/policy2tosca/add_type.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1452
+      },
+      "writtenOn": "2016-07-29T19:11:38Z",
+      "side": 1,
+      "message": "You should not use tabs in yaml files.\n\npropertis, targets, and triggers are not written in the form standard Tosca spec requires.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 66
       },
       "revId": "25f248d58c65702faf2628cf3d8fca79b5f0a888",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
