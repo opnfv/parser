@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_34923c58",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tests/data/topology_template/queuingsubsystem.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T12:18:09Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "1a76adc5_8e40e157",
+      "range": {
+        "startLine": 12,
+        "startChar": 29,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "fbd96d2030cb97fc04071b9704ea4a50504f796d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2e250dc2",
         "filename": "tosca2heat/tosca-parser/toscaparser/tests/data/topology_template/queuingsubsystem.yaml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-29T01:10:35Z",
       "side": 1,
       "message": "what about my_receiver_port",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "fbd96d2030cb97fc04071b9704ea4a50504f796d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d49e6863",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tests/data/topology_template/queuingsubsystem.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T12:18:09Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "1a76adc5_2e250dc2",
       "range": {
         "startLine": 19,
         "startChar": 4,
