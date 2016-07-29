@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_94ba30e0",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tests/data/topology_template/definitions.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T11:46:54Z",
+      "side": 1,
+      "message": "Yeah, example.QueuingSubsystem should be in the front of example.TransactionSubSystem in order to keep the sequence. The workflow of service is  example.QueuingSubSystem -\u003e example.TranscationSubSystem -\u003e example.DatabaseSubsystem.",
+      "parentUuid": "1a76adc5_ee80758d",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "2107a5f7a5b21b9df2d573def9c3154592effef2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_4e5ba954",
         "filename": "tosca2heat/tosca-parser/toscaparser/tests/test_topology_template.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-29T01:11:48Z",
       "side": 1,
       "message": "why change the original implementation?",
+      "range": {
+        "startLine": 160,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 51
+      },
+      "revId": "2107a5f7a5b21b9df2d573def9c3154592effef2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_f4eda4f0",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tests/test_topology_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-07-29T11:46:54Z",
+      "side": 1,
+      "message": "two reasons:1) it\u0027s convenient for debug; 2) it\u0027s convenient for adding validation after self.assertIsNotNone.",
+      "parentUuid": "1a76adc5_4e5ba954",
       "range": {
         "startLine": 160,
         "startChar": 8,
