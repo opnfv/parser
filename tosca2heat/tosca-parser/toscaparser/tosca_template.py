@@ -216,7 +216,7 @@ class ToscaTemplate(object):
                     path=filename, parsed_params=self.parsed_params,
                     yaml_dict_tpl=tosca_tpl)
                 if nested_template.topology_template.substitution_mappings:
-                    self.nested_tosca_template.apend(nested_template)
+                    self.nested_tosca_template.append(nested_template)
 
     def _validate_field(self):
         version = self._tpl_version()
