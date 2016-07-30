@@ -10,7 +10,8 @@
 
 [[ "${CI_DEBUG:-true}" == "true" ]] && set -x
 
-PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img
+PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
+PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
 PARSER_IMAGE_NAME=cirros
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
@@ -30,15 +31,15 @@ VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/t
 VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
 
 download_parser_image() {
-    [ -e "${PARSER_IMAGE_FILE}" ] && return 0
-    wget "${PARSER_IMAGE_URL}" -o "$IMAGE_FILE"
+    [ -e "${PARSER_IMAGE_URL_FILE}" ] && cp ${PARSER_IMAGE_URL_FILE} ${PARSER_IMAGE_FILE} && return 0
+    wget "${PARSER_IMAGE_URL}" -o "${PARSER_IMAGE_FILE}"
 }
 
 register_parser_image() {
     openstack image list | grep -qwo "${PARSER_IMAGE_NAME}" && return 0
     openstack image create "${PARSER_IMAGE_NAME}" \
                            --public \
-                           --disk-format "$IMAGE_FORMAT" \
+                           --disk-format "${PARSER_IMAGE_FORMAT}" \
                            --container-format bare \
                            --file "${PARSER_IMAGE_FILE}"
 }
@@ -49,7 +50,7 @@ create_parser_user_and_project() {
     openstack user list | grep -qwo "${PARSER_USER}" && {
         echo "User ${PARSER_USER} exist, doesn't crate."
     } || {
-        openstack user create "${PARSER_USER}" --password "${PARSR_PASSWORD}"
+        openstack user create "${PARSER_USER}" --password "${PARSER_PASSWORD}"
         echo "Create user ${PARSER_USER} successful."
     }
 
@@ -85,15 +86,15 @@ change_env_to_parser_user_project() {
 translator_and_deploy_vRNC() {
     (
         # 1. Delete parser stack ${PARSER_STACK_NAME}, use admin user in admin project
-        heat stack-list | grep -qow ${PARSER_STACK_NAME} && {
+        openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
             echo "stack ${PARSER_STACK_NAME} exist, delete it first."
-            heat stack-delete ${PARSER_STACK_NAME}
+            openstack stack delete ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
         change_env_to_parser_user_project
 
         # 3. Translator and deploy vRNC
-        heat-translator -f ${VRNC_INPUT_TEMPLATE_FILE} -o ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True
+        heat-translator --template-type tosca -f ${VRNC_INPUT_TEMPLATE_FILE} -o ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True
 
         # 4. Wait for create vRNC
         sleep 60
@@ -115,9 +116,27 @@ reset_parser_test() {
         change_env_to_parser_user_project
 
         # 2. Delete the stack ${PARSER_STACK_NAME}
-        heat stack-list | grep -qow ${PARSER_STACK_NAME} && {
-            echo "stack ${PARSER_STACK_NAME} exist, delete it."
-            heat stack-delete ${PARSER_STACK_NAME}
+        openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
+            echo "stack ${PARSER_STACK_NAME} has been created, delete it after test."
+            openstack stack delete ${PARSER_STACK_NAME}
+        }
+
+        # 3. Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
+        [[ -e ${VRNC_OUTPUT_TEMPLATE_FILE} ]] && {
+            echo "delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
+            rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
+        }
+
+        # 4. Delete tmp image ${PARSER_IMAGE_FILE}
+        [[ -e ${PARSER_IMAGE_FILE} ]] && {
+            echo "delete local image file ${PARSER_IMAGE_FILE} after tes."
+            rm -fr ${PARSER_IMAGE_FILE}
+        }
+
+        # 5. Delete tmp image ${PARSER_IMAGE_URL_FILE}
+        [[ -e ${PARSER_IMAGE_URL_FILE} ]] && {
+            echo "delete local image file ${PARSER_IMAGE_URL_FILE} after tes."
+            rm -fr ${PARSER_IMAGE_URL_FILE}
         }
 
         sleep 3
@@ -132,7 +151,9 @@ reset_parser_test() {
     openstack project delete "${PARSER_PROJECT}"
     openstack user delete "${PARSER_USER}"
 
-    if ret != "ok"
+    if [[ ret != "test_ok" ]]; then
+       echo " ========= 4/4. test error, check your env or code. ========= "
+       echo "======================= Parser functest end =========================="
        exit 1
     fi
 }
@@ -142,18 +163,18 @@ echo "======================= Parser functest begin =========================="
 
 trap reset_parser_test EXIT
 
-echo " 1. Preparing VM image for parser..."
+echo " ========= 1/4. Preparing VM image for parser...     ========= "
 download_parser_image
 register_parser_image
 
-echo " 2. Creating test user for parser..."
+echo " ========= 2/4. Creating test user for parser...     ========= "
 create_parser_user_and_project
 
-echo " 3. Parse -> translate -> deploy vRNC..."
+echo " ========= 3/4. Parse -> translate -> deploy vRNC... ========= "
 translator_and_deploy_vRNC
 
-echo " 4. clear the test evn..."
-reset_parser_test "ok"
+echo " ========= 4/4. Test ok, clear the test evn...       ========= "
+reset_parser_test "test_ok"
 
 echo "======================= Parser functest end =========================="
 
