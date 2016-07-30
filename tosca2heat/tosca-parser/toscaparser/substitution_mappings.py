@@ -31,45 +31,46 @@ log = logging.getLogger('tosca')
 
 
 class Substitution_mappings(object):
-    '''Substitution_mappings class for declaration that
+    '''Substitution_mappings class declaration
 
-    exports the topology template as an implementation of a Node type.
+    Substitution_mappings exports the topology template as an
+    implementation of a Node type.
     '''
 
     SECTIONS = (NODE_TYPE, CAPABILITIES, REQUIREMENTS) = \
                ('node_type', 'requirements', 'capabilities')
 
-    def __init__(self, submap_def, nodetemplates, inputs, outputs,
-                 submaped_node_template, custom_defs):
+    def __init__(self, sub_mapping_def, nodetemplates, inputs, outputs,
+                 sub_mapped_node_template, custom_defs):
         self.nodetemplates = nodetemplates
-        self.submap_def = submap_def
+        self.sub_mapping_def = sub_mapping_def
         self.inputs = inputs or []
         self.outputs = outputs or []
-        self.submaped_node_template = submaped_node_template
+        self.sub_mapped_node_template = sub_mapped_node_template
         self.custom_defs = custom_defs or {}
         self._validate()
 
         self._capabilities = None
         self._requirements = None
 
-        self.submaped_node_template.substitution_mapped = True
+        self.sub_mapped_node_template.substitution_mapped = True
 
     @classmethod
-    def get_node_type(cls, submap_tpl):
-        if isinstance(submap_tpl, dict):
-            return submap_tpl.get(cls.NODE_TYPE)
+    def get_node_type(cls, sub_mapping_def):
+        if isinstance(sub_mapping_def, dict):
+            return sub_mapping_def.get(cls.NODE_TYPE)
 
     @property
     def node_type(self):
-        return self.submap_def.get(self.NODE_TYPE)
+        return self.sub_mapping_def.get(self.NODE_TYPE)
 
     @property
     def capabilities(self):
-        return self.submap_def.get(self.CAPABILITIES)
+        return self.sub_mapping_def.get(self.CAPABILITIES)
 
     @property
     def requirements(self):
-        return self.submap_def.get(self.REQUIREMENTS)
+        return self.sub_mapping_def.get(self.REQUIREMENTS)
 
     def _validate(self):
         self._validate_keys()
@@ -81,7 +82,7 @@ class Substitution_mappings(object):
 
     def _validate_keys(self):
         """validate the keys of substitution mappings."""
-        for key in self.submap_def.keys():
+        for key in self.sub_mapping_def.keys():
             if key not in self.SECTIONS:
                 ExceptionCollector.appendException(
                     UnknownFieldError(what='Substitution_mappings',
@@ -89,7 +90,7 @@ class Substitution_mappings(object):
 
     def _validate_type(self):
         """validate the node_type of substitution mappings."""
-        node_type = self.submap_def.get(self.NODE_TYPE)
+        node_type = self.sub_mapping_def.get(self.NODE_TYPE)
         if not node_type:
             ExceptionCollector.appendException(
                 MissingRequiredFieldError(
@@ -106,7 +107,7 @@ class Substitution_mappings(object):
 
         # The inputs in service template which defines substutition mappings
         # must be in properties of node template wchich be mapped.
-        inputs_names = list(self.submaped_node_template
+        inputs_names = list(self.sub_mapped_node_template
                                 .get_properties().keys())
         for name in inputs_names:
             if name not in [input.name for input in self.inputs]:
@@ -118,8 +119,8 @@ class Substitution_mappings(object):
         """validate the capabilities of substitution mappings."""
 
         # The capabilites must be in node template wchich be mapped.
-        tpls_capabilities = self.submap_def.get(self.CAPABILITIES)
-        node_capabiliteys = self.submaped_node_template.get_capabilities()
+        tpls_capabilities = self.sub_mapping_def.get(self.CAPABILITIES)
+        node_capabiliteys = self.sub_mapped_node_template.get_capabilities()
         for cap in node_capabiliteys.keys() if node_capabiliteys else []:
             if (tpls_capabilities and
                     cap not in list(tpls_capabilities.keys())):
@@ -132,8 +133,8 @@ class Substitution_mappings(object):
         """validate the requirements of substitution mappings."""
 
         # The requirements must be in node template wchich be mapped.
-        tpls_requirements = self.submap_def.get(self.REQUIREMENTS)
-        node_requirements = self.submaped_node_template.requirements
+        tpls_requirements = self.sub_mapping_def.get(self.REQUIREMENTS)
+        node_requirements = self.sub_mapped_node_template.requirements
         for req in node_requirements if node_requirements else []:
             if (tpls_requirements and
                     req not in list(tpls_requirements.keys())):
@@ -147,7 +148,7 @@ class Substitution_mappings(object):
         pass
         # The outputs in service template which defines substutition mappings
         # must be in atrributes of node template wchich be mapped.
-        # outputs_names = self.submaped_node_template.get_properties().keys()
+        # outputs_names = self.sub_mapped_node_template.get_properties().keys()
         # for name in outputs_names:
         #    if name not in [output.name for input in self.outputs]:
         #        ExceptionCollector.appendException(

@@ -159,4 +159,6 @@ class TopologyTemplateTest(TestCase):
             "data/topology_template/system.yaml")
         system_tosca_template = ToscaTemplate(tpl_path)
         self.assertIsNotNone(system_tosca_template)
-        self.assertEqual(len(system_tosca_template.nested_tosca_templates), 3)
+        self.assertEqual(
+            len(system_tosca_template.
+                nested_tosca_templates_with_topology), 3)
