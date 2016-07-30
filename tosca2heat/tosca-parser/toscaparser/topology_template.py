@@ -43,9 +43,9 @@ class TopologyTemplate(object):
     '''Load the template data.'''
     def __init__(self, template, custom_defs,
                  rel_types=None, parsed_params=None,
-                 submaped_node_template=None):
+                 sub_mapped_node_template=None):
         self.tpl = template
-        self.submaped_node_template = submaped_node_template
+        self.sub_mapped_node_template = sub_mapped_node_template
         if self.tpl:
             self.custom_defs = custom_defs
             self.rel_types = rel_types
@@ -110,12 +110,12 @@ class TopologyTemplate(object):
 
     def _substitution_mappings(self):
         tpl_substitution_mapping = self._tpl_substitution_mappings()
-        if tpl_substitution_mapping and self.submaped_node_template:
+        if tpl_substitution_mapping and self.sub_mapped_node_template:
             return Substitution_mappings(tpl_substitution_mapping,
                                          self.nodetemplates,
                                          self.inputs,
                                          self.outputs,
-                                         self.submaped_node_template,
+                                         self.sub_mapped_node_template,
                                          self.custom_defs)
 
     def _policies(self):
@@ -294,7 +294,7 @@ class TopologyTemplate(object):
                 output.attrs[output.VALUE] = func
 
     @classmethod
-    def get_submaped_node_type(cls, topo_tpl):
-        if topo_tpl and isinstance(topo_tpl, dict):
-            submap_tpl = topo_tpl.get(SUBSTITUION_MAPPINGS)
+    def get_sub_mapping_node_type(cls, topology_tpl):
+        if topology_tpl and isinstance(topology_tpl, dict):
+            submap_tpl = topology_tpl.get(SUBSTITUION_MAPPINGS)
             return Substitution_mappings.get_node_type(submap_tpl)

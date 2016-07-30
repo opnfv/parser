@@ -37,7 +37,7 @@ class ImportsLoader(object):
                  tpl=None):
         self.importslist = importslist
         self.custom_defs = {}
-        self.nested_topo_tpls = []
+        self.nested_tosca_tpls = []
         if not path and not tpl:
             msg = _('Input tosca template is not provided.')
             log.warning(msg)
@@ -57,8 +57,8 @@ class ImportsLoader(object):
     def get_custom_defs(self):
         return self.custom_defs
 
-    def get_nested_topo_tpls(self):
-        return self.nested_topo_tpls
+    def get_nested_tosca_tpls(self):
+        return self.nested_tosca_tpls
 
     def _validate_and_load_imports(self):
         imports_names = set()
@@ -98,7 +98,7 @@ class ImportsLoader(object):
                         custom_type, import_def)
                     self._update_custom_def(custom_type, None)
 
-            self._update_nested_topo_tpls(full_file_name, custom_type)
+            self._update_nested_tosca_tpls(full_file_name, custom_type)
 
     def _update_custom_def(self, custom_type, namespace_prefix):
         outer_custom_types = {}
@@ -119,10 +119,10 @@ class ImportsLoader(object):
                     else:
                         self.custom_defs.update(outer_custom_types)
 
-    def _update_nested_topo_tpls(self, full_file_name, custom_tpl):
+    def _update_nested_tosca_tpls(self, full_file_name, custom_tpl):
         if full_file_name and custom_tpl:
             topo_tpl = {full_file_name: custom_tpl}
-            self.nested_topo_tpls.append(topo_tpl)
+            self.nested_tosca_tpls.append(topo_tpl)
 
     def _validate_import_keys(self, import_name, import_uri_def):
         if self.FILE not in import_uri_def.keys():
