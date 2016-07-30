@@ -31,7 +31,7 @@ VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
 
 download_parser_image() {
     [ -e "${PARSER_IMAGE_FILE}" ] && return 0
-    wget "${PARSER_IMAGE_URL}" -o "$IMAGE_FILE"
+    wget "${PARSER_IMAGE_URL}" -o "${PARSER_IMAGE_FILE}"
 }
 
 register_parser_image() {
@@ -116,8 +116,13 @@ reset_parser_test() {
 
         # 2. Delete the stack ${PARSER_STACK_NAME}
         heat stack-list | grep -qow ${PARSER_STACK_NAME} && {
-            echo "stack ${PARSER_STACK_NAME} exist, delete it."
+            echo "stack ${PARSER_STACK_NAME} has been created, delete it after test."
             heat stack-delete ${PARSER_STACK_NAME}
+        }
+
+        [[ -f ${VRNC_OUTPUT_TEMPLATE_FILE} ]] && {
+            echo "delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} in the end."
+            rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
         }
 
         sleep 3
@@ -132,7 +137,7 @@ reset_parser_test() {
     openstack project delete "${PARSER_PROJECT}"
     openstack user delete "${PARSER_USER}"
 
-    if ret != "ok"
+    if [[ ret != "test_ok" ]]; then
        exit 1
     fi
 }
@@ -153,7 +158,7 @@ echo " 3. Parse -> translate -> deploy vRNC..."
 translator_and_deploy_vRNC
 
 echo " 4. clear the test evn..."
-reset_parser_test "ok"
+reset_parser_test "test_ok"
 
 echo "======================= Parser functest end =========================="
 
