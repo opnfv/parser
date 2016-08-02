@@ -65,7 +65,8 @@ class ToscaTemplate(object):
     '''Load the template data.'''
     def __init__(self, path=None, parsed_params=None, a_file=True,
                  yaml_dict_tpl=None, submaped_node_template=None):
-        ExceptionCollector.start()
+        if submaped_node_template is None:
+            ExceptionCollector.start()
         self.a_file = a_file
         self.input_path = None
         self.path = None
@@ -107,7 +108,8 @@ class ToscaTemplate(object):
                 self._handle_nested_topo_templates()
                 self.graph = ToscaGraph(self.nodetemplates)
 
-        ExceptionCollector.stop()
+        if submaped_node_template is None:
+            ExceptionCollector.stop()
         self.verify_template()
 
     def _topology_template(self):
