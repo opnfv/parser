@@ -9,14 +9,14 @@ imports:
   - definitions.yaml
 
 topology_template:
-  description: Template of a queue including its hosting stack.
+  description: Template of a database including its hosting stack.
 
   inputs:
-    mq_server_ip:
+    server_ip:
       type: string
       description: IP address of the message queuing server to receive messages from.
       default: 127.0.0.1
-    my_receiver_port:
+    server_port:
       type: integer
       description: Port to be used for receiving messages.
       default: 8080
@@ -39,8 +39,8 @@ topology_template:
     tran_app:
       type: example.QueuingSubsystem
       properties:
-        server_ip: { get_input: mq_server_ip }
-        server_port: { get_input: my_receiver_port }
+        server_ip: { get_input: server_ip }
+        server_port: { get_input: server_port }
       requirements:
         - host:
             node: server

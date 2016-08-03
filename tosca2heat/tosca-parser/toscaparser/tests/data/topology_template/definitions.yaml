@@ -8,6 +8,11 @@ node_types:
         type: string
       server_port:
         type: integer
+    attributes:
+      server_ip:
+        type: string
+      server_port:
+        type: integer
     requirements:
       - receiver1:
           node: example.TransactionSubsystem
