@@ -110,7 +110,7 @@ class TopologyTemplate(object):
 
     def _substitution_mappings(self):
         tpl_substitution_mapping = self._tpl_substitution_mappings()
-        if tpl_substitution_mapping and self.sub_mapped_node_template:
+        if tpl_substitution_mapping:
             return Substitution_mappings(tpl_substitution_mapping,
                                          self.nodetemplates,
                                          self.inputs,
