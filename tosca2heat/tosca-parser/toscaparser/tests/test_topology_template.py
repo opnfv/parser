@@ -161,4 +161,4 @@ class TopologyTemplateTest(TestCase):
         self.assertIsNotNone(system_tosca_template)
         self.assertEqual(
             len(system_tosca_template.
-                nested_tosca_templates_with_topology), 3)
+                nested_tosca_templates_with_topology), 4)

@@ -231,12 +231,12 @@ class ToscaTemplate(object):
                         yaml_dict_tpl=tosca_tpl,
                         sub_mapped_node_template=nodetemplate)
                     if nested_template.has_substitution_mappings():
-                        fnames = \
-                            [tpl.path for tpl in
-                             self.nested_tosca_templates_with_topology]
-                        if fname not in fnames:
-                            self.nested_tosca_templates_with_topology.\
-                                append(nested_template)
+                        # Record the nested templates in top level template
+                        self.nested_tosca_templates_with_topology.\
+                            append(nested_template)
+                        # Set the substitution toscatemplate for mapped node
+                        nodetemplate.sub_mapping_tosca_template = \
+                            nested_template
 
     def _validate_field(self):
         version = self._tpl_version()

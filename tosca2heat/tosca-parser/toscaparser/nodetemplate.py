@@ -48,7 +48,7 @@ class NodeTemplate(EntityTemplate):
         self.available_rel_tpls = available_rel_tpls
         self.available_rel_types = available_rel_types
         self._relationships = {}
-        self.substitution_mapped = False
+        self.substitution_mapped = None
 
     @property
     def relationships(self):

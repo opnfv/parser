@@ -53,8 +53,6 @@ class Substitution_mappings(object):
         self._capabilities = None
         self._requirements = None
 
-        self.sub_mapped_node_template.substitution_mapped = True
-
     @classmethod
     def get_node_type(cls, sub_mapping_def):
         if isinstance(sub_mapping_def, dict):
