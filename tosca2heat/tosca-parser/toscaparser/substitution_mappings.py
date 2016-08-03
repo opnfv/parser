@@ -106,7 +106,8 @@ class Substitution_mappings(object):
         # The inputs in service template which defines substutition mappings
         # must be in properties of node template wchich be mapped.
         inputs_names = list(self.sub_mapped_node_template
-                                .get_properties().keys())
+                                .get_properties().keys()
+                            if self.sub_mapped_node_template else [])
         for name in inputs_names:
             if name not in [input.name for input in self.inputs]:
                 ExceptionCollector.appendException(
@@ -118,7 +119,8 @@ class Substitution_mappings(object):
 
         # The capabilites must be in node template wchich be mapped.
         tpls_capabilities = self.sub_mapping_def.get(self.CAPABILITIES)
-        node_capabiliteys = self.sub_mapped_node_template.get_capabilities()
+        node_capabiliteys = self.sub_mapped_node_template.get_capabilities() \
+            if self.sub_mapped_node_template else None
         for cap in node_capabiliteys.keys() if node_capabiliteys else []:
             if (tpls_capabilities and
                     cap not in list(tpls_capabilities.keys())):
@@ -132,7 +134,8 @@ class Substitution_mappings(object):
 
         # The requirements must be in node template wchich be mapped.
         tpls_requirements = self.sub_mapping_def.get(self.REQUIREMENTS)
-        node_requirements = self.sub_mapped_node_template.requirements
+        node_requirements = self.sub_mapped_node_template.requirements \
+            if self.sub_mapped_node_template else None
         for req in node_requirements if node_requirements else []:
             if (tpls_requirements and
                     req not in list(tpls_requirements.keys())):
@@ -146,7 +149,8 @@ class Substitution_mappings(object):
         pass
         # The outputs in service template which defines substutition mappings
         # must be in atrributes of node template wchich be mapped.
-        # outputs_names = self.sub_mapped_node_template.get_properties().keys()
+        # outputs_names = self.sub_mapped_node_template.get_properties().
+        #     keys() if self.sub_mapped_node_template else None
         # for name in outputs_names:
         #    if name not in [output.name for input in self.outputs]:
         #        ExceptionCollector.appendException(
