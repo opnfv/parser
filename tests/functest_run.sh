@@ -12,7 +12,7 @@
 
 PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
 PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
-PARSER_IMAGE_NAME=cirros
+PARSER_IMAGE_NAME=parser_image
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
 
@@ -28,17 +28,28 @@ PARSER_ROLE=admin
 PARSER_STACK_NAME=vRNC_Stack
 
 # VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
-VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/tosca_helloworld_nfv.yaml
+VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
 
 VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
 
 download_parser_image() {
-    [ -e "${PARSER_IMAGE_URL_FILE}" ] && cp ${PARSER_IMAGE_URL_FILE} ${PARSER_IMAGE_FILE} && return 0
+    [ -e "${PARSER_IMAGE_URL_FILE}" ] && {
+        echo "Image ${PARSER_IMAGE_URL_FILE} has bee cached, needn't download again."
+        cp ${PARSER_IMAGE_URL_FILE} ${PARSER_IMAGE_FILE}
+        return 0
+    }
+
+    echo "Download image ${PARSER_IMAGE_URL_FILE}..."
     wget "${PARSER_IMAGE_URL}" -o "${PARSER_IMAGE_FILE}"
 }
 
 register_parser_image() {
-    openstack image list | grep -qwo "${PARSER_IMAGE_NAME}" && return 0
+    openstack image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
+        echo "Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
+        return 0
+    }
+
+    echo "Registe image ${PARSER_IMAGE_NAME}..."
     openstack image create "${PARSER_IMAGE_NAME}" \
                            --public \
                            --disk-format "${PARSER_IMAGE_FORMAT}" \
@@ -50,7 +61,7 @@ create_parser_user_and_project() {
 
     # 1. create parser user.
     openstack user list | grep -qwo "${PARSER_USER}" && {
-        echo "User ${PARSER_USER} exist, doesn't crate."
+        echo "User ${PARSER_USER} exist, doesn't create again."
     } || {
         openstack user create "${PARSER_USER}" --password "${PARSER_PASSWORD}"
         echo "Create user ${PARSER_USER} successful."
@@ -58,7 +69,7 @@ create_parser_user_and_project() {
 
     # 2. create parser project
     openstack project list | grep -qwo "${PARSER_PROJECT}" && {
-        echo "Project ${PARSER_PROJECT} exist, doesn't crate."
+        echo "Project ${PARSER_PROJECT} exist, doesn't create agian."
     } || {
         openstack project create "${PARSER_PROJECT}"
         echo "Create project ${PARSER_PROJECT} successful."
@@ -67,7 +78,7 @@ create_parser_user_and_project() {
     # 3. grant role for parser user
     openstack user role list "${PARSER_USER}" --project "${PARSER_PROJECT}" \
     | grep -qow " ${PARSER_ROLE}" && {
-        echo "User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't crate."
+        echo "User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
     } || {
         openstack role add "${PARSER_ROLE}" --user "${PARSER_USER}" \
                            --project "${PARSER_PROJECT}"
@@ -96,7 +107,7 @@ translator_and_deploy_vRNC() {
         change_env_to_parser_user_project
 
         # 3. Translator and deploy vRNC
-        heat-translator --template-type tosca -f ${VRNC_INPUT_TEMPLATE_FILE} -o ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True
+        heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} -o ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True
 
         # 4. Wait for create vRNC
         sleep 60
@@ -131,13 +142,13 @@ reset_parser_test() {
 
         # 4. Delete tmp image ${PARSER_IMAGE_FILE}
         [[ -e ${PARSER_IMAGE_FILE} ]] && {
-            echo "delete local image file ${PARSER_IMAGE_FILE} after tes."
+            echo "delete local image file ${PARSER_IMAGE_FILE} after test."
             rm -fr ${PARSER_IMAGE_FILE}
         }
 
         # 5. Delete tmp image ${PARSER_IMAGE_URL_FILE}
         [[ -e ${PARSER_IMAGE_URL_FILE} ]] && {
-            echo "delete local image file ${PARSER_IMAGE_URL_FILE} after tes."
+            echo "delete local image file ${PARSER_IMAGE_URL_FILE} after test."
             rm -fr ${PARSER_IMAGE_URL_FILE}
         }
 
