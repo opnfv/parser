@@ -101,13 +101,14 @@ translator_and_deploy_vRNC() {
         # 1. Delete parser stack ${PARSER_STACK_NAME}, use admin user in admin project
         openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
             echo "stack ${PARSER_STACK_NAME} exist, delete it first."
-            openstack stack delete ${PARSER_STACK_NAME}
+            openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
         change_env_to_parser_user_project
 
         # 3. Translator and deploy vRNC
-        heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} -o ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True
+        heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} \
+            --output-file ${VRNC_OUTPUT_TEMPLATE_FILE} --deploy True --stack-name ${PARSER_STACK_NAME}
 
         # 4. Wait for create vRNC
         sleep 60
@@ -121,54 +122,58 @@ translator_and_deploy_vRNC() {
 reset_parser_test() {
     set +e
 
-    ret=$1
-
     echo "cleanup..."
+    # 1. Delete resource created by parser user
     (
-        # 1. Switch env to parser project temporally
+        # 1). Switch env to parser project temporally
         change_env_to_parser_user_project
 
-        # 2. Delete the stack ${PARSER_STACK_NAME}
+        # 2). Delete the stack ${PARSER_STACK_NAME}
         openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
             echo "stack ${PARSER_STACK_NAME} has been created, delete it after test."
-            openstack stack delete ${PARSER_STACK_NAME}
+            openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
 
-        # 3. Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
-        [[ -e ${VRNC_OUTPUT_TEMPLATE_FILE} ]] && {
+        # 3). Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
+        [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${CI_DEBUG} != "true" ] && {
             echo "delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
             rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
         }
 
-        # 4. Delete tmp image ${PARSER_IMAGE_FILE}
+        # 4). Delete tmp image ${PARSER_IMAGE_FILE}
         [[ -e ${PARSER_IMAGE_FILE} ]] && {
             echo "delete local image file ${PARSER_IMAGE_FILE} after test."
             rm -fr ${PARSER_IMAGE_FILE}
         }
 
-        # 5. Delete tmp image ${PARSER_IMAGE_URL_FILE}
-        [[ -e ${PARSER_IMAGE_URL_FILE} ]] && {
-            echo "delete local image file ${PARSER_IMAGE_URL_FILE} after test."
+        # 5). Delete tmp image ${PARSER_IMAGE_URL_FILE}
+        [ -e ${PARSER_IMAGE_URL_FILE} -a ${CI_DEBUG} != "true" ] && {
+            echo "delete local URL image file ${PARSER_IMAGE_URL_FILE} after test."
             rm -fr ${PARSER_IMAGE_URL_FILE}
         }
+
+        # 6). Delete image from openstack
+        parser_image_id=$(openstack image list | grep -w "${PARSER_IMAGE_NAME}" | awk '{print $2}')
+        [[ -n "${parser_image_id}" ]] && openstack image delete "${parser_image_id}"
 
         sleep 3
     )
 
-    # 3. Delete parser user and project
-    parser_image_id=$(openstack image list | grep -ow "${PARSER_IMAGE_NAME}" | awk '{print $2}')
-    sleep 1
-    [ -n "${parser_image_id}" ] && openstack image delete "${parser_image_id}"
-    openstack role remove "${PARSER_ROLE}" --user "${PARSER_USER}" \
+    # 2. Delete role, user and project
+    openstack user role list "${PARSER_USER}" --project "${PARSER_PROJECT}" \
+    | grep -qow " ${PARSER_ROLE}" && {
+        openstack role remove "${PARSER_ROLE}" --user "${PARSER_USER}" \
                               --project "${PARSER_PROJECT}"
-    openstack project delete "${PARSER_PROJECT}"
-    openstack user delete "${PARSER_USER}"
+    }
 
-    if [[ ret != "test_ok" ]]; then
-       echo " ========= 4/4. test error, check your env or code. ========= "
-       echo "======================= Parser functest end =========================="
-       exit 1
-    fi
+    openstack project list | grep -qwo "${PARSER_PROJECT}" && {
+        openstack project delete "${PARSER_PROJECT}"
+    }
+
+    openstack user list | grep -qow "${PARSER_USER}" && {
+        openstack user delete "${PARSER_USER}"
+    }
+
 }
 
 
@@ -186,10 +191,6 @@ create_parser_user_and_project
 echo " ========= 3/4. Parse -> translate -> deploy vRNC... ========= "
 translator_and_deploy_vRNC
 
-echo " ========= 4/4. Test ok, clear the test evn...       ========= "
-reset_parser_test "test_ok"
+echo " ========= 4/4. Test ok...                           ========= "
 
 echo "======================= Parser functest end =========================="
-
-exit 0
-
