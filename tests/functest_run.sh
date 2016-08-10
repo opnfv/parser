@@ -104,20 +104,52 @@ translator_and_deploy_vRNC() {
             openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
+        echo "switch openstak env to parser project"
         change_env_to_parser_user_project
 
-        # 3. Translator and deploy vRNC
+        # 3. Translator yaml
+        echo "Translator input file ${VRNC_INPUT_TEMPLATE_FILE} and output is ${VRNC_OUTPUT_TEMPLATE_FILE}"
         heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} \
             --output-file ${VRNC_OUTPUT_TEMPLATE_FILE}
 
         # 4. deploy vRNC
+        echo "Deploy stack..."
         openstack stack create -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
 
         # 5. Wait for create vRNC
-        sleep 60
+        sleep 180
 
         # 6. Validate the deploy result.
-
+        echo "Checking the result of deployment..."
+        # 1). check vdu
+        openstack server list | grep -qwo "${PARSER_STACK_NAME}" && {
+            echo "  Check VDU successful."
+        } || {
+            echo "  Check VDU unsuccessful."
+            exit 1
+        }
+        # 2). check VL-network
+        openstack network list | grep -qwo "${PARSER_STACK_NAME}" && {
+            echo "  Check VL-network successful."
+        } || {
+            echo "  Check VL-network unsuccessful."
+            exit 1
+        }
+        # 3). check VL-subnet
+        openstack subnet list | grep -qwo "${PARSER_STACK_NAME}" && {
+            echo "  Check VL-subnet successful."
+        } || {
+            echo "  Check VL-subnet unsuccessful."
+            exit 1
+        }
+        # 4). check port
+        neutron port-list | grep -qwo "${PARSER_STACK_NAME}" && {
+            echo "  Check CP successful."
+        } || {
+            echo "  Check CP unsuccessful."
+            exit 1
+        }
+        echo "Checkthe result of deployment successfully."
     )
 
 }
