@@ -8,7 +8,8 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-[[ "${CI_DEBUG:-true}" == "true" ]] && set -x
+PARSER_CI_DEBUG=${CI_DEBUG:-true}
+[[ "${PARSER_CI_DEBUG}" == "true" ]] && set -x
 
 PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
 PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
@@ -138,7 +139,7 @@ reset_parser_test() {
         }
 
         # 3). Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
-        [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${CI_DEBUG} != "true" ] && {
+        [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
             echo "delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
             rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
         }
@@ -150,7 +151,7 @@ reset_parser_test() {
         }
 
         # 5). Delete tmp image ${PARSER_IMAGE_URL_FILE}
-        [ -e ${PARSER_IMAGE_URL_FILE} -a ${CI_DEBUG} != "true" ] && {
+        [ -e ${PARSER_IMAGE_URL_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
             echo "delete local URL image file ${PARSER_IMAGE_URL_FILE} after test."
             rm -fr ${PARSER_IMAGE_URL_FILE}
         }
