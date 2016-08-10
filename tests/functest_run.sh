@@ -8,7 +8,8 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-[[ "${CI_DEBUG:-true}" == "true" ]] && set -x
+PARSER_CI_DEBUG=${CI_DEBUG:-true}
+[[ "${PARSER_CI_DEBUG}" == "true" ]] && set -x
 
 PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
 PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
