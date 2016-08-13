@@ -12,15 +12,15 @@ topology_template:
   description: Template of a database including its hosting stack.
 
   inputs:
-    db_user:
+    user:
       type: string
       description: the user name of database.
       default: test
-    db_port:
+    port:
       type: integer
       description: the port of database.
       default: 3306
-    db_name:
+    name:
       type: string
       description: the name of database.
       default: test
@@ -40,9 +40,9 @@ topology_template:
     db_app:
       type: tosca.nodes.Database
       properties:
-        user: { get_input: db_user }
-        port: { get_input: db_port }
-        name: { get_input: db_name }
+        user: { get_input: user }
+        port: { get_input: port }
+        name: { get_input: name }
       capabilities:
         database_endpoint:
           properties:

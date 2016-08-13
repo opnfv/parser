@@ -71,6 +71,18 @@ topology_template:
       description: mm additional block storage size
       constraints:
         - in_range: [ 1, 200 ]
+    id:
+      type: string
+      description: ID of this VNF
+      default: UMTS
+    vendor:
+      type: string
+      description: name of the vendor who generate this VNF
+      default: ZTE
+    version:
+      type: version
+      description: version of the software for this VNF
+      default: 1.0
 
   substitution_mappings:
     node_type: rnc.nodes.VNF
