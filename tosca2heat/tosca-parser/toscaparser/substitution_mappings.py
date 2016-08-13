@@ -15,7 +15,11 @@ import logging
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidNodeTypeError
 from toscaparser.common.exception import MissingRequiredFieldError
+from toscaparser.common.exception import MissingRequiredInputError
+from toscaparser.common.exception import MissingRequiredParameterError
 from toscaparser.common.exception import UnknownFieldError
+from toscaparser.elements.nodetype import NodeType
+
 
 log = logging.getLogger('tosca')
 
@@ -60,9 +64,16 @@ class SubstitutionMappings(object):
     def requirements(self):
         return self.sub_mapping_def.get(self.REQUIREMENTS)
 
+    @property
+    def node_definition(self):
+        return NodeType(self.node_type, self.custom_defs)
+
     def _validate(self):
+        # basic valiation
         self._validate_keys()
         self._validate_type()
+
+        # SubstitutionMapping class syntax validation
         self._validate_inputs()
         self._validate_capabilities()
         self._validate_requirements()
@@ -73,7 +84,7 @@ class SubstitutionMappings(object):
         for key in self.sub_mapping_def.keys():
             if key not in self.SECTIONS:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='Substitution_mappings',
+                    UnknownFieldError(what='SubstitutionMappings',
                                       field=key))
 
     def _validate_type(self):
@@ -82,7 +93,7 @@ class SubstitutionMappings(object):
         if not node_type:
             ExceptionCollector.appendException(
                 MissingRequiredFieldError(
-                    what=_('Substitution_mappings used in topology_template'),
+                    what=_('SubstitutionMappings used in topology_template'),
                     required=self.NODE_TYPE))
 
         node_type_def = self.custom_defs.get(node_type)
@@ -93,16 +104,44 @@ class SubstitutionMappings(object):
     def _validate_inputs(self):
         """validate the inputs of substitution mappings."""
 
-        # The inputs in service template which defines substutition mappings
-        # must be in properties of node template wchich be mapped.
-        inputs_names = list(self.sub_mapped_node_template
-                                .get_properties().keys()
-                            if self.sub_mapped_node_template else [])
-        for name in inputs_names:
-            if name not in [input.name for input in self.inputs]:
+        # The inputs in service template which provides substutition mappings
+        # must be in properties of node template which is mapped or provide
+        # defualt value. Currently the input.name is not restrict to be the
+        # same as property name in specification, but they should be equal
+        # for current implementation.
+
+        # Must provide parameters for required properties of node_type
+        # This checking is internal(inside SubstitutionMappings)
+        for propery in self.node_definition.get_properties_def_objects():
+            # Check property which is 'required' and has no 'default' value
+            if propery.required and propery.default is None and \
+               propery.name not in [input.name for input in self.inputs]:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='SubstitutionMappings',
-                                      field=name))
+                    MissingRequiredInputError(
+                        what='SubstitutionMappings with node_type:'
+                        + self.node_type,
+                        input_name=propery.name))
+
+        # Get property names from substituted node tempalte
+        property_names = list(self.sub_mapped_node_template
+                              .get_properties().keys()
+                              if self.sub_mapped_node_template else [])
+        # Sub_mapped_node_template is None(deploy standaolone), will check
+        # according to node_type
+        if 0 == len(property_names):
+            property_names = list(self.node_definition
+                                  .get_properties_def().keys())
+        # Provide default value for parameter which is not property of
+        # node with the type node_type, this may not be mandatory for
+        # current implematation, but the specification express it mandatory.
+        # This checking is external(outside SubstitutionMappings)
+        for input in self.inputs:
+            if input.name not in property_names and input.default is None:
+                ExceptionCollector.appendException(
+                    MissingRequiredParameterError(
+                        what='SubstitutionMappings with node_type:'
+                        + self.node_type,
+                        input_name=input.name))
 
     def _validate_capabilities(self):
         """validate the capabilities of substitution mappings."""
@@ -116,7 +155,7 @@ class SubstitutionMappings(object):
                     cap not in list(tpls_capabilities.keys())):
                 pass
                 # ExceptionCollector.appendException(
-                #    UnknownFieldError(what='Substitution_mappings',
+                #    UnknownFieldError(what='SubstitutionMappings',
                 #                      field=cap))
 
     def _validate_requirements(self):
@@ -131,7 +170,7 @@ class SubstitutionMappings(object):
                     req not in list(tpls_requirements.keys())):
                 pass
                 # ExceptionCollector.appendException(
-                #    UnknownFieldError(what='Substitution_mappings',
+                #    UnknownFieldError(what='SubstitutionMappings',
                 #                      field=req))
 
     def _validate_outputs(self):
@@ -144,5 +183,5 @@ class SubstitutionMappings(object):
         # for name in outputs_names:
         #    if name not in [output.name for input in self.outputs]:
         #        ExceptionCollector.appendException(
-        #            UnknownFieldError(what='Substitution_mappings',
+        #            UnknownFieldError(what='SubstitutionMappings',
         #                              field=name))

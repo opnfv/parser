@@ -14,6 +14,7 @@
 import logging
 import os
 
+from copy import deepcopy
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidTemplateVersion
 from toscaparser.common.exception import MissingRequiredFieldError
@@ -226,8 +227,10 @@ class ToscaTemplate(object):
         for fname, tosca_tpl in self.nested_tosca_tpls_with_topology.items():
             for nodetemplate in self.nodetemplates:
                 if self._is_sub_mapped_node(nodetemplate, tosca_tpl):
+                    parsed_params = self._get_params_for_nested_template(
+                        nodetemplate)
                     nested_template = ToscaTemplate(
-                        path=fname, parsed_params=self.parsed_params,
+                        path=fname, parsed_params=parsed_params,
                         yaml_dict_tpl=tosca_tpl,
                         sub_mapped_node_template=nodetemplate)
                     if nested_template.has_substitution_mappings():
@@ -309,6 +312,16 @@ class ToscaTemplate(object):
             return True
         else:
             return False
+
+    def _get_params_for_nested_template(self, nodetemplate):
+        """Return total params for nested_template."""
+        parsed_params = deepcopy(self.parsed_params) \
+            if self.parsed_params else {}
+        if nodetemplate:
+            for pname in nodetemplate.get_properties():
+                parsed_params.update({pname:
+                                      nodetemplate.get_property_value(pname)})
+        return parsed_params
 
     def get_sub_mapping_node_type(self, tosca_tpl):
         """Return substitution mappings node type."""
