@@ -16,22 +16,12 @@ from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidNodeTypeError
 from toscaparser.common.exception import MissingRequiredFieldError
 from toscaparser.common.exception import UnknownFieldError
-# from toscaparser.common.exception import ValidationError
-# from toscaparser.utils.gettextutils import _
-# from toscaparser.utils import validateutils
-# from toscaparser.nodetemplate import NodeTemplate
-# from toscaparser.elements.nodetype import NodeType
-# from toscaparser.parameters import Input
-# from toscaparser.parameters import Output
-# from toscaparser.groups import Group
-# from toscaparser.policy import Policy
-
 
 log = logging.getLogger('tosca')
 
 
-class Substitution_mappings(object):
-    '''Substitution_mappings class declaration
+class SubstitutionMappings(object):
+    '''SubstitutionMappings class declaration
 
     Substitution_mappings exports the topology template as an
     implementation of a Node type.
@@ -111,7 +101,7 @@ class Substitution_mappings(object):
         for name in inputs_names:
             if name not in [input.name for input in self.inputs]:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='Substitution_mappings',
+                    UnknownFieldError(what='SubstitutionMappings',
                                       field=name))
 
     def _validate_capabilities(self):

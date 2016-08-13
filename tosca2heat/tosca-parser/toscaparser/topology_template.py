@@ -22,7 +22,7 @@ from toscaparser.parameters import Input
 from toscaparser.parameters import Output
 from toscaparser.policy import Policy
 from toscaparser.relationship_template import RelationshipTemplate
-from toscaparser.substitution_mappings import Substitution_mappings
+from toscaparser.substitution_mappings import SubstitutionMappings
 from toscaparser.tpl_relationship_graph import ToscaGraph
 from toscaparser.utils.gettextutils import _
 
@@ -111,12 +111,12 @@ class TopologyTemplate(object):
     def _substitution_mappings(self):
         tpl_substitution_mapping = self._tpl_substitution_mappings()
         if tpl_substitution_mapping:
-            return Substitution_mappings(tpl_substitution_mapping,
-                                         self.nodetemplates,
-                                         self.inputs,
-                                         self.outputs,
-                                         self.sub_mapped_node_template,
-                                         self.custom_defs)
+            return SubstitutionMappings(tpl_substitution_mapping,
+                                        self.nodetemplates,
+                                        self.inputs,
+                                        self.outputs,
+                                        self.sub_mapped_node_template,
+                                        self.custom_defs)
 
     def _policies(self):
         policies = []
@@ -297,4 +297,4 @@ class TopologyTemplate(object):
     def get_sub_mapping_node_type(cls, topology_tpl):
         if topology_tpl and isinstance(topology_tpl, dict):
             submap_tpl = topology_tpl.get(SUBSTITUION_MAPPINGS)
-            return Substitution_mappings.get_node_type(submap_tpl)
+            return SubstitutionMappings.get_node_type(submap_tpl)
