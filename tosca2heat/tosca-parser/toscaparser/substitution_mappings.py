@@ -16,16 +16,7 @@ from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidNodeTypeError
 from toscaparser.common.exception import MissingRequiredFieldError
 from toscaparser.common.exception import UnknownFieldError
-# from toscaparser.common.exception import ValidationError
-# from toscaparser.utils.gettextutils import _
-# from toscaparser.utils import validateutils
-# from toscaparser.nodetemplate import NodeTemplate
-# from toscaparser.elements.nodetype import NodeType
-# from toscaparser.parameters import Input
-# from toscaparser.parameters import Output
-# from toscaparser.groups import Group
-# from toscaparser.policy import Policy
-
+from toscaparser.elements.nodetype import NodeType
 
 log = logging.getLogger('tosca')
 
@@ -70,9 +61,16 @@ class Substitution_mappings(object):
     def requirements(self):
         return self.sub_mapping_def.get(self.REQUIREMENTS)
 
+    @property
+    def node_definition(self):
+        return NodeType(self.node_type, self.custom_defs)
+
     def _validate(self):
+        # basic valiation
         self._validate_keys()
         self._validate_type()
+
+        # SubstitutionMapping class syntax validation
         self._validate_inputs()
         self._validate_capabilities()
         self._validate_requirements()
@@ -104,15 +102,37 @@ class Substitution_mappings(object):
         """validate the inputs of substitution mappings."""
 
         # The inputs in service template which defines substutition mappings
-        # must be in properties of node template wchich be mapped.
-        inputs_names = list(self.sub_mapped_node_template
-                                .get_properties().keys()
-                            if self.sub_mapped_node_template else [])
-        for name in inputs_names:
-            if name not in [input.name for input in self.inputs]:
+        # must be in properties of node template which is mapped or provide
+        # defualt value. Currently the input.name is not restrict to be the
+        # same as properte's name in specification, but they should be equal
+        # for current implementation.
+
+        # Get property names from substituted node tempalte
+        property_names = list(self.sub_mapped_node_template
+                              .get_properties().keys()
+                              if self.sub_mapped_node_template else [])
+        # Sub_mapped_node_template is None, will check according to node_type
+        if 0 == len(property_names):
+            property_names = list(self.node_definition
+                                  .get_properties_def().keys())
+        # Must provide parameter(mapped nodet properties) for no default input
+        # This is external check
+        for input in self.inputs:
+            if input.name not in property_names and input.default is None:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='Substitution_mappings',
-                                      field=name))
+                    UnknownFieldError(what='SubstitutionMappings',
+                                      field=input.name))
+
+        # Must provide parameters for required properties of node_type
+        # This is internal check
+        for propery in self.node_definition.get_properties_def_objects():
+            # Check property which is 'required' and has no 'default' value
+            if propery.required and propery.default is None and \
+               propery.name not in [input.name for input in self.inputs]:
+                ExceptionCollector.appendException(
+                    UnknownFieldError(what='SubstitutionMappings node_type:'
+                                           + self.node_type,
+                                      field=propery.name))
 
     def _validate_capabilities(self):
         """validate the capabilities of substitution mappings."""
