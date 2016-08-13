@@ -29,8 +29,10 @@ class ToscaVRNCTemplateTest(TestCase):
                          "tosca_simple_profile_for_nfv_1_0_0")
 
     def test_input(self):
-        first_input_name = "mm_storage_size"
-        self.assertEqual(self.tosca.inputs[0].name, first_input_name)
+        input_names = sorted(["mm_storage_size", "id",
+                              "vendor", "version"])
+        self.assertEqual(sorted([i.name for i in self.tosca.inputs]),
+                         input_names)
 
     def test_nodetemplates(self):
         expected_node_list = sorted(
