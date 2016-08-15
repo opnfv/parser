@@ -26,7 +26,6 @@ from toscaparser.substitution_mappings import SubstitutionMappings
 from toscaparser.tpl_relationship_graph import ToscaGraph
 from toscaparser.utils.gettextutils import _
 
-
 # Topology template key names
 SECTIONS = (DESCRIPTION, INPUTS, NODE_TEMPLATES,
             RELATIONSHIP_TEMPLATES, OUTPUTS, GROUPS,
@@ -73,6 +72,14 @@ class TopologyTemplate(object):
                 default = input.default
                 if default:
                     input.validate(default)
+            if (self.parsed_params and input.name not in self.parsed_params
+                or self.parsed_params is None) and input.required \
+                and input.default is None:
+                exception.ExceptionCollector.appendException(
+                    exception.MissingRequiredParameterError(
+                        what='Template',
+                        input_name=input.name))
+
             inputs.append(input)
         return inputs
 

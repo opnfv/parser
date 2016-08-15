@@ -29,6 +29,7 @@ topology_template:
     db_root_pwd:
       type: string
       description: Root password for MySQL.
+      default: '12345678'
     db_port:
       type: PortDef
       description: Port for the MySQL database.

@@ -35,9 +35,16 @@ class Input(object):
         self.name = name
         self.schema = Schema(name, schema_dict)
 
+        self._validate_field()
+        self.validate_type(self.type)
+
     @property
     def type(self):
         return self.schema.type
+
+    @property
+    def required(self):
+        return self.schema.required
 
     @property
     def description(self):
@@ -52,8 +59,6 @@ class Input(object):
         return self.schema.constraints
 
     def validate(self, value=None):
-        self._validate_field()
-        self.validate_type(self.type)
         if value is not None:
             self._validate_value(value)
 
