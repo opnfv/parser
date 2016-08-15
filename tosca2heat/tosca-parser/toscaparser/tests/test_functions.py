@@ -116,7 +116,7 @@ class IntrinsicFunctionsTest(TestCase):
         self.assertEqual(3306, dbms_port.result())
         dbms_root_password = self._get_property(mysql_dbms,
                                                 'root_password')
-        self.assertIsNone(dbms_root_password.result())
+        self.assertEqual(dbms_root_password.result(), "12345678")
 
     def test_get_property_with_host(self):
         tosca_tpl = os.path.join(

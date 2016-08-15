@@ -452,7 +452,13 @@ class ToscaTemplateTest(TestCase):
         tosca_tpl = ('https://raw.githubusercontent.com/openstack/'
                      'tosca-parser/master/toscaparser/tests/data/'
                      'tosca_single_instance_wordpress.yaml')
-        tosca = ToscaTemplate(tosca_tpl, None, False)
+        tosca = ToscaTemplate(tosca_tpl, a_file=False,
+                              parsed_params={"db_name": "mysql",
+                                             "db_user": "mysql",
+                                             "db_root_pwd": "1234",
+                                             "db_pwd": "5678",
+                                             "db_port": 3306,
+                                             "cpus": 4})
         self.assertTrue(tosca.topology_template.custom_defs)
 
     def test_url_template_with_local_abspath_import(self):
@@ -473,19 +479,27 @@ class ToscaTemplateTest(TestCase):
         tosca_tpl = ('https://raw.githubusercontent.com/openstack/'
                      'tosca-parser/master/toscaparser/tests/data/'
                      'tosca_single_instance_wordpress_with_url_import.yaml')
-        tosca = ToscaTemplate(tosca_tpl, None, False)
+        tosca = ToscaTemplate(tosca_tpl, a_file=False,
+                              parsed_params={"db_root_pwd": "1234"})
         self.assertTrue(tosca.topology_template.custom_defs)
 
     def test_csar_parsing_wordpress(self):
         csar_archive = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             'data/CSAR/csar_wordpress.zip')
-        self.assertTrue(ToscaTemplate(csar_archive))
+        self.assertTrue(ToscaTemplate(csar_archive,
+                                      parsed_params={"db_name": "mysql",
+                                                     "db_user": "mysql",
+                                                     "db_root_pwd": "1234",
+                                                     "db_pwd": "5678",
+                                                     "db_port": 3306,
+                                                     "cpus": 4}))
 
     def test_csar_parsing_elk_url_based(self):
         csar_archive = ('https://github.com/openstack/tosca-parser/raw/master/'
                         'toscaparser/tests/data/CSAR/csar_elk.zip')
-        self.assertTrue(ToscaTemplate(csar_archive, None, False))
+        self.assertTrue(ToscaTemplate(csar_archive, a_file=False,
+                                      parsed_params={"my_cpus": 4}))
 
     def test_nested_imports_in_templates(self):
         tosca_tpl = os.path.join(
@@ -593,7 +607,7 @@ class ToscaTemplateTest(TestCase):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/CSAR/csar_elk.csar")
-        tosca = ToscaTemplate(tosca_tpl)
+        tosca = ToscaTemplate(tosca_tpl, parsed_params={"my_cpus": 2})
         self.assertTrue(tosca.topology_template.custom_defs)
 
     def test_available_rel_tpls(self):
@@ -802,4 +816,4 @@ class ToscaTemplateTest(TestCase):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/test_containers.yaml")
-        ToscaTemplate(tosca_tpl)
+        ToscaTemplate(tosca_tpl, parsed_params={"mysql_root_pwd": "12345678"})
