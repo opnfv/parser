@@ -31,7 +31,7 @@ class SubstitutionMappings(object):
     implementation of a Node type.
     '''
 
-    SECTIONS = (NODE_TYPE, CAPABILITIES, REQUIREMENTS) = \
+    SECTIONS = (NODE_TYPE, REQUIREMENTS, CAPABILITIES) = \
                ('node_type', 'requirements', 'capabilities')
 
     def __init__(self, sub_mapping_def, nodetemplates, inputs, outputs,
@@ -102,13 +102,14 @@ class SubstitutionMappings(object):
                 InvalidNodeTypeError(what=node_type_def))
 
     def _validate_inputs(self):
-        """validate the inputs of substitution mappings."""
+        """validate the inputs of substitution mappings.
 
-        # The inputs in service template which provides substutition mappings
-        # must be in properties of node template which is mapped or provide
-        # defualt value. Currently the input.name is not restrict to be the
-        # same as property name in specification, but they should be equal
-        # for current implementation.
+        The inputs in service template which provides substutition mappings
+        must be in properties of node template which is mapped or provide
+        defualt value. Currently the input.name is not restrict to be the
+        same as property name in specification, but they should be equal
+        for current implementation.
+        """
 
         # Must provide parameters for required properties of node_type
         # This checking is internal(inside SubstitutionMappings)
