@@ -263,7 +263,7 @@ class ToscaCompute(HotResource):
         images = IMAGES
         if translator.common.utils.check_for_env_variables():
             resp = self._populate_image_dict()
-            if len(resp.keys()) > 0:
+            if resp and len(resp.keys()) > 0:
                 images = resp
         match_all = images.keys()
         architecture = properties.get(self.ARCHITECTURE)
