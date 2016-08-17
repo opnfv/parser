@@ -16,6 +16,8 @@ import os
 import re
 from cliff.command import Command
 from cliff.show import ShowOne
+import yaml
+import json
 
 
 class add_definition(Command):
@@ -62,34 +64,74 @@ class add_definition(Command):
             if policy_name in line:
                 print "policy definition exists"
                 policy_def = 1
-                break
         return policy_def
 
     def insert_policy_def(self, parsed_args):
-        filename = parsed_args.source
-        filehandle = open(filename, "a")
-        print "Adding Definition"
-        filehandle.write("    - " + str(parsed_args.policy_name) + ":\n")
-        filehandle.write("        type: " + str(parsed_args.policy_type)
-                         + "\n")
-        filehandle.write("        description: " + str(parsed_args.description)
-                         + "\n")
-        filehandle.write("        metadata: \n          "
-                         + str(parsed_args.metadata) + "\n")
-        filehandle.write("        properties: \n          "
-                         + str(parsed_args.properties) + "\n")
-        filehandle.write("        targets:\n          "
-                         + str(parsed_args.targets) + "\n")
-        filehandle.write("        triggers: \n          "
-                         + str(parsed_args.triggers) + "\n")
+        searchline = '  policies:\n'
+        f = open(parsed_args.source, "r")
+        lines = f.readlines()
+        num = lines.index(searchline)
+        string = lines[num + 1]
+        leading_spaces = len(string) - len(string.lstrip())
+        policy_name = "- " + str(parsed_args.policy_name) + ":"
+        properties = parsed_args.properties[0]
+        prop_str = self.make_list(properties,leading_spaces)
+        
+        policy = "".join((leading_spaces * " ") + policy_name  + "\n" 
+        + "".join((leading_spaces * " ")) + "  type: " 
+        + str(parsed_args.policy_type) + "\n"  + "".join((leading_spaces * " "))
+        + "  description: " + str(parsed_args.description) + "\n"
+        + "".join((leading_spaces * " ")) + "  metadata: " + str(parsed_args.metadata) + "\n"
+        + "".join((leading_spaces * " ")) + "  properties: \n" + "".join((leading_spaces * 2 * " ")) + prop_str
+        + "targets: " + str(parsed_args.targets) + "\n"
+        + "".join((leading_spaces * " ")) + "  triggers: " + str(parsed_args.triggers) + "\n"
+        )
+        lines.insert(num+1,policy)
+        
+        """f2 = open(parsed_args.source, "w")
+        for line in lines:
+            f2.write(line)"""
+
+    def make_list(self, properties, leading_spaces):
+        props = properties.split(",")
+        lists = []
+        i = 0
+        for p in props:
+            lables = p.split(":")
+            
+            lists.insert(i,lables)
+            i = i + 1
+        title_list=[]
+        i =0 
+        for l in lists:
+            title_list.insert(i,l[0])
+            i = i + 1
+        prop_title = ""
+        len_list = len(lists)
+        title_list =  set(title_list) 
+        final_list = []
+        i = 0
+
+        for t in title_list:
+            final_str = t + ":"
+            for l in lists:
+                if t == l[0]:
+                    final_str = final_str +  " " + l[1] + ","
+            final_str = final_str[:-1]
+            final_list.insert(i,final_str)
+            i =+ 1
+
+        prop_str = ""
+        for f in final_list:
+            prop_str = prop_str + f +"\n" + "".join((leading_spaces * 2 *" "))
+        return prop_str[:-1]
 
     def check_policy_type(self, parsed_args):
-        policy_name = parsed_args.policy_type + ":$"
+        policy_type = parsed_args.policy_type + ":$"
         inputfile = open(parsed_args.source, 'r').readlines()
         policy_exists = 0
         for line in inputfile:
-            if re.search(policy_name, line):
+            if re.search(policy_type, line):
                 print "policy type exists"
                 policy_exists = 1
-                break
         return policy_exists
