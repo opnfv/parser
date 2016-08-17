@@ -8,6 +8,8 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+set +e
+
 parser_repos_dir=$1
 
 # start syslog for loghander
