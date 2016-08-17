@@ -35,109 +35,157 @@ See the License for the specific language governing permissions and limitations 
 <xsl:value-of select="concat(document('')//xsl:variable[@name='tosca_general']/entry[@key='description'],'&#x0A;&#x09;',ns:description/node()/text(),'&#x0A;')" />
 <xsl:value-of select="concat(document('')//xsl:variable[@name='tosca_general']/entry[@key='import'],'&#x0A;&#x09;',ns:import/@module,'&#x0A;')" />
 metadata:
-	 ID:<xsl:value-of select="@name"/>
-	 Vendor:<xsl:value-of select="ns:organization/node()/text()"/>
+         ID: <xsl:value-of select="@name"/>
+         Vendor: <xsl:value-of select="ns:organization/node()/text()"/>
 
 <xsl:for-each select="ns:container">
 dsl_definitions:<xsl:for-each select="ns:list">
-	compute_props_host_<xsl:value-of select="@name"/>:<text disable-output-escaping="yes"><![CDATA[&]]>compute_props_host_</text><xsl:value-of select="@name"/>
-	<xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container"><xsl:if test="@name = 'cpu'"><xsl:variable name="num_cpu" select="ns:leaf/ns:type/ns:range/@value"/>
-	 	 num_cpu:<xsl:value-of select="$num_cpu"/>
-				    </xsl:if>
-					<xsl:if test="@name='memory'">
-						<xsl:variable name="memory" select="ns:leaf/ns:type/ns:range/@value"/>
-		 mem_size:<xsl:value-of select="$memory"></xsl:value-of>
-						</xsl:if>
-					</xsl:for-each>
-			</xsl:if>
-		</xsl:for-each>
-   		</xsl:for-each>
+        compute_props_host_<xsl:value-of select="@name"/>: <text disable-output-escaping="yes"><![CDATA[&]]>compute_props_host_</text><xsl:value-of select="@name"/>
+        <xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container"><xsl:if test="@name = 'cpu'"><xsl:variable name="num_cpu" select="ns:leaf/ns:type/ns:range/@value"/>
+                 num_cpu: <xsl:value-of select="$num_cpu"/>
+                                    </xsl:if>
+                                        <xsl:if test="@name='memory'">
+                                                <xsl:variable name="memory" select="ns:leaf/ns:type/ns:range/@value"/>
+                 mem_size: <xsl:value-of select="$memory"></xsl:value-of>
+                                                </xsl:if>
+                                        </xsl:for-each>
+                        </xsl:if>
+                </xsl:for-each>
+                </xsl:for-each>
 node_types:<xsl:for-each select="ns:list">
-	tosca.nodes.compute.<xsl:value-of select="@name"/>:
-		derived_from:tosca.nodes.compute
+        tosca.nodes.compute.<xsl:value-of select="@name"/>:
+                derived_from: tosca.nodes.compute
 </xsl:for-each>
 topology_template:
-		# a description of the topology template
-		description:>
-			<xsl:value-of select="ns:description/node()/text()"/>
-	inputs:
-		storage_size:
-			type:scalar-unit.size<xsl:for-each select="ns:list"><xsl:if test="@name = 'ellis'">
-			<xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container"><xsl:if test="@name = 'disk'">
-			default:<xsl:value-of select="ns:leaf/ns:type/ns:range/@value"/>
-			description:<xsl:value-of select="ns:description/node()/text()"/>
-			</xsl:if></xsl:for-each></xsl:if></xsl:for-each>
-			</xsl:if></xsl:for-each>
-		storage_location:
-			type:string
-			description:>
-				Block storage mount point (filesystem path).
-	node_templates:<xsl:for-each select="ns:list">
-			<xsl:text>&#xa;&#x9;&#x9;</xsl:text>
-			<xsl:value-of select="@name"/>:
-			type:tosca.nodes.Compute
-			capabilities:
-				os:
-					properties:
-						architecture:
-						type:
-						distribution:
-						version:
-				host:
-					properties:*compute_props_host_<xsl:value-of select="@name"/>
-				scalable:
-					properties:
-						min_instances:<xsl:for-each select="ns:leaf"><xsl:if test="@name = 'instance-num'">
-						<xsl:value-of select="ns:default/@value"/>
-						</xsl:if></xsl:for-each>
-						default_instances:<xsl:for-each select="ns:leaf"><xsl:if test="@name = 'instance-num'">
-						<xsl:value-of select="ns:default/@value"/>
-						</xsl:if></xsl:for-each>
-			requirements:
-				- local_storage:
-					node:<xsl:value-of select="@name"/>_BlockStorage
-						relationship:
-							type:AttachesTo
-							properties:
-								location:{ get_input:storage_location }
-			interfaces:
-				Standard:<xsl:for-each select="ns:container">
-					<xsl:if test="@name = 'workflow-script'">
-				<xsl:for-each select="ns:leaf">
-					<xsl:choose>
-					<xsl:when test="@name = 'init'">
-					start:
-						implementation:<xsl:value-of select="ns:default/@value"/>
-							</xsl:when>
-					<xsl:when test="@name='terminate'">
-					delete:
-						implementaion:<xsl:value-of select="ns:default/@value"/>
-					</xsl:when>
-					<xsl:when test="@name='graceful-shutdown'">
-					stop:
-						implementaion:<xsl:value-of select="ns:default/@value"/>
-					</xsl:when>
-							</xsl:choose>
-						 </xsl:for-each>
-						</xsl:if>
-						</xsl:for-each>
-		<xsl:text>&#xa;&#x9;&#x9;</xsl:text>
-		<xsl:variable name="vdu" select = "@name"/>
-		<xsl:value-of select="$vdu"/>_BlockStorage:
-			type:tosca.nodes.BlockStorage
-			properties:
-				size:{ get_input:storage_size }</xsl:for-each><xsl:for-each select="ns:list"><xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container">
-				<xsl:if test="@name='vnic'">
-						<xsl:variable name="vnic" select="ns:leaf/ns:type/ns:range/@value"/>
-						<xsl:call-template name="nic.loop">
-						<xsl:with-param name="from" select="1"/>
-						<xsl:with-param name="to" select="$vnic"/>
-						</xsl:call-template>
-					</xsl:if>
-					</xsl:for-each>
-		</xsl:if>
-		</xsl:for-each>
-		</xsl:for-each>
+                # A description of the topology template
+                description: >
+                        <xsl:value-of select="ns:description/node()/text()"/>
+        inputs:
+                storage_size:
+                        type: scalar-unit.size<xsl:for-each select="ns:list"><xsl:if test="(@name != 'connection-points') and (@name != 'internal-virtual-link')">
+                        <xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container"><xsl:if test="@name = 'disk'">
+                        default: <xsl:value-of select="ns:leaf/ns:type/ns:range/@value"/>
+                        description: <xsl:value-of select="ns:description/node()/text()"/>
+                        </xsl:if></xsl:for-each></xsl:if></xsl:for-each>
+                        </xsl:if></xsl:for-each>
+                storage_location:
+                        type: string
+                        description: >
+                                Block storage mount point (filesystem path).
+        node_templates:<xsl:for-each select="ns:list"><xsl:if test="(@name != 'connection-points') and (@name != 'internal-virtual-link')">
+                        <xsl:text>&#xa;&#x9;&#x9;</xsl:text>
+                        <xsl:value-of select="@name"/>:
+                        type: tosca.nodes.Compute
+                        capabilities:
+                                os:
+                                        properties:
+                                                architecture:
+                                                type:
+                                                distribution:
+                                                version:
+                                host:
+                                        properties: *compute_props_host_<xsl:value-of select="@name"/>
+                                scalable:
+                                        properties:
+                                                min_instances: <xsl:for-each select="ns:leaf"><xsl:if test="@name = 'instance-num'">
+                                                <xsl:value-of select="ns:default/@value"/>
+                                                </xsl:if></xsl:for-each>
+                                                default_instances: <xsl:for-each select="ns:leaf"><xsl:if test="@name = 'instance-num'">
+                                                <xsl:value-of select="ns:default/@value"/>
+                                                </xsl:if></xsl:for-each>
+                        requirements:
+                                - local_storage:
+                                        node: <xsl:value-of select="@name"/>_BlockStorage
+                                                relationship:
+                                                        type: AttachesTo
+                                                        properties:
+                                                                location: { get_input:storage_location }
+                        interfaces:
+                                Standard:<xsl:for-each select="ns:container">
+                                        <xsl:if test="@name = 'workflow-script'">
+                                <xsl:for-each select="ns:leaf">
+                                        <xsl:choose>
+                                        <xsl:when test="@name = 'init'">
+                                        start:
+                                                implementation: <xsl:value-of select="ns:default/@value"/>
+                                                        </xsl:when>
+                                        <xsl:when test="@name='terminate'">
+                                        delete:
+                                                implementaion: <xsl:value-of select="ns:default/@value"/>
+                                        </xsl:when>
+                                        <xsl:when test="@name='graceful-shutdown'">
+                                        stop:
+                                                implementaion: <xsl:value-of select="ns:default/@value"/>
+                                        </xsl:when>
+                                                        </xsl:choose>
+                                                 </xsl:for-each>
+                                                </xsl:if>
+                                                </xsl:for-each>
+                        <xsl:for-each select="ns:container">
+                        <xsl:if test="@name = 'auto-scale-policies'">
+                        monitoring_policy:<xsl:for-each select="ns:list">
+                            name: <xsl:value-of select="ns:key/@value"/>
+                            parameters:<xsl:for-each select="../../ns:container"> <xsl:if test="@name = 'monitor-paras'">
+                            <xsl:text>&#xa;&#x9;&#x9;&#x9;&#x9;</xsl:text>
+                            <xsl:for-each select="ns:leaf-list">
+                            <xsl:for-each select="ns:type">
+                                <xsl:for-each select="ns:enum">
+                                <xsl:value-of select="@name"/>:
+                                </xsl:for-each>
+                            </xsl:for-each>
+                            </xsl:for-each>    
+                            </xsl:if></xsl:for-each>    
+                            actions:<xsl:for-each select="ns:container"> <xsl:if test="@name = 'actions'">
+                            <xsl:text>&#xa;&#x9;&#x9;&#x9;&#x9;</xsl:text>
+                                <xsl:for-each select="ns:list"> <xsl:value-of select="ns:key/@value"/>: <xsl:value-of select="ns:leaf/ns:type/ns:enum/@name"/> </xsl:for-each>
+                                </xsl:if> </xsl:for-each>
+                                </xsl:for-each></xsl:if></xsl:for-each>
+                <xsl:text>&#xa;&#x9;&#x9;</xsl:text>
+                <xsl:variable name="vdu" select = "@name"/>
+                <xsl:value-of select="$vdu"/>_BlockStorage:
+                        type: tosca.nodes.BlockStorage
+                        properties:
+                                size: { get_input:storage_size }</xsl:if></xsl:for-each><xsl:for-each select="ns:list"><xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:container">
+                                <xsl:if test="@name='vnic'">
+                                                <xsl:variable name="vnic" select="ns:leaf/ns:type/ns:range/@value"/>
+                                                <xsl:call-template name="nic.loop">
+                                                <xsl:with-param name="from" select="1"/>
+                                                <xsl:with-param name="to" select="$vnic"/>
+                                                </xsl:call-template>
+                                        </xsl:if>
+                                        </xsl:for-each>
+                </xsl:if>
+                </xsl:for-each>
+                </xsl:for-each>
+                <xsl:for-each select="ns:list">
+                <xsl:if test="@name='connection-points'">
+                        <xsl:variable name="vnic" select="count(ns:leaf)"/>
+                        <xsl:call-template name="cp.loop">
+                        <xsl:with-param name="from" select="1"/>
+                        <xsl:with-param name="to" select="$vnic"/>
+                        </xsl:call-template>
+                </xsl:if>
+                </xsl:for-each>
+                <xsl:for-each select="ns:list">
+                <xsl:for-each select="ns:container"><xsl:if test="@name = 'resource'"><xsl:for-each select="ns:list"><xsl:if test="@name = 'network-interfaces'">
+                
+                        <xsl:variable name="vnic" select="count(ns:choice/ns:case)"/>
+                        <xsl:call-template name="internalCP.loop">
+                        <xsl:with-param name="from" select="1"/>
+                        <xsl:with-param name="to" select="$vnic"/>
+                        </xsl:call-template>
+                </xsl:if></xsl:for-each></xsl:if>
+                </xsl:for-each>
+                </xsl:for-each>
+                <xsl:for-each select="ns:list">
+                <xsl:if test="@name='internal-virtual-link'">
+                        <xsl:variable name="vnic" select="count(ns:leaf-list)"/>
+                        <xsl:call-template name="VL.loop">
+                        <xsl:with-param name="from" select="1"/>
+                        <xsl:with-param name="to" select="$vnic"/>
+                        </xsl:call-template>
+                </xsl:if>
+                </xsl:for-each>
 </xsl:for-each>
 </xsl:template>
 <xsl:template name="nic.loop">
@@ -146,20 +194,78 @@ topology_template:
     <xsl:if test="$from &lt;= $to">
     <xsl:text>&#xa;&#x9;</xsl:text>
     <xsl:value-of select="../../../@name"/>_network<xsl:value-of select="$from"/>:
-			type:tosca.nodes.network.Network
-			properties:
-			ip_version:4
-	<xsl:value-of select="../../@name"/>_port<xsl:value-of select="$from"/>:
-			type:tosca.nodes.network.Port
-			requirements:
-				- binding:
-					node:<xsl:value-of select="../../@name"/>
-				- link:
-					 node:<xsl:value-of select="../../../@name"/>_network<xsl:value-of select="$from"/>
-		<xsl:call-template name="nic.loop">
-		<xsl:with-param name="from" select="$from + 1"/>
-		<xsl:with-param name="to" select="$to"/>
-		</xsl:call-template>
+                        type:tosca.nodes.network.Network
+                        properties:
+                        ip_version:4
+        <xsl:value-of select="../../@name"/>_port<xsl:value-of select="$from"/>:
+                        type:tosca.nodes.network.Port
+                        requirements:
+                                - binding:
+                                        node:<xsl:value-of select="../../@name"/>
+                                - link:
+                                         node:<xsl:value-of select="../../../@name"/>_network<xsl:value-of select="$from"/>
+                <xsl:call-template name="nic.loop">
+                <xsl:with-param name="from" select="$from + 1"/>
+                <xsl:with-param name="to" select="$to"/>
+                </xsl:call-template>
+</xsl:if>
+</xsl:template>
+<xsl:template name="cp.loop">
+<xsl:param name="from"/>
+    <xsl:param name="to"/>
+    <xsl:if test="$from &lt;= $to">
+    <xsl:text>&#xa;&#x9;</xsl:text>
+                <xsl:value-of select="ns:key/@value"/>:
+             #Endpoint for the VNF
+             type: tosca.nodes.nfv.CP
+             properties:
+                 type: 
+             requirements:
+                <xsl:call-template name="cp.loop">
+                <xsl:with-param name="from" select="$from + 1"/>
+                <xsl:with-param name="to" select="$to"/>
+                </xsl:call-template>
+</xsl:if>
+</xsl:template>
+
+<xsl:template name="internalCP.loop">
+<xsl:param name="from"/>
+    <xsl:param name="to"/>
+    <xsl:if test="$from &lt;= $to">
+    <xsl:text>&#xa;&#x9;</xsl:text>
+        CP<xsl:value-of select="$from"/>:
+            type: tosca.nodes.nfv.CP
+            properties:
+                type:<xsl:value-of select="ns:choice/ns:case/ns:leaf/ns:type/@name"></xsl:value-of>
+            requirements:
+               - virtualLink:
+                   node: <xsl:value-of select="ns:choice/ns:case/ns:leaf/ns:type/ns:path/@value"/>
+               - virtualBinding:
+                   node: <xsl:value-of select="ns:choice/ns:case/ns:leaf/ns:type/ns:path/@value"/>
+            <xsl:call-template name="internalCP.loop">
+            <xsl:with-param name="from" select="$from + 1"/>
+            <xsl:with-param name="to" select="$to"/>
+            </xsl:call-template>
+</xsl:if>
+</xsl:template>
+
+<xsl:template name="VL.loop">
+<xsl:param name="from"/>
+    <xsl:param name="to"/>
+    <xsl:if test="$from &lt;= $to">
+    <xsl:text>&#xa;&#x9;</xsl:text>
+        VL<xsl:value-of select="$from"/>:
+            type: tosca.nodes.nfv.VL
+            properties:
+                network_name:
+                vendor:
+            capabilities:
+                -virtualLink
+                 occurrences:
+            <xsl:call-template name="VL.loop">
+            <xsl:with-param name="from" select="$from + 1"/>
+            <xsl:with-param name="to" select="$to"/>
+            </xsl:call-template>
 </xsl:if>
 </xsl:template>
 </xsl:stylesheet>
