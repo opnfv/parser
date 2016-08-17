@@ -18,13 +18,13 @@ from cliff.show import ShowOne
 import re
 
 
-class add_type(Command):
+class Add_type(Command):
 
     "Add policy type in a tosca file"
     log = logging.getLogger(__name__)
 
     def get_parser(self, prog_name):
-        parser = super(add_type, self).get_parser(prog_name)
+        parser = super(Add_type, self).get_parser(prog_name)
         parser.add_argument('--policy_type', dest='policy_type', nargs='?',
                             help='add policy type')
         parser.add_argument('--derived_from', dest='derived_from', nargs='?',

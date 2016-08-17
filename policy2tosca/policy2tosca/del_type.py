@@ -19,13 +19,13 @@ import yaml
 import json
 
 
-class delete_type(Command):
+class Delete_type(Command):
     "Delete policy type in a tosca file"
 
     log = logging.getLogger(__name__)
 
     def get_parser(self, prog_name):
-        parser = super(delete_type, self).get_parser(prog_name)
+        parser = super(Delete_type, self).get_parser(prog_name)
         parser.add_argument('--policy_type', dest='policy_type', nargs='?',
                             help='delete policy type')
         parser.add_argument('--source', dest='source', nargs='?',

@@ -19,13 +19,13 @@ import yaml
 import json
 
 
-class delete_definition(Command):
+class Delete_definition(Command):
     "Delete policy in a tosca file"
 
     log = logging.getLogger(__name__)
 
     def get_parser(self, prog_name):
-        parser = super(delete_definition, self).get_parser(prog_name)
+        parser = super(Delete_definition, self).get_parser(prog_name)
         parser.add_argument('--policy_name', dest='policy_name', nargs='?',
                             help='delete policy')
         parser.add_argument('--source', dest='source', nargs='?',

@@ -64,10 +64,10 @@ setup(
             'policy2tosca = policy2tosca.main:main'
         ],
         'cliff.demo': [
-            'delete-type = policy2tosca.del_type:delete_type',
-            'delete-definition = policy2tosca.del_definition:delete_definition',
-            'add-type = policy2tosca.add_type:add_type',
-            'add-definition = policy2tosca.add_definition:add_definition',
+            'delete-type = policy2tosca.del_type:Delete_type',
+            'delete-definition = policy2tosca.del_definition:Delete_definition',
+            'add-type = policy2tosca.Add_type:add_type',
+            'add-definition = policy2tosca.add_definition:Add_definition',
         ],
     },
 
