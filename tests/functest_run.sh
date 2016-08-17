@@ -21,6 +21,7 @@ PARSER_VM_FLAVOR=m1.tiny
 
 PARSER_USER=parser
 PARSER_PASSWORD=parser
+PARSER_EMAIL='shang.xiaodong@zte.com.cn'
 PARSER_PROJECT=parser
 PARSER_TENANT=${PARSER_PROJECT}
 
@@ -41,7 +42,7 @@ download_parser_image() {
     }
 
     echo "Download image ${PARSER_IMAGE_URL_FILE}..."
-    wget "${PARSER_IMAGE_URL}" -o "${PARSER_IMAGE_FILE}"
+    wget ${PARSER_IMAGE_URL} -o ${PARSER_IMAGE_FILE}
 }
 
 register_parser_image() {
@@ -53,36 +54,39 @@ register_parser_image() {
     echo "Registe image ${PARSER_IMAGE_NAME}..."
     openstack image create "${PARSER_IMAGE_NAME}" \
                            --public \
-                           --disk-format "${PARSER_IMAGE_FORMAT}" \
+                           --disk-format ${PARSER_IMAGE_FORMAT} \
                            --container-format bare \
-                           --file "${PARSER_IMAGE_FILE}"
+                           --file ${PARSER_IMAGE_FILE}
 }
 
 create_parser_user_and_project() {
 
-    # 1. create parser user.
-    openstack user list | grep -qwo "${PARSER_USER}" && {
-        echo "User ${PARSER_USER} exist, doesn't create again."
-    } || {
-        openstack user create "${PARSER_USER}" --password "${PARSER_PASSWORD}"
-        echo "Create user ${PARSER_USER} successful."
-    }
 
-    # 2. create parser project
+    # 1. create parser project
     openstack project list | grep -qwo "${PARSER_PROJECT}" && {
         echo "Project ${PARSER_PROJECT} exist, doesn't create agian."
     } || {
-        openstack project create "${PARSER_PROJECT}"
+        openstack project create ${PARSER_PROJECT} \
+            --description "Project for parser test"
         echo "Create project ${PARSER_PROJECT} successful."
     }
 
+    # 2. create parser user.
+    openstack user list | grep -qwo ${PARSER_USER} && {
+        echo "User ${PARSER_USER} exist, doesn't create again."
+    } || {
+        openstack user create ${PARSER_USER} --password ${PARSER_PASSWORD} \
+            --project ${PARSER_PROJECT} --email ${PARSER_EMAIL}
+        echo "Create user ${PARSER_USER} successful."
+    }
+
     # 3. grant role for parser user
-    openstack user role list "${PARSER_USER}" --project "${PARSER_PROJECT}" \
-    | grep -qow " ${PARSER_ROLE}" && {
+    openstack user role list ${PARSER_USER} --project ${PARSER_PROJECT} \
+    | grep -qow ${PARSER_ROLE} && {
         echo "User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
     } || {
-        openstack role add "${PARSER_ROLE}" --user "${PARSER_USER}" \
-                           --project "${PARSER_PROJECT}"
+        openstack role add ${PARSER_ROLE} --user ${PARSER_USER} \
+                           --project ${PARSER_PROJECT}
         echo "Grant user ${PARSER_USER} the role ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
     }
 
@@ -90,10 +94,10 @@ create_parser_user_and_project() {
 
 change_env_to_parser_user_project() {
 
-    export OS_USERNAME="$PARSER_USER"
-    export OS_PASSWORD="$PARSER_PASSWORD"
-    export OS_PROJECT_NAME="$PARSER_PROJECT"
-    export OS_TENANT_NAME="$PARSER_TENANT"
+    export OS_USERNAME=${PARSER_USER}
+    export OS_PASSWORD=${PARSER_PASSWORD}
+    export OS_PROJECT_NAME=${PARSER_PROJECT}
+    export OS_TENANT_NAME=${PARSER_TENANT}
 
 }
 
@@ -105,7 +109,7 @@ translator_and_deploy_vRNC() {
             openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
-        echo "switch openstak env to parser project"
+        echo "switch openstack env to parser project"
         change_env_to_parser_user_project
 
         # 3. Translator yaml
@@ -202,12 +206,12 @@ reset_parser_test() {
                               --project "${PARSER_PROJECT}"
     }
 
-    openstack project list | grep -qwo "${PARSER_PROJECT}" && {
-        openstack project delete "${PARSER_PROJECT}"
-    }
-
     openstack user list | grep -qow "${PARSER_USER}" && {
         openstack user delete "${PARSER_USER}"
+    }
+
+    openstack project list | grep -qwo "${PARSER_PROJECT}" && {
+        openstack project delete "${PARSER_PROJECT}"
     }
 
 }
