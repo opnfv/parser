@@ -4,23 +4,25 @@
 
 Parser configuration
 =====================
-Add a brief introduction to configure OPNFV with this specific installer
+Parser can be configured with any installer in current OPNFV.
 
 Pre-configuration activities
 -----------------------------
-Describe specific pre-configuration activities. Refer to Installations guide and release notes
+For parser, there is not specific pre-configuration activities.
 
 Hardware configuration
 -----------------------
-Describe the hardware configuration needed for this specific installer
+For parser, there is not hardware configuration needed for this specific installer.
 
 Jumphost configuration
 -----------------------
-Describe intial Jumphost configuration (network and software)needed in order to deploy the installer
+For parser, there is not intial Jumphost configuration (network and software)needed in order
+to deploy any installer.
 
 Platform components configuration
 ---------------------------------
-Describe the configuration of each component in the installer
+For tosca2heat components(tosca-parser and heat-translator) in parser,there are not specific
+configuration of each component in installer.
 
 
 
