@@ -195,12 +195,16 @@ class TranslateNodeTemplates(object):
                             if isinstance(value, dict):
                                 for node_name in value.values():
                                     for n in self.nodetemplates:
-                                        if n.name == node_name:
+                                        if n.name == node_name and \
+                                            n.is_derived_from(
+                                                "tosca.nodes.BlockStorage"):
                                             volume_name = node_name
                                             break
                             else:  # unreachable code !
                                 for n in self.nodetemplates:
-                                    if n.name == node_name:
+                                    if n.name == value and \
+                                        n.is_derived_from(
+                                            "tosca.nodes.BlockStorage"):
                                         volume_name = node_name
                                         break
 
