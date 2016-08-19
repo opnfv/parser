@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_921a1f6d",
+        "filename": "docs/userguide/featureusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-08-19T16:04:36Z",
+      "side": 1,
+      "message": "I think that installerconfig is about installer, such as fuel/apex, we have not requirements for these installer. and i have made reference to other projects?these are written  In the document.",
+      "parentUuid": "1a76adc5_be54c754",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_7e4e2fc3",
         "filename": "docs/userguide/testusage.rst",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_9e2c6bad",
+        "filename": "docs/userguide/testusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-08-19T16:04:36Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "1a76adc5_7e4e2fc3",
+      "range": {
+        "startLine": 24,
+        "startChar": 3,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_3ec8b721",
         "filename": "docs/userguide/testusage.rst",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-19T15:15:14Z",
       "side": 1,
       "message": "how to run vRNC test case?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 7
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7e062f22",
+        "filename": "docs/userguide/testusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2016-08-19T16:04:36Z",
+      "side": 1,
+      "message": "This is only about pep8 and unit test, i have already added vRNC test in feature guide.",
+      "parentUuid": "1a76adc5_3ec8b721",
       "range": {
         "startLine": 52,
         "startChar": 0,
