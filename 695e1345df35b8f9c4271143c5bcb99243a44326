@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_be54c754",
+        "filename": "docs/userguide/featureusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-08-19T15:15:14Z",
+      "side": 1,
+      "message": "move this section to installerconfig.rst file, Pre-configuration activities",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7e4e2fc3",
+        "filename": "docs/userguide/testusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-08-19T15:15:14Z",
+      "side": 1,
+      "message": "delete head 4 spaces",
+      "range": {
+        "startLine": 24,
+        "startChar": 3,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_3ec8b721",
+        "filename": "docs/userguide/testusage.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-08-19T15:15:14Z",
+      "side": 1,
+      "message": "how to run vRNC test case?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 7
+      },
+      "revId": "695e1345df35b8f9c4271143c5bcb99243a44326",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
