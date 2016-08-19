@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_9e746bfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-08-19T15:07:15Z",
+      "side": 1,
+      "message": "next time, just write the summary and don\u0027t include the code in the commit-message:)",
+      "revId": "13a0184de4e6c0c8f0935bfbd7627b72f142c6e9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
