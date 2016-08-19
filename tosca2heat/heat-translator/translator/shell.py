@@ -91,6 +91,12 @@ class TranslatorShell(object):
                             help=_('Whether to deploy the generated template '
                                    'or not.'))
 
+        parser.add_argument('--stack-name',
+                            metavar='<stack-name>',
+                            required=False,
+                            help=_('Stack name when deploy the generated '
+                                   'template.'))
+
         return parser
 
     def main(self, argv):
@@ -103,6 +109,7 @@ class TranslatorShell(object):
         output_file = args.output_file
         validate_only = args.validate_only
         deploy = args.deploy
+        stack_name = args.stack_name
 
         parsed_params = {}
         if args.parameters:
@@ -122,7 +129,7 @@ class TranslatorShell(object):
                 if heat_tpl:
                     if utils.check_for_env_variables() and deploy:
                         try:
-                            heatclient(heat_tpl, parsed_params)
+                            heatclient(heat_tpl, stack_name, parsed_params)
                         except Exception:
                             log.error(_("Unable to launch the heat stack"))
 
@@ -177,7 +184,7 @@ class TranslatorShell(object):
                 print(output)
 
 
-def heatclient(output, params):
+def heatclient(output, stack_name, params):
     try:
         access_dict = utils.get_ks_access_dict()
         endpoint = utils.get_url_for(access_dict, 'orchestration')
@@ -188,7 +195,9 @@ def heatclient(output, params):
         'Content-Type': 'application/json',
         'X-Auth-Token': token
     }
-    heat_stack_name = "heat_" + str(uuid.uuid4()).split("-")[0]
+
+    heat_stack_name = stack_name if stack_name else \
+        "heat_" + str(uuid.uuid4()).split("-")[0]
     output = yaml.load(output)
     output['heat_template_version'] = str(output['heat_template_version'])
     data = {
