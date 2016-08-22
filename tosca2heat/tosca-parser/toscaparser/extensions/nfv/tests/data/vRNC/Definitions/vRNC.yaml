@@ -120,7 +120,6 @@ topology_template:
         - local_storage:
             node: MM_BlockStorage
             relationship: Storage_attachesto
-        - high_availability: MM_Passive
       artifacts:
         #the VM image of MM
         vm_image: mm.image
@@ -184,8 +183,6 @@ topology_template:
             min_instances: 1
             max_instances: 12
             default_instances: 1
-      requirements:
-        - high_availability: CM_Passive
       artifacts:
         #the VM image of CM
         vm_image: cm.image
