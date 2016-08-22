@@ -129,7 +129,10 @@ class TranslatorShell(object):
                 if heat_tpl:
                     if utils.check_for_env_variables() and deploy:
                         try:
-                            heatclient(heat_tpl, stack_name, parsed_params)
+                            file_name = os.path.basename(
+                                os.path.splitext(template_file)[0])
+                            heatclient(heat_tpl, stack_name,
+                                       file_name, parsed_params)
                         except Exception:
                             log.error(_("Unable to launch the heat stack"))
 
@@ -184,7 +187,7 @@ class TranslatorShell(object):
                 print(output)
 
 
-def heatclient(output, stack_name, params):
+def heatclient(output, stack_name, file_name, params):
     try:
         access_dict = utils.get_ks_access_dict()
         endpoint = utils.get_url_for(access_dict, 'orchestration')
@@ -197,7 +200,7 @@ def heatclient(output, stack_name, params):
     }
 
     heat_stack_name = stack_name if stack_name else \
-        "heat_" + str(uuid.uuid4()).split("-")[0]
+        "heat_" + file_name + '_' + str(uuid.uuid4()).split("-")[0]
     output = yaml.load(output)
     output['heat_template_version'] = str(output['heat_template_version'])
     data = {

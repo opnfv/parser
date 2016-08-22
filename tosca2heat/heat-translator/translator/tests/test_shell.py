@@ -137,7 +137,7 @@ class ShellTest(TestCase):
                                       'demo', 'http://www.abc.com']
         try:
             data = {
-                'stack_name': 'heat_abcXXX',
+                'stack_name': 'heat_tosca_helloworld_abcXXX',
                 'parameters': {},
                 'template': {
                     'outputs': {},
