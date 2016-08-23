@@ -460,6 +460,12 @@ class ToscaHotTranslationTest(TestCase):
         params = {}
         self._test_successful_translation(tosca_file, hot_file, params)
 
+    def test_hot_translate_nfv_vRNC(self):
+        tosca_file = "../tests/data/vRNC/Definitions/vRNC.yaml"
+        hot_file = '../tests/data/hot_output/hot_vRNC.yaml'
+        params = {}
+        self._test_successful_translation(tosca_file, hot_file, params)
+
     def test_hot_translate_policy(self):
         tosca_file = '../tests/data/tosca_policies.yaml'
         hot_file = '../tests/data/hot_output/hot_policies.yaml'

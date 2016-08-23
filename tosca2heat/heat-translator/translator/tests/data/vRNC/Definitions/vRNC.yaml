@@ -532,15 +532,15 @@ topology_template:
 
   policies:
     - AntiAffinityPolicy:
-        # type: tosca.policies.Placement
-        type: tosca.policies.Placement.Antilocate
+        type: tosca.policies.Placement
+        # type: tosca.policies.Placement.Antilocate
         # Current only placement in openstack community
         description: Apply anti-locate placement policy to group
         targets: [ AntiAffinityServerGroup ]
 
     - AffinityPolicy:
-        #type: tosca.policies.Placement
-        type: tosca.policies.Placement.Colocate
+        type: tosca.policies.Placement
+        # type: tosca.policies.Placement.Colocate
         # Current only placement in openstack community
         description: Apply anti-locate placement policy to group
         targets: [ AffinityServerGroup ]
