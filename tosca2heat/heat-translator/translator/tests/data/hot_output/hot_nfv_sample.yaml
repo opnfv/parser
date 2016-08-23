@@ -15,6 +15,7 @@ resources:
       user_data_format: SOFTWARE_CONFIG
     depends_on:
       - VDU2
+
   VDU2:
     type: OS::Nova::Server
     properties:
@@ -30,14 +31,22 @@ resources:
       fixed_ips:
         - ip_address: '192.168.0.55'
       network: { get_resource: VL1 }
+
   CP2:
     type: OS::Neutron::Port
     properties:
       fixed_ips:
         - ip_address: '192.168.0.56'
       network: { get_resource: VL1 }
+
   VL1:
     type: OS::Neutron::Net
+    properties:
+      name: test_net
+      value_specs:
+        provider:network_type: vxlan
+        provider:segmentation_id: 100
+
   VL1_subnet:
     type: OS::Neutron::Subnet
     properties:
@@ -48,5 +57,6 @@ resources:
       gateway_ip: 192.168.0.1
       cidr: 192.168.0.0/24
       network: { get_resource: VL1 }
+
 outputs: {}
 
