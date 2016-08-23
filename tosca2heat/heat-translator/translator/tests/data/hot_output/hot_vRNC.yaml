@@ -1,0 +1,505 @@
+heat_template_version: 2013-05-23
+
+description: >
+  TOSCA simple profile for RNC   1. Compute Node MM, CM, DM, LB...     1.1 MM:
+  MaintainModule;     1.2 CM: Control Module;     1.3 DM: Data Module;     1.4 LB:
+  LineCard Module   2. Network Node VL and CP
+
+parameters:
+  mm_storage_size:
+    type: number
+    description: mm additional block storage size
+    default: 1
+    constraints:
+    - range:
+        max: 200
+        min: 1
+  vendor:
+    type: string
+    description: name of the vendor who generate this VNF
+    default: ZTE
+  id:
+    type: string
+    description: ID of this VNF
+    default: UMTS
+  version:
+    type: string
+    description: version of the software for this VNF
+    default: 1.0
+
+resources:
+
+  MM_Active_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: MM_Active_Port_EMS }
+      - port: { get_resource: MM_Active_Port_EXTERMEDIA }
+      - port: { get_resource: MM_Active_Port_CTRL }
+      - port: { get_resource: MM_Active_Port_INTERMEDIA }
+
+  MM_Active_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/MM/mm_install.sh
+
+  MM_Active_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: MM_Active_create_config
+      server:
+        get_resource: MM_Active_Host
+
+  MM_Active_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/MM/mm_active_configure.sh
+
+  MM_Active_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: MM_Active_configure_config
+      server:
+        get_resource: MM_Active_Host
+    depends_on:
+    - MM_Active_create_deploy
+
+  MM_Passive_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: MM_Passive_Port_EMS }
+      - port: { get_resource: MM_Passive_Port_EXTERMEDIA }
+      - port: { get_resource: MM_Passive_Port_CTRL }
+      - port: { get_resource: MM_Passive_Port_INTERMEDIA }
+    depends_on:
+    - MM_Active_configure_deploy
+
+  MM_Passive_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/MM/mm_install.sh
+
+  MM_Passive_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: MM_Passive_create_config
+      server:
+        get_resource: MM_Passive_Host
+
+  MM_Passive_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/MM/mm_passvie_configure.sh
+
+  MM_Passive_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: MM_Passive_configure_config
+      server:
+        get_resource: MM_Passive_Host
+    depends_on:
+    - MM_Passive_create_deploy
+
+  MM_BlockStorage:
+    type: OS::Cinder::Volume
+    properties:
+      size:
+        get_param: mm_storage_size
+
+  CM_Active_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: CM_Active_Port_CTRL }
+      - port: { get_resource: CM_Active_Port_INTERMEDIA }
+
+  CM_Active_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/CM/cm_install.sh
+
+  CM_Active_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: CM_Active_create_config
+      server:
+        get_resource: CM_Active_Host
+
+  CM_Active_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/CM/cm_active_configure.sh
+
+  CM_Active_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: CM_Active_configure_config
+      server:
+        get_resource: CM_Active_Host
+    depends_on:
+    - CM_Active_create_deploy
+
+  CM_Passive_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: CM_Passive_Port_CTRL }
+      - port: { get_resource: CM_Passive_Port_INTERMEDIA }
+    depends_on:
+    - CM_Active_configure_deploy
+
+  CM_Passive_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/CM/cm_install.sh
+
+  CM_Passive_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: CM_Passive_create_config
+      server:
+        get_resource: CM_Passive_Host
+
+  CM_Passive_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/CM/cm_passvie_configure.sh
+
+  CM_Passive_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: CM_Passive_configure_config
+      server:
+        get_resource: CM_Passive_Host
+    depends_on:
+    - CM_Passive_create_deploy
+
+  DM_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: DM_Port_CTRL }
+      - port: { get_resource: DM_Port_INTERMEDIA }
+
+  DM_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/DM/dm_install.sh
+
+  DM_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: DM_create_config
+      server:
+        get_resource: DM_Host
+
+  DM_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/DM/dm_configure.sh
+
+  DM_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: DM_configure_config
+      server:
+        get_resource: DM_Host
+    depends_on:
+    - DM_create_deploy
+
+  LB_Host:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.medium
+      user_data_format: SOFTWARE_CONFIG
+      image: cirros-0.3.2-x86_64-uec
+      networks:
+      - port: { get_resource: LB_Port_CTRL }
+      - port: { get_resource: LB_Port_INTERMEDIA }
+      - port: { get_resource: LB_Port_EXTERMEDIA }
+
+  LB_create_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/LB/lb_install.sh
+
+  LB_create_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: LB_create_config
+      server:
+        get_resource: LB_Host
+
+  LB_configure_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        get_file: ./Scripts/LB/lb_configure.sh
+
+  LB_configure_deploy:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: LB_configure_config
+      server:
+        get_resource: LB_Host
+    depends_on:
+    - LB_create_deploy
+
+  EXTERMEDIA_Net:
+    type: OS::Neutron::Net
+    properties:
+      value_specs:
+        provider:network_type: vxlan
+        provider:segmentation_id: 100
+      name: ExterMdedia_Net
+
+  EMS_Net:
+    type: OS::Neutron::Net
+    properties:
+      value_specs:
+        provider:network_type: vxlan
+        provider:segmentation_id: 101
+      name: Ems_Net
+
+  INTERMEDIA_Net:
+    type: OS::Neutron::Net
+    properties:
+      value_specs:
+        provider:network_type: vxlan
+        provider:segmentation_id: 111
+      name: InterMedia_Net
+
+  CTRL_Net:
+    type: OS::Neutron::Net
+    properties:
+      value_specs:
+        provider:network_type: vxlan
+        provider:segmentation_id: 110
+      name: Ctrl_Net
+
+  EXTERMEDIA_Net_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      ip_version: 4
+      cidr: 172.1.0.0/16
+      gateway_ip: 172.1.0.1
+      network: { get_resource: EXTERMEDIA_Net }
+      allocation_pools:
+      - start: 172.1.0.2
+        end: 172.1.2.254
+
+  EMS_Net_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      ip_version: 4
+      cidr: 129.0.0.0/24
+      gateway_ip: 129.0.0.1
+      network: { get_resource: EMS_Net }
+      allocation_pools:
+      - start: 129.0.0.2
+        end: 129.0.0.64
+
+  INTERMEDIA_Net_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      ip_version: 4
+      cidr: 10.0.0.0/8
+      network: { get_resource: INTERMEDIA_Net }
+      allocation_pools:
+      - start: 10.1.0.1
+        end: 10.1.2.254
+
+  CTRL_Net_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      ip_version: 4
+      cidr: 128.0.0.0/8
+      network: { get_resource: CTRL_Net }
+
+  MM_Active_Port_EXTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EMS_Net }
+
+  MM_Active_Port_EMS:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EMS_Net }
+
+  MM_Active_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EXTERMEDIA_Net }
+
+  MM_Active_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  MM_Passive_Port_EXTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EMS_Net }
+
+  MM_Passive_Port_EMS:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EMS_Net }
+
+  MM_Passive_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EXTERMEDIA_Net }
+
+  MM_Passive_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  CM_Active_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: INTERMEDIA_Net }
+
+  CM_Passive_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: INTERMEDIA_Net }
+
+  CM_Active_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  CM_Passive_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  DM_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: INTERMEDIA_Net }
+
+  DM_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  LB_Port_EXTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: EXTERMEDIA_Net }
+
+  LB_Port_INTERMEDIA:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: INTERMEDIA_Net }
+
+  LB_Port_CTRL:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: CTRL_Net }
+
+  AntiAffinityPolicy:
+    type: OS::Nova::ServerGroup
+    properties:
+      name: AntiAffinityPolicy
+      policies:
+      - affinity
+
+  AffinityPolicy:
+    type: OS::Nova::ServerGroup
+    properties:
+      name: AffinityPolicy
+      policies:
+      - affinity
+
+outputs:
+
+  private_ip_of_MM:
+    description: The private IP address of the MM.
+    value:
+      get_attr:
+      - MM_Active_Host
+      - networks
+      - private
+      - 0
+
+  private_ip_of_CM:
+    description: The private IP address of the CM.
+    value:
+      get_attr:
+      - CM_Active_Host
+      - networks
+      - private
+      - 0
+
+  private_ip_of_DM:
+    description: The private IP address of the DM.
+    value:
+      get_attr:
+      - DM_Host
+      - networks
+      - private
+      - 0
+
+  private_ip_of_LB:
+    description: The private IP address of the LB.
+    value:
+      get_attr:
+      - LB_Host
+      - networks
+      - private
+      - 0
