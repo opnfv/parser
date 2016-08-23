@@ -135,7 +135,7 @@ topology_template:
           create:
             implementation: ./Scripts/MM/mm_install.sh
           configure:
-            implementation: ./Scripts/MM/mm_passvie_configure.sh
+            implementation: ./Scripts/MM/mm_passive_configure.sh
 
     MM_Passive_Host:
       type: rnc.nodes.compute.MM
@@ -207,7 +207,7 @@ topology_template:
           create:
             implementation: ./Scripts/CM/cm_install.sh
           configure:
-            implementation: ./Scripts/CM/cm_passvie_configure.sh
+            implementation: ./Scripts/CM/cm_passive_configure.sh
 
     CM_Passive_Host:
       type: rnc.nodes.compute.CM
@@ -350,7 +350,7 @@ topology_template:
         is_default: true
       requirements:
         - virtualBinding: MM_Active_Host
-        - virtualLink: EMS_Net
+        - virtualLink: EXTERMEDIA_Net
 
     MM_Active_Port_CTRL:
       type: rnc.nodes.CP.MM
@@ -368,7 +368,7 @@ topology_template:
         is_default: false
       requirements:
         - virtualBinding: MM_Active_Host
-        - virtualLink: EXTERMEDIA_Net
+        - virtualLink: INTERMEDIA_Net
 
     MM_Passive_Port_EMS:
       type: rnc.nodes.CP.MM
@@ -532,15 +532,15 @@ topology_template:
 
   policies:
     - AntiAffinityPolicy:
-        # type: tosca.policies.Placement
-        type: tosca.policies.Placement.Antilocate
+        type: tosca.policies.Placement
+        # type: tosca.policies.Placement.Antilocate
         # Current only placement in openstack community
         description: Apply anti-locate placement policy to group
         targets: [ AntiAffinityServerGroup ]
 
     - AffinityPolicy:
-        #type: tosca.policies.Placement
-        type: tosca.policies.Placement.Colocate
+        type: tosca.policies.Placement
+        # type: tosca.policies.Placement.Colocate
         # Current only placement in openstack community
         description: Apply anti-locate placement policy to group
         targets: [ AffinityServerGroup ]
