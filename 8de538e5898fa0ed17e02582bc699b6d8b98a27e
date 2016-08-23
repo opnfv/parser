@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_9c41ce3b",
+        "filename": "tosca2heat/heat-translator/translator/tests/data/vRNC/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-08-23T14:16:08Z",
+      "side": 1,
+      "message": "next time, please us a markdown file",
+      "revId": "8de538e5898fa0ed17e02582bc699b6d8b98a27e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
