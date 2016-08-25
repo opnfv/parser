@@ -9,7 +9,13 @@
 ##############################################################################
 
 PARSER_CI_DEBUG=${CI_DEBUG:-false}
-[[ "${PARSER_CI_DEBUG}" == "true" ]] && set -x
+[[ "${PARSER_CI_DEBUG}" == "true" ]] && {
+    set -x
+    debug="--debug"
+} || {
+    set +x
+    debug=""
+}
 
 PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
 PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
@@ -36,23 +42,25 @@ VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
 
 download_parser_image() {
     [ -e "${PARSER_IMAGE_URL_FILE}" ] && {
-        echo "Image ${PARSER_IMAGE_URL_FILE} has bee cached, needn't download again."
+        echo "  Image ${PARSER_IMAGE_URL_FILE} has bee cached, needn't download again."
         cp ${PARSER_IMAGE_URL_FILE} ${PARSER_IMAGE_FILE}
         return 0
     }
 
-    echo "Download image ${PARSER_IMAGE_URL_FILE}..."
+    echo ""
+    echo "  Download image ${PARSER_IMAGE_URL_FILE}..."
     wget ${PARSER_IMAGE_URL} -o ${PARSER_IMAGE_FILE}
 }
 
 register_parser_image() {
-    openstack image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
-        echo "Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
+    openstack ${debug} image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
+        echo "  Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
         return 0
     }
 
-    echo "Registe image ${PARSER_IMAGE_NAME}..."
-    openstack image create "${PARSER_IMAGE_NAME}" \
+    echo ""
+    echo "  Registe image ${PARSER_IMAGE_NAME}..."
+    openstack ${debug} image create "${PARSER_IMAGE_NAME}" \
                            --public \
                            --disk-format ${PARSER_IMAGE_FORMAT} \
                            --container-format bare \
@@ -61,33 +69,32 @@ register_parser_image() {
 
 create_parser_user_and_project() {
 
-
     # 1. create parser project
-    openstack project list | grep -qwo "${PARSER_PROJECT}" && {
-        echo "Project ${PARSER_PROJECT} exist, doesn't create agian."
+    openstack ${debug} project list | grep -qwo "${PARSER_PROJECT}" && {
+        echo "  Project ${PARSER_PROJECT} exist, doesn't create agian."
     } || {
-        openstack project create ${PARSER_PROJECT} \
+        openstack  ${debug} project create ${PARSER_PROJECT} \
             --description "Project for parser test"
-        echo "Create project ${PARSER_PROJECT} successful."
+        echo "  Create project ${PARSER_PROJECT} successful."
     }
 
     # 2. create parser user.
-    openstack user list | grep -qwo ${PARSER_USER} && {
-        echo "User ${PARSER_USER} exist, doesn't create again."
+    openstack ${debug} user list | grep -qwo ${PARSER_USER} && {
+        echo "  User ${PARSER_USER} exist, doesn't create again."
     } || {
-        openstack user create ${PARSER_USER} --password ${PARSER_PASSWORD} \
+        openstack ${debug} user create ${PARSER_USER} --password ${PARSER_PASSWORD} \
             --project ${PARSER_PROJECT} --email ${PARSER_EMAIL}
-        echo "Create user ${PARSER_USER} successful."
+        echo "  Create user ${PARSER_USER} successful."
     }
 
     # 3. grant role for parser user
-    openstack user role list ${PARSER_USER} --project ${PARSER_PROJECT} \
+    openstack ${debug} user role list ${PARSER_USER} --project ${PARSER_PROJECT} \
     | grep -qow ${PARSER_ROLE} && {
-        echo "User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
+        echo "  User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
     } || {
-        openstack role add ${PARSER_ROLE} --user ${PARSER_USER} \
+        openstack ${debug} role add ${PARSER_ROLE} --user ${PARSER_USER} \
                            --project ${PARSER_PROJECT}
-        echo "Grant user ${PARSER_USER} the role ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
+        echo "  Grant user ${PARSER_USER} the role ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
     }
 
 }
@@ -102,116 +109,97 @@ change_env_to_parser_user_project() {
 }
 
 translator_and_deploy_vRNC() {
+
     (
         # 1. Delete parser stack ${PARSER_STACK_NAME}, use admin user in admin project
-        openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
-            echo "stack ${PARSER_STACK_NAME} exist, delete it first."
+        openstack ${debug} stack list | grep -qow ${PARSER_STACK_NAME} && {
+            echo "  Stack ${PARSER_STACK_NAME} exist, delete it first."
             openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
-        echo "switch openstack env to parser project"
+        echo "  Switch openstack env to parser project"
         change_env_to_parser_user_project
 
         # 3. Translator yaml
-        echo "Translator input file ${VRNC_INPUT_TEMPLATE_FILE} and output is ${VRNC_OUTPUT_TEMPLATE_FILE}"
+        echo "  Translator use parser:"
+        echo "    1. Input  file: ${VRNC_INPUT_TEMPLATE_FILE}"
+        echo "    2. Output file: ${VRNC_OUTPUT_TEMPLATE_FILE}"
         heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} \
             --output-file ${VRNC_OUTPUT_TEMPLATE_FILE}
 
         # 4. deploy vRNC
-        echo "Deploy stack..."
-        openstack stack create -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
+        echo "  Deploy stack..."
+        [[ "${PARSER_CI_DEBUG}" == "true" ]] && debug="--debug" || debug=""
+        openstack ${debug} stack create --timeout 30 --wait --enable-rollback \
+                                        -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
 
-        # 5. Wait for create vRNC
-        echo "Waiting for deploying stack..."
-        sleep 180
-
-        # 6. Validate the deploy result.
-        echo "Checking the result of deployment..."
-        # 1). check vdu
-        openstack server list | grep -qwo "${PARSER_STACK_NAME}" && {
-            echo "  Check VDU successful."
+        # 5. Validate the deploy result.
+        echo "  Checking the result of deployment..."
+        openstack ${debug} stack show ${PARSER_STACK_NAME} | grep -qow "CREATE_COMPLETE" && {
+            echo "    Check the result of deployment successfully."
         } || {
-            echo "  Check VDU unsuccessful."
-            exit 1
+            echo "    Check the result of deployment unsuccessfully."
         }
-        # 2). check VL-network
-        openstack network list | grep -qwo "${PARSER_STACK_NAME}" && {
-            echo "  Check VL-network successful."
-        } || {
-            echo "  Check VL-network unsuccessful."
-            exit 1
-        }
-        # 3). check VL-subnet
-        openstack subnet list | grep -qwo "${PARSER_STACK_NAME}" && {
-            echo "  Check VL-subnet successful."
-        } || {
-            echo "  Check VL-subnet unsuccessful."
-            exit 1
-        }
-        # 4). check port
-        neutron port-list | grep -qwo "${PARSER_STACK_NAME}" && {
-            echo "  Check CP successful."
-        } || {
-            echo "  Check CP unsuccessful."
-            exit 1
-        }
-        echo "Checkthe result of deployment successfully."
     )
 
 }
 
 reset_parser_test() {
+
     set +e
 
-    echo "cleanup..."
+    echo "  Clean-up the environment..."
     # 1. Delete resource created by parser user
     (
         # 1). Switch env to parser project temporally
         change_env_to_parser_user_project
 
         # 2). Delete the stack ${PARSER_STACK_NAME}
-        openstack stack list | grep -qow ${PARSER_STACK_NAME} && {
-            echo "stack ${PARSER_STACK_NAME} has been created, delete it after test."
-            openstack stack delete --yes --wait ${PARSER_STACK_NAME}
+        openstack ${debug} stack list | grep -qow ${PARSER_STACK_NAME} && {
+            echo "    Stack ${PARSER_STACK_NAME} has been created, delete it after test."
+            openstack ${debug} stack delete --yes --wait ${PARSER_STACK_NAME}
         }
 
         # 3). Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
         [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
-            echo "delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
+            echo "    Delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
             rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
         }
 
         # 4). Delete tmp image ${PARSER_IMAGE_FILE}
         [[ -e ${PARSER_IMAGE_FILE} ]] && {
-            echo "delete local image file ${PARSER_IMAGE_FILE} after test."
+            echo "    Delete local image file ${PARSER_IMAGE_FILE} after test."
             rm -fr ${PARSER_IMAGE_FILE}
         }
 
         # 5). Delete tmp image ${PARSER_IMAGE_URL_FILE}
         [ -e ${PARSER_IMAGE_URL_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
-            echo "delete local URL image file ${PARSER_IMAGE_URL_FILE} after test."
+            echo "    Delete local URL image file ${PARSER_IMAGE_URL_FILE} after test."
             rm -fr ${PARSER_IMAGE_URL_FILE}
         }
 
         # 6). Delete image from openstack
-        parser_image_id=$(openstack image list | grep -w "${PARSER_IMAGE_NAME}" | awk '{print $2}')
+        parser_image_id=$(openstack ${debug} image list | grep -w "${PARSER_IMAGE_NAME}" | awk '{print $2}')
         [[ -n "${parser_image_id}" ]] && openstack image delete "${parser_image_id}"
 
         sleep 3
     )
 
     # 2. Delete role, user and project
-    openstack user role list "${PARSER_USER}" --project "${PARSER_PROJECT}" \
-    | grep -qow " ${PARSER_ROLE}" && {
-        openstack role remove "${PARSER_ROLE}" --user "${PARSER_USER}" \
+    echo "    Delete user ${PARSER_USER}'s role from project ${PARSER_PROJECT}"
+    openstack ${debug} user role list "${PARSER_USER}" --project "${PARSER_PROJECT}" \
+    | grep -qow "${PARSER_ROLE}" && {
+        openstack ${debug} role remove "${PARSER_ROLE}" --user "${PARSER_USER}" \
                               --project "${PARSER_PROJECT}"
     }
 
-    openstack user list | grep -qow "${PARSER_USER}" && {
+    echo "    Delete user ${PARSER_USER}"
+    openstack ${debug} user list | grep -qow "${PARSER_USER}" && {
         openstack user delete "${PARSER_USER}"
     }
 
-    openstack project list | grep -qwo "${PARSER_PROJECT}" && {
+    echo "    Delete project ${PARSER_PROJECT}"
+    openstack ${debug} project list | grep -qwo "${PARSER_PROJECT}" && {
         openstack project delete "${PARSER_PROJECT}"
     }
 
@@ -236,10 +224,14 @@ echo "|========= 1/4. Preparing VM image for parser...     =========|"
 download_parser_image
 register_parser_image
 
+echo ""
 echo "|========= 2/4. Creating test user for parser...     =========|"
 create_parser_user_and_project
 
+echo ""
 echo "|========= 3/4. Parse -> translate -> deploy vRNC... =========|"
 translator_and_deploy_vRNC
 
+echo ""
 echo "|========= 4/4. Test ok...                           =========|"
+echo ""
