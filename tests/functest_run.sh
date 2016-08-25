@@ -36,9 +36,10 @@ PARSER_ROLE=admin
 PARSER_STACK_NAME=vRNC_Stack
 
 # VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
-VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
-
+VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
 VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
+
+VRNC_INPUT_TEMPLATE_FILE=${VRNC_INPUT_TEMPLATE_RAW_FILE%.*}_patch.yaml
 
 download_parser_image() {
     [ -e "${PARSER_IMAGE_URL_FILE}" ] && {
@@ -108,6 +109,33 @@ change_env_to_parser_user_project() {
 
 }
 
+
+make_patch_for_provider_network() {
+
+    # copy temp file
+    echo "    Patch provider network for input file:"
+    echo "        Raw yaml file: ${VRNC_INPUT_TEMPLATE_RAW_FILE}"
+    echo "        Patched yaml file: ${VRNC_INPUT_TEMPLATE_FILE}"
+    cp ${VRNC_INPUT_TEMPLATE_RAW_FILE} ${VRNC_INPUT_TEMPLATE_FILE}
+    echo ""
+
+    # Delete the provider:network_type
+    echo "    Patch provider:network_type..."
+    sed -i '/network_type:/d' ${VRNC_INPUT_TEMPLATE_FILE}
+
+    # Delete the provider:segmentation_id
+    echo "    Patch provider:segmentation_id..."
+    sed -i '/segmentation_id:/d' ${VRNC_INPUT_TEMPLATE_FILE}
+
+    # Delete the provider:physical_network
+    echo "    Patch provider:physical_network..."
+    sed -i '/physical_network:/d' ${VRNC_INPUT_TEMPLATE_FILE}
+
+    echo ""
+
+}
+
+
 translator_and_deploy_vRNC() {
 
     (
@@ -119,21 +147,27 @@ translator_and_deploy_vRNC() {
         # 2. Switch env to parser project temporally
         echo "  Switch openstack env to parser project"
         change_env_to_parser_user_project
+        echo ""
 
-        # 3. Translator yaml
+        # 3. Patch provider network
+        echo "  Make patch for provider network"
+        make_patch_for_provider_network
+
+        # 4. Translator yaml
         echo "  Translator use parser:"
         echo "    1. Input  file: ${VRNC_INPUT_TEMPLATE_FILE}"
         echo "    2. Output file: ${VRNC_OUTPUT_TEMPLATE_FILE}"
         heat-translator --template-type tosca --template-file ${VRNC_INPUT_TEMPLATE_FILE} \
             --output-file ${VRNC_OUTPUT_TEMPLATE_FILE}
+        echo ""
 
-        # 4. deploy vRNC
+        # 5. deploy vRNC
         echo "  Deploy stack..."
         [[ "${PARSER_CI_DEBUG}" == "true" ]] && debug="--debug" || debug=""
         openstack ${debug} stack create --timeout 30 --wait --enable-rollback \
                                         -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
 
-        # 5. Validate the deploy result.
+        # 6. Validate the deploy result.
         echo "  Checking the result of deployment..."
         openstack ${debug} stack show ${PARSER_STACK_NAME} | grep -qow "CREATE_COMPLETE" && {
             echo "    Check the result of deployment successfully."
@@ -160,25 +194,31 @@ reset_parser_test() {
             openstack ${debug} stack delete --yes --wait ${PARSER_STACK_NAME}
         }
 
-        # 3). Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
+        # 3). Delete patch tmp file ${VRNC_INPUT_TEMPLATE_FILE}
+        [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
+            echo "    Delete patch temp file ${VRNC_INPUT_TEMPLATE_FILE} after test."
+            rm -fr ${VRNC_INPUT_TEMPLATE_FILE}
+        }
+
+        # 4). Delete hot tmp file ${VRNC_OUTPUT_TEMPLATE_FILE}
         [ -e ${VRNC_OUTPUT_TEMPLATE_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
             echo "    Delete hot temp file ${VRNC_OUTPUT_TEMPLATE_FILE} after test."
             rm -fr ${VRNC_OUTPUT_TEMPLATE_FILE}
         }
 
-        # 4). Delete tmp image ${PARSER_IMAGE_FILE}
+        # 5). Delete tmp image ${PARSER_IMAGE_FILE}
         [[ -e ${PARSER_IMAGE_FILE} ]] && {
             echo "    Delete local image file ${PARSER_IMAGE_FILE} after test."
             rm -fr ${PARSER_IMAGE_FILE}
         }
 
-        # 5). Delete tmp image ${PARSER_IMAGE_URL_FILE}
+        # 6). Delete tmp image ${PARSER_IMAGE_URL_FILE}
         [ -e ${PARSER_IMAGE_URL_FILE} -a ${PARSER_CI_DEBUG} != "true" ] && {
             echo "    Delete local URL image file ${PARSER_IMAGE_URL_FILE} after test."
             rm -fr ${PARSER_IMAGE_URL_FILE}
         }
 
-        # 6). Delete image from openstack
+        # 7). Delete image from openstack
         parser_image_id=$(openstack ${debug} image list | grep -w "${PARSER_IMAGE_NAME}" | awk '{print $2}')
         [[ -n "${parser_image_id}" ]] && openstack image delete "${parser_image_id}"
 
