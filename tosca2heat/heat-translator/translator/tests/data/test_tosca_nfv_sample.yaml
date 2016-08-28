@@ -23,6 +23,17 @@ topology_template:
             version: 6.5
       requirements:
         - high_availability: VDU2
+        - local_storage:
+            node: BlockStorage
+            relationship:
+              type: tosca.relationships.AttachesTo
+              properties:
+                location: /data
+
+    BlockStorage:
+      type: tosca.nodes.BlockStorage
+      properties:
+        size: 10 GB
 
     VDU2:
       type: tosca.nodes.nfv.VDU
