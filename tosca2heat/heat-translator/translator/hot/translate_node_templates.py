@@ -533,14 +533,20 @@ class TranslateNodeTemplates(object):
     def _get_attachment_node(self, node, suffix, volume_name):
         attach = False
         ntpl = self.nodetemplates
-        for key, value in node.relationships.items():
-            if key.is_derived_from('tosca.relationships.AttachesTo'):
-                if value.is_derived_from('tosca.nodes.BlockStorage'):
+        for key_r, value_n in node.relationships.items():
+            if key_r.is_derived_from('tosca.relationships.AttachesTo'):
+                if value_n.is_derived_from('tosca.nodes.BlockStorage'):
                     attach = True
             if attach:
                 relationship_tpl = None
                 for req in node.requirements:
                     for key, val in req.items():
+                        if isinstance(val, dict):
+                            if value_n.name != val.get('node'):
+                                continue
+                        else:
+                            if value_n.name != val:
+                                continue
                         attach = val
                         relship = val.get('relationship')
                         for rkey, rval in val.items():
