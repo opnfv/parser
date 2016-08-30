@@ -10,8 +10,8 @@ topology_template:
       capabilities:
         host:
          properties:
-           num_cpus: 2
-           disk_size: 10 GB
+           num_cpus: 1
+           disk_size: 1 GB
            mem_size: 512 MB
         # Guest Operating System properties
         os:
@@ -40,8 +40,8 @@ topology_template:
       capabilities:
         host:
          properties:
-           num_cpus: 2
-           disk_size: 10 GB
+           num_cpus: 1
+           disk_size: 1 GB
            mem_size: 512 MB
         # Guest Operating System properties
         os:
