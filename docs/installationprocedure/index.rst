@@ -3,13 +3,12 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Ericsson AB and others.
 
-==========================
-Parser Configuration Guide
-==========================
+********************************************
+Parser Configuration and Configuration Guide
+********************************************
 
 .. toctree::
    :numbered:
    :maxdepth: 2
 
-.. include:: featureconfig.rst
-.. include:: installerconfig.rst
+   feature.configuration.rst
