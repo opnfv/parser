@@ -52,8 +52,7 @@ resources:
           get_attr:
           - mongo_server
           - networks
-          - private
-          - 0
+
       server:
         get_resource: app_server
     depends_on:
@@ -110,8 +109,7 @@ resources:
           get_attr:
           - mongo_server
           - networks
-          - private
-          - 0
+
       server:
         get_resource: mongo_server
     depends_on:
@@ -186,8 +184,6 @@ resources:
           get_attr:
           - logstash_server
           - networks
-          - private
-          - 0
       server:
         get_resource: app_server
     depends_on:
@@ -279,8 +275,6 @@ resources:
           get_attr:
           - logstash_server
           - networks
-          - private
-          - 0
       server:
         get_resource: app_server
     depends_on:
@@ -355,8 +349,6 @@ resources:
           get_attr:
           - elasticsearch_server
           - networks
-          - private
-          - 0
       server:
         get_resource: logstash_server
     depends_on:
@@ -430,14 +422,11 @@ resources:
           get_attr:
           - elasticsearch_server
           - networks
-          - private
-          - 0
         kibana_ip:
           get_attr:
           - kibana_server
           - networks
-          - private
-          - 0
+
       server:
         get_resource: kibana_server
     depends_on:
@@ -510,8 +499,6 @@ outputs:
       get_attr:
       - app_server
       - networks
-      - private
-      - 0
 
   mongodb_url:
     description: URL for the mongodb server.
@@ -519,8 +506,6 @@ outputs:
       get_attr:
       - mongo_server
       - networks
-      - private
-      - 0
 
   logstash_url:
     description: URL for the logstash server.
@@ -528,8 +513,6 @@ outputs:
       get_attr:
       - logstash_server
       - networks
-      - private
-      - 0
 
   elasticsearch_url:
     description: URL for the elasticsearch server.
@@ -537,8 +520,6 @@ outputs:
       get_attr:
       - elasticsearch_server
       - networks
-      - private
-      - 0
 
   kibana_url:
     description: URL for the kibana server.
@@ -546,6 +527,4 @@ outputs:
       get_attr:
       - kibana_server
       - networks
-      - private
-      - 0
 

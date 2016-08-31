@@ -32,5 +32,3 @@ outputs:
       get_attr:
       - my_server
       - networks
-      - private
-      - 0

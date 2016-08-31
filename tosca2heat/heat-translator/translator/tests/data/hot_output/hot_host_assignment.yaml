@@ -59,8 +59,6 @@ resources:
           get_attr:
           - logstash_server
           - networks
-          - private
-          - 0
       server:
         get_resource: app_server
     depends_on:

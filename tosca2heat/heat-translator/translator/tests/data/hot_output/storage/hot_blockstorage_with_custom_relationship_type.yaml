@@ -64,8 +64,6 @@ outputs:
       get_attr:
       - my_server
       - networks
-      - private
-      - 0
   volume_id:
     description: The volume id of the block storage instance.
     value:
