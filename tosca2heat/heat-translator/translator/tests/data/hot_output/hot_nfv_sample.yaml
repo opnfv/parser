@@ -29,14 +29,14 @@ resources:
   BlockStorage:
     type: OS::Cinder::Volume
     properties:
-      size: 10
+      size: 1
 
   tosca.relationships.attachesto_1:
     type: OS::Cinder::VolumeAttachment
     properties:
       instance_uuid:
         get_resource: VDU1
-      mountpoint: /data
+      mountpoint: /dev/vdb1
       volume_id:
         get_resource: BlockStorage
 
