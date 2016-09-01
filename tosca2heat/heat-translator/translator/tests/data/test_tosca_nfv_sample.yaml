@@ -28,12 +28,12 @@ topology_template:
             relationship:
               type: tosca.relationships.AttachesTo
               properties:
-                location: /data
+                location: /dev/vdb1
 
     BlockStorage:
       type: tosca.nodes.BlockStorage
       properties:
-        size: 10 GB
+        size: 1 GB
 
     VDU2:
       type: tosca.nodes.nfv.VDU
