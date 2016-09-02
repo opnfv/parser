@@ -8,7 +8,7 @@ resources:
   VDU1:
     type: OS::Nova::Server
     properties:
-      flavor: m1.medium
+      flavor: m1.tiny
       image: rhel-6.5-test-image
       networks:
       - port: { get_resource: CP1 }
@@ -20,7 +20,7 @@ resources:
   VDU2:
     type: OS::Nova::Server
     properties:
-      flavor: m1.medium
+      flavor: m1.tiny
       image: rhel-6.5-test-image
       networks:
       - port: { get_resource: CP2 }
