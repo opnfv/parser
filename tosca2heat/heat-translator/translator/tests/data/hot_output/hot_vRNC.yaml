@@ -474,8 +474,6 @@ outputs:
       get_attr:
       - MM_Active_Host
       - networks
-      - private
-      - 0
 
   private_ip_of_CM:
     description: The private IP address of the CM.
@@ -483,8 +481,6 @@ outputs:
       get_attr:
       - CM_Active_Host
       - networks
-      - private
-      - 0
 
   private_ip_of_DM:
     description: The private IP address of the DM.
@@ -492,8 +488,6 @@ outputs:
       get_attr:
       - DM_Host
       - networks
-      - private
-      - 0
 
   private_ip_of_LB:
     description: The private IP address of the LB.
@@ -501,5 +495,3 @@ outputs:
       get_attr:
       - LB_Host
       - networks
-      - private
-      - 0
