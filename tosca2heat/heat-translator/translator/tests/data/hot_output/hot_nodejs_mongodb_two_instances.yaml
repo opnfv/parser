@@ -46,8 +46,6 @@ resources:
           get_attr:
           - mongo_server
           - networks
-          - private
-          - 0
       server:
         get_resource: mongo_server
     depends_on:
@@ -120,8 +118,6 @@ resources:
           get_attr:
           - mongo_server
           - networks
-          - private
-          - 0
       server:
         get_resource: app_server
     depends_on:
@@ -173,13 +169,9 @@ outputs:
       get_attr:
       - mongo_server
       - networks
-      - private
-      - 0
   nodejs_url:
     description: URL for the nodejs server, http://<IP>:3000
     value:
       get_attr:
       - app_server
       - networks
-      - private
-      - 0

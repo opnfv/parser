@@ -205,5 +205,3 @@ outputs:
       get_attr:
       - server
       - networks
-      - private
-      - 0
