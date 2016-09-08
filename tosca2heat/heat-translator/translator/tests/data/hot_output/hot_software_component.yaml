@@ -30,6 +30,7 @@ resources:
         get_resource: my_software_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   my_software_create_config:
     type: OS::Heat::SoftwareConfig
@@ -45,6 +46,7 @@ resources:
         get_resource: my_software_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - my_software_create_deploy
 

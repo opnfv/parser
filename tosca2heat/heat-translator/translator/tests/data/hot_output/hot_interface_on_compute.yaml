@@ -12,6 +12,7 @@ resources:
         get_resource: softwarecomponent_depending_on_customcompute_install_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - server_create_deploy
   server:
@@ -41,4 +42,5 @@ resources:
         install_path: /opt
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 outputs: {}
