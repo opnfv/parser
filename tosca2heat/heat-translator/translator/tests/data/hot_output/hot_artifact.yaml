@@ -15,6 +15,8 @@ resources:
           get_file: http://www.mycompany.org/content.tgz
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
+
   server:
     type: OS::Nova::Server
     properties:

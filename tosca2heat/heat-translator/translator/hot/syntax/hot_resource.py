@@ -154,12 +154,14 @@ class HotResource(object):
                     self.type = 'OS::Heat::SoftwareDeployment'
                     self.properties = {'config': {'get_resource': config_name},
                                        'server': {'get_resource':
-                                                  hosting_on_server}}
+                                                  hosting_on_server},
+                                       'signal_transport': 'HEAT_SIGNAL'}
                     deploy_lookup[operation] = self
                 else:
                     sd_config = {'config': {'get_resource': config_name},
                                  'server': {'get_resource':
-                                            hosting_on_server}}
+                                            hosting_on_server},
+                                 'signal_transport': 'HEAT_SIGNAL'}
                     deploy_resource = \
                         HotResource(self.nodetemplate,
                                     deploy_name,
@@ -221,7 +223,8 @@ class HotResource(object):
         deploy_name = tosca_source.name + '_' + tosca_target.name + \
             '_connect_deploy'
         sd_config = {'config': {'get_resource': self.name},
-                     'server': {'get_resource': hosting_server.name}}
+                     'server': {'get_resource': hosting_server.name},
+                     'signal_transport': 'HEAT_SIGNAL'}
         deploy_resource = \
             HotResource(self.nodetemplate,
                         deploy_name,
