@@ -161,6 +161,7 @@ resources:
       flavor: m1.medium
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   app_server:
     type: OS::Nova::Server
@@ -168,6 +169,7 @@ resources:
       flavor: m1.medium
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
 outputs:
   mongodb_url:

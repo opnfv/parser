@@ -34,6 +34,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: MM_Active_Port_EMS }
@@ -80,6 +81,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: MM_Passive_Port_EMS }
@@ -134,6 +136,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: CM_Active_Port_CTRL }
@@ -178,6 +181,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: CM_Passive_Port_CTRL }
@@ -224,6 +228,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: DM_Port_CTRL }
@@ -268,6 +273,7 @@ resources:
     properties:
       flavor: m1.tiny
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
       image: cirros-0.3.2-x86_64-uec
       networks:
       - port: { get_resource: LB_Port_CTRL }

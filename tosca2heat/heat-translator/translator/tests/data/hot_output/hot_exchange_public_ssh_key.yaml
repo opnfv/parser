@@ -34,12 +34,14 @@ resources:
       flavor: m1.small
       image: ubuntu-12.04-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   server2:
     type: OS::Nova::Server
     properties:
       flavor: m1.small
       image: ubuntu-12.04-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   generate_ssh_key_create_config:
     type: OS::Heat::SoftwareConfig
     properties:

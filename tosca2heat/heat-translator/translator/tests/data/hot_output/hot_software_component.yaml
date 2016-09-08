@@ -22,6 +22,7 @@ resources:
       flavor: m1.small
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   my_software_create_deploy:
     type: OS::Heat::SoftwareDeployment

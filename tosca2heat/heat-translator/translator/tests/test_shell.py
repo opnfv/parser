@@ -151,6 +151,8 @@ class ShellTest(TestCase):
                             'properties': {
                                 'flavor': 'm1.medium',
                                 'user_data_format': 'SOFTWARE_CONFIG',
+                                'software_config_transport':
+                                    'POLL_SERVER_HEAT',
                                 'image': 'rhel-6.5-test-image'
                             }
                         }

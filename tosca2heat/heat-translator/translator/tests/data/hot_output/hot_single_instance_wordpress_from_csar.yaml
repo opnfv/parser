@@ -203,6 +203,7 @@ resources:
       flavor: m1.xlarge
       image: fedora-amd64-heat-config
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
 outputs:
   website_url:
