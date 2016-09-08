@@ -17,13 +17,14 @@ PARSER_CI_DEBUG=${CI_DEBUG:-false}
     debug=""
 }
 
-PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
-PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
-PARSER_IMAGE_NAME=rhel-6.5-test-image
+# PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
+PARSER_IMAGE_URL_FILE=cirros-0.3.2-x86_64-disk.img
+# PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
+PARSER_IMAGE_URL=http://download.cirros-cloud.net/0.3.2/${PARSER_IMAGE_URL_FILE}
+# PARSER_IMAGE_NAME=rhel-6.5-test-image
+PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
-
-PARSER_VM_FLAVOR=m1.tiny
 
 PARSER_USER=parser
 PARSER_PASSWORD=parser
@@ -36,8 +37,9 @@ PARSER_ROLE=admin
 PARSER_STACK_NAME=vRNC_Stack
 
 # VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
-VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
-VRNC_OUTPUT_TEMPLATE_FILE=./vRNC_Hot_Template.yaml
+# VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
+VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/vRNC/Definitions/vRNC.yaml
+VRNC_OUTPUT_TEMPLATE_FILE=../tosca2heat/heat-translator/translator/tests/data/vRNC/vRNC_Hot_Template.yaml
 
 VRNC_INPUT_TEMPLATE_FILE=${VRNC_INPUT_TEMPLATE_RAW_FILE%.*}_patch.yaml
 
@@ -135,6 +137,14 @@ make_patch_for_provider_network() {
 
 }
 
+make_patch_for_translated_file() {
+
+    # Replace the signal_transport
+    echo "    Patch compute:signal_transport..."
+    sed -i '1,$s/HEAT_SIGNAL/NO_SIGNAL/g' ${VRNC_OUTPUT_TEMPLATE_FILE}
+
+}
+
 
 translator_and_deploy_vRNC() {
 
@@ -161,13 +171,18 @@ translator_and_deploy_vRNC() {
             --output-file ${VRNC_OUTPUT_TEMPLATE_FILE}
         echo ""
 
-        # 5. deploy vRNC
+        # 5. Patch translated file
+        echo "  Make patch for translated file..."
+        make_patch_for_translated_file
+        echo ""
+
+        # 6. deploy vRNC
         echo "  Deploy stack..."
         [[ "${PARSER_CI_DEBUG}" == "true" ]] && debug="--debug" || debug=""
         openstack ${debug} stack create --timeout 30 --wait --enable-rollback \
                                         -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
 
-        # 6. Validate the deploy result.
+        # 7. Validate the deploy result.
         echo "  Checking the result of deployment..."
         openstack ${debug} stack show ${PARSER_STACK_NAME} | grep -qow "CREATE_COMPLETE" && {
             echo "    Check the result of deployment successfully."
