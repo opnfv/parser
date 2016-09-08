@@ -55,6 +55,7 @@ resources:
         get_resource: MM_Active_create_config
       server:
         get_resource: MM_Active_Host
+      signal_transport: HEAT_SIGNAL
 
   MM_Active_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -70,6 +71,7 @@ resources:
         get_resource: MM_Active_configure_config
       server:
         get_resource: MM_Active_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - MM_Active_create_deploy
 
@@ -101,6 +103,7 @@ resources:
         get_resource: MM_Passive_create_config
       server:
         get_resource: MM_Passive_Host
+      signal_transport: HEAT_SIGNAL
 
   MM_Passive_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -116,6 +119,7 @@ resources:
         get_resource: MM_Passive_configure_config
       server:
         get_resource: MM_Passive_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - MM_Passive_create_deploy
 
@@ -149,6 +153,7 @@ resources:
         get_resource: CM_Active_create_config
       server:
         get_resource: CM_Active_Host
+      signal_transport: HEAT_SIGNAL
 
   CM_Active_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -164,6 +169,7 @@ resources:
         get_resource: CM_Active_configure_config
       server:
         get_resource: CM_Active_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - CM_Active_create_deploy
 
@@ -193,6 +199,7 @@ resources:
         get_resource: CM_Passive_create_config
       server:
         get_resource: CM_Passive_Host
+      signal_transport: HEAT_SIGNAL
 
   CM_Passive_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -208,6 +215,7 @@ resources:
         get_resource: CM_Passive_configure_config
       server:
         get_resource: CM_Passive_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - CM_Passive_create_deploy
 
@@ -235,6 +243,7 @@ resources:
         get_resource: DM_create_config
       server:
         get_resource: DM_Host
+      signal_transport: HEAT_SIGNAL
 
   DM_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -250,6 +259,7 @@ resources:
         get_resource: DM_configure_config
       server:
         get_resource: DM_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - DM_create_deploy
 
@@ -278,6 +288,7 @@ resources:
         get_resource: LB_create_config
       server:
         get_resource: LB_Host
+      signal_transport: HEAT_SIGNAL
 
   LB_configure_config:
     type: OS::Heat::SoftwareConfig
@@ -293,6 +304,7 @@ resources:
         get_resource: LB_configure_config
       server:
         get_resource: LB_Host
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - LB_create_deploy
 

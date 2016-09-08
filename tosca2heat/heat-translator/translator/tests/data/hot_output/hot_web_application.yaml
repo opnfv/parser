@@ -35,6 +35,7 @@ resources:
         get_resource: web_server_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   web_server_create_config:
     type: OS::Heat::SoftwareConfig
@@ -50,6 +51,7 @@ resources:
         get_resource: web_server_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_server_create_deploy
 
@@ -70,6 +72,7 @@ resources:
           get_param: context_root
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_server_start_deploy
 
@@ -87,6 +90,7 @@ resources:
         get_resource: web_app_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_app_create_deploy
 
