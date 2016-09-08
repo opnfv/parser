@@ -14,4 +14,5 @@ resources:
       flavor: m1.medium
       image: rhel-6.5-test-image
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 outputs: {}

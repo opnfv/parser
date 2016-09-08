@@ -74,7 +74,8 @@ class ToscaPoicyTest(TestCase):
                              'group': {
                                  'get_resource':
                                  'my_compute_placement_policy'}},
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_policy_test(
             tpl_snippet,
             expectedprops)

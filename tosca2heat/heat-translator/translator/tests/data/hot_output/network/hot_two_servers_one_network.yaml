@@ -30,6 +30,7 @@ resources:
       networks:
       - port: { get_resource: my_port }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   my_server2:
     type: OS::Nova::Server
@@ -39,6 +40,7 @@ resources:
       networks:
       - port: { get_resource: my_port2 }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   my_network:
     type: OS::Neutron::Net

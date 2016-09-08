@@ -460,6 +460,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   mongo_server:
     type: OS::Nova::Server
@@ -467,6 +468,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   logstash_server:
     type: OS::Nova::Server
@@ -474,6 +476,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   elasticsearch_server:
     type: OS::Nova::Server
@@ -481,6 +484,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   kibana_server:
     type: OS::Nova::Server
@@ -488,6 +492,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
 outputs:
   nodejs_url:

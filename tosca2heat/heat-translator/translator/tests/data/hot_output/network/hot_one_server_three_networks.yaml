@@ -16,6 +16,7 @@ resources:
       - port: { get_resource: my_port2 }
       - port: { get_resource: my_port3 }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   my_network1:
     type: OS::Neutron::Net
