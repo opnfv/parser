@@ -19,7 +19,7 @@ from toscaparser.common.exception import MissingRequiredInputError
 from toscaparser.common.exception import MissingRequiredParameterError
 from toscaparser.common.exception import UnknownFieldError
 from toscaparser.elements.nodetype import NodeType
-
+from toscaparser.utils.gettextutils import _
 
 log = logging.getLogger('tosca')
 
@@ -46,6 +46,11 @@ class SubstitutionMappings(object):
 
         self._capabilities = None
         self._requirements = None
+
+    @property
+    def type(self):
+        if self.sub_mapping_def:
+            return self.sub_mapping_def.get(self.NODE_TYPE)
 
     @classmethod
     def get_node_type(cls, sub_mapping_def):
@@ -84,7 +89,7 @@ class SubstitutionMappings(object):
         for key in self.sub_mapping_def.keys():
             if key not in self.SECTIONS:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='SubstitutionMappings',
+                    UnknownFieldError(what=_('SubstitutionMappings'),
                                       field=key))
 
     def _validate_type(self):
@@ -119,7 +124,7 @@ class SubstitutionMappings(object):
                propery.name not in [input.name for input in self.inputs]:
                 ExceptionCollector.appendException(
                     MissingRequiredInputError(
-                        what='SubstitutionMappings with node_type:'
+                        what=_('SubstitutionMappings with node_type:')
                         + self.node_type,
                         input_name=propery.name))
 
@@ -140,7 +145,7 @@ class SubstitutionMappings(object):
             if input.name not in property_names and input.default is None:
                 ExceptionCollector.appendException(
                     MissingRequiredParameterError(
-                        what='SubstitutionMappings with node_type:'
+                        what=_('SubstitutionMappings with node_type:')
                         + self.node_type,
                         input_name=input.name))
 
