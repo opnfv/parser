@@ -233,7 +233,7 @@ class ToscaTemplate(object):
                         path=fname, parsed_params=parsed_params,
                         yaml_dict_tpl=tosca_tpl,
                         sub_mapped_node_template=nodetemplate)
-                    if nested_template.has_substitution_mappings():
+                    if nested_template._has_substitution_mappings():
                         # Record the nested templates in top level template
                         self.nested_tosca_templates_with_topology.\
                             append(nested_template)
@@ -329,7 +329,7 @@ class ToscaTemplate(object):
             return TopologyTemplate.get_sub_mapping_node_type(
                 tosca_tpl.get(TOPOLOGY_TEMPLATE))
 
-    def has_substitution_mappings(self):
+    def _has_substitution_mappings(self):
         """Return True if the template has valid substitution mappings."""
         return self.topology_template is not None and \
             self.topology_template.substitution_mappings is not None
