@@ -11,5 +11,6 @@ Parser Project
 
    intro/intro.rst
    yang2tosca/yang2tosca.rst
+   policy2tosca/policy2tosca.rst
    tosca2heat/parser_new_keywords.rst
    vRNC_tosca_intro.rst
