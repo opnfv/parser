@@ -116,21 +116,21 @@ make_patch_for_provider_network() {
 
     # copy temp file
     echo "    Patch provider network for input file:"
-    echo "        Raw yaml file: ${VRNC_INPUT_TEMPLATE_RAW_FILE}"
-    echo "        Patched yaml file: ${VRNC_INPUT_TEMPLATE_FILE}"
+    echo "      Raw yaml file: ${VRNC_INPUT_TEMPLATE_RAW_FILE}"
+    echo "      Patched yaml file: ${VRNC_INPUT_TEMPLATE_FILE}"
     cp ${VRNC_INPUT_TEMPLATE_RAW_FILE} ${VRNC_INPUT_TEMPLATE_FILE}
     echo ""
 
     # Delete the provider:network_type
-    echo "    Patch provider:network_type..."
+    echo "      Patching provider:network_type..."
     sed -i '/network_type:/d' ${VRNC_INPUT_TEMPLATE_FILE}
 
     # Delete the provider:segmentation_id
-    echo "    Patch provider:segmentation_id..."
+    echo "      Patching provider:segmentation_id..."
     sed -i '/segmentation_id:/d' ${VRNC_INPUT_TEMPLATE_FILE}
 
     # Delete the provider:physical_network
-    echo "    Patch provider:physical_network..."
+    echo "      Patching provider:physical_network..."
     sed -i '/physical_network:/d' ${VRNC_INPUT_TEMPLATE_FILE}
 
     echo ""
@@ -140,7 +140,9 @@ make_patch_for_provider_network() {
 make_patch_for_translated_file() {
 
     # Replace the signal_transport
-    echo "    Patch compute:signal_transport..."
+    echo "    Patch yaml file: ${VRNC_OUTPUT_TEMPLATE_FILE}"
+    echo ""
+    echo "    Patching compute:signal_transport:"
     sed -i '1,$s/HEAT_SIGNAL/NO_SIGNAL/g' ${VRNC_OUTPUT_TEMPLATE_FILE}
 
 }
@@ -172,7 +174,7 @@ translator_and_deploy_vRNC() {
         echo ""
 
         # 5. Patch translated file
-        echo "  Make patch for translated file..."
+        echo "  Make patch for translated file:"
         make_patch_for_translated_file
         echo ""
 
@@ -182,7 +184,19 @@ translator_and_deploy_vRNC() {
         openstack ${debug} stack create --timeout 30 --wait --enable-rollback \
                                         -t ${VRNC_OUTPUT_TEMPLATE_FILE} ${PARSER_STACK_NAME}
 
-        # 7. Validate the deploy result.
+        # 7. basic information.
+        echo "  The basic information of deployment..."
+        openstack ${debug} stack show ${PARSER_STACK_NAME}
+
+        # 8. deployed resources.
+        echo "  The resources of deployment..."
+        openstack ${debug} stack resource list ${PARSER_STACK_NAME}
+
+        # 9. deployed outputs.
+        echo "  The outputs of deployment..."
+        openstack ${debug} stack output list ${PARSER_STACK_NAME}
+
+        # 10. Validate the deploy result.
         echo "  Checking the result of deployment..."
         openstack ${debug} stack show ${PARSER_STACK_NAME} | grep -qow "CREATE_COMPLETE" && {
             echo "    Check the result of deployment successfully."
@@ -262,7 +276,7 @@ reset_parser_test() {
     }
 
     echo ""
-    echo "======================= Parser functest end =========================="
+    echo "======================={ Parser functest end }=========================="
     echo ""
     echo ""
 
@@ -270,7 +284,7 @@ reset_parser_test() {
 
 echo ""
 echo ""
-echo "======================= Parser functest begin =========================="
+echo "======================={ Parser functest begin }=========================="
 echo ""
 
 trap reset_parser_test EXIT
