@@ -12,6 +12,7 @@ resources:
         get_resource: softwarecomponent_depending_on_customcompute_install_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - server_create_deploy
   server:
@@ -20,6 +21,7 @@ resources:
       flavor: m1.small
       image: ubuntu-12.04-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   softwarecomponent_depending_on_customcompute_install_create_config:
     type: OS::Heat::SoftwareConfig
     properties:
@@ -41,4 +43,5 @@ resources:
         install_path: /opt
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 outputs: {}

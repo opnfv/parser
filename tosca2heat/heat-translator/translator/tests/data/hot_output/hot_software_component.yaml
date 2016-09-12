@@ -22,6 +22,7 @@ resources:
       flavor: m1.small
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   my_software_create_deploy:
     type: OS::Heat::SoftwareDeployment
@@ -30,6 +31,7 @@ resources:
         get_resource: my_software_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   my_software_create_config:
     type: OS::Heat::SoftwareConfig
@@ -45,6 +47,7 @@ resources:
         get_resource: my_software_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - my_software_create_deploy
 

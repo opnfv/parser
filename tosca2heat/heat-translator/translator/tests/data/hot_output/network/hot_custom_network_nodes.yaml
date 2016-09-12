@@ -13,6 +13,7 @@ resources:
       networks:
       - port: { get_resource: CP1 }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   CP1:
     type: OS::Neutron::Port
     properties:

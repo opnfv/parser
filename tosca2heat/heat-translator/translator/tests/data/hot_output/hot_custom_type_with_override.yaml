@@ -19,12 +19,14 @@ resources:
           get_param: install_path
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
   server:
     type: OS::Nova::Server
     properties:
       flavor: m1.small
       image: ubuntu-12.04-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   customwebserver_create_config:
     type: OS::Heat::SoftwareConfig
     properties:

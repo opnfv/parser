@@ -15,6 +15,7 @@ resources:
         group:
           get_resource: my_compute_placement_policy
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   my_compute_placement_policy:
     type: OS::Nova::ServerGroup
     properties:

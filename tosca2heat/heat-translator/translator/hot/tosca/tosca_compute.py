@@ -104,6 +104,7 @@ class ToscaCompute(HotResource):
             self.nodetemplate.get_capability('host'),
             self.nodetemplate.get_capability('os'))
         self.properties['user_data_format'] = 'SOFTWARE_CONFIG'
+        self.properties['software_config_transport'] = 'POLL_SERVER_HEAT'
         tosca_props = self.get_tosca_props()
         for key, value in tosca_props.items():
             if key in self.ALLOWED_NOVA_SERVER_PROPS:

@@ -27,6 +27,7 @@ resources:
       flavor: m1.medium
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   web_server_create_deploy:
     type: OS::Heat::SoftwareDeployment
@@ -35,6 +36,7 @@ resources:
         get_resource: web_server_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   web_server_create_config:
     type: OS::Heat::SoftwareConfig
@@ -50,6 +52,7 @@ resources:
         get_resource: web_server_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_server_create_deploy
 
@@ -70,6 +73,7 @@ resources:
           get_param: context_root
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_server_start_deploy
 
@@ -87,6 +91,7 @@ resources:
         get_resource: web_app_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - web_app_create_deploy
 

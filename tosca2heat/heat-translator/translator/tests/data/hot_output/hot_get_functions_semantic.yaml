@@ -16,6 +16,7 @@ resources:
         get_resource: myapp_configure_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mysql_database
   server:
@@ -24,6 +25,7 @@ resources:
       flavor: m1.small
       image: ubuntu-12.04-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
   myapp_configure_config:
     type: OS::Heat::SoftwareConfig
     properties:

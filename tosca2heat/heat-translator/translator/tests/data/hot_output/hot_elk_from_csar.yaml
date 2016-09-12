@@ -32,6 +32,7 @@ resources:
         get_resource: nodejs_create_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
 
   nodejs_create_config:
     type: OS::Heat::SoftwareConfig
@@ -55,6 +56,7 @@ resources:
 
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - nodejs_create_deploy
     - mongo_db_create_deploy
@@ -73,6 +75,7 @@ resources:
         get_resource: paypal_pizzastore_start_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - paypal_pizzastore_configure_deploy
 
@@ -91,6 +94,7 @@ resources:
         get_resource: mongo_dbms_create_config
       server:
         get_resource: mongo_server
+      signal_transport: HEAT_SIGNAL
 
   mongo_dbms_create_config:
     type: OS::Heat::SoftwareConfig
@@ -112,6 +116,7 @@ resources:
 
       server:
         get_resource: mongo_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mongo_dbms_create_deploy
 
@@ -129,6 +134,7 @@ resources:
         get_resource: mongo_dbms_start_config
       server:
         get_resource: mongo_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mongo_dbms_configure_deploy
 
@@ -146,6 +152,7 @@ resources:
         get_resource: mongo_db_create_config
       server:
         get_resource: mongo_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mongo_dbms_start_deploy
 
@@ -164,6 +171,7 @@ resources:
         get_resource: app_collectd_create_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_start_deploy
 
@@ -186,6 +194,7 @@ resources:
           - networks
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_collectd_create_deploy
 
@@ -203,6 +212,7 @@ resources:
         get_resource: app_collectd_start_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_collectd_configure_deploy
 
@@ -220,6 +230,7 @@ resources:
         get_resource: app_collectd_logstash_connect_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 
@@ -238,6 +249,7 @@ resources:
         get_resource: app_rsyslog_create_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_start_deploy
 
@@ -255,6 +267,7 @@ resources:
         get_resource: app_rsyslog_start_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_rsyslog_configure_deploy
 
@@ -277,6 +290,7 @@ resources:
           - networks
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_rsyslog_create_deploy
 
@@ -294,6 +308,7 @@ resources:
         get_resource: app_rsyslog_logstash_connect_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 
@@ -312,6 +327,7 @@ resources:
         get_resource: logstash_create_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - elasticsearch_start_deploy
 
@@ -329,6 +345,7 @@ resources:
         get_resource: logstash_start_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 
@@ -351,6 +368,7 @@ resources:
           - networks
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 
@@ -369,6 +387,7 @@ resources:
         get_resource: elasticsearch_create_config
       server:
         get_resource: elasticsearch_server
+      signal_transport: HEAT_SIGNAL
 
   elasticsearch_create_config:
     type: OS::Heat::SoftwareConfig
@@ -384,6 +403,7 @@ resources:
         get_resource: elasticsearch_start_config
       server:
         get_resource: elasticsearch_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - elasticsearch_create_deploy
 
@@ -402,6 +422,7 @@ resources:
         get_resource: kibana_create_config
       server:
         get_resource: kibana_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - elasticsearch_start_deploy
 
@@ -429,6 +450,7 @@ resources:
 
       server:
         get_resource: kibana_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - kibana_create_deploy
 
@@ -446,6 +468,7 @@ resources:
         get_resource: kibana_start_config
       server:
         get_resource: kibana_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - kibana_configure_deploy
 
@@ -463,6 +486,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   mongo_server:
     type: OS::Nova::Server
@@ -470,6 +494,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   logstash_server:
     type: OS::Nova::Server
@@ -477,6 +502,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   elasticsearch_server:
     type: OS::Nova::Server
@@ -484,6 +510,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   kibana_server:
     type: OS::Nova::Server
@@ -491,6 +518,7 @@ resources:
       flavor: m1.large
       image: ubuntu-software-config-os-init
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
 outputs:
   nodejs_url:

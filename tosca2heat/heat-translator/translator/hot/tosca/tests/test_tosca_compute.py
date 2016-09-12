@@ -53,7 +53,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': 'm1.large',
                          'image': 'fedora-amd64-heat-config',
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -73,7 +74,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': 'm1.large',
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -93,7 +95,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': None,
                          'image': 'fedora-amd64-heat-config',
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -110,7 +113,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': None,
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -123,7 +127,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': None,
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -140,7 +145,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': None,
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -158,7 +164,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': 'm1.large',
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -176,7 +183,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': 'm1.large',
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -193,7 +201,8 @@ class ToscaComputeTest(TestCase):
         '''
         expectedprops = {'flavor': 'm1.large',
                          'image': None,
-                         'user_data_format': 'SOFTWARE_CONFIG'}
+                         'user_data_format': 'SOFTWARE_CONFIG',
+                         'software_config_transport': 'POLL_SERVER_HEAT'}
         self._tosca_compute_test(
             tpl_snippet,
             expectedprops)
@@ -253,7 +262,8 @@ class ToscaComputeTest(TestCase):
             mock_get.return_value = mock_nova_response
             expectedprops = {'flavor': 'm1.mock_flavor',
                              'image': None,
-                             'user_data_format': 'SOFTWARE_CONFIG'}
+                             'user_data_format': 'SOFTWARE_CONFIG',
+                             'software_config_transport': 'POLL_SERVER_HEAT'}
             self._tosca_compute_test(
                 tpl_snippet,
                 expectedprops)
@@ -284,7 +294,8 @@ class ToscaComputeTest(TestCase):
             mock_ks_response.content = json.dumps(mock_ks_content)
             expectedprops = {'flavor': 'm1.small',
                              'image': None,
-                             'user_data_format': 'SOFTWARE_CONFIG'}
+                             'user_data_format': 'SOFTWARE_CONFIG',
+                             'software_config_transport': 'POLL_SERVER_HEAT'}
             self._tosca_compute_test(
                 tpl_snippet,
                 expectedprops)
