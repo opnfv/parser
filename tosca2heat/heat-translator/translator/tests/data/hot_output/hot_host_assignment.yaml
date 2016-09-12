@@ -41,6 +41,7 @@ resources:
         get_resource: app_collectd_create_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_start_deploy
 
@@ -63,6 +64,7 @@ resources:
           - networks
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_collectd_create_deploy
 
@@ -80,6 +82,7 @@ resources:
         get_resource: app_collectd_start_config
       server:
         get_resource: app_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - app_collectd_configure_deploy
 
@@ -97,6 +100,7 @@ resources:
         get_resource: logstash_create_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
 
   logstash_start_config:
     type: OS::Heat::SoftwareConfig
@@ -112,6 +116,7 @@ resources:
         get_resource: logstash_start_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 
@@ -129,6 +134,7 @@ resources:
         get_resource: app_collectd_logstash_connect_config
       server:
         get_resource: logstash_server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - logstash_create_deploy
 

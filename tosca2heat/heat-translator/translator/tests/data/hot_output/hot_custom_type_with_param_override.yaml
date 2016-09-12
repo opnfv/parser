@@ -19,6 +19,7 @@ resources:
           get_param: install_path
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
   server:
     type: OS::Nova::Server
     properties:

@@ -16,6 +16,7 @@ resources:
         get_resource: myapp_configure_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mysql_database
   server:

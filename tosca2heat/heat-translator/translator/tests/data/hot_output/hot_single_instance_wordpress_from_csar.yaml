@@ -51,6 +51,7 @@ resources:
         get_resource: mysql_dbms_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   mysql_dbms_start_config:
     type: OS::Heat::SoftwareConfig
@@ -66,6 +67,7 @@ resources:
         get_resource: mysql_dbms_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mysql_dbms_configure_deploy
 
@@ -86,6 +88,7 @@ resources:
           get_param: db_root_pwd
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mysql_dbms_create_deploy
 
@@ -112,6 +115,7 @@ resources:
           get_param: db_user
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - mysql_dbms_start_deploy
 
@@ -129,6 +133,7 @@ resources:
         get_resource: webserver_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
 
   webserver_start_config:
     type: OS::Heat::SoftwareConfig
@@ -144,6 +149,7 @@ resources:
         get_resource: webserver_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - webserver_create_deploy
 
@@ -161,6 +167,7 @@ resources:
         get_resource: wordpress_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - webserver_start_deploy
     - mysql_database_configure_deploy
@@ -186,6 +193,7 @@ resources:
           get_param: db_user
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - wordpress_create_deploy
 

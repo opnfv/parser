@@ -13,6 +13,7 @@ resources:
         get_resource: customwebserver2_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
   customwebserver_create_deploy:
     type: OS::Heat::SoftwareDeployment
     properties:
@@ -20,6 +21,7 @@ resources:
         get_resource: customwebserver_create_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
   server:
     type: OS::Nova::Server
     properties:
@@ -40,6 +42,7 @@ resources:
         get_resource: customwebserver2_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - customwebserver2_configure_deploy
   customwebserver2_create_config:
@@ -61,6 +64,7 @@ resources:
         get_resource: customwebserver2_configure_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - customwebserver2_create_deploy
   customwebserver_start_config:
@@ -76,6 +80,7 @@ resources:
         get_resource: customwebserver_start_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - customwebserver_configure_deploy
   customwebserver_create_config:
@@ -97,6 +102,7 @@ resources:
         get_resource: customwebserver_configure_config
       server:
         get_resource: server
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - customwebserver_create_deploy
 outputs: {}

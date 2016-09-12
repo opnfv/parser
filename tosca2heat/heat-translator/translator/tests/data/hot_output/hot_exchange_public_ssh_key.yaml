@@ -12,6 +12,7 @@ resources:
         get_resource: generate_ssh_key_create_config
       server:
         get_resource: server1
+      signal_transport: HEAT_SIGNAL
   import_public_key_create_deploy:
     type: OS::Heat::SoftwareDeployment
     properties:
@@ -24,6 +25,7 @@ resources:
           - public_key
       server:
         get_resource: server2
+      signal_transport: HEAT_SIGNAL
     depends_on:
     - generate_ssh_key_create_deploy
   server1:
