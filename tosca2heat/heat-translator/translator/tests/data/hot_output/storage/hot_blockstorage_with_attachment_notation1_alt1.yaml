@@ -39,6 +39,7 @@ resources:
       flavor: m1.medium
       image: fedora-amd64-heat-config
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
     depends_on:
     - my_storage
 
@@ -57,6 +58,7 @@ resources:
       flavor: m1.medium
       image: fedora-amd64-heat-config
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
     depends_on:
     - my_storage
 

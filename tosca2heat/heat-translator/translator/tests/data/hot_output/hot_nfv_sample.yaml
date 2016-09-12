@@ -13,6 +13,7 @@ resources:
       networks:
       - port: { get_resource: CP1 }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
     depends_on:
       - VDU2
       - BlockStorage
@@ -25,6 +26,7 @@ resources:
       networks:
       - port: { get_resource: CP2 }
       user_data_format: SOFTWARE_CONFIG
+      software_config_transport: POLL_SERVER_HEAT
 
   BlockStorage:
     type: OS::Cinder::Volume
