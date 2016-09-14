@@ -31,7 +31,6 @@ class ArtifactTypeDef(StatefulEntityType):
         parent_artif = self.parent_type.type if self.parent_type else None
         if parent_artif:
             while parent_artif != 'tosca.artifacts.Root':
-                # only support normative artifact, shall be modified future
                 artifacts[parent_artif] = self.TOSCA_DEF[parent_artif]
                 parent_artif = artifacts[parent_artif]['derived_from']
         return artifacts
@@ -44,8 +43,6 @@ class ArtifactTypeDef(StatefulEntityType):
         partifact_entity = self.derived_from(self.defs)
         if partifact_entity:
             return ArtifactTypeDef(partifact_entity, self.custom_def)
-        else:
-            return None
 
     def get_artifact(self, name):
         '''Return the definition of an artifact field by name.'''

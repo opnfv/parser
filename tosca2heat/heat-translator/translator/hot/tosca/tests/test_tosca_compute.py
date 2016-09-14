@@ -16,6 +16,7 @@ from mock import patch
 
 from toscaparser.nodetemplate import NodeTemplate
 from toscaparser.tests.base import TestCase
+from toscaparser.utils.gettextutils import _
 import toscaparser.utils.yamlparser
 from translator.hot.tosca.tosca_compute import ToscaCompute
 
@@ -26,12 +27,22 @@ class ToscaComputeTest(TestCase):
         nodetemplates = (toscaparser.utils.yamlparser.
                          simple_parse(tpl_snippet)['node_templates'])
         name = list(nodetemplates.keys())[0]
-        nodetemplate = NodeTemplate(name, nodetemplates)
-        nodetemplate.validate()
-        toscacompute = ToscaCompute(nodetemplate)
-        toscacompute.handle_properties()
+        try:
+            nodetemplate = NodeTemplate(name, nodetemplates)
+            nodetemplate.validate()
+            toscacompute = ToscaCompute(nodetemplate)
+            toscacompute.handle_properties()
+            if not self._compare_properties(toscacompute.properties,
+                                            expectedprops):
+                raise Exception(_("Hot Properties are not"
+                                  " same as expected properties"))
+        except Exception:
+            # for time being rethrowing. Will be handled future based
+            # on new development in Glance and Graffiti
+            raise
 
-        self.assertDictEqual(expectedprops, toscacompute.properties)
+    def _compare_properties(self, hotprops, expectedprops):
+        return all(item in hotprops.items() for item in expectedprops.items())
 
     def test_node_compute_with_host_and_os_capabilities(self):
         tpl_snippet = '''

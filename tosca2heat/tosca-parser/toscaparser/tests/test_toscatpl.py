@@ -706,6 +706,8 @@ class ToscaTemplateTest(TestCase):
         tosca = ToscaTemplate(tosca_tpl)
 
         for policy in tosca.topology_template.policies:
+            self.assertTrue(
+                policy.is_derived_from("tosca.policies.Root"))
             if policy.name == 'my_compute_placement_policy':
                 self.assertEqual('tosca.policies.Placement', policy.type)
                 self.assertEqual(['my_server_1', 'my_server_2'],
@@ -726,6 +728,8 @@ class ToscaTemplateTest(TestCase):
         tosca = ToscaTemplate(tosca_tpl)
 
         for policy in tosca.topology_template.policies:
+            self.assertTrue(
+                policy.is_derived_from("tosca.policies.Root"))
             if policy.name == 'my_groups_placement':
                 self.assertEqual('mycompany.mytypes.myScalingPolicy',
                                  policy.type)
