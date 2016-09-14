@@ -18,7 +18,6 @@ import numbers
 import os
 import re
 import requests
-import six
 from six.moves.urllib.parse import urlparse
 import yaml
 
@@ -263,17 +262,12 @@ class UrlUtils(object):
 
 def str_to_num(value):
     """Convert a string representation of a number into a numeric type."""
-    if isinstance(value, numbers.Number) \
-            or isinstance(value, six.integer_types) \
-            or isinstance(value, float):
+    if isinstance(value, numbers.Number):
         return value
     try:
         return int(value)
     except ValueError:
-        try:
-            return float(value)
-        except ValueError:
-            return None
+        return float(value)
 
 
 def check_for_env_variables():

@@ -21,8 +21,5 @@ class HotOutput(object):
         self.description = description
 
     def get_dict_output(self):
-        if self.description:
-            return {self.name: {'value': self.value,
-                                'description': self.description}}
-        else:
-            return {self.name: {'value': self.value}}
+        return {self.name: {'value': self.value,
+                            'description': self.description}}
