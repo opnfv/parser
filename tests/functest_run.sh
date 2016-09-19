@@ -142,7 +142,7 @@ make_patch_for_translated_file() {
     # Replace the signal_transport
     echo "    Patch yaml file: ${VRNC_OUTPUT_TEMPLATE_FILE}"
     echo ""
-    echo "    Patching compute:signal_transport:"
+    echo "    Patching compute:signal_transport"
     sed -i '1,$s/HEAT_SIGNAL/NO_SIGNAL/g' ${VRNC_OUTPUT_TEMPLATE_FILE}
 
 }
