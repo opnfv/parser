@@ -108,9 +108,6 @@ topology_template:
 
     MM_Active_Host:
       type: rnc.nodes.compute.MM
-      properties:
-        activestatus: 1
-        id: MM_Active
       capabilities:
         os:
           properties: *compute_props_os_DEF
@@ -139,9 +136,6 @@ topology_template:
 
     MM_Passive_Host:
       type: rnc.nodes.compute.MM
-      properties:
-        activestatus: 0
-        id: MM_Passive
       capabilities:
         os:
           properties: *compute_props_os_DEF
@@ -180,8 +174,6 @@ topology_template:
 
     CM_Active_Host:
       type: rnc.nodes.compute.CM
-      properties:
-        activestatus: 1
       capabilities:
         os:
           properties: *compute_props_os_DEF
@@ -211,8 +203,6 @@ topology_template:
 
     CM_Passive_Host:
       type: rnc.nodes.compute.CM
-      properties:
-        activestatus: 0
       capabilities:
         os:
           properties: *compute_props_os_DEF
