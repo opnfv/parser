@@ -50,4 +50,4 @@ class ToscaBlockStorageAttachment(HotResource):
             self.properties.pop('device')
 
     def handle_life_cycle(self):
-        return None, None, None
+        pass

@@ -59,8 +59,6 @@ class GroupType(StatefulEntityType):
         pgroup_entity = self.derived_from(self.defs)
         if pgroup_entity:
             return GroupType(pgroup_entity, self.custom_def)
-        else:
-            return None
 
     @property
     def description(self):
