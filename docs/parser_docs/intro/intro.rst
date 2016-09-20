@@ -45,8 +45,8 @@ For Release C, Parser offers additional capabilities:
   into heat orchestration template correctly. Policy2Tosca module could be installed seperately
   after user installed OPNFV C release platform.
 
-* Tosca2Heat enhancements which includes a set of feature addons for OpenStack tosca-parser module
-  which is integrated in the OPNFV C release platform.
+* Tosca2Heat enhancements which includes a set of feature addons (such as substitution mapping)
+for OpenStack tosca-parser module which is integrated in the OPNFV C release platform.
 
 * Additional testing support.
 
