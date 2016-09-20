@@ -2,7 +2,7 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
 
-Test use tox
+Parser tosca2heat test usage
 ===========================
 1. run tox in tosca-parser sub project
 
