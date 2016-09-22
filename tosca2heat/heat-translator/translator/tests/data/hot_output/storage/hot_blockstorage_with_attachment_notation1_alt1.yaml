@@ -77,13 +77,13 @@ outputs:
     value:
       get_attr:
       - my_web_app_tier_1
-      - networks
+      - first_address
   private_ip_2:
     description: The private IP address of the applications second tier.
     value:
       get_attr:
       - my_web_app_tier_2
-      - networks
+      - first_address
   volume_id:
     description: The volume id of the block storage instance.
     value:
