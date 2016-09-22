@@ -141,7 +141,7 @@ class ShellTest(TestCase):
                 'parameters': {},
                 'template': {
                     'outputs': {},
-                    'heat_template_version': '2013-05-23',
+                    'heat_template_version': '2014-10-16',
                     'description': 'Template for deploying a single server '
                                    'with predefined properties.\n',
                     'parameters': {},

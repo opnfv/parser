@@ -28,7 +28,7 @@ class HotTemplate(object):
                ('heat_template_version', 'description', 'parameter_groups',
                 'parameters', 'resources', 'outputs', '__undefined__')
 
-    VERSIONS = (LATEST,) = ('2013-05-23',)
+    VERSIONS = (LATEST,) = ('2014-10-16',)
 
     def __init__(self):
         self.resources = []
