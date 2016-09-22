@@ -37,7 +37,7 @@ For Release B, Parser offers the following capabilities:
 
 * The "vRNC_tosca_intro" document describes Parser's use case analysis on vRNC scenario.
   The "example" folder contains examples of tosca-nfv standard and vRNC scenario.
-  See also https://wiki.opnfv.org/parser .
+  See also https://wiki.opnfv.org/parser.
 
 For Release C, Parser offers additional capabilities:
 
@@ -46,7 +46,26 @@ For Release C, Parser offers additional capabilities:
   after user installed OPNFV C release platform.
 
 * Tosca2Heat enhancements which includes a set of feature addons (such as substitution mapping)
-for OpenStack tosca-parser module which is integrated in the OPNFV C release platform.
+for OpenStack tosca-parser module which is integrated in the OPNFV C release platform. And the
+main details are listed below:
+
+  ** support substitution mapping semantic in tosca-parser:
+    - support parse and validation about substitution mapping definition;
+    - support import nested template;
+    - support deployment a node which is substituted by a template;
+    - support deployment a template alone which has substitution mapping definition.
+
+  ** afinity and anti-affinity support when deploy servers:
+    - tosca.policies.Placement.Colocate;
+    - tosca.policies.Placement.Antilocate;
+
+  ** add validation about input parameters;
+
+  ** add high availability and block volume in compute translation;
+
+  ** add ip output in compute translation;
+
+  ** add deployment a whole vRNC testcase with parser.
 
 * Additional testing support.
 
