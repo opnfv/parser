@@ -212,3 +212,4 @@ outputs:
       get_attr:
       - server
       - networks
+      - first_address

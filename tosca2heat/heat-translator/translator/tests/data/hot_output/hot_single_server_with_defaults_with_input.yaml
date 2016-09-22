@@ -33,3 +33,4 @@ outputs:
       get_attr:
       - my_server
       - networks
+      - first_address

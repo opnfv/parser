@@ -58,6 +58,7 @@ outputs:
       get_attr:
       - my_server
       - networks
+      - first_address
   volume_id:
     description: The volume id of the block storage instance.
     value:

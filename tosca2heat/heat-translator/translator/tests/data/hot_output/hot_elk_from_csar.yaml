@@ -53,6 +53,7 @@ resources:
           get_attr:
           - mongo_server
           - networks
+          - first_address
 
       server:
         get_resource: app_server
@@ -113,6 +114,7 @@ resources:
           get_attr:
           - mongo_server
           - networks
+          - first_address
 
       server:
         get_resource: mongo_server
@@ -192,6 +194,7 @@ resources:
           get_attr:
           - logstash_server
           - networks
+          - first_address
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL
@@ -288,6 +291,7 @@ resources:
           get_attr:
           - logstash_server
           - networks
+          - first_address
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL
@@ -366,6 +370,7 @@ resources:
           get_attr:
           - elasticsearch_server
           - networks
+          - first_address
       server:
         get_resource: logstash_server
       signal_transport: HEAT_SIGNAL
@@ -443,10 +448,12 @@ resources:
           get_attr:
           - elasticsearch_server
           - networks
+          - first_address
         kibana_ip:
           get_attr:
           - kibana_server
           - networks
+          - first_address
 
       server:
         get_resource: kibana_server
@@ -527,6 +534,7 @@ outputs:
       get_attr:
       - app_server
       - networks
+      - first_address
 
   mongodb_url:
     description: URL for the mongodb server.
@@ -534,6 +542,7 @@ outputs:
       get_attr:
       - mongo_server
       - networks
+      - first_address
 
   logstash_url:
     description: URL for the logstash server.
@@ -541,6 +550,7 @@ outputs:
       get_attr:
       - logstash_server
       - networks
+      - first_address
 
   elasticsearch_url:
     description: URL for the elasticsearch server.
@@ -548,6 +558,7 @@ outputs:
       get_attr:
       - elasticsearch_server
       - networks
+      - first_address
 
   kibana_url:
     description: URL for the kibana server.
@@ -555,4 +566,4 @@ outputs:
       get_attr:
       - kibana_server
       - networks
-
+      - first_address
