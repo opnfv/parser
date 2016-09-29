@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_38a5dd46",
+        "filename": "docs/parser_docs/intro/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-09-29T08:10:56Z",
+      "side": 1,
+      "message": "Main",
+      "range": {
+        "startLine": 49,
+        "startChar": 87,
+        "endLine": 49,
+        "endChar": 95
+      },
+      "revId": "fbf8e922343e73ec49f59013ed8d1788cf1c78cb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_18a8211f",
+        "filename": "docs/parser_docs/intro/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-09-29T08:10:56Z",
+      "side": 1,
+      "message": "detail\n\nplease delete the header space or the format is wrong",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 8
+      },
+      "revId": "fbf8e922343e73ec49f59013ed8d1788cf1c78cb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_f86a05ed",
+        "filename": "docs/parser_docs/intro/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-09-29T08:10:56Z",
+      "side": 1,
+      "message": "* support substitution mapping semantic in tosca-parser:\n\n    - support to parse and valide about substitution mapping definition;\n    - support to import nested template;\n    - support to deploy a node which is substituted by a template;\n    - support to deploy a template alone which has substitution mapping definition.\n\n  * afinity and anti-affinity support when deploy servers:\n\n    - tosca.policies.Placement.Colocate;\n    - tosca.policies.Placement.Antilocate;\n\n  * add validation about input parameters;\n  * add high availability and block volume in compute translation;\n  * add ip output in compute translation;\n  * add deployment a whole vRNC testcase with parser.\n\nnot match the schema of RST, refer to the result: http://artifacts.opnfv.org/parser/review/22301/parser_docs/index.html",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "fbf8e922343e73ec49f59013ed8d1788cf1c78cb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
