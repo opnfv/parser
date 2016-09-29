@@ -61,7 +61,7 @@ resources:
         logstash_ip:
           get_attr:
           - logstash_server
-          - networks
+          - first_address
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL

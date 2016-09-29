@@ -90,13 +90,13 @@ outputs:
     value:
       get_attr:
       - my_server
-      - networks
+      - first_address
   server_ip_2:
     description: The private IP address of the applications second server.
     value:
       get_attr:
       - my_server2
-      - networks
+      - first_address
   volume_id_1:
     description: The volume id of the first block storage instance.
     value:
