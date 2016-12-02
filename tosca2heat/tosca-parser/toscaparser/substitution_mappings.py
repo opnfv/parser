@@ -27,7 +27,7 @@ log = logging.getLogger('tosca')
 class SubstitutionMappings(object):
     '''SubstitutionMappings class declaration
 
-    Substitution_mappings exports the topology template as an
+    SubstitutionMappings exports the topology template as an
     implementation of a Node type.
     '''
 
@@ -74,7 +74,7 @@ class SubstitutionMappings(object):
         return NodeType(self.node_type, self.custom_defs)
 
     def _validate(self):
-        # basic valiation
+        # Basic validation
         self._validate_keys()
         self._validate_type()
 
@@ -104,29 +104,31 @@ class SubstitutionMappings(object):
         node_type_def = self.custom_defs.get(node_type)
         if not node_type_def:
             ExceptionCollector.appendException(
-                InvalidNodeTypeError(what=node_type_def))
+                InvalidNodeTypeError(what=node_type))
 
     def _validate_inputs(self):
         """validate the inputs of substitution mappings.
 
         The inputs in service template which provides substutition mappings
         must be in properties of node template which is mapped or provide
-        defualt value. Currently the input.name is not restrict to be the
+        defualt value. Currently the input.name is not restricted to be the
         same as property name in specification, but they should be equal
         for current implementation.
         """
 
-        # Must provide parameters for required properties of node_type
+        # Must provide parameters for required properties of node_type(if
+        # the optional properties need to be customized, it's also to
+        # define inputs for them, but this isn't mandatory).
         # This checking is internal(inside SubstitutionMappings)
-        for propery in self.node_definition.get_properties_def_objects():
+        for property in self.node_definition.get_properties_def_objects():
             # Check property which is 'required' and has no 'default' value
-            if propery.required and propery.default is None and \
-               propery.name not in [input.name for input in self.inputs]:
+            if property.required and property.default is None and \
+               property.name not in [input.name for input in self.inputs]:
                 ExceptionCollector.appendException(
                     MissingRequiredInputError(
-                        what=_('SubstitutionMappings with node_type:')
+                        what=_('SubstitutionMappings with node_type ')
                         + self.node_type,
-                        input_name=propery.name))
+                        input_name=property.name))
 
         # Get property names from substituted node tempalte
         property_names = list(self.sub_mapped_node_template
@@ -141,11 +143,13 @@ class SubstitutionMappings(object):
         # node with the type node_type, this may not be mandatory for
         # current implematation, but the specification express it mandatory.
         # This checking is external(outside SubstitutionMappings)
+        # Currently the scenario may not happen because of parameters
+        # validation in nodetemplate, here is a garantee.
         for input in self.inputs:
             if input.name not in property_names and input.default is None:
                 ExceptionCollector.appendException(
                     MissingRequiredParameterError(
-                        what=_('SubstitutionMappings with node_type:')
+                        what=_('SubstitutionMappings with node_type ')
                         + self.node_type,
                         input_name=input.name))
 
