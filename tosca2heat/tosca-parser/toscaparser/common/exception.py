@@ -116,7 +116,7 @@ class UnknownInputError(TOSCAException):
 
 class MissingRequiredInputError(TOSCAException):
     msg_fmt = _('%(what)s is missing required input definition '
-                ' with name: "%(input_name)s".')
+                'of input "%(input_name)s".')
 
 
 class MissingRequiredParameterError(TOSCAException):
