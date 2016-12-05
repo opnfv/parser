@@ -154,7 +154,7 @@ class TopologyTemplateTest(TestCase):
 
     def test_outputs(self):
         self.assertEqual(
-            ['receiver_ip'],
+            sorted(['receiver_ip', 'receiver_port']),
             sorted([output.name for output in self.topo.outputs]))
 
     def test_groups(self):

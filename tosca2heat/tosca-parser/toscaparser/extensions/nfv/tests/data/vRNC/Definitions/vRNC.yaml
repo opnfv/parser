@@ -487,19 +487,19 @@ topology_template:
   # definition of output parameters for the topology template
   outputs:
     private_ip_of_MM:
-      description: The private IP address of the MM.
+      description: The Inner(CtrPlane)  IP address of the MM.
       value: { get_attribute: [ MM_Active_Host, private_address ] }
 
     private_ip_of_CM:
-      description: The private IP address of the CM.
+      description: The Inner(CtrPlane)  IP address of the CM.
       value: { get_attribute: [ CM_Active_Host, private_address ] }
 
     private_ip_of_DM:
-      description: The private IP address of the DM.
+      description: The Inner(CtrPlane)  IP address of the DM.
       value: { get_attribute: [ DM_Host, private_address ] }
 
     private_ip_of_LB:
-      description: The private IP address of the LB.
+      description: The Inner(CtrPlane)  IP address of the LB.
       value: { get_attribute: [ LB_Host, private_address ] }
 
   # definition of logical groups of node templates within the topology
