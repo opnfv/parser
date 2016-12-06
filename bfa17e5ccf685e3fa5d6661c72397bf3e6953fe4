@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_999c716b",
+        "filename": "tosca2heat/tosca-parser/toscaparser/substitution_mappings.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-12-06T16:33:13Z",
+      "side": 1,
+      "message": "this file has been modified in another patch?",
+      "revId": "bfa17e5ccf685e3fa5d6661c72397bf3e6953fe4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
