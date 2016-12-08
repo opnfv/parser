@@ -39,9 +39,6 @@ topology_template:
 
   substitution_mappings:
     node_type: example.QueuingSubsystem
-    requirements:
-      receiver1: [ tran_app, receiver1 ]
-      receiver2: [ tran_app, receiver2 ]
 
   node_templates:
     tran_app:
