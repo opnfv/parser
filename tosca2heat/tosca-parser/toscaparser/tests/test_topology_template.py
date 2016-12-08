@@ -262,3 +262,52 @@ class TopologyTemplateTest(TestCase):
                               lambda: ToscaTemplate(tpl_path1))
             exception.ExceptionCollector.assertExceptionMessage(
                 exception.MissingRequiredInputError, errormsg)
+
+    def test_system_with_unknown_output_validation(self):
+        tpl_path0 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/"
+            "system_invalid_unknown_output.yaml")
+        tpl_path1 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/"
+            "transactionsubsystem_invalid_unknown_output.yaml")
+        errormsg = _('Unknown output "my_cpu_output" in SubstitutionMappings '
+                     'with node_type example.TransactionSubsystem.')
+
+        # It's invalid in nested template.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path0))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.UnknownOutputError, errormsg)
+
+        # Subtemplate deploy standaolone is invalid.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path1))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.UnknownOutputError, errormsg)
+
+    def test_system_with_missing_output_validation(self):
+        tpl_path0 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/"
+            "system_invalid_missing_output.yaml")
+        tpl_path1 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/"
+            "transactionsubsystem_invalid_missing_output.yaml")
+        errormsg = _('SubstitutionMappings with node_type '
+                     'example.TransactionSubsystem is missing '
+                     'required output definition of output "receiver_port".')
+
+        # It's invalid in nested template.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path0))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.MissingRequiredOutputError, errormsg)
+
+        # Subtemplate deploy standaolone is invalid.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path1))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.MissingRequiredOutputError, errormsg)
