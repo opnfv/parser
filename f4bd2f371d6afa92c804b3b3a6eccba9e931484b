@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_cb6a1a1a",
+        "filename": "tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2016-12-08T03:40:08Z",
+      "side": 1,
+      "message": "what\u0027s inner IP? it is used to distinct from floating-ip?\n\nIf it\u0027s, I don\u0027t think it is meaning to use private_ipxxx",
+      "range": {
+        "startLine": 490,
+        "startChar": 23,
+        "endLine": 490,
+        "endChar": 38
+      },
+      "revId": "f4bd2f371d6afa92c804b3b3a6eccba9e931484b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
