@@ -27,9 +27,10 @@ log = logging.getLogger('tosca')
 
 class Input(object):
 
-    INPUTFIELD = (TYPE, DESCRIPTION, DEFAULT, CONSTRAINTS, REQUIRED,
-                  STATUS) = ('type', 'description', 'default',
-                             'constraints', 'required', 'status')
+    INPUTFIELD = (TYPE, DESCRIPTION, DEFAULT, CONSTRAINTS, REQUIRED, STATUS,
+                  ENTRY_SCHEMA) = ('type', 'description', 'default',
+                                   'constraints', 'required', 'status',
+                                   'entry_schema')
 
     def __init__(self, name, schema_dict):
         self.name = name
@@ -57,6 +58,10 @@ class Input(object):
     @property
     def constraints(self):
         return self.schema.constraints
+
+    @property
+    def status(self):
+        return self.schema.status
 
     def validate(self, value=None):
         if value is not None:

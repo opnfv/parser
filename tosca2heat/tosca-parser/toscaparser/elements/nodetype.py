@@ -98,10 +98,6 @@ class NodeType(StatefulEntityType):
         provided capability.
         '''
 
-        # All types,include normative and custom types, here will
-        # be substituted because the global moification of TOSCA_DEF
-        self.TOSCA_DEF.update(self.custom_def)
-
         # Filter the node types
         node_types = [node_type for node_type in self.TOSCA_DEF.keys()
                       if node_type.startswith(self.NODE_PREFIX) and
@@ -141,8 +137,6 @@ class NodeType(StatefulEntityType):
         '''Return a list of capability objects.'''
         typecapabilities = []
         caps = self.get_value(self.CAPABILITIES, None, True)
-        if caps is None:
-            caps = self.get_value(self.CAPABILITIES, None, True)
         if caps:
             # 'name' is symbolic name of the capability
             # 'value' is a dict { 'type': <capability type name> }

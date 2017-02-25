@@ -24,7 +24,8 @@ class IntrinsicFunctionsTest(TestCase):
     tosca_tpl = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "data/tosca_single_instance_wordpress.yaml")
-    params = {'db_name': 'my_wordpress', 'db_user': 'my_db_user'}
+    params = {'db_name': 'my_wordpress', 'db_user': 'my_db_user',
+              'db_root_pwd': '12345678'}
     tosca = ToscaTemplate(tosca_tpl, parsed_params=params)
 
     def _get_node(self, node_name, tosca=None):
@@ -56,7 +57,7 @@ class IntrinsicFunctionsTest(TestCase):
         wordpress = self._get_node('wordpress')
         operation = self._get_operation(wordpress.interfaces, 'configure')
         wp_db_password = operation.inputs['wp_db_password']
-        self.assertTrue(isinstance(wp_db_password, functions.GetProperty))
+        self.assertIsInstance(wp_db_password, functions.GetProperty)
         result = wp_db_password.result()
         self.assertEqual('wp_pass', result)
 
@@ -64,7 +65,7 @@ class IntrinsicFunctionsTest(TestCase):
         wordpress = self._get_node('wordpress')
         operation = self._get_operation(wordpress.interfaces, 'configure')
         wp_db_user = operation.inputs['wp_db_user']
-        self.assertTrue(isinstance(wp_db_user, functions.GetProperty))
+        self.assertIsInstance(wp_db_user, functions.GetProperty)
         result = wp_db_user.result()
         self.assertEqual('my_db_user', result)
 
@@ -83,7 +84,7 @@ class IntrinsicFunctionsTest(TestCase):
         props = mysql_dbms.get_properties()
         for key in props.keys():
             prop = props[key]
-            self.assertTrue(isinstance(prop.value, functions.GetInput))
+            self.assertIsInstance(prop.value, functions.GetInput)
             expected_inputs.remove(prop.value.input_name)
         self.assertListEqual(expected_inputs, [])
 
@@ -116,21 +117,24 @@ class IntrinsicFunctionsTest(TestCase):
         self.assertEqual(3306, dbms_port.result())
         dbms_root_password = self._get_property(mysql_dbms,
                                                 'root_password')
-        self.assertEqual(dbms_root_password.result(), "12345678")
+        self.assertEqual(dbms_root_password.result(), '12345678')
 
     def test_get_property_with_host(self):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/functions/test_get_property_with_host.yaml")
         mysql_database = self._get_node('mysql_database',
-                                        ToscaTemplate(tosca_tpl))
+                                        ToscaTemplate(tosca_tpl,
+                                                      parsed_params={
+                                                          'db_root_pwd': '123'
+                                                      }))
         operation = self._get_operation(mysql_database.interfaces, 'configure')
         db_port = operation.inputs['db_port']
-        self.assertTrue(isinstance(db_port, functions.GetProperty))
+        self.assertIsInstance(db_port, functions.GetProperty)
         result = db_port.result()
         self.assertEqual(3306, result)
         test = operation.inputs['test']
-        self.assertTrue(isinstance(test, functions.GetProperty))
+        self.assertIsInstance(test, functions.GetProperty)
         result = test.result()
         self.assertEqual(1, result)
 
@@ -138,30 +142,37 @@ class IntrinsicFunctionsTest(TestCase):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/functions/tosca_nested_property_names_indexes.yaml")
-        webserver = self._get_node('wordpress', ToscaTemplate(tosca_tpl))
+        webserver = self._get_node('wordpress',
+                                   ToscaTemplate(tosca_tpl,
+                                                 parsed_params={
+                                                     'db_root_pwd': '1234'}))
         operation = self._get_operation(webserver.interfaces, 'configure')
         wp_endpoint_prot = operation.inputs['wp_endpoint_protocol']
-        self.assertTrue(isinstance(wp_endpoint_prot, functions.GetProperty))
+        self.assertIsInstance(wp_endpoint_prot, functions.GetProperty)
         self.assertEqual('tcp', wp_endpoint_prot.result())
         wp_list_prop = operation.inputs['wp_list_prop']
-        self.assertTrue(isinstance(wp_list_prop, functions.GetProperty))
+        self.assertIsInstance(wp_list_prop, functions.GetProperty)
         self.assertEqual(3, wp_list_prop.result())
 
     def test_get_property_with_capabilties_inheritance(self):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/functions/test_capabilties_inheritance.yaml")
-        some_node = self._get_node('some_node', ToscaTemplate(tosca_tpl))
+        some_node = self._get_node('some_node',
+                                   ToscaTemplate(tosca_tpl,
+                                                 parsed_params={
+                                                     'db_root_pwd': '1234'}))
         operation = self._get_operation(some_node.interfaces, 'configure')
         some_input = operation.inputs['some_input']
-        self.assertTrue(isinstance(some_input, functions.GetProperty))
+        self.assertIsInstance(some_input, functions.GetProperty)
         self.assertEqual('someval', some_input.result())
 
     def test_get_property_source_target_keywords(self):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/functions/test_get_property_source_target_keywords.yaml")
-        tosca = ToscaTemplate(tosca_tpl)
+        tosca = ToscaTemplate(tosca_tpl,
+                              parsed_params={'db_root_pwd': '1234'})
 
         for node in tosca.nodetemplates:
             for relationship, trgt in node.relationships.items():
@@ -171,10 +182,10 @@ class IntrinsicFunctionsTest(TestCase):
         operation = self._get_operation(rel_template.interfaces,
                                         'pre_configure_source')
         target_test = operation.inputs['target_test']
-        self.assertTrue(isinstance(target_test, functions.GetProperty))
+        self.assertIsInstance(target_test, functions.GetProperty)
         self.assertEqual(1, target_test.result())
         source_port = operation.inputs['source_port']
-        self.assertTrue(isinstance(source_port, functions.GetProperty))
+        self.assertIsInstance(source_port, functions.GetProperty)
         self.assertEqual(3306, source_port.result())
 
 
@@ -184,7 +195,8 @@ class GetAttributeTest(TestCase):
         return ToscaTemplate(os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             'data',
-            filename))
+            filename),
+            parsed_params={'db_root_pwd': '1234'})
 
     def _get_operation(self, interfaces, operation):
         return [
@@ -283,7 +295,8 @@ class GetAttributeTest(TestCase):
         tosca_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/functions/test_get_attribute_source_target_keywords.yaml")
-        tosca = ToscaTemplate(tosca_tpl)
+        tosca = ToscaTemplate(tosca_tpl,
+                              parsed_params={'db_root_pwd': '12345678'})
 
         for node in tosca.nodetemplates:
             for relationship, trgt in node.relationships.items():
@@ -293,13 +306,17 @@ class GetAttributeTest(TestCase):
         operation = self._get_operation(rel_template.interfaces,
                                         'pre_configure_source')
         target_test = operation.inputs['target_test']
-        self.assertTrue(isinstance(target_test, functions.GetAttribute))
+        self.assertIsInstance(target_test, functions.GetAttribute)
         source_port = operation.inputs['source_port']
-        self.assertTrue(isinstance(source_port, functions.GetAttribute))
+        self.assertIsInstance(source_port, functions.GetAttribute)
 
     def test_get_attribute_with_nested_params(self):
         self._load_template(
             'functions/test_get_attribute_with_nested_params.yaml')
+
+    def test_implicit_attribute(self):
+        self.assertIsNotNone(self._load_template(
+            'functions/test_get_implicit_attribute.yaml'))
 
 
 class ConcatTest(TestCase):
