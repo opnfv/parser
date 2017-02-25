@@ -42,6 +42,22 @@ node_types:
         required: false
         constraints:
           - valid_values: [ TDS-CDMA, UMTS, CDMA ]
+    attributes:
+      private_ip_of_MM:
+        type: string
+        description: The private IP address of the MM.
+
+      private_ip_of_CM:
+        type: string
+        description: The private IP address of the CM.
+
+      private_ip_of_DM:
+        type: string
+        description: The private IP address of the DM.
+
+      private_ip_of_LB:
+        type: string
+        description: The private IP address of the LB.
     requirements:
       - virtualLink_VNFM:
           capability: tosca.capabilities.nfv.VirtualLinkable
