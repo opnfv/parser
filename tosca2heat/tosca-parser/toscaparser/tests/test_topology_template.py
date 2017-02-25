@@ -220,48 +220,48 @@ class TopologyTemplateTest(TestCase):
         self.assertEqual(expected_message, err.__str__())
 
     def test_invalid_nodetype(self):
-            tpl_snippet = '''
-            substitution_mappings:
-              node_type: example.DatabaseSubsystem1
-              capabilities:
-                database_endpoint: [ db_app, database_endpoint ]
-              requirements:
-                receiver1: [ tran_app, receiver1 ]
-            '''
-            sub_mappings = (toscaparser.utils.yamlparser.
-                            simple_parse(tpl_snippet))['substitution_mappings']
-            custom_defs = self._get_custom_types()
-            expected_message = _('Node type "example.DatabaseSubsystem1" '
-                                 'is not a valid type.')
-            err = self.assertRaises(
-                exception.InvalidNodeTypeError,
-                lambda: SubstitutionMappings(sub_mappings, None, None,
-                                             None, None, custom_defs))
-            self.assertEqual(expected_message, err.__str__())
+        tpl_snippet = '''
+        substitution_mappings:
+          node_type: example.DatabaseSubsystem1
+          capabilities:
+            database_endpoint: [ db_app, database_endpoint ]
+          requirements:
+            receiver1: [ tran_app, receiver1 ]
+        '''
+        sub_mappings = (toscaparser.utils.yamlparser.
+                        simple_parse(tpl_snippet))['substitution_mappings']
+        custom_defs = self._get_custom_types()
+        expected_message = _('Node type "example.DatabaseSubsystem1" '
+                             'is not a valid type.')
+        err = self.assertRaises(
+            exception.InvalidNodeTypeError,
+            lambda: SubstitutionMappings(sub_mappings, None, None,
+                                         None, None, custom_defs))
+        self.assertEqual(expected_message, err.__str__())
 
     def test_system_with_input_validation(self):
-            tpl_path0 = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)),
-                "data/topology_template/validate/system_invalid_input.yaml")
-            tpl_path1 = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)),
-                "data/topology_template/validate/"
-                "queuingsubsystem_invalid_input.yaml")
-            errormsg = _('SubstitutionMappings with node_type '
-                         'example.QueuingSubsystem is missing '
-                         'required input definition of input "server_port".')
+        tpl_path0 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/system_invalid_input.yaml")
+        tpl_path1 = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/topology_template/validate/"
+            "queuingsubsystem_invalid_input.yaml")
+        errormsg = _('SubstitutionMappings with node_type '
+                     'example.QueuingSubsystem is missing '
+                     'required input definition of input "server_port".')
 
-            # It's invalid in nested template.
-            self.assertRaises(exception.ValidationError,
-                              lambda: ToscaTemplate(tpl_path0))
-            exception.ExceptionCollector.assertExceptionMessage(
-                exception.MissingRequiredInputError, errormsg)
+        # It's invalid in nested template.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path0))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.MissingRequiredInputError, errormsg)
 
-            # Subtemplate deploy standaolone is also invalid.
-            self.assertRaises(exception.ValidationError,
-                              lambda: ToscaTemplate(tpl_path1))
-            exception.ExceptionCollector.assertExceptionMessage(
-                exception.MissingRequiredInputError, errormsg)
+        # Subtemplate deploy standaolone is also invalid.
+        self.assertRaises(exception.ValidationError,
+                          lambda: ToscaTemplate(tpl_path1))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.MissingRequiredInputError, errormsg)
 
     def test_system_with_unknown_output_validation(self):
         tpl_path0 = os.path.join(

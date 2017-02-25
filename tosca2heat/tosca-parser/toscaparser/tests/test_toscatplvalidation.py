@@ -35,7 +35,27 @@ class ToscaTemplateValidationTest(TestCase):
         tpl_path = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             "data/tosca_single_instance_wordpress.yaml")
+        params = {'db_name': 'my_wordpress', 'db_user': 'my_db_user',
+                  'db_root_pwd': '12345678'}
+        self.assertIsNotNone(ToscaTemplate(tpl_path, params))
+
+    def test_custom_interface_allowed(self):
+        tpl_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/interfaces/test_custom_interface_in_template.yaml")
         self.assertIsNotNone(ToscaTemplate(tpl_path))
+
+    def test_custom_interface_invalid_operation(self):
+        tpl_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/interfaces/test_custom_interface_invalid_operation.yaml")
+        self.assertRaises(exception.ValidationError,
+                          ToscaTemplate, tpl_path)
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.UnknownFieldError,
+            _('"interfaces" of template "customInterfaceTest" '
+              'contains unknown field "CustomOp4". '
+              'Refer to the definition to verify valid values.'))
 
     def test_first_level_sections(self):
         tpl_path = os.path.join(
@@ -97,6 +117,117 @@ class ToscaTemplateValidationTest(TestCase):
             _('Policy "mycompany.mytypes.myScalingPolicy" contains unknown '
               'field "derived1_from". Refer to the definition to '
               'verify valid values.'))
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.UnknownFieldError,
+            _('Relationshiptype "test.relation.connects" contains unknown '
+              'field "derived_from4". Refer to the definition to '
+              'verify valid values.'))
+
+    def test_getoperation_IncorrectValue(self):
+        # test case 1
+        tpl_snippet = '''
+        node_templates:
+             front_end:
+               type: tosca.nodes.Compute
+               interfaces:
+                 Standard:
+                   create:
+                     implementation: scripts/frontend/create.sh
+                   configure:
+                     implementation: scripts/frontend/configure.sh
+                     inputs:
+                       data_dir: {get_operation_output: [front_end,Standard1,
+                                                            create,data_dir]}
+        '''
+        tpl = (toscaparser.utils.yamlparser.simple_parse(tpl_snippet))
+        err = self.assertRaises(ValueError,
+                                TopologyTemplate, tpl, None)
+        expectedmessage = _('Enter a valid interface name')
+        self.assertEqual(expectedmessage, err.__str__())
+        # test case 2
+        tpl_snippet2 = '''
+        node_templates:
+             front_end:
+               type: tosca.nodes.Compute
+               interfaces:
+                 Standard:
+                   create:
+                     implementation: scripts/frontend/create.sh
+                   configure:
+                     implementation: scripts/frontend/configure.sh
+                     inputs:
+                       data_dir: {get_operation_output: [front_end1,Standard,
+                                                            create,data_dir]}
+        '''
+        tpl2 = (toscaparser.utils.yamlparser.simple_parse(tpl_snippet2))
+        err2 = self.assertRaises(KeyError,
+                                 TopologyTemplate, tpl2, None)
+        expectedmessage2 = _('\'Node template "front_end1" was not found.\'')
+        self.assertEqual(expectedmessage2, err2.__str__())
+        # test case 3
+        tpl_snippet3 = '''
+        node_templates:
+             front_end:
+               type: tosca.nodes.Compute
+               interfaces:
+                 Standard:
+                   create:
+                     implementation: scripts/frontend/create.sh
+                   configure:
+                     implementation: scripts/frontend/configure.sh
+                     inputs:
+                       data_dir: {get_operation_output: [front_end,Standard,
+                                                      get_target,data_dir]}
+        '''
+        tpl3 = (toscaparser.utils.yamlparser.simple_parse(tpl_snippet3))
+        err3 = self.assertRaises(ValueError,
+                                 TopologyTemplate, tpl3, None)
+        expectedmessage3 = _('Enter an operation of Standard interface')
+        self.assertEqual(expectedmessage3, err3.__str__())
+        # test case 4
+        tpl_snippet4 = '''
+        node_templates:
+             front_end:
+               type: tosca.nodes.Compute
+               interfaces:
+                 Standard:
+                   create:
+                     implementation: scripts/frontend/create.sh
+                   configure:
+                     implementation: scripts/frontend/configure.sh
+                     inputs:
+                       data_dir: {get_operation_output: [front_end,Configure,
+                                                        create,data_dir]}
+        '''
+        tpl4 = (toscaparser.utils.yamlparser.simple_parse(tpl_snippet4))
+        err4 = self.assertRaises(ValueError,
+                                 TopologyTemplate, tpl4, None)
+        expectedmessage4 = _('Enter an operation of Configure interface')
+        self.assertEqual(expectedmessage4, err4.__str__())
+        # test case 5
+        tpl_snippet5 = '''
+        node_templates:
+             front_end:
+               type: tosca.nodes.Compute
+               interfaces:
+                 Standard:
+                   create:
+                     implementation: scripts/frontend/create.sh
+                   configure:
+                     implementation: scripts/frontend/configure.sh
+                     inputs:
+                       data_dir: {get_operation_output: [front_end,Standard,
+                                                                    create]}
+        '''
+        tpl5 = (toscaparser.utils.yamlparser.simple_parse(tpl_snippet5))
+        err5 = self.assertRaises(ValueError,
+                                 TopologyTemplate, tpl5, None)
+        expectedmessage5 = _('Illegal arguments for function'
+                             ' "get_operation_output".'
+                             ' Expected arguments: "template_name",'
+                             '"interface_name",'
+                             '"operation_name","output_variable_name"')
+        self.assertEqual(expectedmessage5, err5.__str__())
 
     def test_unsupported_type(self):
         tpl_snippet = '''
@@ -135,6 +266,15 @@ class ToscaTemplateValidationTest(TestCase):
             required: yes
             status: supported
         '''
+        tpl_snippet3 = '''
+        inputs:
+          some_list:
+            type: list
+            description: List of items
+            entry_schema:
+              type: string
+            default: []
+        '''
         inputs1 = (toscaparser.utils.yamlparser.
                    simple_parse(tpl_snippet1)['inputs'])
         name1, attrs1 = list(inputs1.items())[0]
@@ -144,14 +284,13 @@ class ToscaTemplateValidationTest(TestCase):
         try:
             Input(name1, attrs1)
         except Exception as err:
-            # err=self.assertRaises(exception.UnknownFieldError,
-            #                       input1.validate)
             self.assertEqual(_('Input "cpus" contains unknown field '
                                '"constraint". Refer to the definition to '
                                'verify valid values.'),
                              err.__str__())
         input2 = Input(name2, attrs2)
         self.assertTrue(input2.required)
+        toscaparser.utils.yamlparser.simple_parse(tpl_snippet3)['inputs']
 
     def _imports_content_test(self, tpl_snippet, path, custom_type_def):
         imports = (toscaparser.utils.yamlparser.
@@ -366,7 +505,7 @@ heat-translator/master/translator/tests/data/custom_types/wordpress.yaml
         try:
             output.validate()
         except Exception as err:
-            self.assertTrue(isinstance(err, exception.UnknownFieldError))
+            self.assertIsInstance(err, exception.UnknownFieldError)
             self.assertEqual(_('Output "server_address" contains unknown '
                                'field "descriptions". Refer to the definition '
                                'to verify valid values.'),
@@ -1456,7 +1595,7 @@ heat-translator/master/translator/tests/data/custom_types/wordpress.yaml
                requirement: host
                capability: Container
              condition:
-               constraint: utilization greater_than 50%
+               constraint: { greater_than: 50 }
                period: 60
                evaluations: 1
                method : average
@@ -1555,3 +1694,91 @@ heat-translator/master/translator/tests/data/custom_types/wordpress.yaml
                             'unknown field "oss". Refer to the definition '
                             'to verify valid values.')
         self.assertEqual(expectedmessage, err.__str__())
+
+    def test_qualified_name(self):
+        tpl_snippet_full_name = '''
+        node_templates:
+          supported_type:
+            type: tosca.nodes.Compute
+        '''
+        tpl = (
+            toscaparser.utils.yamlparser.simple_parse(
+                tpl_snippet_full_name))
+        TopologyTemplate(tpl, None)
+
+        tpl_snippet_short_name = '''
+        node_templates:
+          supported_type:
+            type: Compute
+        '''
+        tpl = (
+            toscaparser.utils.yamlparser.simple_parse(
+                tpl_snippet_short_name))
+        TopologyTemplate(tpl, None)
+
+        tpl_snippet_qualified_name = '''
+        node_templates:
+          supported_type:
+            type: tosca:Compute
+        '''
+        tpl = (
+            toscaparser.utils.yamlparser.simple_parse(
+                tpl_snippet_qualified_name))
+        TopologyTemplate(tpl, None)
+
+    def test_requirements_as_list(self):
+        """Node template with requirements provided with or without list
+
+        Node template requirements are required to be provided as list.
+        """
+
+        expectedmessage = _('"requirements" of template "my_webserver"'
+                            ' must be of type "list".')
+
+        # requirements provided as dictionary
+        tpl_snippet1 = '''
+        node_templates:
+          my_webserver:
+            type: tosca.nodes.WebServer
+            requirements:
+              host: server
+          server:
+            type: tosca.nodes.Compute
+        '''
+        err1 = self.assertRaises(
+            exception.TypeMismatchError,
+            lambda: self._single_node_template_content_test(tpl_snippet1))
+        self.assertEqual(expectedmessage, err1.__str__())
+
+        # requirements provided as string
+        tpl_snippet2 = '''
+        node_templates:
+          my_webserver:
+            type: tosca.nodes.WebServer
+            requirements: server
+          server:
+            type: tosca.nodes.Compute
+        '''
+        err2 = self.assertRaises(
+            exception.TypeMismatchError,
+            lambda: self._single_node_template_content_test(tpl_snippet2))
+        self.assertEqual(expectedmessage, err2.__str__())
+
+        # requirements provided as list
+        tpl_snippet3 = '''
+        node_templates:
+          my_webserver:
+            type: tosca.nodes.WebServer
+            requirements:
+              - host: server
+          server:
+            type: tosca.nodes.Compute
+        '''
+        self.assertIsNone(
+            self._single_node_template_content_test(tpl_snippet3))
+
+    def test_properties_override_with_flavor_and_image(self):
+        tpl_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/test_normative_type_properties_override.yaml")
+        self.assertIsNotNone(ToscaTemplate(tpl_path))

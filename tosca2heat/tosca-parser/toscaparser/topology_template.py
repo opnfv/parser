@@ -118,6 +118,7 @@ class TopologyTemplate(object):
 
     def _substitution_mappings(self):
         tpl_substitution_mapping = self._tpl_substitution_mappings()
+        # if tpl_substitution_mapping and self.sub_mapped_node_template:
         if tpl_substitution_mapping:
             return SubstitutionMappings(tpl_substitution_mapping,
                                         self.nodetemplates,
@@ -131,17 +132,17 @@ class TopologyTemplate(object):
         for policy in self._tpl_policies():
             for policy_name, policy_tpl in policy.items():
                 target_list = policy_tpl.get('targets')
+                target_objects = []
+                targets_type = "groups"
                 if target_list and len(target_list) >= 1:
-                    target_objects = []
-                    targets_type = "groups"
                     target_objects = self._get_policy_groups(target_list)
                     if not target_objects:
                         targets_type = "node_templates"
                         target_objects = self._get_group_members(target_list)
-                    policyObj = Policy(policy_name, policy_tpl,
-                                       target_objects, targets_type,
-                                       self.custom_defs)
-                    policies.append(policyObj)
+                policyObj = Policy(policy_name, policy_tpl,
+                                   target_objects, targets_type,
+                                   self.custom_defs)
+                policies.append(policyObj)
         return policies
 
     def _groups(self):
@@ -152,7 +153,7 @@ class TopologyTemplate(object):
             if member_names is not None:
                 DataEntity.validate_datatype('list', member_names)
                 if len(member_names) < 1 or \
-                    len(member_names) != len(set(member_names)):
+                        len(member_names) != len(set(member_names)):
                     exception.ExceptionCollector.appendException(
                         exception.InvalidGroupTargetException(
                             message=_('Member nodes "%s" should be >= 1 '
@@ -196,16 +197,16 @@ class TopologyTemplate(object):
     # topology template can act like node template
     # it is exposed by substitution_mappings.
     def nodetype(self):
-        return (self.substitution_mappings.node_type
-                if self.substitution_mappings else None)
+        return self.substitution_mappings.node_type \
+            if self.substitution_mappings else None
 
     def capabilities(self):
-        return (self.substitution_mappings.capabilities
-                if self.substitution_mappings else None)
+        return self.substitution_mappings.capabilities \
+            if self.substitution_mappings else None
 
     def requirements(self):
-        return (self.substitution_mappings.requirements
-                if self.substitution_mappings else None)
+        return self.substitution_mappings.requirements \
+            if self.substitution_mappings else None
 
     def _tpl_description(self):
         description = self.tpl.get(DESCRIPTION)
@@ -258,7 +259,8 @@ class TopologyTemplate(object):
                                 self,
                                 node_template,
                                 value)
-                if node_template.requirements:
+                if node_template.requirements and \
+                   isinstance(node_template.requirements, list):
                     for req in node_template.requirements:
                         rel = req
                         for req_name, req_item in req.items():
@@ -291,7 +293,7 @@ class TopologyTemplate(object):
                             for interface in rel_tpl.interfaces:
                                 if interface.inputs:
                                     for name, value in \
-                                        interface.inputs.items():
+                                            interface.inputs.items():
                                         interface.inputs[name] = \
                                             functions.get_function(self,
                                                                    rel_tpl,

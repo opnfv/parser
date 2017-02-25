@@ -36,14 +36,14 @@ SECTIONS = (DEFINITION_VERSION, DEFAULT_NAMESPACE, TEMPLATE_NAME,
             TOPOLOGY_TEMPLATE, TEMPLATE_AUTHOR, TEMPLATE_VERSION,
             DESCRIPTION, IMPORTS, DSL_DEFINITIONS, NODE_TYPES,
             RELATIONSHIP_TYPES, RELATIONSHIP_TEMPLATES,
-            CAPABILITY_TYPES, ARTIFACT_TYPES, DATA_TYPES,
+            CAPABILITY_TYPES, ARTIFACT_TYPES, DATA_TYPES, INTERFACE_TYPES,
             POLICY_TYPES, GROUP_TYPES, REPOSITORIES) = \
            ('tosca_definitions_version', 'tosca_default_namespace',
             'template_name', 'topology_template', 'template_author',
             'template_version', 'description', 'imports', 'dsl_definitions',
             'node_types', 'relationship_types', 'relationship_templates',
             'capability_types', 'artifact_types', 'data_types',
-            'policy_types', 'group_types', 'repositories')
+            'interface_types', 'policy_types', 'group_types', 'repositories')
 # Sections that are specific to individual template definitions
 SPECIAL_SECTIONS = (METADATA) = ('metadata')
 
@@ -106,6 +106,7 @@ class ToscaTemplate(object):
                 self.relationship_templates = self._relationship_templates()
                 self.nodetemplates = self._nodetemplates()
                 self.outputs = self._outputs()
+                self.policies = self._policies()
                 self._handle_nested_tosca_templates_with_topology()
                 self.graph = ToscaGraph(self.nodetemplates)
 
@@ -162,9 +163,12 @@ class ToscaTemplate(object):
     def _tpl_topology_template(self):
         return self.tpl.get(TOPOLOGY_TEMPLATE)
 
+    def _policies(self):
+        return self.topology_template.policies
+
     def _get_all_custom_defs(self, imports=None):
         types = [IMPORTS, NODE_TYPES, CAPABILITY_TYPES, RELATIONSHIP_TYPES,
-                 DATA_TYPES, POLICY_TYPES, GROUP_TYPES]
+                 DATA_TYPES, INTERFACE_TYPES, POLICY_TYPES, GROUP_TYPES]
         custom_defs_final = {}
         custom_defs = self._get_custom_types(types, imports)
         if custom_defs:
@@ -196,9 +200,9 @@ class ToscaTemplate(object):
             imports = self._tpl_imports()
 
         if imports:
-            custom_service = \
-                toscaparser.imports.ImportsLoader(imports, self.path,
-                                                  type_defs, self.tpl)
+            custom_service = toscaparser.imports.\
+                ImportsLoader(imports, self.path,
+                              type_defs, self.tpl)
 
             nested_tosca_tpls = custom_service.get_nested_tosca_tpls()
             self._update_nested_tosca_tpls_with_topology(nested_tosca_tpls)
