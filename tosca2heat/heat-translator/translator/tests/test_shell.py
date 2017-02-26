@@ -10,13 +10,13 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import ast
+
 import json
+import mock
 import os
 import shutil
 import tempfile
 
-from mock import patch
 from toscaparser.common import exception
 from toscaparser.utils.gettextutils import _
 import translator.shell as shell
@@ -49,10 +49,7 @@ class ShellTest(TestCase):
                            '--parameters=key'))
 
     def test_valid_template(self):
-        try:
-            shell.main([self.template_file, self.template_type])
-        except Exception:
-            self.fail(self.failure_msg)
+        shell.main([self.template_file, self.template_type])
 
     def test_valid_template_without_type(self):
         try:
@@ -101,25 +98,19 @@ class ShellTest(TestCase):
                 self.assertTrue(temp_dir is None or
                                 not os.path.exists(temp_dir))
 
-    @patch('uuid.uuid4')
-    @patch('translator.common.utils.check_for_env_variables')
-    @patch('requests.post')
-    @patch('translator.common.utils.get_url_for')
-    @patch('translator.common.utils.get_token_id')
-    @patch('os.getenv')
-    @patch('translator.hot.tosca.tosca_compute.'
-           'ToscaCompute._create_nova_flavor_dict')
-    @patch('translator.hot.tosca.tosca_compute.'
-           'ToscaCompute._populate_image_dict')
-    def test_template_deploy_with_credentials(self, mock_populate_image_dict,
-                                              mock_flavor_dict,
-                                              mock_os_getenv,
-                                              mock_token,
-                                              mock_url, mock_post,
-                                              mock_env,
-                                              mock_uuid):
+    @mock.patch('uuid.uuid4')
+    @mock.patch.object(shell.TranslatorShell, '_create_stack')
+    @mock.patch('keystoneauth1.loading.load_auth_from_argparse_arguments')
+    @mock.patch('keystoneauth1.loading.load_session_from_argparse_arguments')
+    @mock.patch('translator.common.flavors.get_flavors')
+    @mock.patch('translator.common.images.get_images')
+    def test_template_deploy(self, mock_populate_image_dict,
+                             mock_flavor_dict,
+                             mock_keystone_session,
+                             mock_keystone_auth,
+                             mock_client,
+                             mock_uuid):
         mock_uuid.return_value = 'abcXXX-abcXXX'
-        mock_env.return_value = True
         mock_flavor_dict.return_value = {
             'm1.medium': {'mem_size': 4096, 'disk_size': 40, 'num_cpus': 2}
         }
@@ -131,43 +122,33 @@ class ShellTest(TestCase):
                 "type": "Linux"
             }
         }
-        mock_url.return_value = 'http://abc.com'
-        mock_token.return_value = 'mock_token'
-        mock_os_getenv.side_effect = ['demo', 'demo',
-                                      'demo', 'http://www.abc.com']
+
         try:
             data = {
-                'stack_name': 'heat_tosca_helloworld_abcXXX',
+                'outputs': {},
+                'heat_template_version': '2013-05-23',
+                'description': 'Template for deploying a single server '
+                               'with predefined properties.\n',
                 'parameters': {},
-                'template': {
-                    'outputs': {},
-                    'heat_template_version': '2014-10-16',
-                    'description': 'Template for deploying a single server '
-                                   'with predefined properties.\n',
-                    'parameters': {},
-                    'resources': {
-                        'my_server': {
-                            'type': 'OS::Nova::Server',
-                            'properties': {
-                                'flavor': 'm1.medium',
-                                'user_data_format': 'SOFTWARE_CONFIG',
-                                'software_config_transport':
-                                    'POLL_SERVER_HEAT',
-                                'image': 'rhel-6.5-test-image'
-                            }
+                'resources': {
+                    'my_server': {
+                        'type': 'OS::Nova::Server',
+                        'properties': {
+                            'flavor': 'm1.medium',
+                            'user_data_format': 'SOFTWARE_CONFIG',
+                            'image': 'rhel-6.5-test-image'
                         }
                     }
                 }
             }
 
             mock_heat_res = {
-                "stack": {
-                    "id": 1234
-                }
-            }
-            headers = {
-                'Content-Type': 'application/json',
-                'X-Auth-Token': 'mock_token'
+                "stacks": [
+                    {
+                        "id": "d648ad27-fb9c-44d1-b293-646ea6c4f8da",
+                        "stack_status": "CREATE_IN_PROGRESS",
+                    }
+                ]
             }
 
             class mock_response(object):
@@ -176,12 +157,11 @@ class ShellTest(TestCase):
                     self._content = _content
 
             mock_response_obj = mock_response(201, json.dumps(mock_heat_res))
-            mock_post.return_value = mock_response_obj
-            shell.main([self.template_file, self.template_type,
-                        "--deploy"])
-            args, kwargs = mock_post.call_args
-            self.assertEqual(args[0], 'http://abc.com/stacks')
-            self.assertEqual(ast.literal_eval(kwargs['data']), data)
-            self.assertEqual(kwargs['headers'], headers)
-        except Exception:
-            self.fail(self.failure_msg)
+            mock_client.return_value = mock_response_obj
+            shell.main([self.template_file, self.template_type, "--deploy"])
+            args, kwargs = mock_client.call_args
+            self.assertEqual(kwargs["stack_name"],
+                             'heat_tosca_helloworld_abcXXX')
+            self.assertEqual(kwargs["template"], data)
+        except Exception as e:
+            self.fail(e)

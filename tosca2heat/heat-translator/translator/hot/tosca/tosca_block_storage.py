@@ -29,9 +29,10 @@ class ToscaBlockStorage(HotResource):
 
     toscatype = 'tosca.nodes.BlockStorage'
 
-    def __init__(self, nodetemplate):
+    def __init__(self, nodetemplate, csar_dir=None):
         super(ToscaBlockStorage, self).__init__(nodetemplate,
-                                                type='OS::Cinder::Volume')
+                                                type='OS::Cinder::Volume',
+                                                csar_dir=csar_dir)
         pass
 
     def handle_properties(self):
@@ -67,5 +68,5 @@ class ToscaBlockStorage(HotResource):
         # attribute for the matching resource.  Unless there is additional
         # runtime support, this should be a one to one mapping.
         if attribute == 'volume_id':
-            attr['get_resource'] = args[0]
+            attr['get_resource'] = self.name
         return attr

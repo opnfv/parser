@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   Template for deploying the nodes based on given policies.
@@ -15,7 +15,6 @@ resources:
         group:
           get_resource: my_compute_placement_policy
       user_data_format: SOFTWARE_CONFIG
-      software_config_transport: POLL_SERVER_HEAT
   my_compute_placement_policy:
     type: OS::Nova::ServerGroup
     properties:
