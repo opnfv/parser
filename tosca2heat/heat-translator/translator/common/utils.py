@@ -18,8 +18,11 @@ import numbers
 import os
 import re
 import requests
+import six
 from six.moves.urllib.parse import urlparse
+import tempfile
 import yaml
+import zipfile
 
 from toscaparser.utils.gettextutils import _
 import toscaparser.utils.yamlparser
@@ -193,7 +196,7 @@ class YamlUtils(object):
     def get_dict(yaml_file):
         '''Returns the dictionary representation of the given YAML spec.'''
         try:
-            return yaml.load(open(yaml_file))
+            return yaml.safe_load(open(yaml_file))
         except IOError:
             return None
 
@@ -213,7 +216,7 @@ class YamlUtils(object):
 class TranslationUtils(object):
 
     @staticmethod
-    def compare_tosca_translation_with_hot(tosca_file, hot_file, params):
+    def compare_tosca_translation_with_hot(tosca_file, hot_files, params):
         '''Verify tosca translation against the given hot specification.
 
         inputs:
@@ -234,16 +237,28 @@ class TranslationUtils(object):
         if not a_file:
             tosca_tpl = tosca_file
 
-        expected_hot_tpl = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), hot_file)
+        expected_hot_templates = []
+        for hot_file in hot_files:
+            expected_hot_templates.append(os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), hot_file))
 
         tosca = ToscaTemplate(tosca_tpl, params, a_file)
         translate = TOSCATranslator(tosca, params)
 
-        output = translate.translate()
-        output_dict = toscaparser.utils.yamlparser.simple_parse(output)
-        expected_output_dict = YamlUtils.get_dict(expected_hot_tpl)
-        return CompareUtils.diff_dicts(output_dict, expected_output_dict)
+        basename = os.path.basename(hot_files[0])
+        output_hot_templates = translate.translate_to_yaml_files_dict(basename)
+        output_dict = {}
+        for output_hot_template_name in output_hot_templates:
+            output_dict[output_hot_template_name] = \
+                toscaparser.utils.yamlparser.simple_parse(
+                    output_hot_templates[output_hot_template_name])
+
+        expected_output_dict = {}
+        for expected_hot_template in expected_hot_templates:
+            expected_output_dict[os.path.basename(expected_hot_template)] = \
+                YamlUtils.get_dict(expected_hot_template)
+
+        return CompareUtils.diff_dicts(expected_output_dict, output_dict)
 
 
 class UrlUtils(object):
@@ -262,12 +277,17 @@ class UrlUtils(object):
 
 def str_to_num(value):
     """Convert a string representation of a number into a numeric type."""
-    if isinstance(value, numbers.Number):
+    if isinstance(value, numbers.Number) \
+            or isinstance(value, six.integer_types) \
+            or isinstance(value, float):
         return value
     try:
         return int(value)
     except ValueError:
-        return float(value)
+        try:
+            return float(value)
+        except ValueError:
+            return None
 
 
 def check_for_env_variables():
@@ -317,3 +337,30 @@ def get_token_id(access_dict):
     if access_dict is None:
         return None
     return access_dict['access']['token']['id']
+
+
+def decompress(zip_file, dir=None):
+    """Decompress Zip file
+
+    Decompress any zip file. For example, TOSCA CSAR
+
+    inputs:
+       zip_file: file in zip format
+       dir: directory to decompress zip. If not provided an unique temporary
+            directory will be generated and used.
+    return:
+       dir: absolute path to the decopressed directory
+    """
+    if not dir:
+        dir = tempfile.NamedTemporaryFile().name
+    with zipfile.ZipFile(zip_file, "r") as zf:
+        zf.extractall(dir)
+    return dir
+
+
+def get_dict_value(dict_item, key, get_files):
+    if key in dict_item:
+        return get_files.append(dict_item[key])
+    for k, v in dict_item.items():
+        if isinstance(v, dict):
+            get_dict_value(v, key, get_files)

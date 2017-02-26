@@ -13,6 +13,7 @@
 
 from collections import OrderedDict
 import logging
+import os
 import textwrap
 from toscaparser.utils.gettextutils import _
 import yaml
@@ -28,7 +29,7 @@ class HotTemplate(object):
                ('heat_template_version', 'description', 'parameter_groups',
                 'parameters', 'resources', 'outputs', '__undefined__')
 
-    VERSIONS = (LATEST,) = ('2014-10-16',)
+    VERSIONS = (LATEST,) = ('2013-05-23',)
 
     def __init__(self):
         self.resources = []
@@ -44,11 +45,34 @@ class HotTemplate(object):
             nodes.append((node_key, node_value))
         return yaml.nodes.MappingNode(u'tag:yaml.org,2002:map', nodes)
 
-    def output_to_yaml(self):
+    def output_to_yaml_files_dict(self, base_filename,
+                                  hot_template_version=LATEST):
+        yaml_files_dict = {}
+        base_filename, ext = os.path.splitext(base_filename)
+
+        # convert from inlined substack to a substack defined in another file
+        for resource in self.resources:
+            yaml_files_dict.update(
+                resource.extract_substack_templates(base_filename,
+                                                    hot_template_version))
+
+        yaml_files_dict[base_filename + ext] = \
+            self.output_to_yaml(hot_template_version, False)
+
+        return yaml_files_dict
+
+    def output_to_yaml(self, hot_template_version=LATEST,
+                       embed_substack_templates=True):
         log.debug(_('Converting translated output to yaml format.'))
+
+        if embed_substack_templates:
+            # fully inlined substack by storing the template as a blob string
+            for resource in self.resources:
+                resource.embed_substack_templates(hot_template_version)
+
         dict_output = OrderedDict()
         # Version
-        version_string = self.VERSION + ": " + self.LATEST + "\n\n"
+        version_string = self.VERSION + ": " + hot_template_version + "\n\n"
 
         # Description
         desc_str = ""
@@ -77,7 +101,10 @@ class HotTemplate(object):
         dict_output.update({self.OUTPUTS: all_outputs})
 
         yaml.add_representer(OrderedDict, self.represent_ordereddict)
+        yaml.add_representer(dict, self.represent_ordereddict)
         yaml_string = yaml.dump(dict_output, default_flow_style=False)
         # get rid of the '' from yaml.dump around numbers
-        yaml_string = yaml_string.replace('\'', '')
+        # also replace double return lines with a single one
+        # seems to be a bug in the serialization of multiline literal scalars
+        yaml_string = yaml_string.replace('\'', '') .replace('\n\n', '\n')
         return version_string + desc_str + yaml_string
