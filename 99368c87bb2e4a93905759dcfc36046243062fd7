@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: xiaodong shang <shang.xiaodong@zte.com.cn>
+Submitted-by: xiaodong shang <shang.xiaodong@zte.com.cn>
+Submitted-at: Sun, 26 Feb 2017 17:31:38 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/29397
+Project: parser
+Branch: refs/heads/master
