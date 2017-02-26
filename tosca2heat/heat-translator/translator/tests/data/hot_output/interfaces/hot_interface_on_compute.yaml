@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   TOSCA template to test Compute node with interface
@@ -12,7 +12,6 @@ resources:
         get_resource: softwarecomponent_depending_on_customcompute_install_create_config
       server:
         get_resource: server
-      signal_transport: HEAT_SIGNAL
     depends_on:
     - server_create_deploy
   server:
