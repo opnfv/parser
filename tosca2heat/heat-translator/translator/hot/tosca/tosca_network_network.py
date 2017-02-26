@@ -28,9 +28,10 @@ class ToscaNetwork(HotResource):
 
     existing_resource_id = None
 
-    def __init__(self, nodetemplate):
+    def __init__(self, nodetemplate, csar_dir=None):
         super(ToscaNetwork, self).__init__(nodetemplate,
-                                           type='OS::Neutron::Net')
+                                           type='OS::Neutron::Net',
+                                           csar_dir=csar_dir)
         pass
 
     def handle_properties(self):
@@ -57,8 +58,6 @@ class ToscaNetwork(HotResource):
                     self.existing_resource_id = value
                     break
                 elif key == 'segmentation_id':
-                    # net_props['segmentation_id'] =  \
-                    #     tosca_props['segmentation_id']
                     # Hardcode to vxlan for now until we add the network type
                     # and physical network to the spec.
                     net_props['value_specs'] = {'provider:segmentation_id':

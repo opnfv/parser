@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   TOSCA simple profile with 2 servers each with different attached block storage.
@@ -90,13 +90,17 @@ outputs:
     value:
       get_attr:
       - my_server
-      - first_address
+      - networks
+      - private
+      - 0
   server_ip_2:
     description: The private IP address of the applications second server.
     value:
       get_attr:
       - my_server2
-      - first_address
+      - networks
+      - private
+      - 0
   volume_id_1:
     description: The volume id of the first block storage instance.
     value:

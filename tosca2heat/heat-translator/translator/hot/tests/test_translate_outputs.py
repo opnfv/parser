@@ -33,12 +33,12 @@ class ToscaTemplateOutputTest(TestCase):
                             'server, http://<IP>:3000',
                             'value':
                             {'get_attr':
-                             ['app_server', 'first_address']}},
+                             ['app_server', 'networks', 'private', 0]}},
                            'mongodb_url':
                            {'description': 'URL for the mongodb server.',
                             'value':
                             {'get_attr':
-                             ['mongo_server', 'first_address']}}}
+                             ['mongo_server', 'networks', 'private', 0]}}}
 
         hot_translation_dict = \
             toscaparser.utils.yamlparser.simple_parse(hot_translation)
