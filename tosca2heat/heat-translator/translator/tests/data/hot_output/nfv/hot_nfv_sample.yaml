@@ -1,19 +1,21 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   Template for deploying a single server with predefined properties.
 
 parameters: {}
 resources:
+
   VDU1:
     type: OS::Nova::Server
     properties:
-      flavor: m1.tiny
+      flavor: m1.medium
       image: rhel-6.5-test-image
       networks:
       - port: { get_resource: CP1 }
       user_data_format: SOFTWARE_CONFIG
       software_config_transport: POLL_SERVER_HEAT
+
     depends_on:
       - VDU2
       - BlockStorage
@@ -21,7 +23,7 @@ resources:
   VDU2:
     type: OS::Nova::Server
     properties:
-      flavor: m1.tiny
+      flavor: m1.medium
       image: rhel-6.5-test-image
       networks:
       - port: { get_resource: CP2 }
@@ -31,14 +33,14 @@ resources:
   BlockStorage:
     type: OS::Cinder::Volume
     properties:
-      size: 1
+      size: 10
 
   tosca.relationships.attachesto_1:
     type: OS::Cinder::VolumeAttachment
     properties:
       instance_uuid:
         get_resource: VDU1
-      mountpoint: /dev/vdb1
+      mountpoint: /data
       volume_id:
         get_resource: BlockStorage
 
