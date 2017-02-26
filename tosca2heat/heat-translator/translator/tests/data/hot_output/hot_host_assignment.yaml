@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   A template to test host assignment for translated hot resources.
@@ -61,7 +61,9 @@ resources:
         logstash_ip:
           get_attr:
           - logstash_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL

@@ -12,20 +12,38 @@
 
 
 import argparse
-import ast
-import json
+import codecs
 import logging
 import logging.config
 import os
-import prettytable
-import requests
+import six
 import sys
 import uuid
 import yaml
+import zipfile
+
+# NOTE(aloga): As per upstream developers requirement this needs to work
+# without the clients, therefore we need to pass if we cannot import them
+try:
+    from keystoneauth1 import loading
+except ImportError:
+    keystone_client_avail = False
+else:
+    keystone_client_avail = True
+
+try:
+    import heatclient.client
+except ImportError:
+    heat_client_avail = False
+else:
+    heat_client_avail = True
+
 
 from toscaparser.tosca_template import ToscaTemplate
 from toscaparser.utils.gettextutils import _
 from toscaparser.utils.urlutils import UrlUtils
+from translator.common import flavors
+from translator.common import images
 from translator.common import utils
 from translator.conf.config import ConfigProvider
 from translator.hot.tosca_translator import TOSCATranslator
@@ -37,8 +55,8 @@ Test the heat-translator translation from command line as:
   --template-type=<type of template e.g. tosca>
   --parameters="purpose=test"
 Takes three user arguments,
-1. type of translation (e.g. tosca) (required)
-2. Path to the file that needs to be translated (required)
+1. Path to the file that needs to be translated (required)
+2. type of translation (e.g. tosca) (optional)
 3. Input parameters (optional)
 
 In order to use heat-translator to only validate template,
@@ -54,8 +72,9 @@ log = logging.getLogger("heat-translator")
 class TranslatorShell(object):
 
     SUPPORTED_TYPES = ['tosca']
+    TOSCA_CSAR_META_DIR = "TOSCA-Metadata"
 
-    def get_parser(self):
+    def get_parser(self, argv):
         parser = argparse.ArgumentParser(prog="heat-translator")
 
         parser.add_argument('--template-file',
@@ -94,14 +113,28 @@ class TranslatorShell(object):
         parser.add_argument('--stack-name',
                             metavar='<stack-name>',
                             required=False,
-                            help=_('Stack name when deploy the generated '
-                                   'template.'))
+                            help=_('The name to use for the Heat stack when '
+                                   'deploy the generated template.'))
+
+        self._append_global_identity_args(parser, argv)
 
         return parser
 
+    def _append_global_identity_args(self, parser, argv):
+        if not keystone_client_avail:
+            return
+
+        loading.register_session_argparse_arguments(parser)
+
+        default_auth_plugin = 'password'
+        if 'os-token' in argv:
+            default_auth_plugin = 'token'
+        loading.register_auth_argparse_arguments(
+            parser, argv, default=default_auth_plugin)
+
     def main(self, argv):
 
-        parser = self.get_parser()
+        parser = self.get_parser(argv)
         (args, args_list) = parser.parse_known_args(argv)
 
         template_file = args.template_file
@@ -124,25 +157,89 @@ class TranslatorShell(object):
                          'validation.') % {'template_file': template_file})
                 print(msg)
             else:
-                heat_tpl = self._translate(template_type, template_file,
-                                           parsed_params, a_file, deploy)
-                if heat_tpl:
-                    if utils.check_for_env_variables() and deploy:
-                        try:
-                            file_name = os.path.basename(
-                                os.path.splitext(template_file)[0])
-                            heatclient(heat_tpl, stack_name,
-                                       file_name, parsed_params)
-                        except Exception:
-                            log.error(_("Unable to launch the heat stack"))
+                if keystone_client_avail:
+                    try:
+                        keystone_auth = (
+                            loading.load_auth_from_argparse_arguments(args)
+                        )
+                        keystone_session = (
+                            loading.load_session_from_argparse_arguments(
+                                args,
+                                auth=keystone_auth
+                            )
+                        )
+                        images.SESSION = keystone_session
+                        flavors.SESSION = keystone_session
+                    except Exception:
+                        keystone_session = None
 
-                    self._write_output(heat_tpl, output_file)
+                translator = self._get_translator(template_type,
+                                                  template_file,
+                                                  parsed_params, a_file,
+                                                  deploy)
+
+                if translator and deploy:
+                    if not keystone_client_avail or not heat_client_avail:
+                        raise RuntimeError(_('Could not find Heat or Keystone'
+                                             'client to deploy, aborting '))
+                    if not keystone_session:
+                        raise RuntimeError(_('Impossible to login with '
+                                             'Keystone to deploy on Heat, '
+                                             'please check your credentials'))
+
+                    file_name = os.path.basename(
+                        os.path.splitext(template_file)[0])
+                    self.deploy_on_heat(keystone_session, keystone_auth,
+                                        translator, stack_name, file_name,
+                                        parsed_params)
+
+                self._write_output(translator, output_file)
         else:
             msg = (_('The path %(template_file)s is not a valid '
                      'file or URL.') % {'template_file': template_file})
 
             log.error(msg)
             raise ValueError(msg)
+
+    def deploy_on_heat(self, session, auth, translator,
+                       stack_name, file_name, parameters):
+        endpoint = auth.get_endpoint(session, service_type="orchestration")
+        heat_client = heatclient.client.Client('1',
+                                               session=session,
+                                               auth=auth,
+                                               endpoint=endpoint)
+
+        heat_stack_name = stack_name if stack_name else \
+            'heat_' + file_name + '_' + str(uuid.uuid4()).split("-")[0]
+        msg = _('Deploy the generated template, the stack name is %(name)s.')\
+            % {'name': heat_stack_name}
+        log.debug(msg)
+        tpl = yaml.safe_load(translator.translate())
+
+        # get all the values for get_file from a translated template
+        get_files = []
+        utils.get_dict_value(tpl, "get_file", get_files)
+        files = {}
+        if get_files:
+            for file in get_files:
+                with codecs.open(file, encoding='utf-8', errors='strict') \
+                    as f:
+                        text = f.read()
+                        files[file] = text
+        tpl['heat_template_version'] = str(tpl['heat_template_version'])
+        self._create_stack(heat_client=heat_client,
+                           stack_name=heat_stack_name,
+                           template=tpl,
+                           parameters=parameters,
+                           files=files)
+
+    def _create_stack(self, heat_client, stack_name, template, parameters,
+                      files):
+        if heat_client:
+            heat_client.stacks.create(stack_name=stack_name,
+                                      template=template,
+                                      parameters=parameters,
+                                      files=files)
 
     def _parse_parameters(self, parameter_list):
         parsed_inputs = {}
@@ -168,67 +265,33 @@ class TranslatorShell(object):
                 raise ValueError(msg)
         return parsed_inputs
 
-    def _translate(self, sourcetype, path, parsed_params, a_file, deploy):
-        output = None
+    def _get_translator(self, sourcetype, path, parsed_params, a_file, deploy):
         if sourcetype == "tosca":
             log.debug(_('Loading the tosca template.'))
             tosca = ToscaTemplate(path, parsed_params, a_file)
-            translator = TOSCATranslator(tosca, parsed_params, deploy)
+            csar_dir = None
+            if deploy and zipfile.is_zipfile(path):
+                # set CSAR directory to the root of TOSCA-Metadata
+                csar_decompress = utils.decompress(path)
+                csar_dir = os.path.join(csar_decompress,
+                                        self.TOSCA_CSAR_META_DIR)
+                msg = _("'%(csar)s' is the location of decompressed "
+                        "CSAR file.") % {'csar': csar_dir}
+                log.info(msg)
+            translator = TOSCATranslator(tosca, parsed_params, deploy,
+                                         csar_dir=csar_dir)
             log.debug(_('Translating the tosca template.'))
-            output = translator.translate()
-        return output
+        return translator
 
-    def _write_output(self, output, output_file=None):
-        if output:
-            if output_file:
-                with open(output_file, 'w+') as f:
-                    f.write(output)
-            else:
-                print(output)
-
-
-def heatclient(output, stack_name, file_name, params):
-    try:
-        access_dict = utils.get_ks_access_dict()
-        endpoint = utils.get_url_for(access_dict, 'orchestration')
-        token = utils.get_token_id(access_dict)
-    except Exception as e:
-        log.error(e)
-    headers = {
-        'Content-Type': 'application/json',
-        'X-Auth-Token': token
-    }
-
-    heat_stack_name = stack_name if stack_name else \
-        "heat_" + file_name + '_' + str(uuid.uuid4()).split("-")[0]
-    output = yaml.load(output)
-    output['heat_template_version'] = str(output['heat_template_version'])
-    data = {
-        'stack_name': heat_stack_name,
-        'template': output,
-        'parameters': params
-    }
-    response = requests.post(endpoint + '/stacks',
-                             data=json.dumps(data),
-                             headers=headers)
-    content = ast.literal_eval(response._content)
-    if response.status_code == 201:
-        stack_id = content["stack"]["id"]
-        get_url = endpoint + '/stacks/' + heat_stack_name + '/' + stack_id
-        get_stack_response = requests.get(get_url,
-                                          headers=headers)
-        stack_details = json.loads(get_stack_response.content)["stack"]
-        col_names = ["id", "stack_name", "stack_status", "creation_time",
-                     "updated_time"]
-        pt = prettytable.PrettyTable(col_names)
-        stack_list = []
-        for col in col_names:
-            stack_list.append(stack_details[col])
-        pt.add_row(stack_list)
-        print(pt)
-    else:
-        err_msg = content["error"]["message"]
-        log(_("Unable to deploy to Heat\n%s\n") % err_msg)
+    def _write_output(self, translator, output_file=None):
+        if output_file:
+            path, filename = os.path.split(output_file)
+            yaml_files = translator.translate_to_yaml_files_dict(filename)
+            for name, content in six.iteritems(yaml_files):
+                with open(os.path.join(path, name), 'w+') as f:
+                    f.write(content)
+        else:
+            print(translator.translate())
 
 
 def main(args=None):
