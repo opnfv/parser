@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   This TOSCA simple profile deploys nodejs, mongodb, elasticsearch, logstash and
@@ -52,7 +52,9 @@ resources:
         mongodb_ip:
           get_attr:
           - mongo_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL
@@ -111,7 +113,9 @@ resources:
         mongodb_ip:
           get_attr:
           - mongo_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: mongo_server
       signal_transport: HEAT_SIGNAL
@@ -189,7 +193,9 @@ resources:
         logstash_ip:
           get_attr:
           - logstash_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL
@@ -285,7 +291,9 @@ resources:
         logstash_ip:
           get_attr:
           - logstash_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: app_server
       signal_transport: HEAT_SIGNAL
@@ -363,7 +371,9 @@ resources:
         elasticsearch_ip:
           get_attr:
           - elasticsearch_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: logstash_server
       signal_transport: HEAT_SIGNAL
@@ -440,11 +450,15 @@ resources:
         elasticsearch_ip:
           get_attr:
           - elasticsearch_server
-          - first_address
+          - networks
+          - private
+          - 0
         kibana_ip:
           get_attr:
           - kibana_server
-          - first_address
+          - networks
+          - private
+          - 0
       server:
         get_resource: kibana_server
       signal_transport: HEAT_SIGNAL
@@ -523,32 +537,43 @@ outputs:
     value:
       get_attr:
       - app_server
-      - first_address
+      - networks
+      - private
+      - 0
 
   mongodb_url:
     description: URL for the mongodb server.
     value:
       get_attr:
       - mongo_server
-      - first_address
+      - networks
+      - private
+      - 0
 
   logstash_url:
     description: URL for the logstash server.
     value:
       get_attr:
       - logstash_server
-      - first_address
+      - networks
+      - private
+      - 0
 
   elasticsearch_url:
     description: URL for the elasticsearch server.
     value:
       get_attr:
       - elasticsearch_server
-      - first_address
+      - networks
+      - private
+      - 0
 
   kibana_url:
     description: URL for the kibana server.
     value:
       get_attr:
       - kibana_server
-      - first_address
+      - networks
+      - private
+      - 0
+
