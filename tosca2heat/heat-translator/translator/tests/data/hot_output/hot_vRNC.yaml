@@ -491,33 +491,25 @@ outputs:
     value:
       get_attr:
       - MM_Active_Host
-      - networks
-      - private
-      - 0
+      - first_address
 
   private_ip_of_CM:
     description: The private IP address of the CM.
     value:
       get_attr:
       - CM_Active_Host
-      - networks
-      - private
-      - 0
+      - first_address
 
   private_ip_of_DM:
     description: The private IP address of the DM.
     value:
       get_attr:
       - DM_Host
-      - networks
-      - private
-      - 0
+      - first_address
 
   private_ip_of_LB:
     description: The private IP address of the LB.
     value:
       get_attr:
       - LB_Host
-      - networks
-      - private
-      - 0
+      - first_address
