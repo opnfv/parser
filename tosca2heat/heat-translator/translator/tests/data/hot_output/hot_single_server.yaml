@@ -1,4 +1,4 @@
-heat_template_version: 2014-10-16
+heat_template_version: 2013-05-23
 
 description: >
   TOSCA simple profile that just defines a single compute instance and selects a
@@ -32,4 +32,6 @@ outputs:
     value:
       get_attr:
       - my_server
-      - first_address
+      - networks
+      - private
+      - 0
