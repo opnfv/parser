@@ -213,6 +213,4 @@ outputs:
     value:
       get_attr:
       - server
-      - networks
-      - private
-      - 0
+      - first_address

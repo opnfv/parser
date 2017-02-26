@@ -211,7 +211,7 @@ class ToscaCompute(HotResource):
                   attriute.'))
         if attribute == 'private_address' or \
            attribute == 'public_address':
-                attr['get_attr'] = [self.name, 'networks', 'private', 0]
+                attr['get_attr'] = [self.name, 'first_address']
 
         return attr
 
