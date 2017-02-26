@@ -109,6 +109,9 @@ change_env_to_parser_user_project() {
     export OS_PROJECT_NAME=${PARSER_PROJECT}
     export OS_TENANT_NAME=${PARSER_TENANT}
 
+    export OS_PROJECT_DOMAIN_NAME=${OS_PROJECT_DOMAIN_NAME:-'Default'}
+    export OS_USER_DOMAIN_NAME=${OS_USER_DOMAIN_NAME:-'Default'}
+
 }
 
 

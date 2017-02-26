@@ -117,9 +117,9 @@ topology_template:
         - local_storage:
             node: MM_BlockStorage
             relationship: Storage_attachesto
-      artifacts:
+      #artifacts:
         #the VM image of MM
-        vm_image: mm.image
+        #vm_image: mm.image
 
     MM_Passive:
       type: tosca.nodes.SoftwareComponent
@@ -146,9 +146,9 @@ topology_template:
             node: MM_BlockStorage
             relationship: Storage_attachesto
         - high_availability: MM_Active_Host
-      artifacts:
+      #artifacts:
         #the VM image of MM
-        vm_image: mm.image
+        #vm_image: mm.image
 
     MM_BlockStorage:
       type: rnc.nodes.BlockStorage
@@ -184,9 +184,9 @@ topology_template:
             min_instances: 1
             max_instances: 12
             default_instances: 1
-      artifacts:
+      #artifacts:
         #the VM image of CM
-        vm_image: cm.image
+        #vm_image: cm.image
 
     CM_Passive:
       type: tosca.nodes.SoftwareComponent
@@ -215,9 +215,9 @@ topology_template:
             default_instances: 1
       requirements:
         - high_availability: CM_Active_Host
-      artifacts:
+      #artifacts:
         #the VM image of CM
-        vm_image: mm.image
+        #vm_image: mm.image
 
     DM:
       type: tosca.nodes.SoftwareComponent
@@ -244,8 +244,9 @@ topology_template:
             min_instances: 1
             max_instances: 12
             default_instances: 1
-      artifacts:
-        vm_image: dm.image
+      #artifacts:
+        #the VM image of DM
+        #vm_image: dm.image
 
     LB:
       type: tosca.nodes.SoftwareComponent
@@ -272,9 +273,9 @@ topology_template:
             min_instances: 1
             max_instances: 2
             default_instances: 1
-      artifacts:
+      #artifacts:
         #the VM image of LB
-        vm_image: lb.image
+        #vm_image: lb.image
 
     CTRL_Net:
       type: rnc.nodes.VL

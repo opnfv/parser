@@ -28,7 +28,10 @@ SECTIONS = (TYPE, PROPERTIES, MEDADATA, DEPENDS_ON, UPDATE_POLICY,
 
 policy_type = ['tosca.policies.Placement',
                'tosca.policies.Scaling',
-               'tosca.policies.Scaling.Cluster']
+               'tosca.policies.Scaling.Cluster',
+               'tosca.policies.Placement.Colocate',
+               'tosca.policies.Placement.Antilocate']
+
 log = logging.getLogger('heat-translator')
 
 
