@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Zhipeng (Howard) Huang <huangzhipeng@huawei.com>
+Verified+1: Zhipeng (Howard) Huang <huangzhipeng@huawei.com>
+Submitted-by: Zhipeng (Howard) Huang <huangzhipeng@huawei.com>
+Submitted-at: Mon, 27 Feb 2017 01:44:31 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/29393
+Project: parser
+Branch: refs/heads/master
