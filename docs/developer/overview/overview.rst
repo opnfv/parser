@@ -1,9 +1,16 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-==============================
-Introduction of Parser Project
-==============================
+=========================================
+OPNFV Parser Danube Overview Doumentation
+=========================================
+
+.. contents::
+   :depth: 3
+   :local:
+
+Introduction
+---------------
 
 In NFV, various templates (such as descriptors, records and so on) are utilized
 to describe the deployment requirements (such as basic VM requirements – vCPU,
@@ -19,7 +26,10 @@ operators’ descriptors/records into TOSCA/CAMP templates and then further
 translate TOSCA/CAMP templates into certain common templates, which could be
 used in IaaS orchestration projects like OpenStack Heat.
 
-For Release B, Parser offers the following capabilities:
+Upgrades from Arno
+------------------------
+
+For Release B, Parser offers the following additional capabilities:
 
 * Integration of Heat-Translator Liberty release code. (both heat in-tree code and standalone package are provided)
 
@@ -39,7 +49,10 @@ For Release B, Parser offers the following capabilities:
   The "example" folder contains examples of tosca-nfv standard and vRNC scenario.
   See also https://wiki.opnfv.org/parser.
 
-For Release C, Parser offers additional capabilities:
+Upgrades from Brumapatra
+-----------------------
+
+For Release C, Parser offers the following additional capabilities:
 
 * Policy2Tosca module which enables policy related fields in tosca could be translated
   into heat orchestration template correctly. Policy2Tosca module could be installed seperately
@@ -68,4 +81,9 @@ main details are listed below:
   ** add deployment a whole vRNC testcase with parser.
 
 * Additional testing support.
+
+Upgrades from Colorado
+----------------------
+
+For Release D, Parser offers the following additional capabilities:
 
