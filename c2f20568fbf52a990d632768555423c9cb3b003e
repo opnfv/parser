@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dabed58f_e5607a37",
+        "filename": "setup.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-02-27T01:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dabed58f_8592de55",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 5,
+        "endChar": 25
+      },
+      "revId": "c2f20568fbf52a990d632768555423c9cb3b003e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dabed58f_259f7261",
         "filename": "setup.cfg",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-02-26T15:32:30Z",
       "side": 1,
       "message": "do we need to add Java and python 3.5 ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "c2f20568fbf52a990d632768555423c9cb3b003e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_0566ee51",
+        "filename": "setup.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-02-27T01:00:42Z",
+      "side": 1,
+      "message": "just for review\n\nshall we add python 3.5. I think This is only a description file, which will be added into tox.ini.\n\nit\u0027s not convenient to switch subdir several times to perform test.",
+      "parentUuid": "dabed58f_259f7261",
       "range": {
         "startLine": 15,
         "startChar": 40,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dabed58f_a55a8281",
+        "filename": "tox.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-02-27T01:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dabed58f_c5b0d6f6",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "c2f20568fbf52a990d632768555423c9cb3b003e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dabed58f_65956a3f",
         "filename": "tox.ini",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2017-02-26T15:32:30Z",
       "side": 1,
       "message": "please fix trailing spaces",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "c2f20568fbf52a990d632768555423c9cb3b003e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_c55f7671",
+        "filename": "tox.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-02-27T01:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dabed58f_65956a3f",
       "range": {
         "startLine": 24,
         "startChar": 10,
