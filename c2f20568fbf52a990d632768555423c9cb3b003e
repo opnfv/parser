@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "dabed58f_a5e8427d",
+        "filename": "setup.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-02-27T01:06:07Z",
+      "side": 1,
+      "message": "and python2.7, python3.5 are defined in inner-project\u0027s tox.ini\n\nthe framework just use python2.7 is OK",
+      "parentUuid": "dabed58f_0566ee51",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "c2f20568fbf52a990d632768555423c9cb3b003e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dabed58f_c5b0d6f6",
         "filename": "tox.ini",
         "patchSetId": 2
