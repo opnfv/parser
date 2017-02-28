@@ -1,0 +1,7 @@
+pkg-config
+build-essential
+autoconf
+automake
+libtool
+golang-go
+curl
