@@ -1,0 +1,9 @@
+include AUTHORS
+include ChangeLog
+include apigateway/gRPC/tosca2heat/*pb2.py
+include apigateway/gRPC/verigraph/*pb2.py
+exclude .gitignore
+exclude .gitreview
+
+global-exclude *.pyc
+global-exclude *.go
