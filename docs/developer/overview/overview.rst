@@ -26,14 +26,23 @@ operators’ descriptors/records into TOSCA/CAMP templates and then further
 translate TOSCA/CAMP templates into certain common templates, which could be
 used in IaaS orchestration projects like OpenStack Heat.
 
-Upgrades from Arno
+For Arno Release
+------------------------
+Parser is not one of the Arno Release projects, however the project has established
+the code base for the later releases:
+
+* OpenStack Heat Translator Kilo Release
+* Initial documentation on use cases
+
+Upgrades from Arno Release
 ------------------------
 
-For Release B, Parser offers the following additional capabilities:
+For Brahmaputra Release, Parser offers the following additional capabilities:
 
-* Integration of Heat-Translator Liberty release code. (both heat in-tree code and standalone package are provided)
+* Update with the integration of OpenStack Heat-Translator Liberty Release, of which
+  both heat in-tree code and standalone package are provided.
 
-* Yang2Tosca module which offers the capability to translate yang based
+* New module yang2tosca module which offers the capability to translate yang based
   scriptors to tosca formate templates. Users could further use Heat-translator
   module to translate this tosca template to Heat Orchestration template.
   Yang2Tosca module could be installed seperately after user installed
@@ -45,22 +54,22 @@ For Release B, Parser offers the following additional capabilities:
   from Release C to indicate which specific set of keywords are supported in
   Parser.
 
-* The "vRNC_tosca_intro" document describes Parser's use case analysis on vRNC scenario.
-  The "example" folder contains examples of tosca-nfv standard and vRNC scenario.
-  See also https://wiki.opnfv.org/parser.
+* The "vRNC_tosca_intro" document describes Parser's use case analysis on vRNC
+scenario.The "example" folder contains examples of tosca-nfv standard and vRNC
+scenario. See also https://wiki.opnfv.org/parser.
 
-Upgrades from Brumapatra
+Upgrades from Brahmaputra Release
 -----------------------
 
-For Release C, Parser offers the following additional capabilities:
+For Colorado Release, Parser offers the following additional capabilities:
 
-* Policy2Tosca module which enables policy related fields in tosca could be translated
-  into heat orchestration template correctly. Policy2Tosca module could be installed seperately
-  after user installed OPNFV C release platform.
+* New module policy2tosca which enables policy related fields in tosca could be
+translated into heat orchestration template correctly. Policy2Tosca module could
+be installed seperately after user installed OPNFV C release platform.
 
-* Tosca2Heat enhancements which includes a set of feature addons (such as substitution mapping)
-for OpenStack tosca-parser module which is integrated in the OPNFV C release platform. And the
-main details are listed below:
+* New module tosca2heat enhancements which includes a set of feature addons (such
+as substitution mapping) for OpenStack tosca-parser module which is integrated in
+the OPNFV C release platform. And the main details are listed below:
 
   ** support substitution mapping semantic in tosca-parser:
     - support parse and validation about substitution mapping definition;
@@ -82,8 +91,19 @@ main details are listed below:
 
 * Additional testing support.
 
-Upgrades from Colorado
-----------------------
+Upgrades from Colorado Release
+------------------------------
 
-For Release D, Parser offers the following additional capabilities:
+For Danube Release, Parser offers the following additional capabilities:
+
+* New module verigraph which is a formal verification tool for service graphs. Given
+  a service graph, which can include stateful network functions and their configurations
+  (e.g., filtering rules for firewalls, and blacklists for anti-spamming filters), verigraph
+  can accurately and quickly check reachability properties in the graph (e.g. if a particular
+  flow of packets can go from one node of the graph to another node). Verigraph exploits
+  Satisfiability Modulo Theories (SMT) and the general-purpose SMT solver Z3. It includes a
+  library of network function models.
+
+* The tosca2heat module updated with the intgeration of OpenStack tosca-parser and heat-translator
+  0.7.0 releases.
 
