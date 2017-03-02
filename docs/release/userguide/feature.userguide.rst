@@ -2,53 +2,7 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
 
-Parser tosca2heat Installation
-============================
 
-Please follow the below installation steps to install tosca2heat submodule in parser.
-
-Step 1: Clone the parser project.
-
-.. code-block:: bash
-
-    git clone https://gerrit.opnfv.org/gerrit/parser
-
-Step 2: Install the heat-translator sub project.
-
-.. code-block:: bash
-
-    # uninstall pre-installed tosca-parser
-    pip uninstall -y heat-translator
-
-    # change directory to heat-translator
-    cd parser/tosca2heat/heat-translator
-
-    # install requirements
-    pip install -r requirements.txt
-
-    # install heat-translator
-    python setup.py install
-
-Step 3: Install the tosca-parser sub project.
-
-.. code-block:: bash
-
-    # uninstall pre-installed tosca-parser
-    pip uninstall -y tosca-parser
-
-    # change directory to tosca-parser
-    cd parser/tosca2heat/tosca-parser
-
-    # install requirements
-    pip install -r requirements.txt
-
-    # install tosca-parser
-    python setup.py install
-
-
-  **Notes** It must uninstall pre-installed tosca-parser and heat-translator before install the two
-  components, and install heat-translator before installing tosca-parser, which is sure to use the
-  OPNFV version of tosca-parser and heat-translator other than openstack's components.
 
 Parser tosca2heat Execution
 ===========================
