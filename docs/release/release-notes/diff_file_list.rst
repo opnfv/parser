@@ -10,7 +10,7 @@
 [modified] tosca-parser/toscaparser/elements/tosca_type_validation.py
 [new file] tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
 [new file] tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/rnc_definition.yaml
-[new file] tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/TOSCA-Metadata/TOSCA.meta 
+[new file] tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/TOSCA-Metadata/TOSCA.meta
 [new file] tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/README.txt
 [new file] tosca-parser/toscaparser/extensions/nfv/tests/test_tosca_vRNC.py
 [modified] tosca-parser/toscaparser/tests/data/functions/test_get_property_with_host.yaml
