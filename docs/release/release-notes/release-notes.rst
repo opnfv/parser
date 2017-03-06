@@ -2,7 +2,7 @@
 .. http://creativecommons.org/licenses/by/4.0
 
 
-This document provides the release notes for <RELEASE> of <COMPONENT>.
+This document provides the release notes for <Danube Release> of <Parser>.
 
 .. contents::
    :depth: 3
@@ -16,58 +16,50 @@ Version history
 | **Date**           | **Ver.**           | **Author**         | **Comment**        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-| 2015-04-14         | 0.1.0              | Jonas Bjurel       | First draft        |
+| 2017-03-06         | 1.0                | Howard Huang       | Danube Release     |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | 0.1.1              |                    |                    |
+|                    |                    |                    |                    |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | 1.0                |                    |                    |
+|                    |                    |                    |                    |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 
 Important notes
 ===============
 
-<STATE IMPORTANT NOTES/DEVIATIONS SINCE PREVIOUS ITERATIVE RELEASE AND OTHER IMPORTANT NOTES FOR THIS RELEASE>
-
-<EXAMPLE>:
-
-**Attention:** Please be aware that since LSV3 a pre-deploy script must be ran on the Fuel master -
-see the OPNFV@Fuel SW installation instructions
+**Attention:** Parser's submodules should be installed independantly from OPNFV platform, for instructions please
+refer to the installation documention.
 
 
 Summary
 =======
 
-<SUMMARIZE THE RELEASE - THE CONTENT - AND OTHER IMPORTANT HIGH LEVEL PROPERTIES>
-
-<EXAMPLE>:
-
-Arno Fuel@OPNFV is based the OpenStack Fuel upstream project version 6.0.1,
-but adds OPNFV unique components such as OpenDaylight version: Helium as well as other OPNFV unique configurations......
+OPNFV Parser Danube release has provides four submodules to serve as translation/prevalidation tools: tosca2heat, yang2tosca,
+policy2tosca, and verigraph. Specifically, tosca2heat module provides an integration of OpenStack tosca-parser and heat-translater
+upstream projects 0.7 release with additional Parser unique features.
 
 
 Release Data
 ============
-<STATE RELEVANT RELEASE DATA/RECORDS>
 
-<EXAMPLE>:
 
 +--------------------------------------+--------------------------------------+
-| **Project**                          | E.g. Arno/genesis/fuel@opnfv         |
+| **Project**                          | OPNFV Parser                         |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Repo/commit-ID**                   | E.g. genesis/adf634a0d4.....         |
+| **Repo/commit-ID**                   |                                      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release designation**              | E.g. Arno RC2                        |
+| **Release designation**              | Danube 1.0                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Release date**                     | E.g. 2015-04-16                      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Purpose of the delivery**          | E.g. OPNFV Internal quality assurance|
+| **Purpose of the delivery**          | OPNFV Template Translation/Prevalida-|
+|                                      | tion tooling                         |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -76,21 +68,17 @@ Version change
 
 Module version changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<STATE WHAT UPSTREAM, - AS WELL AS OPNFV MODULE VERSIONS HAVE CHANGED>
 
-<EXAMPLE>:
+- OpenStack tosca-parser and heat-translator have changed from 0.6 to 0.7
 
-- Fuel have changed from 5.1 to 6.0.1
+- new verigraph module
 
-- OpenDaylight has changed from Helium-SR1 to Helium-SR2
+- no feature changes in yang2tosca and policy2tosca since Colorado Release.
 
 Document version changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<STATE WHAT RELATED DOCUMENTS THAT CHANGES WITH THIS RELEASE>
 
-<EXAMPLE>:
-
-- The Fuel@OPNFV installation guide version has changed from version 0.1 to to 0.2
+- Parser Dabube Release documentation has adoped a new format.
 
 Reason for version
 ^^^^^^^^^^^^^^^^^^^^
@@ -130,47 +118,37 @@ Bug corrections
 +--------------------------------------+--------------------------------------+
 
 Deliverables
-----------------
+------------
 
 Software deliverables
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
-<STATE WHAT SOFTWARE DELIVERABLES THAT ARE RELATED TO THIS VERSION, AND WHERE THOSE CAN BE RETRIEVED>
-
-<EXAMPLE>:
+- tosca2heat
+- yang2tosca
+- policy2tosca
+- verigraph
 
 Documentation deliverables
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-<STATE WHAT DOCUMENTATION DELIVERABLES THAT ARE RELATED TO THIS VERSION, AND WHERE THOSE CAN BE RETRIEVED>
-
-<EXAMPLE>:
+- release document
+- design document
+- development document
+- testing document
 
 
 Known Limitations, Issues and Workarounds
 =========================================
 
 System Limitations
-^^^^^^^^^^^^^^^^^^^^
-<STATE ALL RELEVANT SYSTEM LIMITATIONS>
+^^^^^^^^^^^^^^^^^^
 
-<EXAMPLE>:
 
-**Max number of blades:**   1 Fuel master, 3 Controllers, 20 Compute blades
 
-**Min number of blades:**   1 Fuel master, 1 Controller, 1 Compute blade
-
-**Storage:**    Ceph is the only supported storage configuration.
-
-**Max number of networks:**   3800 (Needs special switch config.)
-
-**L3Agent:**   L3 agent and floating IPs is not supported.
 
 Known issues
-^^^^^^^^^^^^^^^
-<STATE ALL KNOWN ISSUES WITH JIRA REFERENCE>
+^^^^^^^^^^^^
 
-<EXAMPLE>:
 
 **JIRA TICKETS:**
 
@@ -188,7 +166,7 @@ Known issues
 +--------------------------------------+--------------------------------------+
 
 Workarounds
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 <STATE ALL KNOWN WORKAROUNDS TO THE ISSUES STATED ABOVE>
 
@@ -224,9 +202,7 @@ Fuel@OPNFV Arno RC2 has undergone QA test runs with the following results:
 
 References
 ==========
-<STATE RELEVANT REFERENCES FOR THIS RELEASE/VERSION>
 
-<EXAMPLE>:
 
 For more information on the OPNFV Danube release, please see:
 
