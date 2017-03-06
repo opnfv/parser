@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_d6f640d7",
+        "filename": "apigateway/LICENSE",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-03-06T15:15:11Z",
+      "side": 1,
+      "message": "can we use a short one or a refer in to the community license",
+      "revId": "119d491d35d02195cd0f77ba63f9dc133c15666f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
