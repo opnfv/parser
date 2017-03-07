@@ -16,6 +16,24 @@
       "revId": "119d491d35d02195cd0f77ba63f9dc133c15666f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_19ede9c3",
+        "filename": "apigateway/LICENSE",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-03-07T02:26:35Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll amend it next patch.",
+      "parentUuid": "dabed58f_d6f640d7",
+      "revId": "119d491d35d02195cd0f77ba63f9dc133c15666f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
