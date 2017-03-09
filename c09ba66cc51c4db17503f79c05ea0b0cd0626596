@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_52db331b",
+        "filename": "tosca2heat/heat-translator/setup.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-03-09T12:13:52Z",
+      "side": 0,
+      "message": "add a README.md file instead",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 14
+      },
+      "revId": "c09ba66cc51c4db17503f79c05ea0b0cd0626596",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
