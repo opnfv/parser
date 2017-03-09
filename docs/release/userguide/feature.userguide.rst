@@ -29,7 +29,7 @@ Example:
     heat-translator --template-file=vRNC.yaml \
         --template-type=tosca --output-file=vRNC_hot.yaml
 
-Notes: heat-translator will call class of ToscaTemplate in tosca-parser firstly to validate and
+**Notes**: heat-translator will call class of ToscaTemplate in tosca-parser firstly to validate and
 parse input yaml file, then tranlate the file into hot file, if you only want to validate or
 check the input file and don't want to translate, please use tosaca-parser as following:
 
@@ -119,9 +119,14 @@ Example:
 
 .. code-block:: bash
 
-    policy2tosca add-definition --policy_name rule2 --policy_type  tosca.policies.Placement.Geolocation
---description "test description" --properties region:us-north-1,region:us-north-2,min_inst:2 --targets
-VNF2,VNF4 --metadata "map of strings" --triggers "1,2,3,4" --source example.yaml
+    policy2tosca add-definition \
+        --policy_name rule2 --policy_type  tosca.policies.Placement.Geolocation \
+        --description "test description" \
+        --properties region:us-north-1,region:us-north-2,min_inst:2 \
+        --targets VNF2,VNF4 \
+        --metadata "map of strings" \
+        --triggers "1,2,3,4" \
+        --source example.yaml
 
 
 Step 4: Verify the TOSCA YAMl updated with the injection/removal executed.

@@ -46,9 +46,9 @@ Step 3: Install the tosca-parser sub project.
     python setup.py install
 
 
-  **Notes** It must uninstall pre-installed tosca-parser and heat-translator before install the two
-  components, and install heat-translator before installing tosca-parser, which is sure to use the
-  OPNFV version of tosca-parser and heat-translator other than openstack's components.
+**Notes**: It must uninstall pre-installed tosca-parser and heat-translator before install the two
+components, and install heat-translator before installing tosca-parser, which is sure to use the
+OPNFV version of tosca-parser and heat-translator other than openstack's components.
 
 
 Parser yang2tosca Installation

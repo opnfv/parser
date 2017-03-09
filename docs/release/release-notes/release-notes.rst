@@ -29,15 +29,16 @@ Version history
 Important notes
 ===============
 
-**Attention:** Parser's submodules should be installed independantly from OPNFV platform, for instructions please
-refer to the installation documention.
+**Attention**: Parser's submodules should be installed independantly from OPNFV platform, for
+instructions please refer to the installation documention.
 
 
 Summary
 =======
 
-OPNFV Parser Danube release has provides four submodules to serve as translation/prevalidation tools: tosca2heat, yang2tosca,
-policy2tosca, and verigraph. Specifically, tosca2heat module provides an integration of OpenStack tosca-parser and heat-translater
+OPNFV Parser Danube release has provides four submodules to serve as translation/prevalidation
+tools: tosca2heat, yang2tosca, policy2tosca, and verigraph. Specifically, tosca2heat module
+provides an integration of OpenStack tosca-parser and heat-translater
 upstream projects 0.7 release with additional Parser unique features.
 
 
@@ -47,20 +48,15 @@ Release Data
 
 +--------------------------------------+--------------------------------------+
 | **Project**                          | OPNFV Parser                         |
-|                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Repo/commit-ID**                   |                                      |
-|                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Release designation**              | Danube 1.0                           |
-|                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Release date**                     | E.g. 2015-04-16                      |
-|                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Purpose of the delivery**          | OPNFV Template Translation/Prevalida-|
 |                                      | tion tooling                         |
-|                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
 Version change
@@ -94,10 +90,8 @@ Feature additions
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-123                              | ADD OpenDaylight ml2 integration     |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-456                              | Add auto-deployment of Fuel@OPNFV    |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -110,10 +104,8 @@ Bug corrections
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-888                              | Fuel doesn't deploy                  |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-999                              | Floating IP doesn't work             |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -156,12 +148,8 @@ Known issues
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-987                              | Nova-compute process does            |
-|                                      | not re-spawn when killed             |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| BGS-654                              | MOS 5.1 : neutron net-list returns   |
-|                                      | "400 Bad request"                    |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -187,17 +175,9 @@ Fuel@OPNFV Arno RC2 has undergone QA test runs with the following results:
 | **TEST-SUITE**                       | **Results:**                         |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| Tempest test suite 123               | Following tests failed:              |
 |                                      |                                      |
-|                                      | 1. Image resizing....                |
-|                                      |                                      |
-|                                      | 2. Heat deploy....                   |
 +--------------------------------------+--------------------------------------+
-| Robot test suite 456                 | Following tests failed:              |
 |                                      |                                      |
-|                                      | 1.......                             |
-|                                      |                                      |
-|                                      | 2.......                             |
 +--------------------------------------+--------------------------------------+
 
 References

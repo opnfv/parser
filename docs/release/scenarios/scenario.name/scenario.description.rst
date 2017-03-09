@@ -2,7 +2,7 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
 
-This document provides scenario level details for <RELEASE> of <COMPONENT>.
+This document provides scenario level details for Danube of Parser
 
 .. contents::
    :depth: 3
@@ -11,25 +11,21 @@ This document provides scenario level details for <RELEASE> of <COMPONENT>.
 ============
 Introduction
 ============
-.. In this section explain the purpose of the scenario and the types of capabilities provided
+
+Parser project can work on any scenario defined in OPNFV for which just consumes the basic
+APIs provided by Openstack projects, esp Heat.
 
 Scenario components and composition
 ===================================
-.. In this section describe the unique components that make up the scenario,
-.. what each component provides and why it has been included in order
-.. to communicate to the user the capabilities available in this scenario.
+none
 
 Scenario usage overview
 =======================
-.. Provide a brief overview on how to use the scenario and the features available to the
-.. user.  This should be an "introduction" to the userguide document, and explicitly link to it,
-.. where the specifics of the features are covered including examples and API's
+none
 
 Limitations, Issues and Workarounds
 ===================================
-.. Explain scenario limitations here, this should be at a design level rather than discussing
-.. faults or bugs.  If the system design only provide some expected functionality then provide
-.. some insight at this point.
+none
 
 References
 ==========
