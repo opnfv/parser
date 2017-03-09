@@ -105,3 +105,29 @@ Step 2: Install the policy2tosca module.
    python setup.py install
 
 
+Parser verigraph installation
+=============================
+
+In the present release, verigraph requires that the following software is also installed:
+
+- Java 1.8 (with javac compiler)
+- Apache Tomcat 8
+- Microsoft Z3 (https://github.com/Z3Prover/bin/tree/master/releases)
+- Neo4J (https://neo4j.org)
+
+Please follow the below installation steps to install verigraph.
+
+Step 1: Clone the parser project.
+
+.. code-block:: bash
+
+   git clone https://gerrit.opnfv.org/gerrit/parser
+
+Step 2: Go to the verigraph directory.
+
+.. code-block:: bash
+
+   cd parser/verigraph
+
+Step3: Follow the instructions in README.rst for downloading verigraph
+dependencies and for installing verigraph.
