@@ -15,3 +15,4 @@ OPNFV Parser Design Documentation
    yang2tosca.rst
    policy2tosca.rst
    verigraph.rst
+   apigateway.rst

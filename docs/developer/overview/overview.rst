@@ -10,7 +10,7 @@ OPNFV Parser Danube Overview Doumentation
    :local:
 
 Introduction
----------------
+------------
 
 In NFV, various templates (such as descriptors, records and so on) are utilized
 to describe the deployment requirements (such as basic VM requirements – vCPU,
@@ -27,7 +27,7 @@ translate TOSCA/CAMP templates into certain common templates, which could be
 used in IaaS orchestration projects like OpenStack Heat.
 
 For Arno Release
-------------------------
+----------------
 Parser is not one of the Arno Release projects, however the project has established
 the code base for the later releases:
 
@@ -35,7 +35,7 @@ the code base for the later releases:
 * Initial documentation on use cases
 
 Upgrades from Arno Release
-------------------------
+--------------------------
 
 For Brahmaputra Release, Parser offers the following additional capabilities:
 
@@ -59,7 +59,7 @@ For Brahmaputra Release, Parser offers the following additional capabilities:
   scenario. See also https://wiki.opnfv.org/parser.
 
 Upgrades from Brahmaputra Release
------------------------
+---------------------------------
 
 For Colorado Release, Parser offers the following additional capabilities:
 
