@@ -46,6 +46,30 @@
       "revId": "f292dece63d51d3cafadf3e17810603c55a8d1ee",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_50db2b1b",
+        "filename": "docs/release/scenarios/scenario.name/scenario.description.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-03-10T01:50:00Z",
+      "side": 1,
+      "message": "In my opinion, we could choose more scenarios in the next release, include virtual env.",
+      "parentUuid": "dabed58f_f0b01ff6",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 4
+      },
+      "revId": "f292dece63d51d3cafadf3e17810603c55a8d1ee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
