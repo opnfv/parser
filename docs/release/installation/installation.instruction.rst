@@ -3,7 +3,7 @@
 
 
 Parser tosca2heat Installation
-============================
+==============================
 
 Please follow the below installation steps to install tosca2heat submodule in parser.
 
@@ -81,7 +81,7 @@ Step 3: Change directory to the downloaded directory and run the setup file.
     python setup.py
 
 Step 4: install python-lxml
---------------
+---------------------------
 
 Please follow the below installation link. http://lxml.de/installation.html
 
@@ -131,3 +131,35 @@ Step 2: Go to the verigraph directory.
 
 Step3: Follow the instructions in README.rst for downloading verigraph
 dependencies and for installing verigraph.
+
+
+Parser apigateway Installation
+==============================
+
+In the present release, apigateway requires that the following software is also installed:
+
+grpcio (https://github.com/golang/protobuf/protoc-gen-go)
+
+Please follow the below installation steps to install apigateway submodule in parser.
+
+Step 1: Clone the parser project.
+
+.. code-block:: bash
+
+    git clone https://gerrit.opnfv.org/gerrit/parser
+
+Step 2: Install the apigateway submodule.
+
+.. code-block:: bash
+
+    # change directory to heat-translator
+    cd parser/apigateway
+
+    # install requirements
+    pip install -r requirements.txt
+
+    # install apigateway
+    python setup.py install
+
+**Notes**: In release D, apigateway submodule is only initial framework code, and more feature will
+be provided in the next release.
