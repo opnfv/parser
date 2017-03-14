@@ -104,6 +104,10 @@ For Danube Release, Parser offers the following additional capabilities:
   Satisfiability Modulo Theories (SMT) and the general-purpose SMT solver Z3. It includes a
   library of network function models.
 
+* New module apigateway added, which focuses on message relay and provides unified restful API
+  and grpc api to end  user who want use parser, additionally one module of parser(such as
+  yang2tosca) can access the other module(such as tosca2heat) through grpc provided by apigateway
+  without concern its location.
+
 * The tosca2heat module updated with the intgeration of OpenStack tosca-parser and heat-translator
   0.7.0 releases.
-
