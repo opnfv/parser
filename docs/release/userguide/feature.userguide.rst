@@ -44,7 +44,7 @@ Example:
    tosca-parser --template-file=vRNC.yaml
 
 Parser tosca2heat References
-===========================
+============================
 Refer two upstream components:
  https://github.com/openstack/tosca-parser/blob/master/doc/source/usage.rst
  https://github.com/openstack/heat-translator/blob/master/doc/source/usage.rst
@@ -53,7 +53,7 @@ Refer two upstream components:
 
 
 Parser yang2tosca Execution
-============================
+===========================
 
 Step 1: Change directory to where the scripts are present.
 
@@ -94,7 +94,7 @@ Example:
 
 
 Parser policy2tosca Execution
-============================
+=============================
 
 Step 1: To see a list of commands available.
 
@@ -141,3 +141,57 @@ Example:
 
     cat example_tosca.yaml
 
+
+Parser verigraph Execution
+==========================
+
+VeriGraph is accessible via both a RESTful API and a gRPC interface.
+
+**REST API**
+
+Step 1. Change directory to where the service graph examples are present
+
+.. code-block:: bash
+
+   cd parser/verigraph/examples
+
+Step 2. Use a REST client (e.g., cURL) to send a POST request (whose body is one of the JSON
+file in the directory)
+
+.. code-block:: bash
+
+   curl -X POST -d @<file_name>.json http://<server_address>:<server_port>/verify/api/graphs --header "Content-Type:application/json"
+
+Step 3. Use a REST client to send a GET request to check a reachability-based property between
+two nodes of the service graph created in the previous step.
+
+.. code-block:: bash
+
+   curl -X GET http://<server_addr>:<server_port>/verify/api/graphs/<graphID>/
+   policy?source=<srcNodeID>&destination=<dstNodeID>&type=<propertyType>
+
+where:
+
+- <graphID> is the identifier of the service graph created at Step 2
+- <srcNodeID> is the name of the source node
+- <dstNodeID> is the name of the destination node
+- <propertyType> can be ``reachability``, ``isolation`` or ``traversal``
+
+Step 4. the output is a JSON with the overall result of the verification process and the partial
+result for each path that connects the source and destination nodes in the service graph.
+
+**gRPC API**
+
+VeriGraph exposes a gRPC interface that is self-descriptive by its Protobuf file
+(``parser/verigraph/src/main/proto/verigraph.proto``). In the current release, Verigraph
+misses a module that receives service graphs in format of JSON and sends the proper
+requests to the gRPC server. A testing client has been provided to have an example of how
+to create a service graph using the gRPC interface and to trigger the verification step.
+
+1. Run the testing client
+
+.. code-block:: bash
+
+      cd parser/verigraph
+      #Client souce code in ``parser/verigraph/src/main/it/polito/grpc/Client.java``
+      ant -f buildVeriGraph_gRPC.xml run-client
