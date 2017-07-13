@@ -17,14 +17,21 @@ PARSER_CI_DEBUG=${CI_DEBUG:-false}
     debug=""
 }
 
-# PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
-PARSER_IMAGE_URL_FILE=cirros-0.3.2-x86_64-disk.img
+if [ -n $1 ]; then
+    PARSER_IMAGE_URL_FILE=$1
+else
+	# PARSER_IMAGE_URL_FILE=cirros-0.3.0-x86_64-disk.img
+	PARSER_IMAGE_URL_FILE=cirros-0.3.2-x86_64-disk.img
+fi
 # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
 PARSER_IMAGE_URL=http://download.cirros-cloud.net/0.3.2/${PARSER_IMAGE_URL_FILE}
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
-PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
+PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
+if [ -n $1 ]; then
+    PARSER_IMAGE_URL_FILE=$1
+fi
 
 PARSER_USER=parser
 PARSER_PASSWORD=parser
