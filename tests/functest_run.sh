@@ -23,7 +23,7 @@ PARSER_IMAGE_URL_FILE=cirros-0.3.2-x86_64-disk.img
 PARSER_IMAGE_URL=http://download.cirros-cloud.net/0.3.2/${PARSER_IMAGE_URL_FILE}
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
 PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
-PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
+PARSER_IMAGE_FILE=/home/opnfv/functest/images/${PARSER_IMAGE_URL_FILE}
 PARSER_IMAGE_FORMAT=qcow2
 
 PARSER_USER=parser
