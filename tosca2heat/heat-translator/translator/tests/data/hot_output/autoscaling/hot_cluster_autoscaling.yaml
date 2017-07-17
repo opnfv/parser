@@ -12,6 +12,7 @@ resources:
       properties:
         flavor: m1.medium
         image: rhel-6.5-test-image
+        software_config_transport: POLL_SERVER_HEAT
         networks:
         - network: net0
   cluster_scaling_scale_out:

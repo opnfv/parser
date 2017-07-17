@@ -26,14 +26,15 @@ from translator.tests.base import TestCase
 
 class ToscaHotTranslationTest(TestCase):
 
-    def _test_successful_translation(self, tosca_file, hot_files, params=None):
+    def _test_successful_translation(self, tosca_file, hot_files, params=None,
+                                     nested_resources=False):
         if not params:
             params = {}
         if not isinstance(hot_files, list):
             hot_files = [hot_files]
-        diff = TranslationUtils.compare_tosca_translation_with_hot(tosca_file,
-                                                                   hot_files,
-                                                                   params)
+        diff =\
+            TranslationUtils.compare_tosca_translation_with_hot(
+                tosca_file, hot_files, params, nested_resources)
         self.assertEqual({}, diff, '<difference> : ' +
                          json.dumps(diff, indent=4, separators=(', ', ': ')))
 
@@ -190,6 +191,18 @@ class ToscaHotTranslationTest(TestCase):
             self._test_successful_translation(tosca_file, hot_file1, params)
         except Exception:
             self._test_successful_translation(tosca_file, hot_file2, params)
+
+    def test_hot_translate_multiple_blockstorage_w_multiple_attachment(self):
+        tosca_file = '../tests/data/storage/' \
+                     'tosca_multiple_blockstorage_w_multiple_attachment.yaml'
+        hot_file = '../tests/data/hot_output/storage/' \
+                   'hot_multiple_blockstorage_w_multiple_attachment.yaml'
+        params = {'cpus': 1,
+                  'storage_location1': '/dev/vdb',
+                  'storage_location2': '/dev/vdc',
+                  'storage_size': '1 GB',
+                  'storage_snapshot_id': 'ssid'}
+        self._test_successful_translation(tosca_file, hot_file, params)
 
     def test_hot_translate_single_object_store(self):
         tosca_file = '../tests/data/storage/tosca_single_object_store.yaml'
@@ -515,6 +528,15 @@ class ToscaHotTranslationTest(TestCase):
         params = {}
         self._test_successful_translation(tosca_file, hot_files, params)
 
+    def test_hot_translate_scaling_nested_plate(self):
+        tosca_file = '../tests/data/autoscaling/tosca_autoscaling.yaml'
+        hot_files = [
+            '../tests/data/hot_output/autoscaling/asg_res.yaml'
+        ]
+        params = {}
+        self._test_successful_translation(tosca_file, hot_files, params,
+                                          nested_resources=True)
+
     def test_translate_unsupported_tosca_type(self):
         tosca_file = '../tests/data/test_tosca_unsupported_type.yaml'
         tosca_tpl = os.path.normpath(os.path.join(
@@ -528,7 +550,7 @@ class ToscaHotTranslationTest(TestCase):
                                 .translate)
         self.assertEqual(expected_msg, err.__str__())
 
-    def _translate_nodetemplates(self):
+    def test_hot_translate_cluster_scaling_policy(self):
         tosca_file = '../tests/data/autoscaling/tosca_cluster_autoscaling.yaml'
         hot_file = '../tests/data/hot_output/autoscaling/' \
                    'hot_cluster_autoscaling.yaml'
@@ -541,5 +563,14 @@ class ToscaHotTranslationTest(TestCase):
             '../tests/data/hot_output/nfv/hot_tosca_nfv_autoscaling.yaml',
             '../tests/data/hot_output/nfv/SP1_res.yaml',
             ]
+        params = {}
+        self._test_successful_translation(tosca_file, hot_files, params)
+
+    def test_hot_translate_mon_scaling_policy(self):
+        tosca_file = '../tests/data/monitoring/tosca_monitoring_scaling.yaml'
+        hot_files = [
+            '../tests/data/hot_output/monitoring/hot_monitoring_scaling.yaml',
+            '../tests/data/hot_output/monitoring/asg_res.yaml',
+        ]
         params = {}
         self._test_successful_translation(tosca_file, hot_files, params)

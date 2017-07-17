@@ -25,17 +25,36 @@ topology_template:
         type: tosca.policies.Scaling
         description: Simple node autoscaling
         targets: [my_server_1]
-        triggers:
-          resize_compute:
-            description: trigger
-            condition:
-              constraint: utilization greater_than 50%
-              period: 60
-              evaluations: 1
-              method: average
         properties:
           min_instances: 2
           max_instances: 10
           default_instances: 3
           increment: 1
           cooldown: 60
+
+    - cpu_monitoring:
+        type: tosca.policies.Monitoring
+        description: Simple node monitoring
+        targets: [my_server_1]
+        triggers:
+          high_cpu_usage:
+            description: trigger
+            meter_name: cpu_util
+            condition:
+              constraint: utilization greater_than 60%
+              threshold: 60
+              period: 600
+              evaluations: 1
+              method: average
+              comparison_operator: gt
+
+          low_cpu_usage:
+            description: trigger
+            meter_name: cpu_util
+            condition:
+              constraint: utilization less_than 20%
+              threshold: 20
+              period: 600
+              evaluations: 1
+              method: average
+              comparison_operator: gt

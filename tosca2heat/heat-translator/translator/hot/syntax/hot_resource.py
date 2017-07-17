@@ -30,7 +30,8 @@ policy_type = ['tosca.policies.Placement',
                'tosca.policies.Scaling',
                'tosca.policies.Scaling.Cluster',
                'tosca.policies.Placement.Colocate',
-               'tosca.policies.Placement.Antilocate']
+               'tosca.policies.Placement.Antilocate',
+               'tosca.policies.Monitoring']
 
 log = logging.getLogger('heat-translator')
 

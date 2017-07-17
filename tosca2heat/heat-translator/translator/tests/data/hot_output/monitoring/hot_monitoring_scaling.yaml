@@ -5,15 +5,6 @@ description: >
 
 parameters: {}
 resources:
-  asg_group:
-    type: OS::Heat::AutoScalingGroup
-    properties:
-      min_size: 2
-      desired_capacity: 3
-      cooldown: 60
-      resource:
-        type: asg_res.yaml
-      max_size: 10
   asg_scale_out:
     type: OS::Heat::ScalingPolicy
     properties:
@@ -21,6 +12,25 @@ resources:
         get_resource: asg_group
       adjustment_type: change_in_capacity
       scaling_adjustment: 1
+      cooldown: 60
+  low_cpu_usage:
+    type: OS::Aodh::Alarm
+    properties:
+      meter_name: cpu_util
+      description: utilization less_than 20%
+      evaluation_periods: 1
+      period: 600
+      statistic: avg
+      threshold: 20
+      comparison_operator: gt
+  asg_group:
+    type: OS::Heat::AutoScalingGroup
+    properties:
+      min_size: 2
+      desired_capacity: 3
+      resource:
+        type: asg_res.yaml
+      max_size: 10
       cooldown: 60
   asg_scale_in:
     type: OS::Heat::ScalingPolicy
@@ -30,13 +40,14 @@ resources:
       adjustment_type: change_in_capacity
       scaling_adjustment: -1
       cooldown: 60
-  asg_alarm:
+  high_cpu_usage:
     type: OS::Aodh::Alarm
     properties:
       meter_name: cpu_util
-      description: Simple node autoscaling
-      period: 60
+      description: utilization greater_than 60%
+      evaluation_periods: 1
+      period: 600
       statistic: avg
-      threshold: 1
+      threshold: 60
       comparison_operator: gt
 outputs: {}
