@@ -22,6 +22,30 @@
       "revId": "e4d7a5ad52aa04593993c3cbb349f6039b16d225",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_e2229ab8",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-07-17T12:39:01Z",
+      "side": 1,
+      "message": "See line 49. \nPARSER_IMAGE_URL_FILE is used to see if the file is present, if not --\u003e download.\n\nThis script will still work outside Functest, where the image won\u0027t be present and it needs to be downloaded.",
+      "parentUuid": "1aa4ed85_82588657",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 80
+      },
+      "revId": "e4d7a5ad52aa04593993c3cbb349f6039b16d225",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
