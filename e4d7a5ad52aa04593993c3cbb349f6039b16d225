@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_82588657",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5441
+      },
+      "writtenOn": "2017-07-17T12:31:18Z",
+      "side": 1,
+      "message": "Here it seems that PARSER_IMAGE_URL_FILE is only used to download cirros image online. Is it related to leverage the images provided by functest?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 80
+      },
+      "revId": "e4d7a5ad52aa04593993c3cbb349f6039b16d225",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
