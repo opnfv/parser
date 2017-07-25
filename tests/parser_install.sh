@@ -9,20 +9,33 @@
 ##############################################################################
 
 set +e
+BASE_WORK_DIR=$(cd $(dirname $0) && pwd)
 
-parser_repos_dir=$1
+OPNFV_REPO_DIR=${1:-""}
 
 # start syslog for loghander
 service rsyslog restart && echo "syslog start successfully"
 
 # install requirements for parser
-pip install -r ${parser_repos_dir}/parser/tosca2heat/tosca-parser/requirements.txt
-pip install -r ${parser_repos_dir}/parser/tosca2heat/heat-translator/requirements.txt
+if [ -n "${OPNFV_REPO_DIR}" ]; then
+    echo " OPNFV repository directory is ${OPNFV_REPO_DIR}"
+    pip install -r ${OPNFV_REPO_DIR}/parser/tosca2heat/tosca-parser/requirements.txt
+    pip install -r ${OPNFV_REPO_DIR}/parser/tosca2heat/heat-translator/requirements.txt
+else
+    echo "No input for OPNFV repository directory, will use local directory"
+    pip install -r ${BASE_WORK_DIR}/../tosca2heat/tosca-parser/requirements.txt
+    pip install -r ${BASE_WORK_DIR}/../tosca2heat/heat-translator/requirements.txt
+fi
 
 # uninstall other tosca-parser and heat-translator for parser
 pip uninstall -y tosca-parser
 pip uninstall -y heat-translator
 
 # install parser
-cd ${parser_repos_dir}/parser/tosca2heat/tosca-parser && python setup.py install
-cd ${parser_repos_dir}/parser/tosca2heat/heat-translator && python setup.py install
+if [ -n "${OPNFV_REPO_DIR}" ]; then
+    cd ${OPNFV_REPO_DIR}/parser/tosca2heat/tosca-parser && python setup.py install
+    cd ${OPNFV_REPO_DIR}/parser/tosca2heat/heat-translator && python setup.py install
+else
+    cd ${BASE_WORK_DIR}/../tosca2heat/tosca-parser && python setup.py install
+    cd ${BASE_WORK_DIR}/../tosca2heat/heat-translator && python setup.py install
+fi
