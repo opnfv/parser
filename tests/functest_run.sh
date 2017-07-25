@@ -9,6 +9,8 @@
 ##############################################################################
 
 PARSER_CI_DEBUG=${CI_DEBUG:-false}
+PRASER_WORK_DIR=$(cd $(dirname $0) && pwd)
+
 [[ "${PARSER_CI_DEBUG}" == "true" ]] && {
     set -x
     debug="--debug"
@@ -17,14 +19,23 @@ PARSER_CI_DEBUG=${CI_DEBUG:-false}
     debug=""
 }
 
+# Install parser
+echo "Prepare parser ..."
+${PRASER_WORK_DIR}/parser_install.sh ${PRASER_WORK_DIR}/../..
+echo "Prepare result: $?"
+
 if [ -n $1 ]; then
     PARSER_IMAGE_URL_FILE=$1
 else
     PARSER_IMAGE_URL_FILE=cirros-0.3.5-x86_64-disk.img
+
+    PARSER_IMAGE_VERSION=$(${PARSER_IMAGE_URL_FILE} | awk -F- '{print $2}')
+    # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
+    PARSER_IMAGE_URL=http://download.cirros-cloud.net/${PARSER_IMAGE_VERSION}/${PARSER_IMAGE_URL_FILE}
 fi
-# PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
-PARSER_IMAGE_URL=http://download.cirros-cloud.net/0.3.2/${PARSER_IMAGE_URL_FILE}
+
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
+# fiexd image name according to the translator default vlaue of images
 PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
