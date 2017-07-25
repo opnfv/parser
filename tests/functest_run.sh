@@ -9,6 +9,8 @@
 ##############################################################################
 
 PARSER_CI_DEBUG=${CI_DEBUG:-false}
+PRASER_WORK_DIR=$(cd $(dirname $0) && pwd)
+
 [[ "${PARSER_CI_DEBUG}" == "true" ]] && {
     set -x
     debug="--debug"
@@ -16,15 +18,28 @@ PARSER_CI_DEBUG=${CI_DEBUG:-false}
     set +x
     debug=""
 }
+LOCAL_IMAGE_FILE=${1:-""}
 
-if [ -n $1 ]; then
-    PARSER_IMAGE_URL_FILE=$1
+# Install parser
+echo "Prepare parser ..."
+${PRASER_WORK_DIR}/parser_install.sh ${PRASER_WORK_DIR}/../..
+echo "Prepare result: $?"
+
+if [ -e "${LOCAL_IMAGE_FILE}" ]; then
+    echo "Input local image file: ${LOCAL_IMAGE_FILE}"
+    PARSER_IMAGE_URL_FILE=${LOCAL_IMAGE_FILE}
 else
+    echo "No input local image file or the file(${LOCAL_IMAGE_FILE}) doesn't exsit!"
+
     PARSER_IMAGE_URL_FILE=cirros-0.3.5-x86_64-disk.img
+    PARSER_IMAGE_VERSION=$(echo ${PARSER_IMAGE_URL_FILE} | awk -F- '{print $2}')
+    # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
+    PARSER_IMAGE_URL=http://download.cirros-cloud.net/${PARSER_IMAGE_VERSION}/${PARSER_IMAGE_URL_FILE}
+    echo "Will download image(${PARSER_IMAGE_URL_FILE}) from ${PARSER_IMAGE_URL}."
 fi
-# PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
-PARSER_IMAGE_URL=http://download.cirros-cloud.net/0.3.2/${PARSER_IMAGE_URL_FILE}
+
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
+# fiexd image name according to the translator default vlaue of images
 PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
