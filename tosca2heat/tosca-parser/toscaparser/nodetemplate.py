@@ -50,6 +50,10 @@ class NodeTemplate(EntityTemplate):
         self.available_rel_types = available_rel_types
         self._relationships = {}
         self.substitution_mapped = None
+        self.taglist = ["_properties", "_capabilities", "_requirements",
+                        "_interfaces", "related", "substitution_mapped",
+                        "relationship", "related_nodes"]
+        self.relationship = self.relationships
 
     @property
     def relationships(self):

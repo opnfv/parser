@@ -24,12 +24,14 @@ class PropertyDef(object):
                                PROPERTY_KEYNAME_STATUS) = \
         ('default', 'required', 'status')
 
-    PROPERTY_REQUIRED_DEFAULT = True
+    PROPERTY_REQUIRED_DEFAULT = False
 
     VALID_REQUIRED_VALUES = ['true', 'false']
     VALID_STATUS_VALUES = (PROPERTY_STATUS_SUPPORTED,
-                           PROPERTY_STATUS_EXPERIMENTAL) = \
-        ('supported', 'experimental')
+                           PROPERTY_STATUS_SUPPORTED_CAPITAL,
+                           PROPERTY_STATUS_EXPERIMENTAL,
+                           PROPERTY_STATUS_EXPERIMENTAL_CAPITAL) = \
+        ('supported', 'SUPPORTED', 'experimental', 'EXPERIMENTAL')
 
     PROPERTY_STATUS_DEFAULT = PROPERTY_STATUS_SUPPORTED
 

@@ -75,6 +75,9 @@ class ToscaTemplate(object):
                  debug_mode=False):
         if sub_mapped_node_template is None:
             ExceptionCollector.start()
+
+        self.taglist = ["taglist", "topology_template", "graph", "version"]
+
         self.a_file = a_file
         self.input_path = None
         self.path = None
