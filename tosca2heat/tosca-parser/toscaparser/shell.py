@@ -12,6 +12,7 @@
 
 
 import argparse
+import json
 import logging
 import os
 import sys
@@ -139,6 +140,53 @@ class ParserShell(object):
                 print("\noutputs:")
                 for output in outputs:
                     print("\t" + output.name)
+
+        print("========= Output json format start =========")
+
+        print(self.output(tosca, True))
+
+        print("========= Output json format end =========")
+
+    def output(self, tosca_object, pretty_print=False):
+        '''
+        :param tosca_object:
+        :param pretty_print:
+        :return:
+
+        dumps(obj, skipkeys=False, ensure_ascii=True, check_circular=True,
+        allow_nan=True, cls=None, indent=None, separators=None,
+        encoding='utf-8', default=None, sort_keys=False, **kw)
+
+        dump(obj, fp, skipkeys=False, ensure_ascii=True, check_circular=True,
+        allow_nan=True, cls=None, indent=None, separators=None,
+        encoding='utf-8', default=None, sort_keys=False, **kw)
+        '''
+
+        output2file = True
+        separators = (',', ': ') if pretty_print else (',', ':')
+        indent = 2 if pretty_print else None
+        if output2file:
+            fp = file('/tmp/test.json', 'w')
+            json.dump(tosca_object, fp, skipkeys=False, indent=indent,
+                      default=object2dict, separators=separators,
+                      sort_keys=True)
+            return
+        return json.dumps(tosca_object, skipkeys=True, indent=indent,
+                          default=object2dict, separators=separators,
+                          sort_keys=True)
+
+
+def object2dict(obj):
+    # convert object to a dict
+    d = {}
+    d['__class__'] = obj.__class__.__name__
+    # d['__module__'] = obj.__module__
+    if hasattr(obj, "taglist"):
+        for e in obj.__dict__:
+            if e in obj.taglist:
+                # d.update(obj.__dict__)
+                d.update({e: obj.__dict__[e]})
+    return d
 
 
 def main(args=None):

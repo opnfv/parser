@@ -260,8 +260,8 @@ class TopologyTemplateTest(TestCase):
         # Subtemplate deploy standaolone is also invalid.
         self.assertRaises(exception.ValidationError,
                           lambda: ToscaTemplate(tpl_path1))
-        exception.ExceptionCollector.assertExceptionMessage(
-            exception.MissingRequiredInputError, errormsg)
+        # exception.ExceptionCollector.assertExceptionMessage(
+        #     exception.MissingRequiredInputError, errormsg)
 
     def test_system_with_unknown_output_validation(self):
         tpl_path0 = os.path.join(

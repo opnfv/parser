@@ -20,6 +20,7 @@ from toscaparser.common.exception import MissingRequiredInputError
 from toscaparser.common.exception import MissingRequiredOutputError
 from toscaparser.common.exception import UnknownFieldError
 from toscaparser.common.exception import UnknownOutputError
+from toscaparser.elements.entity_type import EntityType
 from toscaparser.elements.nodetype import NodeType
 from toscaparser.utils.gettextutils import _
 
@@ -105,7 +106,8 @@ class SubstitutionMappings(object):
                     what=_('SubstitutionMappings used in topology_template'),
                     required=self.NODE_TYPE))
 
-        node_type_def = self.custom_defs.get(node_type)
+        node_type_def = EntityType.TOSCA_DEF.get(node_type) or \
+            self.custom_defs.get(node_type)
         if not node_type_def:
             ExceptionCollector.appendException(
                 InvalidNodeTypeError(what=node_type))
