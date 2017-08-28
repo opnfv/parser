@@ -12,6 +12,7 @@
 
 import logging
 
+from toscaparser.elements.entity_type import EntityType
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidNodeTypeError
 from toscaparser.common.exception import MissingDefaultValueError
@@ -105,7 +106,8 @@ class SubstitutionMappings(object):
                     what=_('SubstitutionMappings used in topology_template'),
                     required=self.NODE_TYPE))
 
-        node_type_def = self.custom_defs.get(node_type)
+        node_type_def = EntityType.TOSCA_DEF.get(node_type) or \
+                        self.custom_defs.get(node_type)
         if not node_type_def:
             ExceptionCollector.appendException(
                 InvalidNodeTypeError(what=node_type))
