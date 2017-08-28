@@ -35,7 +35,8 @@ class Property(object):
         self.value = value
         self.custom_def = custom_def
         self.schema = Schema(property_name, schema_dict)
-
+        self.taglist = ["types", "name", "value"]
+        self.types = self.type
     @property
     def type(self):
         return self.schema.type

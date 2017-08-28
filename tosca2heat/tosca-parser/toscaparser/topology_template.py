@@ -44,6 +44,8 @@ class TopologyTemplate(object):
     def __init__(self, template, custom_defs,
                  rel_types=None, parsed_params=None,
                  sub_mapped_node_template=None):
+        self.taglist = ["nodetemplates", "relationship_templates", "inputs", "outputs", "policies", "groups"]
+
         self.tpl = template
         self.sub_mapped_node_template = sub_mapped_node_template
         if self.tpl:
