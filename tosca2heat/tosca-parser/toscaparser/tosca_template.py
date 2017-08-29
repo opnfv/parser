@@ -238,14 +238,15 @@ class ToscaTemplate(object):
                         nodetemplate)
 
                     cache_exeptions = deepcopy(ExceptionCollector.exceptions)
-                    cache_exeptions_state = deepcopy(ExceptionCollector.collecting)
+                    cache_exeptions_state = \
+                        deepcopy(ExceptionCollector.collecting)
                     nested_template = None
                     try:
+                        nrpv = self.no_required_paras_valid
                         nested_template = ToscaTemplate(
                             path=fname, parsed_params=parsed_params,
-                            # yaml_dict_tpl=tosca_tpl,
                             sub_mapped_node_template=nodetemplate,
-                            no_required_paras_valid=self.no_required_paras_valid)
+                            no_required_paras_valid=nrpv)
                     except ValidationError as e:
                         msg = _('  ===== nested service template ===== ')
                         log.error(msg)
@@ -253,10 +254,14 @@ class ToscaTemplate(object):
                         log.error(e.message)
                         print(e.message)
 
-                    ExceptionCollector.exceptions = deepcopy(cache_exeptions)
-                    ExceptionCollector.collecting = deepcopy(cache_exeptions_state)
+                        raise e
 
-                    if nested_template and nested_template._has_substitution_mappings():
+                    ExceptionCollector.exceptions = deepcopy(cache_exeptions)
+                    ExceptionCollector.collecting = \
+                        deepcopy(cache_exeptions_state)
+
+                    if nested_template and \
+                            nested_template._has_substitution_mappings():
                         # Record the nested templates in top level template
                         self.nested_tosca_templates_with_topology.\
                             append(nested_template)
@@ -309,7 +314,7 @@ class ToscaTemplate(object):
         if ExceptionCollector.exceptionsCaught():
             if self.no_required_paras_valid:
                 ExceptionCollector.removeException(
-                    MissingRequiredFieldError)
+                    MissingRequiredParameterError)
 
             if self.input_path:
                 raise ValidationError(

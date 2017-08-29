@@ -42,6 +42,7 @@ e.g.
 
 log = logging.getLogger("tosca.model")
 
+
 class ParserShell(object):
 
     def get_parser(self, argv):
@@ -65,25 +66,27 @@ class ParserShell(object):
         path = args.template_file
         nrpv = args.no_required_paras_valid
         if os.path.isfile(path):
-            self.parse(path, no_required_paras_valid=nrpv)
+            self.parse(path, no_req_paras_valid=nrpv)
         elif toscaparser.utils.urlutils.UrlUtils.validate_url(path):
-            self.parse(path, False, no_required_paras_valid=nrpv)
+            self.parse(path, False, no_req_paras_valid=nrpv)
         else:
             raise ValueError(_('"%(path)s" is not a valid file.')
                              % {'path': path})
 
-    def parse(self, path, a_file=True, no_required_paras_valid=False):
+    def parse(self, path, a_file=True, no_req_paras_valid=False):
         output = None
         tosca = None
         try:
             tosca = ToscaTemplate(path, None, a_file,
-                                  no_required_paras_valid=no_required_paras_valid)
+                                  no_required_paras_valid=no_req_paras_valid)
         except ValidationError as e:
             msg = _('  ===== main service template ===== ')
             log.error(msg)
             print(msg)
             log.error(e.message)
             print(e.message)
+
+            raise e
             return
 
         version = tosca.version
