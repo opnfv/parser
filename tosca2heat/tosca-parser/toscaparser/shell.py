@@ -49,23 +49,30 @@ class ParserShell(object):
                             required=True,
                             help=_('YAML template or CSAR file to parse.'))
 
+        parser.add_argument('-nrpv', dest='no_required_paras_valid',
+                            action='store_true', default=False,
+                            help=_('Ignore input parameter validation '
+                                   'when parse template.'))
+
         return parser
 
     def main(self, argv):
         parser = self.get_parser(argv)
         (args, extra_args) = parser.parse_known_args(argv)
         path = args.template_file
+        nrpv = args.no_required_paras_valid
         if os.path.isfile(path):
-            self.parse(path)
+            self.parse(path, no_required_paras_valid=nrpv)
         elif toscaparser.utils.urlutils.UrlUtils.validate_url(path):
-            self.parse(path, False)
+            self.parse(path, False, no_required_paras_valid=nrpv)
         else:
             raise ValueError(_('"%(path)s" is not a valid file.')
                              % {'path': path})
 
-    def parse(self, path, a_file=True):
+    def parse(self, path, a_file=True, no_required_paras_valid=False):
         output = None
-        tosca = ToscaTemplate(path, None, a_file)
+        tosca = ToscaTemplate(path, None, a_file,
+                              no_required_paras_valid=no_required_paras_valid)
 
         version = tosca.version
         if tosca.version:

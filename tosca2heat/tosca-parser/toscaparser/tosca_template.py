@@ -18,6 +18,7 @@ from copy import deepcopy
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidTemplateVersion
 from toscaparser.common.exception import MissingRequiredFieldError
+from toscaparser.common.exception import MissingRequiredParameterError
 from toscaparser.common.exception import UnknownFieldError
 from toscaparser.common.exception import ValidationError
 from toscaparser.elements.entity_type import update_definitions
@@ -65,7 +66,8 @@ class ToscaTemplate(object):
 
     '''Load the template data.'''
     def __init__(self, path=None, parsed_params=None, a_file=True,
-                 yaml_dict_tpl=None, sub_mapped_node_template=None):
+                 yaml_dict_tpl=None, sub_mapped_node_template=None,
+                 no_required_paras_valid=False):
         if sub_mapped_node_template is None:
             ExceptionCollector.start()
         self.a_file = a_file
@@ -75,6 +77,7 @@ class ToscaTemplate(object):
         self.sub_mapped_node_template = sub_mapped_node_template
         self.nested_tosca_tpls_with_topology = {}
         self.nested_tosca_templates_with_topology = []
+        self.no_required_paras_valid = no_required_paras_valid
         if path:
             self.input_path = path
             self.path = self._get_path(path)
@@ -236,7 +239,8 @@ class ToscaTemplate(object):
                     nested_template = ToscaTemplate(
                         path=fname, parsed_params=parsed_params,
                         yaml_dict_tpl=tosca_tpl,
-                        sub_mapped_node_template=nodetemplate)
+                        sub_mapped_node_template=nodetemplate,
+                        no_required_paras_valid=self.no_required_paras_valid)
                     if nested_template._has_substitution_mappings():
                         # Record the nested templates in top level template
                         self.nested_tosca_templates_with_topology.\
@@ -288,6 +292,10 @@ class ToscaTemplate(object):
 
     def verify_template(self):
         if ExceptionCollector.exceptionsCaught():
+            if self.no_required_paras_valid:
+                ExceptionCollector.removeException(
+                    MissingRequiredParameterError)
+
             if self.input_path:
                 raise ValidationError(
                     message=(_('\nThe input "%(path)s" failed validation with '
