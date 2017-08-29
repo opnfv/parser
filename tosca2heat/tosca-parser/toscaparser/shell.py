@@ -12,9 +12,11 @@
 
 
 import argparse
+import logging
 import os
 import sys
 
+from toscaparser.common.exception import ValidationError
 from toscaparser.tosca_template import ToscaTemplate
 from toscaparser.utils.gettextutils import _
 import toscaparser.utils.urlutils
@@ -38,6 +40,7 @@ e.g.
  --template-file=toscaparser/tests/data/CSAR/csar_hello_world.zip
 """
 
+log = logging.getLogger("tosca.model")
 
 class ParserShell(object):
 
@@ -71,8 +74,17 @@ class ParserShell(object):
 
     def parse(self, path, a_file=True, no_required_paras_valid=False):
         output = None
-        tosca = ToscaTemplate(path, None, a_file,
-                              no_required_paras_valid=no_required_paras_valid)
+        tosca = None
+        try:
+            tosca = ToscaTemplate(path, None, a_file,
+                                  no_required_paras_valid=no_required_paras_valid)
+        except ValidationError as e:
+            msg = _('  ===== main service template ===== ')
+            log.error(msg)
+            print(msg)
+            log.error(e.message)
+            print(e.message)
+            return
 
         version = tosca.version
         if tosca.version:
