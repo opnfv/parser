@@ -33,9 +33,9 @@ pip uninstall -y heat-translator
 
 # install parser
 if [ -n "${OPNFV_REPO_DIR}" ]; then
-    cd ${OPNFV_REPO_DIR}/parser/tosca2heat/tosca-parser && python setup.py install
     cd ${OPNFV_REPO_DIR}/parser/tosca2heat/heat-translator && python setup.py install
+    cd ${OPNFV_REPO_DIR}/parser/tosca2heat/tosca-parser && python setup.py install
 else
-    cd ${BASE_WORK_DIR}/../tosca2heat/tosca-parser && python setup.py install
     cd ${BASE_WORK_DIR}/../tosca2heat/heat-translator && python setup.py install
+    cd ${BASE_WORK_DIR}/../tosca2heat/tosca-parser && python setup.py install
 fi
