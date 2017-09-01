@@ -56,11 +56,13 @@ YAML_LOADER = toscaparser.utils.yamlparser.load_yaml
 class ToscaTemplate(object):
     exttools = ExtTools()
 
-    VALID_TEMPLATE_VERSIONS = ['tosca_simple_yaml_1_0']
+    VALID_TEMPLATE_VERSIONS = ['tosca_simple_yaml_1_0',
+                               'tosca_simple_yaml_1_1']
 
     VALID_TEMPLATE_VERSIONS.extend(exttools.get_versions())
 
-    ADDITIONAL_SECTIONS = {'tosca_simple_yaml_1_0': SPECIAL_SECTIONS}
+    ADDITIONAL_SECTIONS = {'tosca_simple_yaml_1_0': SPECIAL_SECTIONS,
+                           'tosca_simple_yaml_1_1': SPECIAL_SECTIONS}
 
     ADDITIONAL_SECTIONS.update(exttools.get_sections())
 
@@ -272,7 +274,8 @@ class ToscaTemplate(object):
                     what=version,
                     valid_versions=', '. join(self.VALID_TEMPLATE_VERSIONS)))
         else:
-            if version != 'tosca_simple_yaml_1_0':
+            if (version != 'tosca_simple_yaml_1_0' and
+                    version != 'tosca_simple_yaml_1_1'):
                 update_definitions(version)
 
     def _get_path(self, path):
