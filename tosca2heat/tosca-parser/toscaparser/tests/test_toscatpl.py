@@ -666,6 +666,17 @@ class ToscaTemplateTest(TestCase):
 
         self.assertEqual(tosca.version, "tosca_simple_yaml_1_0")
 
+    def test_yaml_dict_tpl_with_version_1_1(self):
+        test_tpl = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/tosca_helloworld_with_version_1_1.yaml")
+
+        yaml_dict_tpl = toscaparser.utils.yamlparser.load_yaml(test_tpl)
+
+        tosca = ToscaTemplate(yaml_dict_tpl=yaml_dict_tpl)
+
+        self.assertEqual(tosca.version, "tosca_simple_yaml_1_1")
+
     def test_yaml_dict_tpl_with_params_and_url_import(self):
         test_tpl = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
