@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_7878892b",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tosca_template.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-09-05T01:18:40Z",
+      "side": 1,
+      "message": "please delete all the print sentences.",
+      "range": {
+        "startLine": 253,
+        "startChar": 24,
+        "endLine": 253,
+        "endChar": 34
+      },
+      "revId": "e052c4ddcd0a52e65cd23e4db92a38a1e5511ca5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d8771539",
+        "filename": "tosca2heat/tosca-parser/toscaparser/tosca_template.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-09-05T01:18:40Z",
+      "side": 1,
+      "message": "the same",
+      "range": {
+        "startLine": 255,
+        "startChar": 24,
+        "endLine": 255,
+        "endChar": 40
+      },
+      "revId": "e052c4ddcd0a52e65cd23e4db92a38a1e5511ca5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
