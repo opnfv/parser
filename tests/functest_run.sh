@@ -20,15 +20,6 @@ PRASER_WORK_DIR=$(cd $(dirname $0) && pwd)
 }
 LOCAL_IMAGE_FILE=${1:-""}
 
-# Install parser
-echo "Prepare parser ..."
-echo "==================="
-echo ""
-${PRASER_WORK_DIR}/parser_install.sh ${PRASER_WORK_DIR}/../..
-echo ""
-echo "Prepare result: $?"
-echo "==================="
-
 if [ -e "${LOCAL_IMAGE_FILE}" ]; then
     echo "Input local image file: ${LOCAL_IMAGE_FILE}"
     PARSER_IMAGE_URL_FILE=${LOCAL_IMAGE_FILE}
@@ -315,7 +306,7 @@ echo ""
 trap reset_parser_test EXIT
 
 # start syslog for loghander
-service rsyslog restart
+which service > /dev/null  && service rsyslog restart || true
 
 echo "|========= 1/4. Preparing VM image for parser...     =========|"
 download_parser_image
