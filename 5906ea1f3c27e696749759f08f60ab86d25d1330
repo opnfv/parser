@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_ef4a09c4",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-06T08:48:35Z",
+      "side": 1,
+      "message": "Base image of alpine doesn\u0027t install service package, if it\u0027s not convinient for functest to add service when build image, i can modify the heat-translator configuration to disable syslog.",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 61
+      },
+      "revId": "5906ea1f3c27e696749759f08f60ab86d25d1330",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
