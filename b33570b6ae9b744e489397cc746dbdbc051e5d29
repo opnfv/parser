@@ -46,6 +46,30 @@
       "revId": "b33570b6ae9b744e489397cc746dbdbc051e5d29",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_244c189e",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-06T06:49:11Z",
+      "side": 0,
+      "message": "Heat-translator will use rsyslog, and it\u0027s not dedicated to functest.",
+      "parentUuid": "da33351e_e4f3509c",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 23
+      },
+      "revId": "b33570b6ae9b744e489397cc746dbdbc051e5d29",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
