@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_8447e41c",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-06T01:14:00Z",
+      "side": 0,
+      "message": "It\u0027s not neccessary to delete this line, it\u0027s a guarantee here, since some environments run error if missing rsyslog.",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 23
+      },
+      "revId": "b33570b6ae9b744e489397cc746dbdbc051e5d29",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
