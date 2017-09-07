@@ -194,5 +194,5 @@ to create a service graph using the gRPC interface and to trigger the verificati
 .. code-block:: bash
 
       cd parser/verigraph
-      #Client souce code in ``parser/verigraph/src/main/it/polito/grpc/Client.java``
+      #Client souce code in ``parser/verigraph/src/it/polito/verigraph/grpc/client/Client.java``
       ant -f buildVeriGraph_gRPC.xml run-client
