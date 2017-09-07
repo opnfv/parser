@@ -69,7 +69,8 @@ class ToscaTemplate(object):
     '''Load the template data.'''
     def __init__(self, path=None, parsed_params=None, a_file=True,
                  yaml_dict_tpl=None, sub_mapped_node_template=None,
-                 no_required_paras_valid=False):
+                 no_required_paras_check=False,
+                 debug_mode=False):
         if sub_mapped_node_template is None:
             ExceptionCollector.start()
         self.a_file = a_file
@@ -79,7 +80,9 @@ class ToscaTemplate(object):
         self.sub_mapped_node_template = sub_mapped_node_template
         self.nested_tosca_tpls_with_topology = {}
         self.nested_tosca_templates_with_topology = []
-        self.no_required_paras_valid = no_required_paras_valid
+        self.no_required_paras_check = no_required_paras_check
+        self.debug_mode = debug_mode
+
         if path:
             self.input_path = path
             self.path = self._get_path(path)
@@ -244,16 +247,20 @@ class ToscaTemplate(object):
                         deepcopy(ExceptionCollector.collecting)
                     nested_template = None
                     try:
-                        nrpv = self.no_required_paras_valid
+                        nrpv = self.no_required_paras_check
                         nested_template = ToscaTemplate(
                             path=fname, parsed_params=parsed_params,
                             sub_mapped_node_template=nodetemplate,
-                            no_required_paras_valid=nrpv)
+                            no_required_paras_check=nrpv)
                     except ValidationError as e:
                         msg = _('  ===== nested service template ===== ')
                         log.error(msg)
                         log.error(e.message)
-                        raise e
+                        if self.debug_mode:
+                            print(msg)
+                            print(e.message)
+                        else:
+                            raise e
 
                     ExceptionCollector.exceptions = deepcopy(cache_exeptions)
                     ExceptionCollector.collecting = \
@@ -312,21 +319,23 @@ class ToscaTemplate(object):
 
     def verify_template(self):
         if ExceptionCollector.exceptionsCaught():
-            if self.no_required_paras_valid:
+            if self.no_required_paras_check:
                 ExceptionCollector.removeException(
                     MissingRequiredParameterError)
 
             if self.input_path:
-                raise ValidationError(
+                exceptions = ValidationError(
                     message=(_('\nThe input "%(path)s" failed validation with '
                                'the following error(s): \n\n\t')
                              % {'path': self.input_path}) +
                     '\n\t'.join(ExceptionCollector.getExceptionsReport()))
             else:
-                raise ValidationError(
+                exceptions = ValidationError(
                     message=_('\nThe pre-parsed input failed validation with '
                               'the following error(s): \n\n\t') +
                     '\n\t'.join(ExceptionCollector.getExceptionsReport()))
+            if not self.debug_mode:
+                raise exceptions
         else:
             if self.input_path:
                 msg = (_('The input "%(path)s" successfully passed '
