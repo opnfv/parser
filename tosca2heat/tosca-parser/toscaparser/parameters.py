@@ -92,7 +92,7 @@ class Input(object):
         elif EntityType.DATATYPE_NETWORK_PREFIX + self.type in tosca:
             datatype = tosca[EntityType.DATATYPE_NETWORK_PREFIX + self.type]
         elif self.type in self.custom_defs:
-            datatype = self.custom_defs[self.type]
+            datatype = self.custom_defs
 
         DataEntity.validate_datatype(self.type, value, None, datatype)
 
