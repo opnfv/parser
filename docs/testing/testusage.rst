@@ -58,6 +58,11 @@ Parser VeriGraph test usage
 VeriGraph is accessible via both a RESTfull API and a gRPC interface.
 
 **RESTful API**
+In order to run the automatic testing script, you need the
+following dependencies installed on your python distribution:
+
+- "requests" python package -> http://docs.python-requests.org/en/master/
+- "jsonschema" python package -> https://pypi.python.org/pypi/jsonschema
 
 1. Run the Python tester
 
@@ -65,6 +70,20 @@ VeriGraph is accessible via both a RESTfull API and a gRPC interface.
 
       cd parser/verigraph/tester
       python test.py
+
+2. Run many times (i.e. n-times) each test-case with ant script
+
+.. code-block:: bash
+
+      cd parser/verigraph
+      ant -f build.xml run-test -Diteration=n 
+
+2. Run many times (i.e. n-times) each test-case by command line
+
+.. code-block:: bash
+
+      cd parser/verigraph
+      python test.py -iteration n
 
 **gRPC API**
 
