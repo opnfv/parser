@@ -53,10 +53,16 @@ class ParserShell(object):
                             required=True,
                             help=_('YAML template or CSAR file to parse.'))
 
-        parser.add_argument('-nrpv', dest='no_required_paras_valid',
+        parser.add_argument('-nrpv', dest='no_required_paras_check',
                             action='store_true', default=False,
                             help=_('Ignore input parameter validation '
                                    'when parse template.'))
+
+        parser.add_argument('--debug', dest='debug_mode',
+                            action='store_true', default=False,
+                            help=_('debug mode for print more details '
+                                   'other than raise exceptions when '
+                                   'errors happen'))
 
         return parser
 
@@ -64,44 +70,53 @@ class ParserShell(object):
         parser = self.get_parser(argv)
         (args, extra_args) = parser.parse_known_args(argv)
         path = args.template_file
-        nrpv = args.no_required_paras_valid
+        nrpv = args.no_required_paras_check
+        debug = args.debug_mode
+
         if os.path.isfile(path):
-            self.parse(path, no_req_paras_valid=nrpv)
+            self.parse(path, no_required_paras_check=nrpv, debug_mode=debug)
         elif toscaparser.utils.urlutils.UrlUtils.validate_url(path):
-            self.parse(path, False, no_req_paras_valid=nrpv)
+            self.parse(path, False,
+                       no_required_paras_check=nrpv,
+                       debug_mode=debug)
         else:
             raise ValueError(_('"%(path)s" is not a valid file.')
                              % {'path': path})
 
-    def parse(self, path, a_file=True, no_req_paras_valid=False):
-        output = None
-        tosca = None
+    def parse(self, path, a_file=True, no_required_paras_check=False,
+              debug_mode=False):
+        nrpv = no_required_paras_check
         try:
             tosca = ToscaTemplate(path, None, a_file,
-                                  no_required_paras_valid=no_req_paras_valid)
+                                  no_required_paras_check=nrpv,
+                                  debug_mode=debug_mode)
         except ValidationError as e:
             msg = _('  ===== main service template ===== ')
             log.error(msg)
             log.error(e.message)
-            raise e
+            if debug_mode:
+                print(msg)
+                print(e.message)
+            else:
+                raise e
 
-        version = tosca.version
-        if tosca.version:
+        version = tosca.version if tosca else "unknown"
+        if tosca and tosca.version:
             print("\nversion: " + version)
 
-        if hasattr(tosca, 'description'):
+        if tosca and hasattr(tosca, 'description'):
             description = tosca.description
             if description:
                 print("\ndescription: " + description)
 
-        if hasattr(tosca, 'inputs'):
+        if tosca and hasattr(tosca, 'inputs'):
             inputs = tosca.inputs
             if inputs:
                 print("\ninputs:")
                 for input in inputs:
                     print("\t" + input.name)
 
-        if hasattr(tosca, 'nodetemplates'):
+        if tosca and hasattr(tosca, 'nodetemplates'):
             nodetemplates = tosca.nodetemplates
             if nodetemplates:
                 print("\nnodetemplates:")
@@ -120,7 +135,7 @@ class ParserShell(object):
                         for trigger in policy.triggers:
                             print("\ttrigger name:" + trigger.name)'''
 
-        if hasattr(tosca, 'outputs'):
+        if tosca and hasattr(tosca, 'outputs'):
             outputs = tosca.outputs
             if outputs:
                 print("\noutputs:")
