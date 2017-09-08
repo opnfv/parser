@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_eda5ecb5",
+        "filename": "tosca2heat/heat-translator/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2017-09-08T06:11:16Z",
+      "side": 1,
+      "message": "I would have simply removed the offical line",
+      "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4dadf89b",
+        "filename": "tosca2heat/heat-translator/tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2017-09-08T06:11:16Z",
+      "side": 1,
+      "message": "you should add upper-constraints (stable/pike). See Functest tox.ini",
+      "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
