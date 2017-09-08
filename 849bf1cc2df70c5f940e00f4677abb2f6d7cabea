@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_68854aac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-08T16:08:31Z",
+      "side": 1,
+      "message": "yes, i\u0027ll fix it.",
+      "parentUuid": "da33351e_8d96e04a",
+      "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_eda5ecb5",
         "filename": "tosca2heat/heat-translator/requirements.txt",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_c89456e4",
+        "filename": "tosca2heat/heat-translator/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-08T16:08:31Z",
+      "side": 1,
+      "message": "Here it reminds me which tosca-pareser in openstack it dependens.",
+      "parentUuid": "da33351e_eda5ecb5",
+      "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_4dadf89b",
         "filename": "tosca2heat/heat-translator/tox.ini",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2017-09-08T06:11:16Z",
       "side": 1,
       "message": "you should add upper-constraints (stable/pike). See Functest tox.ini",
+      "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_a88f52cb",
+        "filename": "tosca2heat/heat-translator/tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2017-09-08T16:08:31Z",
+      "side": 1,
+      "message": "I have notice the modification in upstream which does use the upper-constraints, but currently in parser i am not going to sync it because some errors, maybe the next release i\u0027ll sync it.",
+      "parentUuid": "da33351e_4dadf89b",
       "revId": "849bf1cc2df70c5f940e00f4677abb2f6d7cabea",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
