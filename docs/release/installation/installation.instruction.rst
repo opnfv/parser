@@ -111,6 +111,7 @@ Parser verigraph installation
 In the present release, verigraph requires that the following software is also installed:
 
 - Java 1.8 (with javac compiler)
+- Apache Ant 1.9
 - Apache Tomcat 8
 - Microsoft Z3 (https://github.com/Z3Prover/bin/tree/master/releases)
 - Neo4J (https://neo4j.org)
@@ -129,8 +130,86 @@ Step 2: Go to the verigraph directory.
 
    cd parser/verigraph
 
-Step3: Follow the instructions in README.rst for downloading verigraph
-dependencies and for installing verigraph.
+Step3: Set up the execution environment, based on your operating system.
+
+*VeriGraph deployment on Apache Tomcat (Windows)*:
+
+-  set JAVA HOME environment variable to where you installed the jdk
+   (e.g. ``C:\Program Files\Java\jdk1.8.XYY``);
+-  set CATALINA HOME ambient variable to the directory where you
+   installed Apache (e.g.
+   ``C:\Program Files\Java\apache-tomcat-8.0.30``);
+-  open the file ``%CATALINA_HOME%\conf\tomcat-users.xml`` and under the ``tomcat-users`` tag place,
+   initialize an user with roles "tomcat, manager-gui, manager-script". An example is the following
+   content: ``xml   <role rolename="tomcat"/>   <role rolename="role1"/>   <user username="tomcat"
+   password="tomcat" roles="tomcat,manager-gui"/>   <user username="both" password="tomcat"
+   roles="tomcat,role1"/>   <user username="role1" password="tomcat" roles="role1"/>``
+-  edit the "to\_be\_defined" fields in tomcat-build.xml with the username and password previously
+   configured in Tomcat(e.g. ``name="tomcatUsername" value="tomcat"`` and ``name="tomcatPassword"
+   value="tomcat"`` the values set in 'tomcat-users'). Set ``server.location`` property to the
+   directory where you installed Apache (e.g. ``C:\Program Files\Java\apache-tomcat-8.0.30``);
+
+*VeriGraph deployment on Apache Tomcat (Unix)*:
+
+- ``sudo nano ~/.bashrc``
+-  set a few environment variables by paste the following content at the end of the file
+   ``export CATALINA_HOME='/path/to/apache/tomcat/folder'``
+   ``export JRE_HOME='/path/to/jdk/folder'``
+   ``export JDK_HOME='/path/to/jdk/folder'``
+- ``exec bash``
+-  open the file ``$CATALINA_HOME\conf\tomcat-users.xml`` and under
+   the ``tomcat-users`` tag place, initialize an user with roles
+   "tomcat, manager-gui, manager-script". An example is the following content:
+   ``xml <role rolename="tomcat"/>   <role rolename="role1"/>   <user username="tomcat"
+   password="tomcat" roles="tomcat,manager-gui"/>   <user username="both" password="tomcat"
+   roles="tomcat,role1"/>   <user username="role1" password="tomcat" roles="role1"/>``
+-  edit the "to\_be\_defined" fields in tomcat-build.xml with the
+   username and password previously configured in Tomcat(e.g. ``name="tomcatUsername"
+   value="tomcat"`` and ``name="tomcatPassword" value="tomcat"`` the values set in 'tomcat-users').
+   Set ``server.location`` property to the directory where you installed Apache
+   (e.g. ``C:\Program Files\Java\apache-tomcat-8.0.30``);
+
+
+
+Step4a: Deploy Verigraph in Tomcat.
+
+.. code-block:: bash
+
+   ant -f build.xml deployWS
+
+Use the Ant script build.xml to manage Verigraph webservice with the following targets:
+
+-  generate-war: it generates the war file;
+-  generate-binding: it generates the JAXB classes from the XML Schema file xml\_components.xsd;
+-  start-tomcat : it starts the Apache Tomcat;
+-  deployWS: it deploys the verigraph.war file contained in
+   verigraph/war folder;
+-  startWS: it starts the webservice;
+-  run-test: it runs the tests in tester folder. It is possible to
+   choose the iterations number for each verification request by
+   launching the test with "-Diteration=n run-test" where n is the
+   number of iterations you want;
+-  stopWS: it stops the webservice;
+-  undeployWS: it undeploys the webservice from Apache Tomcat;
+-  stop-tomcat: it stops Apache Tomcat.
+
+Step4b: Deploy Verigraph with gRPC interface.
+
+.. code-block:: bash
+
+   ant -f build.xml generate-binding
+   ant -f gRPC-build.xml run-server
+
+Use the Ant script gRPC-build.xml to manage Verigraph with the following targets:
+
+- build: compile the program;
+- run: run both client and server;
+- run-client : run only client;
+- run-server : run only server;
+- run-test : launch all tests that are present in the package;
+
+
+
 
 
 Parser apigateway Installation
