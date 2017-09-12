@@ -251,13 +251,11 @@ class ToscaTemplate(object):
                         nested_template = ToscaTemplate(
                             path=fname, parsed_params=parsed_params,
                             sub_mapped_node_template=nodetemplate,
-                            no_required_paras_check=nrpv)
+                            no_required_paras_check=nrpv,
+                            debug_mode=self.debug_mode)
                     except ValidationError as e:
-                        msg = _('  ===== nested service template ===== ')
-                        log.error(msg)
                         log.error(e.message)
                         if self.debug_mode:
-                            print(msg)
                             print(e.message)
                         else:
                             raise e
@@ -272,7 +270,7 @@ class ToscaTemplate(object):
                         self.nested_tosca_templates_with_topology.\
                             append(nested_template)
                         # Set the substitution toscatemplate for mapped node
-                        nodetemplate.sub_mapping_tosca_template = \
+                        nodetemplate.substitution_mapped = \
                             nested_template
 
     def _validate_field(self):
@@ -337,8 +335,15 @@ class ToscaTemplate(object):
             if not self.debug_mode:
                 raise exceptions
             else:
+                if self.sub_mapped_node_template:
+                    msg = _('  ===== nested service template ===== ')
+
+                else:
+                    msg = _('  ===== main service template ===== ')
+                print(msg)
                 print(exceptions.message)
-            log.error(exceptions.message)
+                log.error(msg)
+                log.error(exceptions.message)
         else:
             if self.input_path:
                 msg = (_('The input "%(path)s" successfully passed '
