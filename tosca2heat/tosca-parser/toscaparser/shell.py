@@ -91,11 +91,8 @@ class ParserShell(object):
                                   no_required_paras_check=nrpv,
                                   debug_mode=debug_mode)
         except ValidationError as e:
-            msg = _('  ===== main service template ===== ')
-            log.error(msg)
             log.error(e.message)
             if debug_mode:
-                print(msg)
                 print(e.message)
             else:
                 raise e
