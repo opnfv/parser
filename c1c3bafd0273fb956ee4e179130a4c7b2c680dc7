@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_2f733ee8",
+        "filename": "tosca2heat/heat-translator/translator/conf/heat_translator_logging.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-09-13T01:20:27Z",
+      "side": 1,
+      "message": "delete this line",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 51
+      },
+      "revId": "c1c3bafd0273fb956ee4e179130a4c7b2c680dc7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_8f824a92",
+        "filename": "tosca2heat/heat-translator/translator/conf/heat_translator_logging.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 483
+      },
+      "writtenOn": "2017-09-13T01:20:27Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 44
+      },
+      "revId": "c1c3bafd0273fb956ee4e179130a4c7b2c680dc7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
