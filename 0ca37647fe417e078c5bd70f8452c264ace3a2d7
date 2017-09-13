@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: julien zhang <zhang.jun3g@zte.com.cn>
+Submitted-by: julien zhang <zhang.jun3g@zte.com.cn>
+Submitted-at: Wed, 13 Sep 2017 01:22:30 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/41709
+Project: parser
+Branch: refs/heads/master
