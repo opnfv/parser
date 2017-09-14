@@ -110,7 +110,9 @@ create_parser_user_and_project() {
     } || {
         openstack ${debug} role add ${PARSER_ROLE} --user ${PARSER_USER} \
                            --project ${PARSER_PROJECT}
-        echo "  Grant user ${PARSER_USER} the role ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
+        openstack ${debug} role add heat_stack_owner --user ${PARSER_USER} \
+                           --project ${PARSER_PROJECT}
+        echo "  Grant user ${PARSER_USER} the role ${PARSER_ROLE} and heat_stack_owner in project ${PARSER_PROJECT} successful."
     }
 
 }
