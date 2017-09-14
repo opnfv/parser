@@ -20,7 +20,7 @@ import traceback
 from toscaparser.utils.gettextutils import _
 
 
-log = logging.getLogger(__name__)
+log = logging.getLogger('tosca')
 
 
 class TOSCAException(Exception):
@@ -207,7 +207,7 @@ class ExceptionCollector(object):
 
     @staticmethod
     def removeException(exception_type):
-        if ExceptionCollector.collecting:
+        if ExceptionCollector.collecting and ExceptionCollector.exceptions:
             for i, e in enumerate(ExceptionCollector.exceptions):
                 if isinstance(e, exception_type):
                     del ExceptionCollector.exceptions[i]
