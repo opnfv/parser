@@ -18,6 +18,8 @@ from copy import deepcopy
 from toscaparser.common.exception import ExceptionCollector
 from toscaparser.common.exception import InvalidTemplateVersion
 from toscaparser.common.exception import MissingRequiredFieldError
+from toscaparser.common.exception import MissingRequiredInputError
+from toscaparser.common.exception import MissingRequiredOutputError
 from toscaparser.common.exception import MissingRequiredParameterError
 from toscaparser.common.exception import UnknownFieldError
 from toscaparser.common.exception import ValidationError
@@ -316,11 +318,14 @@ class ToscaTemplate(object):
                            % {'path': path}))
 
     def verify_template(self):
+        if self.no_required_paras_check:
+            ExceptionCollector.removeException(
+                MissingRequiredParameterError)
+            ExceptionCollector.removeException(
+                MissingRequiredInputError)
+            ExceptionCollector.removeException(
+                MissingRequiredOutputError)
         if ExceptionCollector.exceptionsCaught():
-            if self.no_required_paras_check:
-                ExceptionCollector.removeException(
-                    MissingRequiredParameterError)
-
             if self.input_path:
                 exceptions = ValidationError(
                     message=(_('\nThe input "%(path)s" failed validation with '
