@@ -104,7 +104,7 @@ create_parser_user_and_project() {
     }
 
     # 3. grant role for parser user
-    openstack ${debug} role list ${PARSER_USER} --project ${PARSER_PROJECT} \
+    openstack ${debug} role list --user ${PARSER_USER} --project ${PARSER_PROJECT} \
     | grep -qow ${PARSER_ROLE} && {
         echo "  User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
     } || {
