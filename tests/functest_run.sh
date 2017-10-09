@@ -104,17 +104,17 @@ create_parser_user_and_project() {
     }
 
     # 3. grant role for parser user
-    openstack ${debug} role list --user ${PARSER_USER} --project ${PARSER_PROJECT} \
+    openstack ${debug} role assignment list --user ${PARSER_USER} --project ${PARSER_PROJECT} \
     | grep -qow ${PARSER_ROLE} && {
         echo "  User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
     } || {
         openstack ${debug} role add ${PARSER_ROLE} --user ${PARSER_USER} \
                            --project ${PARSER_PROJECT}
-        echo "  Grant user ${PARSER_USER} the role ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
+        echo "  Grant user ${PARSER_USER} the role of ${PARSER_ROLE} in project ${PARSER_PROJECT} successful."
         openstack ${debug} role list | grep -qow heat_stack_owner && {
             openstack ${debug} role add heat_stack_owner --user ${PARSER_USER} \
                                --project ${PARSER_PROJECT}
-            echo "  Grant user ${PARSER_USER} the role heat_stack_owner in project ${PARSER_PROJECT} successful."
+            echo "  Grant user ${PARSER_USER} the role of heat_stack_owner in project ${PARSER_PROJECT} successful."
         }
     }
 
