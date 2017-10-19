@@ -35,13 +35,20 @@ check the input file and don't want to translate, please use tosaca-parser as fo
 
 .. code-block:: bash
 
-   tosca-parser --template-file=<input yaml file>
+    tosca-parser --template-file=<path to the YAML template>  [--nrpv]  [--debug]
+    or
+        tosca-parser --template-file=<path to the CSAR zip file> [--nrpv]  [--debug]
+    or
+        tosca-parser --template-file=<URL to the template or CSAR>  [--nrpv]  [--debug]
+    options:
+      --nrpv Ignore input parameter validation when parse template.
+      --debug debug mode for print more details other than raise exceptions when errors happen
 
 Example:
 
 .. code-block:: bash
 
-   tosca-parser --template-file=vRNC.yaml
+   tosca-parser --template-file=vRNC.yaml --nrpv
 
 Parser tosca2heat References
 ============================
