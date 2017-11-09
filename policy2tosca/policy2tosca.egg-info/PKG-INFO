@@ -5,7 +5,7 @@ Summary: Parser policy2tosca
 Home-page: UNKNOWN
 Author: Shiva Charan M S
 Author-email: shiva-charan.m-s@hpe.com
-License: UNKNOWN
+License: Apache-2.0 
 Description: =================
          Running demoapp
         =================
