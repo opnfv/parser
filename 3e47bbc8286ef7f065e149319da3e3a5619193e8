@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_ac130f0c",
+        "filename": "policy2tosca/policy2tosca.egg-info/PKG-INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2017-11-09T19:43:05Z",
+      "side": 1,
+      "message": "This whole file shouldn\u0027t even be in the repo...",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 62
+      },
+      "revId": "3e47bbc8286ef7f065e149319da3e3a5619193e8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
