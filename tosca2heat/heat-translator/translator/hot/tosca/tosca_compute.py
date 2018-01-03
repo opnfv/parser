@@ -142,6 +142,9 @@ class ToscaCompute(HotResource):
             return None
 
     def _best_image(self, properties):
+        if 'image' in properties:
+            return properties['image']
+
         # Check whether user exported all required environment variables.
         images = glance_images.get_images()
         match_all = images.keys()
@@ -165,6 +168,7 @@ class ToscaCompute(HotResource):
                                                 [self.DISTRIBUTION,
                                                  self.OS_DISTRO],
                                                 distribution)
+
         version = properties.get(self.VERSION)
         if version is None:
             self._log_compute_msg(self.VERSION, 'image')
