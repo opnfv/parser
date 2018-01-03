@@ -49,10 +49,10 @@ PARSER_ROLE=admin
 
 PARSER_STACK_NAME=vRNC_Stack
 
-# VRNC_INPUT_TEMPLATE_FILE=../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
-# VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
-VRNC_INPUT_TEMPLATE_RAW_FILE=../tosca2heat/heat-translator/translator/tests/data/vRNC/Definitions/vRNC.yaml
-VRNC_OUTPUT_TEMPLATE_FILE=../tosca2heat/heat-translator/translator/tests/data/vRNC/vRNC_Hot_Template.yaml
+# VRNC_INPUT_TEMPLATE_FILE=${PRASER_WORK_DIR}/../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
+# VRNC_INPUT_TEMPLATE_RAW_FILE=${PRASER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
+VRNC_INPUT_TEMPLATE_RAW_FILE=${PRASER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/Definitions/vRNC.yaml
+VRNC_OUTPUT_TEMPLATE_FILE=${PRASER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/vRNC_Hot_Template.yaml
 
 VRNC_INPUT_TEMPLATE_FILE=${VRNC_INPUT_TEMPLATE_RAW_FILE%.*}_patch.yaml
 
