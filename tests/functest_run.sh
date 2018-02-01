@@ -47,6 +47,11 @@ PARSER_TENANT=${PARSER_PROJECT}
 
 PARSER_ROLE=admin
 
+VM_FLAVOR_NAME=m1.tiny
+VM_FLAVOR_CPUS=1
+VM_FLAVOR_RAM=512
+VM_FLAVOR_DISK=1
+
 PARSER_STACK_NAME=vRNC_Stack
 
 # VRNC_INPUT_TEMPLATE_FILE=${PRASER_WORK_DIR}/../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
@@ -68,7 +73,7 @@ download_parser_image() {
     wget ${PARSER_IMAGE_URL} -o ${PARSER_IMAGE_FILE}
 }
 
-register_parser_image() {
+register_parser_image_and_flavor() {
     openstack ${debug} image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
         echo "  Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
         return 0
@@ -81,6 +86,12 @@ register_parser_image() {
                            --disk-format ${PARSER_IMAGE_FORMAT} \
                            --container-format bare \
                            --file ${PARSER_IMAGE_FILE}
+
+    [[ ! openstack flavor show ${VM_FLAVOR_NAME} ]] && {
+        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
+        openstack flavor create --ram ${VM_FLAVOR_RAM} \
+            --vcpus ${VM_FLAVOR_CPUS} --disk ${VM_FLAVOR_DISK} ${VM_FLAVOR_NAM}
+    }
 }
 
 create_parser_user_and_project() {
@@ -313,9 +324,9 @@ trap reset_parser_test EXIT
 # start syslog for loghander
 which service > /dev/null  && service rsyslog restart || true
 
-echo "|========= 1/4. Preparing VM image for parser...     =========|"
+echo "|========= 1/4. Preparing VM image and flavor for parser...     =========|"
 download_parser_image
-register_parser_image
+register_parser_image_and_flavor
 
 echo ""
 echo "|========= 2/4. Creating test user for parser...     =========|"
