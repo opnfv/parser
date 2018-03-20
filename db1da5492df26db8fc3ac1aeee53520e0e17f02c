@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_9d3c6dc1",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7053
+      },
+      "writtenOn": "2018-03-20T14:42:01Z",
+      "side": 1,
+      "message": "similar to x86, maybe better to download 0.4.0 version instead of a daily img.\nPARSER_IMAGE_URL_FILE\u003d cirros-0.4.0-aarch64-disk.img  \nPARSER_IMAGE_VERSION\u003d$(echo ${PARSER_IMAGE_URL_FILE} | awk -F- \u0027{print $2}\u0027).",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 104
+      },
+      "revId": "db1da5492df26db8fc3ac1aeee53520e0e17f02c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5d72e5ad",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7053
+      },
+      "writtenOn": "2018-03-20T14:42:01Z",
+      "side": 1,
+      "message": "image create is common for both x86 and aarch64. \n\nif (aarch64)\nopenstack image set ...",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 54
+      },
+      "revId": "db1da5492df26db8fc3ac1aeee53520e0e17f02c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
