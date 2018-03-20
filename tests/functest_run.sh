@@ -74,6 +74,16 @@ download_parser_image() {
 }
 
 register_parser_image_and_flavor() {
+
+    echo ""
+    [[ ! $(openstack flavor show ${VM_FLAVOR_NAME}) ]] && {
+        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
+        openstack flavor create --ram ${VM_FLAVOR_RAM} \
+                                --vcpus ${VM_FLAVOR_CPUS} \
+                                --disk ${VM_FLAVOR_DISK} \
+                                ${VM_FLAVOR_NAME}
+    }
+
     openstack ${debug} image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
         echo "  Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
         return 0
@@ -87,11 +97,6 @@ register_parser_image_and_flavor() {
                            --container-format bare \
                            --file ${PARSER_IMAGE_FILE}
 
-    [[ ! openstack flavor show ${VM_FLAVOR_NAME} ]] && {
-        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
-        openstack flavor create --ram ${VM_FLAVOR_RAM} \
-            --vcpus ${VM_FLAVOR_CPUS} --disk ${VM_FLAVOR_DISK} ${VM_FLAVOR_NAM}
-    }
 }
 
 create_parser_user_and_project() {
