@@ -74,6 +74,16 @@ download_parser_image() {
 }
 
 register_parser_image_and_flavor() {
+
+    echo ""
+    [[ ! $(openstack ${debug} flavor show ${VM_FLAVOR_NAME}) ]] && {
+        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
+        openstack ${debug} flavor create --ram ${VM_FLAVOR_RAM} \
+                                --vcpus ${VM_FLAVOR_CPUS} \
+                                --disk ${VM_FLAVOR_DISK} \
+                                ${VM_FLAVOR_NAME}
+    }
+
     openstack ${debug} image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
         echo "  Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
         return 0
@@ -87,11 +97,6 @@ register_parser_image_and_flavor() {
                            --container-format bare \
                            --file ${PARSER_IMAGE_FILE}
 
-    [[ ! openstack flavor show ${VM_FLAVOR_NAME} ]] && {
-        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
-        openstack flavor create --ram ${VM_FLAVOR_RAM} \
-            --vcpus ${VM_FLAVOR_CPUS} --disk ${VM_FLAVOR_DISK} ${VM_FLAVOR_NAM}
-    }
 }
 
 create_parser_user_and_project() {
@@ -182,12 +187,12 @@ make_patch_for_translated_file() {
 
 translator_and_deploy_vRNC() {
 
-    (
         # 1. Delete parser stack ${PARSER_STACK_NAME}, use admin user in admin project
         openstack ${debug} stack list | grep -qow ${PARSER_STACK_NAME} && {
             echo "  Stack ${PARSER_STACK_NAME} exist, delete it first."
-            openstack stack delete --yes --wait ${PARSER_STACK_NAME}
+            openstack ${debug} stack delete --yes --wait ${PARSER_STACK_NAME}
         }
+    (
         # 2. Switch env to parser project temporally
         echo "  Switch openstack env to parser project"
         change_env_to_parser_user_project
