@@ -1,6 +1,6 @@
 #!/bin/bash -e
 ##############################################################################
-# Copyright (c) 2016 ZTE Corporation.
+# Copyright (c) 2016 ZTE Corporation, ENEA AB.
 #
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Apache License, Version 2.0
@@ -24,18 +24,34 @@ if [ -e "${LOCAL_IMAGE_FILE}" ]; then
     echo "Input local image file: ${LOCAL_IMAGE_FILE}"
     PARSER_IMAGE_URL_FILE=${LOCAL_IMAGE_FILE}
 else
-    echo "No local image file or the file(${LOCAL_IMAGE_FILE}) doesn't exsit!"
+    echo "No local image file or the file(${LOCAL_IMAGE_FILE}) doesn't exist!"
+    
+     
+    if [[ ${POD_ARCH} = 'aarch64' ]];then 
+        echo ""
+        echo "${POD_ARCH} Detected. The proper image file for that architecture  will be downloaded" 
+        ##ARMBAND. The naminsg scheme for aarch64 for the required versioned is a bit different 
+        ##         from that used for x86   
 
-    PARSER_IMAGE_URL_FILE=cirros-0.3.5-x86_64-disk.img
-    PARSER_IMAGE_VERSION=$(echo ${PARSER_IMAGE_URL_FILE} | awk -F- '{print $2}')
-    # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
-    PARSER_IMAGE_URL=http://download.cirros-cloud.net/${PARSER_IMAGE_VERSION}/${PARSER_IMAGE_URL_FILE}
-    echo "so will download image(${PARSER_IMAGE_URL_FILE}) from ${PARSER_IMAGE_URL}."
+        PARSER_IMAGE_URL_FILE=cirros-d161201-aarch64-disk.img
+        PARSER_IMAGE_URL=http://download.cirros-cloud.net/daily/20161201/cirros-d161201-aarch64-disk.img
+        echo ""
+        echo "Will download aarch64 image(${PARSER_IMAGE_URL_FILE} from ${PARSER_IMAGE_URL}). "  
+
+    else
+        PARSER_IMAGE_URL_FILE=cirros-0.3.5-x86_64-disk.img
+        PARSER_IMAGE_VERSION=$(echo ${PARSER_IMAGE_URL_FILE} | awk -F- '{print $2}')
+        # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
+        PARSER_IMAGE_URL=http://download.cirros-cloud.net/${PARSER_IMAGE_VERSION}/${PARSER_IMAGE_URL_FILE}
+        echo "so will download image(${PARSER_IMAGE_URL_FILE}) from ${PARSER_IMAGE_URL}."
+    fi
 fi
 
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
-# fiexd image name according to the translator default vlaue of images
+# fixed image name according to the translator's default value of images
+
 PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
+
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
 
@@ -70,35 +86,51 @@ download_parser_image() {
 
     echo ""
     echo "  Download image ${PARSER_IMAGE_URL_FILE}..."
-    wget ${PARSER_IMAGE_URL} -o ${PARSER_IMAGE_FILE}
+
+    ## ARMBAND: -O instead of -o makes a massive difference :P. Specially when you upload to glance...
+    wget ${PARSER_IMAGE_URL} -O ${PARSER_IMAGE_FILE} -o download.log
 }
 
-register_parser_image_and_flavor() {
+register_parser_image_and_flavor() { 
     openstack ${debug} image list | grep -qwo "${PARSER_IMAGE_NAME}" && {
-        echo "  Image ${PARSER_IMAGE_NAME} has bee registed, needn't registe again."
+        echo "  Image ${PARSER_IMAGE_NAME} has been registed, no need to register again."
         return 0
     }
 
     echo ""
-    echo "  Registe image ${PARSER_IMAGE_NAME}..."
-    openstack ${debug} image create "${PARSER_IMAGE_NAME}" \
+    echo "  Register image ${PARSER_IMAGE_NAME}..."  
+    
+    if [[ ${POD_ARCH} = 'aarch64' ]];then 
+        openstack ${debug} image create "${PARSER_IMAGE_NAME}" \
+                           --public \
+                           --disk-format ${PARSER_IMAGE_FORMAT} \
+                           --container-format bare \                           
+                           --file ${PARSER_IMAGE_FILE}
+
+        openstack image set --property hw_firmware_type="uefi" \
+                            --property short_id="cirros.aarch64" \
+                            ${PARSER_IMAGE_NAME}
+
+
+    else
+        openstack ${debug} image create "${PARSER_IMAGE_NAME}" \
                            --public \
                            --disk-format ${PARSER_IMAGE_FORMAT} \
                            --container-format bare \
                            --file ${PARSER_IMAGE_FILE}
+    fi
 
-    [[ ! openstack flavor show ${VM_FLAVOR_NAME} ]] && {
-        echo "  Create default flavor ${VM_FLAVOR_NAME}..."
-        openstack flavor create --ram ${VM_FLAVOR_RAM} \
-            --vcpus ${VM_FLAVOR_CPUS} --disk ${VM_FLAVOR_DISK} ${VM_FLAVOR_NAM}
-    }
+    echo "  Create default flavor ${VM_FLAVOR_NAME}..."
+    openstack flavor create --ram ${VM_FLAVOR_RAM} \
+            --vcpus ${VM_FLAVOR_CPUS} --disk ${VM_FLAVOR_DISK} ${VM_FLAVOR_NAME}
+    
 }
 
 create_parser_user_and_project() {
 
     # 1. create parser project
     openstack ${debug} project list | grep -qwo "${PARSER_PROJECT}" && {
-        echo "  Project ${PARSER_PROJECT} exist, doesn't create agian."
+        echo "  Project ${PARSER_PROJECT} exists, no need to create again."
     } || {
         openstack  ${debug} project create ${PARSER_PROJECT} \
             --description "Project for parser test"
@@ -107,7 +139,7 @@ create_parser_user_and_project() {
 
     # 2. create parser user.
     openstack ${debug} user list | grep -qwo ${PARSER_USER} && {
-        echo "  User ${PARSER_USER} exist, doesn't create again."
+        echo "  User ${PARSER_USER} exists , no need to create again."
     } || {
         openstack ${debug} user create ${PARSER_USER} --password ${PARSER_PASSWORD} \
             --project ${PARSER_PROJECT} --email ${PARSER_EMAIL}
@@ -117,7 +149,7 @@ create_parser_user_and_project() {
     # 3. grant role for parser user
     openstack ${debug} role assignment list --user ${PARSER_USER} --project ${PARSER_PROJECT} \
     | grep -qow ${PARSER_ROLE} && {
-        echo "  User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, doesn't create."
+        echo "  User ${PARSER_USER} has role ${PARSER_ROLE} in project ${PARSER_PROJECT}, no need to create."
     } || {
         openstack ${debug} role add ${PARSER_ROLE} --user ${PARSER_USER} \
                            --project ${PARSER_PROJECT}
@@ -185,7 +217,7 @@ translator_and_deploy_vRNC() {
     (
         # 1. Delete parser stack ${PARSER_STACK_NAME}, use admin user in admin project
         openstack ${debug} stack list | grep -qow ${PARSER_STACK_NAME} && {
-            echo "  Stack ${PARSER_STACK_NAME} exist, delete it first."
+            echo "  Stack ${PARSER_STACK_NAME} exists, delete it first."
             openstack stack delete --yes --wait ${PARSER_STACK_NAME}
         }
         # 2. Switch env to parser project temporally
