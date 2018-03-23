@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_11e681b4",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-23T20:28:06Z",
+      "side": 1,
+      "message": "add POD_ARCH default just to be safe",
+      "revId": "1be014ce30fc0b8178c9725d27fdb6425a2295b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_31f29d6f",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-23T20:28:06Z",
+      "side": 1,
+      "message": "this is a lot easier to read than the previous version, although I would still like to have a single `openstack image create` outside this conditional.",
+      "revId": "1be014ce30fc0b8178c9725d27fdb6425a2295b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
