@@ -160,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_f1e03598",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-23T20:28:06Z",
+      "side": 1,
+      "message": "Not a blocking issue and I agree uniformity is nice.",
+      "parentUuid": "5a3f45e8_16e677b4",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "7d41c573f22db5ae0da2a21931dcc758ebe80484",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_203529da",
         "filename": "tests/functest_run.sh",
         "patchSetId": 6
@@ -242,6 +266,30 @@
       "side": 1,
       "message": "I opened another ticket for this cause it touches other files and it is not the purpose of this commit.",
       "parentUuid": "5a3f45e8_80a99de1",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "7d41c573f22db5ae0da2a21931dcc758ebe80484",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_51ef6987",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-23T20:28:06Z",
+      "side": 1,
+      "message": "Yeah, plus there\u0027s no uec image for AArch64 afair.",
+      "parentUuid": "5a3f45e8_36645348",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -383,6 +431,30 @@
       "side": 1,
       "message": "so? This Vm boots with 512. enough for parser. I dont see what there is to fix for now",
       "parentUuid": "5a3f45e8_c03c45c2",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 32
+      },
+      "revId": "7d41c573f22db5ae0da2a21931dcc758ebe80484",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_91e9f182",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-23T20:28:06Z",
+      "side": 1,
+      "message": "nothing to fix for now. but if parser tests fail, this might be one thing to look out for.",
+      "parentUuid": "5a3f45e8_b6d6a3c1",
       "range": {
         "startLine": 88,
         "startChar": 0,
