@@ -1,0 +1,72 @@
+---
+project: 'Deployment Template Translation (Parser)'
+project_creation_date: ''
+project_category: 'Integration & Testing'
+lifecycle_state: 'Incubation'
+project_lead: &opnfv_parser_ptl
+    name: 'xiaodong shang'
+    email: 'shang.xiaodong@zte.com.cn'
+    id: 'shangxdy'
+    company: 'zte.com.cn'
+    timezone: 'UTC+8'
+primary_contact: *opnfv_parser_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opnfv.org/projects/PARSER'
+    key: 'PARSER'
+mailing_list:
+    type: 'mailman2'
+    url: 'opnfv-tech-discuss@lists.opnfv.org'
+    tag: '[parser]'
+realtime_discussion:
+    type: irc
+    server: 'freenode.net'
+    channel: '#opnfv-parser'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda:  # eg: 'https://wiki.opnfv.org/display/'
+      url:  # eg: 'https://global.gotomeeting.com/join/819733085'
+      server: 'freenode.net'
+      channel: '#opnfv-meeting'
+      repeats: 'weekly'
+      time:  'Asia-Euro: Every Monday 4:30pm - 5:30pm (UTC + 8) or Asia-US: Every Tuesday 11:00am - 12:00am (UTC + 8)'
+repositories:
+    - 'parser'
+committers:
+    - <<: *opnfv_parser_ptl
+    - name: 'Ruifeng(Victor) HU'
+      email: 'huruifeng@huawei.com'
+      company: 'huawei.com'
+      id: 'huruifeng'
+    - name: 'Zhipeng (Howard) Huang'
+      email: 'huangzhipeng@huawei.com'
+      company: 'huawei.com'
+      id: 'zhipengh'
+    - name: 'Vinayak Ram'
+      email: 'vinayak.ram@hp.com'
+      company: 'hp.com'
+      id: 'VinayakRam'
+    - name: 'julien zhang'
+      email: 'zhang.jun3g@zte.com.cn'
+      company: 'zte.com.cn'
+      id: 'Julien-zte'
+    - name: 'Sarbajit Chatterjee'
+      email: 'sarbajit.chatterjee@hpe.com'
+      company: 'hpe.com'
+      id: 'sarbajitc'
+    - name: 'Zhou Qi'
+      email: 'zhouqi5@huawei.com'
+      company: 'huawei.com'
+      id: 'zhouqi'
+    - name: 'Senthil Subramaniam'
+      email: 'senthil-kumar.subramaniam@hp.com'
+      company: 'hp.com'
+      id: 'lfssk'
+    - name: 'Shiva Charan M S'
+      email: 'shiva-charan.m-s@hpe.com'
+      company: 'hpe.com'
+      id: 'shiva-charan'
+# yamllint disable rule:line-length
+tsc:
+    approval: 'http//meetbot.opnfv.org/meetings/opnfv-meeting/'
+# yamllint enable rule:line-length
