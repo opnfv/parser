@@ -22,6 +22,30 @@
       "revId": "cabfeecb3259c5e22488756d91b6f72d27c4c18a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_13368003",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6947
+      },
+      "writtenOn": "2018-03-29T18:27:41Z",
+      "side": 1,
+      "message": "I was thinking the same thing!\nSo that is why I thought that we can leave it like that for this patch and then fix the naming in another patch.\nIt is as you said. It is just weird that somebody would upload an aarch64 image and then he sees a different name in glance !",
+      "parentUuid": "5a3f45e8_533ac836",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "cabfeecb3259c5e22488756d91b6f72d27c4c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
