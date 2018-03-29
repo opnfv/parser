@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_533ac836",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1641
+      },
+      "writtenOn": "2018-03-29T13:51:33Z",
+      "side": 1,
+      "message": "The image name will be modified against the architecture, but it need to change the simple tosca model file of vRNC.yaml and the default translation of heat template.  Maybe the next patch, currently it doesn\u0027t affect the functionality, only dispaly issue.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "cabfeecb3259c5e22488756d91b6f72d27c4c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
