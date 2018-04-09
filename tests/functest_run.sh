@@ -21,6 +21,11 @@ POD_ARCH=${POD_ARCH:-$(uname -m)}
 }
 LOCAL_IMAGE_FILE=${1:-""}
 
+# VRNC_INPUT_TEMPLATE_FILE=${PARSER_WORK_DIR}/../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
+# VRNC_INPUT_TEMPLATE_RAW_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
+VRNC_INPUT_TEMPLATE_RAW_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/Definitions/vRNC.yaml
+VRNC_OUTPUT_TEMPLATE_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/vRNC_Hot_Template.yaml
+
 if [ -e "${LOCAL_IMAGE_FILE}" ]; then
     echo "Input local image file: ${LOCAL_IMAGE_FILE}"
     PARSER_IMAGE_URL_FILE=${LOCAL_IMAGE_FILE}
@@ -31,8 +36,13 @@ else
         echo ""
         echo "${POD_ARCH} Detected. The proper image file for that architecture will be downloaded"
         PARSER_IMAGE_URL_FILE=cirros-0.4.0-aarch64-disk.img
+        PARSER_IMAGE_NAME=cirros-0.4.0-aarch64-disk
+        sed -i 's/x86_64/aarch64/g' ${VRNC_INPUT_TEMPLATE_RAW_FILE}
+        sed -i 's/0.3.2/0.4.0/g' ${VRNC_INPUT_TEMPLATE_RAW_FILE}
+
     else
         PARSER_IMAGE_URL_FILE=cirros-0.3.5-x86_64-disk.img
+        PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
         # PARSER_IMAGE_URL=https://launchpad.net/cirros/trunk/0.3.0/+download/${PARSER_IMAGE_URL_FILE}
     fi
 
@@ -45,7 +55,7 @@ fi
 # PARSER_IMAGE_NAME=rhel-6.5-test-image
 # fixed image name according to the translator's default value of images
 
-PARSER_IMAGE_NAME=cirros-0.3.2-x86_64-uec
+
 
 PARSER_IMAGE_FILE="${PARSER_IMAGE_NAME}.img"
 PARSER_IMAGE_FORMAT=qcow2
@@ -65,10 +75,7 @@ VM_FLAVOR_DISK=1
 
 PARSER_STACK_NAME=vRNC_Stack
 
-# VRNC_INPUT_TEMPLATE_FILE=${PARSER_WORK_DIR}/../tosca2heat/tosca-parser/toscaparser/extensions/nfv/tests/data/vRNC/Definitions/vRNC.yaml
-# VRNC_INPUT_TEMPLATE_RAW_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/test_tosca_nfv_sample.yaml
-VRNC_INPUT_TEMPLATE_RAW_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/Definitions/vRNC.yaml
-VRNC_OUTPUT_TEMPLATE_FILE=${PARSER_WORK_DIR}/../tosca2heat/heat-translator/translator/tests/data/vRNC/vRNC_Hot_Template.yaml
+
 
 VRNC_INPUT_TEMPLATE_FILE=${VRNC_INPUT_TEMPLATE_RAW_FILE%.*}_patch.yaml
 
@@ -82,7 +89,7 @@ download_parser_image() {
     echo ""
     echo "  Download image ${PARSER_IMAGE_URL_FILE}..."
 
-    wget ${PARSER_IMAGE_URL} -O ${PARSER_IMAGE_FILE} -o download.log
+    wget ${PARSER_IMAGE_URL} -O ${PARSER_IMAGE_FILE}
 }
 
 register_parser_image_and_flavor() {
