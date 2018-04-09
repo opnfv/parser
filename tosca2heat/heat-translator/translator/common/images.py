@@ -64,7 +64,12 @@ PREDEF_IMAGES = {
                             'os_type': 'linux',
                             'os_distro': 'rhel',
                             'os_version': '6.5'
-                            }
+                            },
+    'cirros-0.4.0-aarch64-disk': {'architecture': 'aarch64',
+                                  'os_type': 'linux',
+                                  'os_distro': 'cirros',
+                                  'os_version': '0.4.0'
+                                  }
 }
 
 SESSION = None
