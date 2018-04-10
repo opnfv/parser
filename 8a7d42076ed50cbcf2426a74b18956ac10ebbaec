@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_5fed94ee",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5267
+      },
+      "writtenOn": "2018-04-10T12:11:48Z",
+      "side": 1,
+      "message": "With this logic, PARSER_IMAGE_NAME is not set when local image file is provided.",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "8a7d42076ed50cbcf2426a74b18956ac10ebbaec",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
