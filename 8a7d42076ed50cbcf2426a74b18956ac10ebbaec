@@ -46,6 +46,30 @@
       "revId": "8a7d42076ed50cbcf2426a74b18956ac10ebbaec",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5fc4745e",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6947
+      },
+      "writtenOn": "2018-04-10T12:33:20Z",
+      "side": 1,
+      "message": "Correction. They choose the image to use from a predefined list of images. So in order to use another image they need  to update the vRNC file each time.",
+      "parentUuid": "5a3f45e8_3fcfe880",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "8a7d42076ed50cbcf2426a74b18956ac10ebbaec",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
