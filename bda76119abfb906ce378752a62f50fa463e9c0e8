@@ -46,6 +46,30 @@
       "revId": "bda76119abfb906ce378752a62f50fa463e9c0e8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3f21a84d",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5267
+      },
+      "writtenOn": "2018-04-10T12:11:48Z",
+      "side": 1,
+      "message": "Ok, thaks for the clarification. I agree, we don\u0027t need a separate log file for that.",
+      "parentUuid": "5a3f45e8_9f09dcdf",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 92,
+        "endChar": 52
+      },
+      "revId": "bda76119abfb906ce378752a62f50fa463e9c0e8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
