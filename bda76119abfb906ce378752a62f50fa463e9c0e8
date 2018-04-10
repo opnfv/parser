@@ -22,6 +22,30 @@
       "revId": "bda76119abfb906ce378752a62f50fa463e9c0e8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9f09dcdf",
+        "filename": "tests/functest_run.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6947
+      },
+      "writtenOn": "2018-04-10T11:38:14Z",
+      "side": 1,
+      "message": "If I remove it, it is a appended in the parser.log.\nwhich looks better to me. no need to have different logs",
+      "parentUuid": "5a3f45e8_3f736881",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 92,
+        "endChar": 52
+      },
+      "revId": "bda76119abfb906ce378752a62f50fa463e9c0e8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
