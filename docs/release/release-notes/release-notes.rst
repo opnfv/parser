@@ -12,19 +12,25 @@ This document provides the release notes for <Danube Release> of <Parser>.
 Version history
 ---------------
 
-+--------------------+--------------------+--------------------+--------------------+
-| **Date**           | **Ver.**           | **Author**         | **Comment**        |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| 2017-03-06         | 1.0                | Howard Huang       | Danube Release     |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| 2017-09-25         | 2.0                | Shang Xiaodong     | Euphrates release  |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
-|                    |                    |                    |                    |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
++--------------------+--------------------+--------------------+----------------------+
+| **Date**           | **Ver.**           | **Author**         | **Comment**          |
+|                    |                    |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
+| 2016-04-20         | 0.5                | Howard Huang       | Brahmaputra Release  |
+|                    |                    |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
+| 2016-09-19         | 1.0                | Howard Huang       | Colorado Release     |
+|                    |                    |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
+| 2017-03-06         | 2.0                | Howard Huang       | Danube Release       |
+|                    |                    |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
+| 2017-09-25         | 5.0                | Shang Xiaodong     | Euphrates release    |
+|                    | 0.5 ONAP           |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
+| 2018-04-20         | 6.0                | Shang Xiaodong     | Fraser release       |
+|                    | 1.0 ONAP           |                    |                      |
++--------------------+--------------------+--------------------+----------------------+
 
 Important notes
 ===============
@@ -39,7 +45,8 @@ Summary
 OPNFV Parser Danube release has provides four submodules to serve as translation/prevalidation
 tools: tosca2heat, yang2tosca, policy2tosca, and verigraph. Specifically, tosca2heat module
 provides an integration of OpenStack tosca-parser and heat-translater
-upstream projects 0.7 release with additional Parser unique features.
+upstream projects 0.7 release with additional Parser unique features, and includes nfv-toscaparser
+ and nfv-heattranslaotor for ONAP community.
 
 
 Release Data
@@ -59,15 +66,155 @@ Release Data
 |                                      | tion tooling                         |
 +--------------------------------------+--------------------------------------+
 
+Fraser Release Data
+-----------------------
+
++--------------------------------------+--------------------------------+
+| **Project**                          | OPNFV Parer                    |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Repo/tag**                         | Parser/6.0.0                   |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Bottlenecks Docker image tag**     | * 6.0.0                        |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release designation**              | * 6.0.0                        |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release date**                     | * Apr 20th 2018                |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Purpose of the delivery**          | Fraser stable release          |
+|                                      |                                |
+|                                      | OPNFV Template Translation/    |
+|                                      | Prevalidation tooling          |
++--------------------------------------+--------------------------------+
+
+Euphrates Release Data
+-----------------------
+
++--------------------------------------+--------------------------------+
+| **Project**                          | OPNFV Parer                    |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Repo/tag**                         | Parser/5.0.0                   |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Bottlenecks Docker image tag**     | * 5.0.0                        |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release designation**              | * 5.0.0                        |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release date**                     | * Sept 25th 2017               |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Purpose of the delivery**          | Euphrates stable release       |
+|                                      |                                |
+|                                      | OPNFV Template Translation/    |
+|                                      | Prevalidation tooling          |
++--------------------------------------+--------------------------------+
+
+Danube Release Data
+-----------------------
+
++--------------------------------------+--------------------------------+
+| **Project**                          | OPNFV Parer                    |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Repo/tag**                         | Parser/danube.2.0              |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Bottlenecks Docker image tag**     | * danube.2.0                   |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release designation**              | * Danube 2.0                   |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release date**                     | * March 6st 2017               |
+|                                      |                                |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Purpose of the delivery**          | Danube stable release          |
+|                                      |                                |
+|                                      | OPNFV Template Translation/    |
+|                                      | Prevalidation tooling          |
++--------------------------------------+--------------------------------+
+
+Colorado Release Data
+-----------------------
+
++--------------------------------------+--------------------------------+
+| **Project**                          | OPNFV Parer                    |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Repo/tag**                         | Parser/colorado.1.0            |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Bottlenecks Docker image tag**     | * colorado.1.0                 |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release designation**              | * Colorado 1.0                 |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release date**                     | * September 22 2016            |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Purpose of the delivery**          | Colorado stable release        |
+|                                      |                                |
+|                                      | OPNFV Template Translation/    |
+|                                      | Prevalidation tooling          |
++--------------------------------------+--------------------------------+
+
+Bramaputra Release Data
+-----------------------
+
++--------------------------------------+--------------------------------+
+| **Project**                          | OPNFV Parer                    |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Repo/tag**                         | Parser/brahmaputra.1.0         |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Bottlenecks Docker image tag**     | * brahmaputra.1.0              |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release designation**              | * Brahmaputra 1.0              |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Release date**                     | * February 25 2016             |
+|                                      |                                |
++--------------------------------------+--------------------------------+
+| **Purpose of the delivery**          | Brahmaputra stable release     |
+|                                      |                                |
+|                                      | OPNFV Template Translation/    |
+|                                      | Prevalidation tooling          |
++--------------------------------------+--------------------------------+
+
 Version change
 ^^^^^^^^^^^^^^
 
 Module version changes
 ~~~~~~~~~~~~~~~~~~~~~~
 
-- OpenStack tosca-parser and heat-translator have changed from 0.6 to 0.7
+- OpenStack tosca-parser and heat-translator have changed from 0.8 to 0.9
 
-- new verigraph module
+- Parseer support aarch64
+
+- update verigraph module
+
+- Release 0.5 and 1.0 for ONAP community
 
 - no feature changes in yang2tosca and policy2tosca since Colorado Release.
 
@@ -78,11 +225,9 @@ Document version changes
 
 Reason for version
 ^^^^^^^^^^^^^^^^^^
+
 Feature additions
 ~~~~~~~~~~~~~~~~~
-<STATE ADDED FEATURES BY REFERENCE TO JIRA>
-
-<EXAMPLE>:
 
 **JIRA BACK-LOG:**
 
@@ -199,6 +344,7 @@ Known Limitations, Issues and Workarounds
 System Limitations
 ^^^^^^^^^^^^^^^^^^
 
+None
 
 
 
@@ -229,11 +375,9 @@ Workarounds
 
 Test Result
 ===========
-<STATE THE QA COVERAGE AND RESULTS>
 
-<EXAMPLE>:
 
-Fuel@OPNFV Arno RC2 has undergone QA test runs with the following results:
+Parser test with functest runs with the following results:
 
 +--------------------------------------+--------------------------------------+
 | **TEST-SUITE**                       | **Results:**                         |
@@ -254,6 +398,12 @@ References
 ==========
 
 
-For more information on the OPNFV Danube release, please see:
+ - WIKI project page: https://wiki.opnfv.org/display/parser
 
-http://opnfv.org/danube
+ - Parser jira page: https://jira.opnfv.org/secure/RapidBoard.jspa?rapidView=121&useStoredSettings=true
+
+ - Parser repo: https://git.opnfv.org/cgit/parser
+
+ - Parser CI dashboard: https://build.opnfv.org/ci/view/parser
+
+ - Parser IRC chanel: #opnfv-parser
