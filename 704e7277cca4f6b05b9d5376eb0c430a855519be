@@ -1,0 +1,10 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Alexandru Avadanii <Alexandru.Avadanii@enea.com>
+Code-Review+1: Delia Popescu <delia.popescu@enea.com>
+Code-Review+1: Charalampos Kominos <charalampos.kominos@enea.com>
+Code-Review+2: xiaodong shang <shang.xiaodong@zte.com.cn>
+Submitted-by: xiaodong shang <shang.xiaodong@zte.com.cn>
+Submitted-at: Thu, 26 Apr 2018 09:12:17 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/55229
+Project: parser
+Branch: refs/heads/master
