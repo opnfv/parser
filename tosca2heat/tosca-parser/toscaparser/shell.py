@@ -97,9 +97,10 @@ class ParserShell(object):
             else:
                 raise e
 
-        version = tosca.version if tosca else "unknown"
-        if tosca and tosca.version:
-            print("\nversion: " + version)
+        if tosca and hasattr(tosca, 'version'):
+            print("\nversion: " + tosca.version)
+        else:
+            print("\nversion: " + "unknown")
 
         if tosca and hasattr(tosca, 'description'):
             description = tosca.description
