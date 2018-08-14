@@ -207,10 +207,14 @@ class ExceptionCollector(object):
 
     @staticmethod
     def removeException(exception_type):
-        if ExceptionCollector.collecting and ExceptionCollector.exceptions:
+        # if ExceptionCollector.collecting and ExceptionCollector.exceptions:
+        if ExceptionCollector.exceptions:
+            tmp_exceptions = []
             for i, e in enumerate(ExceptionCollector.exceptions):
-                if isinstance(e, exception_type):
-                    del ExceptionCollector.exceptions[i]
+                if not isinstance(e, exception_type):
+                    tmp_exceptions.append(e)
+                    # del ExceptionCollector.exceptions[i]
+            ExceptionCollector.exceptions = tmp_exceptions
 
     @staticmethod
     def exceptionsCaught():
