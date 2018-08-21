@@ -53,7 +53,7 @@ class ParserShell(object):
                             required=True,
                             help=_('YAML template or CSAR file to parse.'))
 
-        parser.add_argument('-nrpv', dest='no_required_paras_check',
+        parser.add_argument('--nrpv', dest='no_required_paras_check',
                             action='store_true', default=False,
                             help=_('Ignore input parameter validation '
                                    'when parse template.'))
