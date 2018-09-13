@@ -21,25 +21,28 @@ from toscaparser.common.exception import MissingRequiredOutputError
 from toscaparser.common.exception import UnknownFieldError
 from toscaparser.common.exception import UnknownOutputError
 from toscaparser.elements.nodetype import NodeType
+from toscaparser.entity_template import EntityTemplate
 from toscaparser.utils.gettextutils import _
 
 log = logging.getLogger('tosca')
 
 
-class SubstitutionMappings(object):
+class SubstitutionMappings(EntityTemplate):
     '''SubstitutionMappings class declaration
 
     SubstitutionMappings exports the topology template as an
     implementation of a Node type.
     '''
 
-    SECTIONS = (NODE_TYPE, REQUIREMENTS, CAPABILITIES) = \
-               ('node_type', 'requirements', 'capabilities')
+    SECTIONS = (NODE_TYPE, PROPERTIES, REQUIREMENTS, CAPABILITIES) = \
+               ('node_type', 'properties', 'requirements', 'capabilities')
 
     OPTIONAL_OUTPUTS = ['tosca_id', 'tosca_name', 'state']
 
     def __init__(self, sub_mapping_def, nodetemplates, inputs, outputs,
                  sub_mapped_node_template, custom_defs):
+        super(SubstitutionMappings, self).__init__("sub_map", sub_mapping_def,
+                                                   'node_type', custom_defs)
         self.nodetemplates = nodetemplates
         self.sub_mapping_def = sub_mapping_def
         self.inputs = inputs or []
