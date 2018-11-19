@@ -49,7 +49,7 @@ class TypeValidation(object):
         for name in custom_type:
             if name not in self.ALLOWED_TYPE_SECTIONS:
                 ExceptionCollector.appendException(
-                    UnknownFieldError(what='Template ' + (self.import_def),
+                    UnknownFieldError(what='Template ' + str(self.import_def),
                                       field=name))
 
     def _validate_type_version(self, version):
