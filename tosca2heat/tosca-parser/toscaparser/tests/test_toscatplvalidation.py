@@ -1442,6 +1442,17 @@ heat-translator/master/translator/tests/data/custom_types/wordpress.yaml
             (_('The template version "tosca_xyz" is invalid. Valid versions '
                'are "%s".') % valid_versions))
 
+    def test_import_invalid_type(self):
+        tosca_tpl = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data/test_import_invalid_type.yaml")
+        self.assertRaises(exception.ValidationError, ToscaTemplate, tosca_tpl)
+        exception.ExceptionCollector.assertExceptionMessage(
+            exception.UnknownFieldError,
+            (_("Template {'invalid': 'custom_types/invalid_type.yaml'} "
+               'contains unknown field "annotation_types". Refer to the '
+               'definition to verify valid values.')))
+
     def test_node_template_capabilities_properties(self):
         # validating capability property values
         tpl_snippet = '''
