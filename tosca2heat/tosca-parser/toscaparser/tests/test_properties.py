@@ -314,6 +314,31 @@ class PropertyTest(TestCase):
                      num_cpus: 1
         '''
 
+        tosca_custom_def_example3 = '''
+          tosca.capabilities.New:
+            derived_from: tosca.capabilities.Node
+            properties:
+              test_case:
+                type: integer
+                required: yes
+
+          tosca.nodes.ComputeNew:
+            derived_from: tosca.nodes.Compute
+            capabilities:
+              scalable:
+                type: tosca.capabilities.New
+        '''
+
+        tosca_node_template_example3 = '''
+          node_templates:
+            compute_instance:
+              type: tosca.nodes.ComputeNew
+              capabilities:
+                scalable:
+                  properties:
+                    test_case: 1
+        '''
+
         tpl1 = self._get_nodetemplate(tosca_node_template_example1,
                                       tosca_custom_def_example1)
         self.assertIsNone(tpl1.validate())
@@ -321,6 +346,10 @@ class PropertyTest(TestCase):
         tpl2 = self._get_nodetemplate(tosca_node_template_example2,
                                       tosca_custom_def_example2)
         self.assertIsNone(tpl2.validate())
+
+        tpl3 = self._get_nodetemplate(tosca_node_template_example3,
+                                      tosca_custom_def_example3)
+        self.assertIsNone(tpl3.validate())
 
     def _get_nodetemplate(self, tpl_snippet,
                           custom_def_snippet=None):
