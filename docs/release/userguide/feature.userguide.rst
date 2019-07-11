@@ -71,7 +71,7 @@ Using api, which is used to parse and get the result of service template. it can
 
    ToscaTemplate(path=None, parsed_params=None, a_file=True, yaml_dict_tpl=None,
                                           sub_mapped_node_template=None,
-                                          no_required_paras_valid=False, debug=False )
+                                          no_required_paras_valid=False, debug=False)
 
 REST API
 *********
